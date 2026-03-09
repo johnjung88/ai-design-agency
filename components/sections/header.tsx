@@ -42,9 +42,13 @@ export function Header() {
         {/* 로고 */}
         <Link
           href="/"
-          className="text-sm font-bold tracking-[0.1em] text-foreground transition-colors hover:text-primary focus-visible:outline-none"
+          className="flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none"
+          aria-label="D-AIO 홈"
         >
-          D-AIO
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="10" fill="#a3e635"/>
+          </svg>
+          <span className="text-sm font-bold tracking-[0.12em] text-foreground">D-AIO</span>
         </Link>
 
         {/* 데스크톱 네비 */}
