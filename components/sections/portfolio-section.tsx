@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   portfolioCategories,
   portfolioProjects,
@@ -12,93 +12,162 @@ import {
   type PortfolioCategory,
 } from "@/lib/portfolio-data";
 
-const sizeClass: Record<PortfolioProject["size"], string> = {
-  sm: "min-h-44",
-  md: "min-h-56",
-  lg: "min-h-72",
-};
-
 const categoryValues = new Set<PortfolioCategory>(
   portfolioCategories.map((item) => item.value)
 );
+
+// 비대칭 그리드 레이아웃 패턴 (6개 카드용)
+const gridLayouts = [
+  "col-span-1 row-span-1",  // 1: 일반
+  "col-span-2 row-span-1",  // 2: 넓은
+  "col-span-1 row-span-2",  // 3: 높은
+  "col-span-1 row-span-1",  // 4: 일반
+  "col-span-1 row-span-1",  // 5: 일반
+  "col-span-1 row-span-1",  // 6: 일반
+];
+
+// 카테고리별 배경 색상
+const categoryColors: Record<string, string> = {
+  "brand-design": "from-violet-950/80 via-purple-900/40 to-transparent",
+  "brand-book":   "from-emerald-950/80 via-green-900/40 to-transparent",
+  "website":      "from-blue-950/80 via-blue-900/40 to-transparent",
+};
+
+function ProjectCard({
+  project,
+  layoutClass,
+  index,
+}: {
+  project: PortfolioProject;
+  layoutClass: string;
+  index: number;
+}) {
+  const categoryLabel =
+    portfolioCategories.find((c) => c.value === project.category)?.label ?? project.category;
+  const bgGradient = categoryColors[project.category] ?? "from-zinc-900 to-transparent";
+  const isLarge = layoutClass.includes("col-span-2") || layoutClass.includes("row-span-2");
+
+  return (
+    <motion.article
+      className={`group relative overflow-hidden rounded-xl border border-white/8 bg-[#111] ${layoutClass}`}
+      style={{ minHeight: isLarge ? "360px" : "260px" }}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ delay: index * 0.06, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      layout
+    >
+      {/* 배경 그라디언트 */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${bgGradient} transition-opacity duration-300 group-hover:opacity-80`}
+      />
+
+      {/* 호버 오버레이 */}
+      <div className="absolute inset-0 bg-primary/0 transition-colors duration-300 group-hover:bg-primary/5" />
+
+      {/* 콘텐츠 */}
+      <div className="relative flex h-full flex-col justify-between p-6 lg:p-8">
+        {/* 상단: 카테고리 + 링크 */}
+        <div className="flex items-center justify-between">
+          <span className="rounded-full border border-white/12 bg-white/5 px-3 py-1 text-xs font-medium text-white/60">
+            {categoryLabel}
+          </span>
+          <Link
+            href={`/portfolio/${project.slug}`}
+            className="flex size-8 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/40 transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ArrowUpRight className="size-3.5" />
+          </Link>
+        </div>
+
+        {/* 하단: 타이틀 + 태그 */}
+        <div>
+          <h3
+            className="font-bold leading-tight tracking-tight text-foreground"
+            style={{ fontSize: isLarge ? "clamp(20px, 2.5vw, 32px)" : "clamp(16px, 1.5vw, 22px)" }}
+          >
+            {project.title}
+          </h3>
+          <p className="mt-2 text-xs leading-5 text-muted-foreground line-clamp-2">
+            {project.summary}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-white/8 px-2.5 py-0.5 text-xs text-white/40"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
 export function PortfolioSection() {
   const [category, setCategory] = useState<PortfolioCategory>("all");
 
   const filtered = useMemo(() => {
-    if (category === "all") {
-      return portfolioProjects;
-    }
-
-    return portfolioProjects.filter((project) => project.category === category);
+    if (category === "all") return portfolioProjects;
+    return portfolioProjects.filter((p) => p.category === category);
   }, [category]);
 
   return (
-    <section id="portfolio" className="py-20">
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <section id="portfolio" className="py-24 lg:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+
+        {/* 헤더 */}
+        <div className="mb-16 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-medium text-accent">Portfolio</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-              카테고리별 대표 프로젝트
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-10 bg-primary" />
+              <span className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+                Portfolio
+              </span>
+            </div>
+            <h2
+              className="font-bold leading-tight tracking-[-0.02em] text-foreground"
+              style={{ fontSize: "clamp(32px, 4vw, 56px)" }}
+            >
+              대표 프로젝트
             </h2>
           </div>
 
-          <Tabs
-            value={category}
-            onValueChange={(value) => {
-              if (categoryValues.has(value as PortfolioCategory)) {
-                setCategory(value as PortfolioCategory);
-              }
-            }}
-          >
-            <TabsList className="bg-muted/40">
-              {portfolioCategories.map((item) => (
-                <TabsTrigger
-                  key={item.value}
-                  value={item.value}
-                  className="px-3 text-xs data-active:bg-card data-active:text-foreground"
-                >
-                  {item.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
+          {/* 탭 필터 */}
+          <div className="flex flex-wrap gap-2">
+            {portfolioCategories.map((item) => (
+              <button
+                key={item.value}
+                type="button"
+                onClick={() => setCategory(item.value)}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                  category === item.value
+                    ? "bg-primary text-primary-foreground"
+                    : "border border-white/10 text-muted-foreground hover:border-white/20 hover:text-foreground"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-10 columns-1 gap-4 md:columns-2 lg:columns-3">
-          {filtered.map((project) => (
-            <article
-              key={project.id}
-              className={`group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-br p-6 transition-all duration-200 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10 ${project.gradient} ${sizeClass[project.size]}`}
-            >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-16 -top-16 size-36 rounded-full bg-accent/0 blur-3xl transition-colors duration-200 group-hover:bg-accent/20"
+        {/* 비대칭 그리드 */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                layoutClass={gridLayouts[index % gridLayouts.length]}
+                index={index}
               />
-              <Badge variant="secondary" className="relative bg-background/45 text-foreground/90">
-                {portfolioCategories.find((c) => c.value === project.category)?.label ?? project.category.toUpperCase()}
-              </Badge>
-              <h3 className="relative mt-4 text-lg leading-snug font-semibold text-foreground">{project.title}</h3>
-              <p className="relative mt-3 text-sm leading-6 text-foreground/85">{project.summary}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="relative rounded-full border border-border/70 bg-background/40 px-2.5 py-1 text-xs text-foreground/85"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <Link
-                href={`/portfolio/${project.slug}`}
-                className="relative mt-5 inline-flex text-sm font-medium text-foreground/90 underline-offset-4 transition-colors hover:text-foreground hover:underline focus-visible:text-foreground focus-visible:underline focus-visible:outline-none"
-              >
-                상세 보기
-              </Link>
-            </article>
-          ))}
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>

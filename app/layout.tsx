@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 
 import "./globals.css";
 
@@ -8,14 +8,9 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "AIO Design Agency",
-  description: "AI 기반 브랜딩, 웹, 모션 디자인 포트폴리오",
+  title: "D-AIO — 브랜드 디자인 대행사",
+  description: "브랜드 디자인, 소개서, 웹사이트를 빠르고 정교하게 제작합니다.",
 };
 
 export default function RootLayout({
@@ -25,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={geistSans.variable}>
         {children}
       </body>
     </html>

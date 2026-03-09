@@ -7,12 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-interface FaqItem {
-  question: string;
-  answer: string;
-}
-
-const faqs: FaqItem[] = [
+const faqs = [
   {
     question: "프로젝트 평균 기간은 어느 정도인가요?",
     answer: "일반적으로 2주에서 6주 사이이며, 범위와 승인 속도에 따라 조정됩니다.",
@@ -45,21 +40,45 @@ const faqs: FaqItem[] = [
 
 export function FaqSection() {
   return (
-    <section id="faq" className="py-20">
-      <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-medium text-cyan">FAQ</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">자주 묻는 질문</h2>
+    <section id="faq" className="py-24 lg:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-12">
 
-        <Accordion className="mt-8 rounded-2xl border border-border/80 bg-card/70 px-5 py-2">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={faq.question} value={`faq-${index + 1}`}>
-              <AccordionTrigger className="text-base font-medium">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-sm leading-6 text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        {/* 섹션 레이블 */}
+        <div className="mb-16 flex items-center gap-3">
+          <span className="h-px w-10 bg-primary" />
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-primary">FAQ</span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_2fr]">
+          {/* 왼쪽 타이틀 */}
+          <div>
+            <h2
+              className="font-bold leading-tight tracking-[-0.02em] text-foreground"
+              style={{ fontSize: "clamp(32px, 3.5vw, 52px)" }}
+            >
+              자주 묻는
+              <br />
+              질문
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground">
+              더 궁금한 점은 카카오톡으로 편하게 문의해 주세요.
+            </p>
+          </div>
+
+          {/* 오른쪽 아코디언 */}
+          <Accordion className="divide-y divide-white/8 border-t border-white/8">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={faq.question} value={`faq-${index + 1}`} className="border-0">
+                <AccordionTrigger className="py-6 text-left text-sm font-medium text-foreground hover:text-primary hover:no-underline [&[data-state=open]]:text-primary">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 text-sm leading-7 text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </div>
     </section>
   );

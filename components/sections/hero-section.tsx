@@ -1,188 +1,123 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+const marqueeText =
+  "브랜드 디자인 · 브랜드 소개서 · 웹사이트 제작 · 빠른 납기 · 고퀄리티 · ";
 
-const marqueeItems = [
-  "브랜드 디자인",
-  "브랜드 소개서",
-  "웹사이트 제작",
-  "빠른 납기",
-  "고퀄리티",
-];
+const STAGGER = 0.08;
 
-const marqueeText = marqueeItems.map((item) => `${item} ·`).join("  ") + "  ";
-
-// ── 3D 틸트 카드 ──
-interface CategoryCardProps {
-  title: string;
-  description: string;
-  accentColor: string;
-  href: string;
-  index: number;
-}
-
-function CategoryCard({ title, description, accentColor, href, index }: CategoryCardProps) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
-
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [8, -8]), { stiffness: 300, damping: 30 });
-  const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-8, 8]), { stiffness: 300, damping: 30 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    rawX.set((e.clientX - rect.left) / rect.width - 0.5);
-    rawY.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-
-  const handleMouseLeave = () => {
-    rawX.set(0);
-    rawY.set(0);
-  };
-
+function FadeUp({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   return (
-    <motion.a
-      ref={cardRef}
-      href={href}
+    <motion.div
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 + index * 0.1, duration: 0.4, ease: "easeOut" }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        perspective: 800,
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="group relative flex flex-col gap-3 rounded-2xl border border-border/80 bg-card/70 p-6 transition-shadow duration-200 hover:border-primary/35 hover:bg-card hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+      transition={{ delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(circle at 60% 30%, ${accentColor}22 0%, transparent 70%)`,
-        }}
-      />
-      <span
-        className="inline-flex w-fit rounded-full px-2.5 py-1 text-xs font-semibold"
-        style={{ background: `${accentColor}20`, color: accentColor }}
-      >
-        {["01", "02", "03"][index]}
-      </span>
-      <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
-      <p className="text-sm leading-6 text-muted-foreground">{description}</p>
-      <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-foreground/70 transition-colors group-hover:text-foreground">
-        자세히 보기 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-      </span>
-    </motion.a>
+      {children}
+    </motion.div>
   );
 }
 
-const categories: Omit<CategoryCardProps, "index">[] = [
-  {
-    title: "브랜드 디자인",
-    description: "로고부터 브랜드 가이드라인까지, 브랜드의 첫 인상을 완성합니다.",
-    accentColor: "#a78bfa",
-    href: "#services",
-  },
-  {
-    title: "브랜드 소개서",
-    description: "회사 소개서, 제안서, IR 덱 — 설득력 있는 비주얼로 메시지를 전달합니다.",
-    accentColor: "#34d399",
-    href: "#services",
-  },
-  {
-    title: "웹사이트 제작",
-    description: "브랜드 사이트부터 상세 페이지까지, 반응형으로 빠르게 구축합니다.",
-    accentColor: "#60a5fa",
-    href: "#services",
-  },
-];
-
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-24">
-      {/* 배경 블러 orbs */}
-      <motion.div
-        aria-hidden
-        className="absolute inset-0"
-        initial={{ opacity: 0.3 }}
-        animate={{ opacity: [0.3, 0.6, 0.35], scale: [1, 1.06, 1] }}
-        transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      >
-        <div className="absolute left-[-15%] top-[-25%] h-80 w-80 rounded-full bg-primary/25 blur-3xl" />
-        <div className="absolute right-[-12%] top-[-10%] h-80 w-80 rounded-full bg-accent/25 blur-3xl" />
-        <div className="absolute bottom-[-20%] left-[40%] h-96 w-96 rounded-full bg-violet/20 blur-3xl" />
-      </motion.div>
+    <section className="relative flex min-h-screen flex-col justify-between overflow-hidden">
+      {/* 상단 헤더 여백 보정 */}
+      <div className="pt-24" />
 
-      {/* 타이틀 영역 */}
-      <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.h1
-          className="max-w-3xl text-3xl leading-tight font-semibold tracking-tight sm:text-5xl md:text-6xl"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-        >
-          브랜드를 만들고
-          <br />
-          경험을 설계합니다.
-        </motion.h1>
+      {/* 메인 타이포그래피 */}
+      <div className="mx-auto w-full max-w-[1400px] flex-1 px-6 lg:px-12">
+        <div className="flex flex-col justify-center" style={{ minHeight: "calc(100vh - 220px)" }}>
 
-        <motion.p
-          className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.4, ease: "easeOut" }}
-        >
-          브랜드 디자인부터 웹사이트까지, 하나의 팀으로 빠르고 정교하게.
-        </motion.p>
+          {/* 스몰 레이블 */}
+          <FadeUp delay={0} className="mb-8 flex items-center gap-3">
+            <span className="h-px w-10 bg-primary" />
+            <span className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+              Design Agency
+            </span>
+          </FadeUp>
 
-        <motion.div
-          className="mt-8 flex flex-wrap gap-3"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.35, ease: "easeOut" }}
-        >
-          <Button className="h-11 rounded-full px-6 text-sm font-semibold">
-            무료 전략 미팅
-            <ArrowRight className="size-4" />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-11 rounded-full border-border/80 bg-card/70 px-6 text-sm font-semibold text-foreground hover:bg-card focus-visible:ring-2 focus-visible:ring-ring/50"
+          {/* 메인 타이틀 — 10vw 에디토리얼 스케일 */}
+          <div className="overflow-hidden">
+            <motion.h1
+              className="font-bold leading-[0.92] tracking-[-0.03em] text-foreground"
+              style={{
+                fontSize: "clamp(56px, 9.5vw, 152px)",
+              }}
+              initial={{ opacity: 0, y: "110%" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              브랜드를 만들고,
+            </motion.h1>
+          </div>
+          <div className="overflow-hidden">
+            <motion.h1
+              className="font-bold leading-[0.92] tracking-[-0.03em] text-foreground/60"
+              style={{
+                fontSize: "clamp(56px, 9.5vw, 152px)",
+              }}
+              initial={{ opacity: 0, y: "110%" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              경험을 설계합니다.
+            </motion.h1>
+          </div>
+
+          {/* 하단 메타 영역 */}
+          <FadeUp
+            delay={0.4}
+            className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
           >
-            포트폴리오 보기
-          </Button>
-        </motion.div>
-      </div>
+            <p className="max-w-sm text-sm leading-7 text-muted-foreground">
+              브랜드 디자인부터 웹사이트까지,
+              <br />
+              하나의 팀으로 빠르고 정교하게.
+            </p>
 
-      {/* 마퀴 */}
-      <div className="relative mt-14 overflow-hidden border-y border-border/50 bg-muted/20 py-3.5">
-        <motion.div
-          className="flex whitespace-nowrap text-sm font-medium text-muted-foreground"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-        >
-          {/* 2번 반복해야 이음새 없는 루프 */}
-          <span className="mr-8">{marqueeText.repeat(4)}</span>
-          <span className="mr-8">{marqueeText.repeat(4)}</span>
-        </motion.div>
-      </div>
-
-      {/* 3D 카테고리 카드 */}
-      <div className="relative mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {categories.map((cat, i) => (
-            <CategoryCard key={cat.title} {...cat} index={i} />
-          ))}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#services"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-80"
+              >
+                서비스 보기
+                <ArrowUpRight className="size-4" />
+              </a>
+              <a
+                href="#portfolio"
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/12 px-6 text-sm font-semibold text-foreground transition-colors hover:border-white/25 hover:bg-white/5"
+              >
+                포트폴리오
+              </a>
+            </div>
+          </FadeUp>
         </div>
+      </div>
+
+      {/* 마퀴 배너 — 하단 고정 */}
+      <div className="w-full overflow-hidden border-t border-white/8 py-4">
+        <motion.div
+          className="flex whitespace-nowrap text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+        >
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span key={i} className="mr-10">
+              {marqueeText}
+            </span>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

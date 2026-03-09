@@ -4,23 +4,18 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-
-const navItems: { label: string; href: string }[] = [
+const navItems = [
   { label: "서비스", href: "#services" },
   { label: "포트폴리오", href: "#portfolio" },
   { label: "FAQ", href: "#faq" },
 ];
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsScrolled(window.scrollY > 12);
-    };
-
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -28,65 +23,79 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "border-b border-border/80 bg-background/80 backdrop-blur-xl"
+          ? "border-b border-white/8 bg-[#0a0a0a]/90 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-18 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-6 lg:px-12">
+        {/* 로고 */}
         <Link
           href="#"
-          className="flex items-center gap-2 text-sm font-semibold tracking-[0.14em] transition-colors hover:text-primary focus-visible:text-primary focus-visible:outline-none"
+          className="text-sm font-bold tracking-[0.1em] text-foreground transition-colors hover:text-primary focus-visible:outline-none"
         >
-          <span className="size-2 rounded-full bg-primary shadow-md shadow-primary/60" />
           D-AIO
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        {/* 데스크톱 네비 */}
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none"
+              className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
+        {/* CTA */}
         <div className="hidden md:block">
-          <Button className="h-10 rounded-full px-5 text-sm font-semibold">프로젝트 시작하기</Button>
+          <a
+            href="#faq"
+            className="inline-flex h-9 items-center rounded-full bg-primary px-5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-80"
+          >
+            프로젝트 시작하기
+          </a>
         </div>
 
+        {/* 모바일 토글 */}
         <button
           type="button"
-          aria-label="모바일 메뉴"
+          aria-label="메뉴"
           aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((prev) => !prev)}
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border/80 bg-card/70 text-foreground/90 transition-colors hover:bg-card focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none md:hidden"
+          onClick={() => setMobileOpen((v) => !v)}
+          className="flex size-9 items-center justify-center rounded-full border border-white/10 text-foreground/80 transition-colors hover:border-white/20 md:hidden"
         >
-          {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
         </button>
       </div>
 
-      {mobileOpen ? (
-        <div className="border-t border-border/80 bg-card/95 px-4 py-5 backdrop-blur-xl md:hidden">
-          <nav className="mx-auto flex max-w-6xl flex-col gap-3">
+      {/* 모바일 메뉴 */}
+      {mobileOpen && (
+        <div className="border-t border-white/8 bg-[#0a0a0a]/95 px-6 py-6 backdrop-blur-xl md:hidden">
+          <nav className="flex flex-col gap-4">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg px-2 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground focus-visible:bg-muted/60 focus-visible:text-foreground focus-visible:outline-none"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <Button className="mt-2 h-10 rounded-full text-sm font-semibold">프로젝트 시작하기</Button>
+            <a
+              href="#faq"
+              className="mt-2 inline-flex h-10 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
+            >
+              프로젝트 시작하기
+            </a>
           </nav>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }
