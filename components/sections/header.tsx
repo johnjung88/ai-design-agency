@@ -3,12 +3,21 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { NavDropdown, MobileNavAccordion } from "@/components/ui/nav-dropdown";
 
-const navItems = [
-  { label: "서비스", href: "#services" },
-  { label: "포트폴리오", href: "#portfolio" },
-  { label: "FAQ", href: "#faq" },
+const serviceItems = [
+  { label: "브랜드 디자인", href: "/services/brand-design", description: "로고·가이드라인·시각 정체성" },
+  { label: "브랜드 소개서", href: "/services/brand-book", description: "회사소개서·IR덱·인포그래픽" },
+  { label: "웹사이트 제작", href: "/services/website", description: "반응형 브랜드·포트폴리오 사이트" },
 ];
+
+const portfolioItems = [
+  { label: "브랜드 디자인", href: "/portfolio/category/brand-design" },
+  { label: "브랜드 소개서", href: "/portfolio/category/brand-book" },
+  { label: "웹사이트", href: "/portfolio/category/website" },
+];
+
+const simpleNavItems = [{ label: "FAQ", href: "#faq" }];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,7 +41,7 @@ export function Header() {
       <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-6 lg:px-12">
         {/* 로고 */}
         <Link
-          href="#"
+          href="/"
           className="text-sm font-bold tracking-[0.1em] text-foreground transition-colors hover:text-primary focus-visible:outline-none"
         >
           D-AIO
@@ -40,7 +49,9 @@ export function Header() {
 
         {/* 데스크톱 네비 */}
         <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
+          <NavDropdown label="서비스" items={serviceItems} />
+          <NavDropdown label="포트폴리오" items={portfolioItems} />
+          {simpleNavItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -76,12 +87,22 @@ export function Header() {
       {/* 모바일 메뉴 */}
       {mobileOpen && (
         <div className="border-t border-white/8 bg-[#0a0a0a]/95 px-6 py-6 backdrop-blur-xl md:hidden">
-          <nav className="flex flex-col gap-4">
-            {navItems.map((item) => (
+          <nav className="flex flex-col gap-2">
+            <MobileNavAccordion
+              label="서비스"
+              items={serviceItems}
+              onClose={() => setMobileOpen(false)}
+            />
+            <MobileNavAccordion
+              label="포트폴리오"
+              items={portfolioItems}
+              onClose={() => setMobileOpen(false)}
+            />
+            {simpleNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -89,7 +110,8 @@ export function Header() {
             ))}
             <a
               href="#faq"
-              className="mt-2 inline-flex h-10 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
+              className="mt-4 inline-flex h-10 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
+              onClick={() => setMobileOpen(false)}
             >
               프로젝트 시작하기
             </a>

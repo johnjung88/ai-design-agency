@@ -96,16 +96,16 @@ export function ServicesSection() {
                     className="overflow-hidden"
                   >
                     <div className="flex flex-col gap-6 pb-10 pl-16 lg:pl-20 lg:flex-row lg:items-start lg:gap-16">
-                      <p className="max-w-md text-sm leading-7 text-muted-foreground">
+                      <p className="w-full max-w-full text-base leading-8 text-muted-foreground lg:max-w-md">
                         {service.description}
                       </p>
-                      <ul className="flex flex-wrap gap-x-8 gap-y-2">
+                      <ul className="flex flex-col gap-y-3 sm:flex-wrap sm:flex-row sm:gap-x-8 sm:gap-y-3">
                         {service.items.map((item) => (
                           <li
                             key={item}
-                            className="flex items-center gap-2 text-sm text-foreground/70"
+                            className="flex items-center gap-2 text-base text-foreground/70"
                           >
-                            <span className="size-1 shrink-0 rounded-full bg-primary" />
+                            <span className="size-1.5 shrink-0 rounded-full bg-primary" />
                             {item}
                           </li>
                         ))}

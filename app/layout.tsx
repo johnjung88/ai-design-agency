@@ -11,6 +11,10 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "D-AIO — 브랜드 디자인 대행사",
   description: "브랜드 디자인, 소개서, 웹사이트를 빠르고 정교하게 제작합니다.",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.svg",
+  },
 };
 
 export default function RootLayout({

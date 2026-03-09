@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40" fill="none">
+  <!-- 라임 도트 -->
+  <circle cx="8" cy="20" r="5" fill="#a3e635"/>
+  <!-- D-AIO 텍스트 -->
+  <text x="20" y="28" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" letter-spacing="2" fill="#ffffff">D-AIO</text>
+</svg>

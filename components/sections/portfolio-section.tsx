@@ -12,20 +12,6 @@ import {
   type PortfolioCategory,
 } from "@/lib/portfolio-data";
 
-const categoryValues = new Set<PortfolioCategory>(
-  portfolioCategories.map((item) => item.value)
-);
-
-// 비대칭 그리드 레이아웃 패턴 (6개 카드용)
-const gridLayouts = [
-  "col-span-1 row-span-1",  // 1: 일반
-  "col-span-2 row-span-1",  // 2: 넓은
-  "col-span-1 row-span-2",  // 3: 높은
-  "col-span-1 row-span-1",  // 4: 일반
-  "col-span-1 row-span-1",  // 5: 일반
-  "col-span-1 row-span-1",  // 6: 일반
-];
-
 // 카테고리별 배경 색상
 const categoryColors: Record<string, string> = {
   "brand-design": "from-violet-950/80 via-purple-900/40 to-transparent",
@@ -35,22 +21,19 @@ const categoryColors: Record<string, string> = {
 
 function ProjectCard({
   project,
-  layoutClass,
   index,
 }: {
   project: PortfolioProject;
-  layoutClass: string;
   index: number;
 }) {
   const categoryLabel =
     portfolioCategories.find((c) => c.value === project.category)?.label ?? project.category;
   const bgGradient = categoryColors[project.category] ?? "from-zinc-900 to-transparent";
-  const isLarge = layoutClass.includes("col-span-2") || layoutClass.includes("row-span-2");
 
   return (
     <motion.article
-      className={`group relative overflow-hidden rounded-xl border border-white/8 bg-[#111] ${layoutClass}`}
-      style={{ minHeight: isLarge ? "360px" : "260px" }}
+      className="group relative overflow-hidden rounded-xl border border-white/8 bg-[#111]"
+      style={{ minHeight: "280px" }}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 12 }}
@@ -85,7 +68,7 @@ function ProjectCard({
         <div>
           <h3
             className="font-bold leading-tight tracking-tight text-foreground"
-            style={{ fontSize: isLarge ? "clamp(20px, 2.5vw, 32px)" : "clamp(16px, 1.5vw, 22px)" }}
+            style={{ fontSize: "clamp(18px, 2vw, 24px)" }}
           >
             {project.title}
           </h3>
@@ -156,14 +139,13 @@ export function PortfolioSection() {
           </div>
         </div>
 
-        {/* 비대칭 그리드 */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* 2×N 균등 그리드 — 모바일 1열, sm 이상 2열 */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 project={project}
-                layoutClass={gridLayouts[index % gridLayouts.length]}
                 index={index}
               />
             ))}
