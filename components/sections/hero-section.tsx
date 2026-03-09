@@ -59,7 +59,8 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
-                브랜드를 만들고,
+                <span className="text-foreground">브랜드를</span>
+                <span className="text-foreground/45"> 만들고,</span>
               </motion.h1>
             </div>
             <div className="overflow-hidden">
