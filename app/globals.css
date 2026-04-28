@@ -28,6 +28,17 @@
   --color-cyan: var(--cyan);
   --color-violet: var(--violet);
 
+  /* 5 카테고리 컬러 */
+  --color-type-web: var(--type-web);
+  --color-type-app: var(--type-app);
+  --color-type-design: var(--type-design);
+  --color-type-video: var(--type-video);
+  --color-type-automation: var(--type-automation);
+
+  /* 보장 배지 */
+  --color-guarantee-bg: var(--guarantee-bg);
+  --color-guarantee-fg: var(--guarantee-fg);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
@@ -67,6 +78,17 @@
   --violet: oklch(0.68 0.21 308);
 
   --radius: 0.5rem;
+
+  /* 5 카테고리 컬러 */
+  --type-web: #7c3aed;       /* violet */
+  --type-app: #f59e0b;       /* amber */
+  --type-design: #f43f5e;    /* rose */
+  --type-video: #06b6d4;     /* cyan */
+  --type-automation: #10b981; /* emerald */
+
+  /* 보장 배지 */
+  --guarantee-bg: #10b981;
+  --guarantee-fg: #ffffff;
 }
 
 @layer base {
