@@ -1,0 +1,26 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#0B1020"/>
+  <rect x="48" y="48" width="1184" height="624" rx="18" fill="#11182D" stroke="#263452"/>
+  <text x="88" y="104" fill="#E8EEF8" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">BLOG_TRAVEL live automation proof</text>
+  <text x="88" y="142" fill="#8EA4C8" font-family="Segoe UI, Arial, sans-serif" font-size="18">Captured from the actual app run on 2026-04-29 17:40 KST</text>
+
+  <rect x="88" y="184" width="330" height="118" rx="14" fill="#17233B" stroke="#2E4168"/>
+  <text x="116" y="228" fill="#55D6BE" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">54</text>
+  <text x="116" y="262" fill="#D9E6F7" font-family="Segoe UI, Arial, sans-serif" font-size="18">restored schedules</text>
+
+  <rect x="475" y="184" width="330" height="118" rx="14" fill="#17233B" stroke="#2E4168"/>
+  <text x="503" y="228" fill="#7CC7FF" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">18</text>
+  <text x="503" y="262" fill="#D9E6F7" font-family="Segoe UI, Arial, sans-serif" font-size="18">Naver / Blogger / WP accounts</text>
+
+  <rect x="862" y="184" width="330" height="118" rx="14" fill="#17233B" stroke="#2E4168"/>
+  <text x="890" y="228" fill="#FFD166" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700">8</text>
+  <text x="890" y="262" fill="#D9E6F7" font-family="Segoe UI, Arial, sans-serif" font-size="18">country publishing matrix</text>
+
+  <rect x="88" y="350" width="1104" height="242" rx="14" fill="#07111F" stroke="#22314F"/>
+  <text x="120" y="394" fill="#9FB5D7" font-family="Consolas, monospace" font-size="20">17:40:32  Scheduler restored 54 jobs</text>
+  <text x="120" y="432" fill="#9FB5D7" font-family="Consolas, monospace" font-size="20">17:40:45  Running tae_nomad / naver travel item schedule</text>
+  <text x="120" y="470" fill="#9FB5D7" font-family="Consolas, monospace" font-size="20">17:40:46  Selected Korea luggage category with 5 products</text>
+  <text x="120" y="508" fill="#9FB5D7" font-family="Consolas, monospace" font-size="20">17:40:57  AI product analysis completed</text>
+  <text x="120" y="546" fill="#9FB5D7" font-family="Consolas, monospace" font-size="20">17:40:58  Affiliate images downloaded and enriched</text>
+  <text x="120" y="642" fill="#55D6BE" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Evidence mode: live logs + generated post captures + downloaded assets</text>
+</svg>

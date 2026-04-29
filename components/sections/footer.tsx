@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { ChannelBadges } from "@/components/sections/channel-badges";
+import { serviceCategories } from "@/lib/services-data";
 
 export function Footer() {
   const locale = useLocale();
@@ -16,7 +18,7 @@ export function Footer() {
           {/* 브랜드 */}
           <div className="flex flex-col gap-4">
             <div>
-              <p className="text-sm font-bold tracking-[0.1em] text-foreground">AIO에이전시</p>
+              <Image src="/logo.svg" alt="AIO" width={132} height={34} className="h-8 w-auto" />
               <p className="mt-2 max-w-xs text-xs leading-6 text-muted-foreground">
                 {t("tagline")}
               </p>
@@ -30,13 +32,13 @@ export function Footer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 {t("services")}
               </p>
-              {(["web", "app", "design", "video", "automation"] as const).map((cat) => (
+              {serviceCategories.map((service) => (
                 <Link
-                  key={cat}
-                  href={`${base}/services/${cat}`}
+                  key={service.value}
+                  href={`${base}/services/${service.value}`}
                   className="text-xs text-muted-foreground/70 transition-colors hover:text-foreground"
                 >
-                  {t(`service_${cat}`)}
+                  {service.label[locale as "ko" | "en"]}
                 </Link>
               ))}
             </div>
@@ -48,7 +50,7 @@ export function Footer() {
                 { label: t("about"), href: `${base}/about` },
                 { label: t("portfolio"), href: `${base}/portfolio` },
                 { label: t("pricing"), href: `${base}/pricing` },
-                { label: t("contact"), href: `${base}/contact` },
+                { label: t("contact"), href: `${base}/quote` },
               ].map((item) => (
                 <Link
                   key={item.href}

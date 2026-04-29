@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#120809"/>
+  <rect x="72" y="72" width="1056" height="531" rx="28" fill="#1a1012" stroke="#4a171c"/>
+  <text x="112" y="150" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="900" fill="#fff">YouTube AutoPilot</text>
+  <text x="112" y="194" font-family="Inter, Arial, sans-serif" font-size="22" fill="#fecaca">Video workflow result preview</text>
+  <rect x="112" y="252" width="440" height="250" rx="24" fill="#2a1518" stroke="#7f1d1d"/>
+  <polygon points="282,325 282,430 382,378" fill="#ef4444"/>
+  <rect x="620" y="252" width="420" height="60" rx="14" fill="#3a2024"/><rect x="620" y="340" width="340" height="60" rx="14" fill="#3a2024"/><rect x="620" y="428" width="385" height="60" rx="14" fill="#3a2024"/>
+  <text x="648" y="291" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#fee2e2">Script → TTS → Render → Upload</text>
+  <text x="648" y="379" font-family="Inter, Arial, sans-serif" font-size="20" fill="#fecaca">Remotion render dashboard</text>
+  <text x="648" y="467" font-family="Inter, Arial, sans-serif" font-size="20" fill="#fecaca">Private system · screenshots only</text>
+</svg>

@@ -1,31 +1,32 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { PortfolioFilter } from "@/components/sections/portfolio-filter";
 import { PortfolioCard } from "@/components/ui/portfolio-card";
-import { portfolioProjects, getProjectsByType } from "@/lib/portfolio-data";
-import type { PortfolioType } from "@/lib/portfolio-data";
+import { portfolioGroups, portfolioProjects, getProjectsByPortfolioGroup } from "@/lib/portfolio-data";
+import type { PortfolioGroup } from "@/lib/portfolio-data";
 
-type FilterValue = PortfolioType | "all";
+type FilterValue = PortfolioGroup | "all";
 
 export default function PortfolioPage() {
   const t = useTranslations("portfolio");
+  const locale = useLocale() as "ko" | "en";
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
 
   const filtered =
     activeFilter === "all"
       ? portfolioProjects
-      : getProjectsByType(activeFilter);
+      : getProjectsByPortfolioGroup(activeFilter);
 
-  const counts: Partial<Record<FilterValue, number>> = {
-    all: portfolioProjects.length,
-    web: getProjectsByType("web").length,
-    app: getProjectsByType("app").length,
-    design: getProjectsByType("design").length,
-    video: getProjectsByType("video").length,
-    automation: getProjectsByType("automation").length,
-  };
+  const counts = Object.fromEntries(
+    portfolioGroups.map((group) => [
+      group.value,
+      group.value === "all"
+        ? portfolioProjects.length
+        : getProjectsByPortfolioGroup(group.value).length,
+    ]),
+  ) as Partial<Record<FilterValue, number>>;
 
   return (
     <main className="pb-24 pt-28">
@@ -43,6 +44,11 @@ export default function PortfolioPage() {
             onChange={setActiveFilter}
             counts={counts}
           />
+          <div className="mt-6 rounded-lg border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-6 text-cyan-100">
+            {locale === "ko"
+              ? "비공개 레포와 로컬 작업물은 코드·레포 링크를 공개하지 않고, 민감 정보를 제거한 결과 화면·KPI·작업 설명만 포트폴리오로 보여줍니다."
+              : "Private repositories and local work are shown only through sanitized result screens, KPIs, and work summaries. Code and repository links are hidden."}
+          </div>
         </div>
 
         {filtered.length === 0 ? (

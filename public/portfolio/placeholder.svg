@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#101217"/>
+  <rect x="48" y="48" width="1104" height="579" rx="22" fill="#151923" stroke="#2b3242"/>
+  <circle cx="600" cy="300" r="58" fill="#06b6d4"/>
+  <path d="M600 214v172M514 300h172M539 239l122 122M661 239 539 361" stroke="#34456f" stroke-width="16" stroke-linecap="round"/>
+  <text x="600" y="432" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="14" fill="#f8fafc">AIO</text>
+  <text x="600" y="480" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="8" fill="#94a3b8">RESULT PREVIEW</text>
+</svg>

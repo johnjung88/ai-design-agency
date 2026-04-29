@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#07110d"/>
+  <rect x="72" y="72" width="1056" height="531" rx="28" fill="#101a16" stroke="#164e3b"/>
+  <text x="112" y="150" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="900" fill="#d1fae5">T-AIO Threads Automation</text>
+  <g fill="#10b981"><rect x="112" y="220" width="215" height="118" rx="18"/><rect x="363" y="220" width="215" height="118" rx="18" opacity=".75"/><rect x="614" y="220" width="215" height="118" rx="18" opacity=".55"/></g>
+  <g fill="#e5e7eb" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="26"><text x="145" y="291">Create</text><text x="396" y="291">Schedule</text><text x="656" y="291">Analyze</text></g>
+  <path d="M320 279h42M573 279h42M825 279h90" stroke="#a7f3d0" stroke-width="10" stroke-linecap="round"/>
+  <text x="112" y="460" font-family="Inter, Arial, sans-serif" font-size="28" fill="#a7f3d0">80% daily operation time saved · live system</text>
+</svg>

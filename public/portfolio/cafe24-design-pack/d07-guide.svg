@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img">
+  <rect width="1600" height="900" fill="#0b0b0b"/>
+  <text x="96" y="120" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900" letter-spacing="5" fill="#84cc16">DESIGN GUIDE</text>
+  <text x="96" y="210" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="950" fill="#ffffff">건강기능식품몰</text>
+  <text x="96" y="275" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#a3a3a3">Daily wellness · Cafe24 storefront concept</text>
+  <rect x="96" y="360" width="380" height="290" rx="30" fill="#151515" stroke="#ffffff" stroke-opacity=".08"/>
+  <text x="140" y="430" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" fill="#ffffff">Palette</text>
+  <circle cx="160" cy="520" r="42" fill="#0f766e"/>
+  <circle cx="270" cy="520" r="42" fill="#84cc16"/>
+  <circle cx="380" cy="520" r="42" fill="#ecfdf5"/>
+  <rect x="560" y="360" width="440" height="290" rx="30" fill="#151515" stroke="#ffffff" stroke-opacity=".08"/>
+  <text x="604" y="430" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" fill="#ffffff">Core modules</text>
+  <rect x="604" y="470" width="300" height="36" rx="18" fill="#0f766e" opacity=".9"/><text x="626" y="495" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" fill="#ffffff">성분 카드</text>
+  <rect x="604" y="524" width="300" height="36" rx="18" fill="#84cc16" opacity=".9"/><text x="626" y="549" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" fill="#ffffff">인증 정보</text>
+  <rect x="604" y="578" width="300" height="36" rx="18" fill="#0f766e" opacity=".9"/><text x="626" y="603" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" fill="#ffffff">정기구독</text>
+  <rect x="1084" y="360" width="420" height="290" rx="30" fill="#151515" stroke="#ffffff" stroke-opacity=".08"/>
+  <text x="1128" y="430" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" fill="#ffffff">Delivery</text>
+  <text x="1128" y="492" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#d4d4d4">Main HTML concept</text>
+  <text x="1128" y="546" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#d4d4d4">Banner replacement rules</text>
+  <text x="1128" y="600" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#d4d4d4">Category and product UI</text>
+  <rect x="96" y="735" width="1408" height="72" rx="24" fill="#0f766e"/>
+  <text x="132" y="781" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900" fill="#ffffff">Single storefront case · shown as one portfolio item</text>
+</svg>

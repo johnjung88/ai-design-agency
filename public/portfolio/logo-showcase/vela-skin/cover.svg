@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img">
+  
+  <defs>
+    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#1C2A36" flood-opacity=".24"/>
+    </filter>
+    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    </filter>
+    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
+      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
+    </filter>
+    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#D9C6AD" flood-opacity=".45"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#71879D" flood-opacity=".28"/>
+    </filter>
+    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .045"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3F2ED"/>
+      <stop offset=".52" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#D9C6AD" stop-opacity=".52"/>
+    </linearGradient>
+    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1C2A36"/>
+      <stop offset=".65" stop-color="#17212B"/>
+      <stop offset="1" stop-color="#71879D"/>
+    </linearGradient>
+    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
+      <stop offset=".48" stop-color="#F3F2ED" stop-opacity=".92"/>
+      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
+      <stop offset=".35" stop-color="#F3F2ED" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#1C2A36"/>
+  <rect x="42" y="42" width="1516" height="816" rx="40" fill="url(#studioBg)"/>
+  <rect x="42" y="42" width="1516" height="816" rx="40" fill="#ffffff" filter="url(#paperNoise)" opacity=".42"/>
+  <text x="110" y="128" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#17212B" opacity=".42">SKINCARE</text>
+  
+  <g transform="translate(112 242) scale(1.8)" filter="url(#pressedInk)"><g><path d="M20 24 50 80 80 24" fill="none" stroke="#71879D" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="37" r="9" fill="#D9C6AD"/><circle cx="50" cy="37" r="3" fill="#ffffff"/><path d="M34 78h32" stroke="#17212B" stroke-width="5" stroke-linecap="round"/><path d="M33 25c11-8 23-8 34 0" fill="none" stroke="#D9C6AD" stroke-width="5" stroke-linecap="round"/></g></g>
+  
+  <text x="337" y="346.4" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="950" fill="#17212B">Vela Skin</text>
+  <text x="337" y="378.08" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="850" letter-spacing="4" fill="#17212B" opacity=".48">CLEAN SCIENCE IDENTITY</text>
+  <text x="116" y="515" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="850" fill="#71879D">Clean science identity</text>
+  <text x="116" y="570" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#17212B" opacity=".58">logo system / mono version / brand guide</text>
+  <rect x="112" y="648" width="86" height="42" rx="21" fill="#71879D"/>
+  <rect x="214" y="648" width="86" height="42" rx="21" fill="#D9C6AD"/>
+  <rect x="316" y="648" width="86" height="42" rx="21" fill="#17212B"/>
+  <g transform="translate(875 142) scale(.72)">
+    <rect x="120" y="70" width="650" height="300" rx="8" fill="url(#darkPanel)" filter="url(#ambientShadow)"/>
+    <g transform="translate(250 142) scale(.72)" filter="url(#neonGlow)"><g><path d="M20 24 50 80 80 24" fill="none" stroke="#71879D" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="37" r="9" fill="#D9C6AD"/><circle cx="50" cy="37" r="3" fill="#ffffff"/><path d="M34 78h32" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/><path d="M33 25c11-8 23-8 34 0" fill="none" stroke="#D9C6AD" stroke-width="5" stroke-linecap="round"/></g></g>
+    
+  <text x="360" y="202" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="950" fill="#ffffff">Vela Skin</text>
+  <text x="360" y="221.2" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="4" fill="#ffffff" opacity=".48">CLEAN SCIENCE IDENTITY</text>
+    <rect x="150" y="418" width="520" height="288" rx="22" fill="url(#cardSheen)" filter="url(#ambientShadow)" transform="rotate(-8 410 562)"/>
+    <g transform="translate(210 495) rotate(-8) scale(.58)"><g><path d="M20 24 50 80 80 24" fill="none" stroke="#71879D" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="37" r="9" fill="#D9C6AD"/><circle cx="50" cy="37" r="3" fill="#ffffff"/><path d="M34 78h32" stroke="#17212B" stroke-width="5" stroke-linecap="round"/><path d="M33 25c11-8 23-8 34 0" fill="none" stroke="#D9C6AD" stroke-width="5" stroke-linecap="round"/></g></g>
+    <text x="314" y="544" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="950" fill="#17212B" transform="rotate(-8 314 544)">Vela Skin</text>
+  </g>
+</svg>

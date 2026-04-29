@@ -1,18 +1,26 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
-import { getServiceById } from "@/lib/services-data";
+import { getServiceById, servicesData } from "@/lib/services-data";
 import type { ServiceCategory } from "@/lib/services-data";
 import { TypeBadge } from "@/components/ui/type-badge";
 import { GuaranteeBadge } from "@/components/ui/guarantee-badge";
 import { PricingTable } from "@/components/sections/pricing-table";
 import { AddonsTable } from "@/components/sections/addons-table";
-import { getProjectsByType } from "@/lib/portfolio-data";
+import { getPortfolioProjectBySlug } from "@/lib/portfolio-data";
+import type { PortfolioProject } from "@/lib/portfolio-data";
 import { PortfolioCard } from "@/components/ui/portfolio-card";
 
-const VALID: ServiceCategory[] = ["web", "app", "design", "video", "automation"];
+const VALID = servicesData.map((service) => service.id);
+const LEGACY_REDIRECTS: Record<string, ServiceCategory> = {
+  web: "website",
+  app: "automation-app",
+  design: "logo-business-card",
+  video: "video-content",
+  automation: "automation-app",
+};
 
 export async function generateStaticParams() {
   return VALID.map((category) => ({ category }));
@@ -36,6 +44,10 @@ export default async function ServiceDetailPage({
 }) {
   const { locale, category } = await params;
 
+  if (LEGACY_REDIRECTS[category]) {
+    redirect(`/${locale}/services/${LEGACY_REDIRECTS[category]}`);
+  }
+
   if (!VALID.includes(category as ServiceCategory)) notFound();
 
   const service = getServiceById(category as ServiceCategory);
@@ -45,7 +57,10 @@ export default async function ServiceDetailPage({
   const l = locale as "ko" | "en";
   const base = `/${locale}`;
 
-  const relatedProjects = getProjectsByType(category as ServiceCategory).slice(0, 3);
+  const relatedProjects = service.relatedPortfolio
+    .map((slug) => getPortfolioProjectBySlug(slug))
+    .filter((project): project is PortfolioProject => Boolean(project))
+    .slice(0, 3);
 
   return (
     <main className="pb-24 pt-28">
@@ -64,7 +79,7 @@ export default async function ServiceDetailPage({
           <div className="flex flex-col gap-3">
             <div className="flex flex-wrap items-center gap-3">
               <TypeBadge type={service.id} />
-              <GuaranteeBadge />
+              <GuaranteeBadge label={t("guarantee")} />
             </div>
             <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               {service.title[l]}
@@ -74,7 +89,7 @@ export default async function ServiceDetailPage({
             </p>
           </div>
           <Link
-            href={`${base}/contact`}
+            href={`${base}/quote?category=${service.id}`}
             className="inline-flex h-10 shrink-0 items-center rounded-full bg-primary px-6 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-80"
           >
             {service.cta[l]}
@@ -83,7 +98,9 @@ export default async function ServiceDetailPage({
 
         {/* 제공 항목 */}
         <div className="mb-12">
-          <h2 className="mb-5 text-sm font-semibold text-foreground">포함 항목</h2>
+          <h2 className="mb-5 text-sm font-semibold text-foreground">
+            {l === "ko" ? "포함 항목" : "Included"}
+          </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {service.items.map((item) => (
               <div
@@ -102,21 +119,27 @@ export default async function ServiceDetailPage({
 
         {/* 가격표 */}
         <div className="mb-12">
-          <h2 className="mb-5 text-sm font-semibold text-foreground">가격표</h2>
+          <h2 className="mb-5 text-sm font-semibold text-foreground">
+            {l === "ko" ? "가격표" : "Pricing"}
+          </h2>
           <PricingTable tiers={service.pricing} />
         </div>
 
         {/* 추가 요금 */}
         {service.addons && service.addons.length > 0 && (
           <div className="mb-12">
-            <h2 className="mb-4 text-sm font-semibold text-foreground">추가 요금</h2>
+            <h2 className="mb-4 text-sm font-semibold text-foreground">
+              {l === "ko" ? "추가 요금" : "Add-ons"}
+            </h2>
             <AddonsTable addons={service.addons} />
           </div>
         )}
 
         {/* 프로세스 */}
         <div className="mb-12">
-          <h2 className="mb-5 text-sm font-semibold text-foreground">진행 과정</h2>
+          <h2 className="mb-5 text-sm font-semibold text-foreground">
+            {l === "ko" ? "진행 과정" : "Process"}
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {service.process.map((step) => (
               <div
@@ -134,7 +157,9 @@ export default async function ServiceDetailPage({
         {/* 관련 포트폴리오 */}
         {relatedProjects.length > 0 && (
           <div>
-            <h2 className="mb-5 text-sm font-semibold text-foreground">관련 포트폴리오</h2>
+            <h2 className="mb-5 text-sm font-semibold text-foreground">
+              {l === "ko" ? "관련 포트폴리오" : "Related Portfolio"}
+            </h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {relatedProjects.map((project) => (
                 <PortfolioCard key={project.id} project={project} />

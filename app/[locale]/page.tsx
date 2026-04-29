@@ -1,7 +1,6 @@
 import { HeroSection } from "@/components/sections/hero-section";
-import { KpiStrip } from "@/components/sections/kpi-strip";
+import { HotItemsSection } from "@/components/sections/hot-items-section";
 import { FeaturedMasonry } from "@/components/sections/featured-masonry";
-import { ServicesSection } from "@/components/sections/services-section";
 import { WhyUsSection } from "@/components/sections/why-us-section";
 import { ProcessSection } from "@/components/sections/process-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
@@ -23,13 +22,19 @@ export async function generateMetadata({
   };
 }
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const l = locale as "ko" | "en";
   const featuredProjects = getFeaturedProjects();
 
   return (
     <>
       <HeroSection />
-      <KpiStrip />
+      <HotItemsSection />
 
       {/* Featured portfolio */}
       <section id="portfolio" className="py-24 lg:py-32">
@@ -46,20 +51,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      <ServicesSection />
       <WhyUsSection />
       <ProcessSection />
 
       {/* CTA + Channels */}
       <section className="py-24 lg:py-32">
         <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-12">
-          <div className="flex flex-col items-start gap-8 rounded-2xl border border-white/8 bg-card p-8 md:flex-row md:items-center md:justify-between lg:p-12">
+          <div className="flex flex-col items-start gap-8 rounded-lg border border-white/8 bg-card p-8 md:flex-row md:items-center md:justify-between lg:p-12">
             <div>
               <h2 className="text-2xl font-bold text-foreground md:text-3xl">
-                바로 시작할 준비가 됐나요?
+                {l === "ko" ? "바로 시작할 준비가 됐나요?" : "Ready to start now?"}
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                1시간 내 임시 답변 · 24시간 내 견적 제안서
+                {l === "ko"
+                  ? "1시간 내 임시 답변 · 24시간 내 견적 제안서"
+                  : "First reply within 1 hour · quote proposal within 24 hours"}
               </p>
             </div>
             <ChannelBadges />

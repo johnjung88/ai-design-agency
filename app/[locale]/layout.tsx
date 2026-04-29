@@ -8,7 +8,6 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
-import { FloatingCta } from "@/components/ui/floating-cta";
 
 export async function generateMetadata({
   params,
@@ -49,7 +48,6 @@ export default async function LocaleLayout({
       <Header />
       <main>{children}</main>
       <Footer />
-      <FloatingCta />
     </NextIntlClientProvider>
   );
 }

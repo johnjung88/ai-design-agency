@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+  <rect width="1200" height="675" fill="#0c0b13"/>
+  <rect x="70" y="70" width="1060" height="535" rx="28" fill="#151225" stroke="#3b2b72"/>
+  <rect x="110" y="115" width="980" height="280" rx="24" fill="url(#g)" opacity=".9"/>
+  <circle cx="922" cy="192" r="68" fill="#fde68a" opacity=".9"/>
+  <path d="M170 375c180-170 315-150 435-40 104 96 210 91 360-36 55-47 91-71 125-80v176H170z" fill="#0f172a" opacity=".72"/>
+  <text x="110" y="485" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="800" fill="#fff">Chueok Korea</text>
+  <text x="112" y="536" font-family="Inter, Arial, sans-serif" font-size="24" fill="#cbd5e1">Travel landing page · live link proof</text>
+</svg>

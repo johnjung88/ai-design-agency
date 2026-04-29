@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img">
+  
+  <defs>
+    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#171B46" flood-opacity=".24"/>
+    </filter>
+    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    </filter>
+    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
+      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
+    </filter>
+    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#12C8E8" flood-opacity=".45"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#5F54FF" flood-opacity=".28"/>
+    </filter>
+    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .045"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ECECFF"/>
+      <stop offset=".52" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#12C8E8" stop-opacity=".52"/>
+    </linearGradient>
+    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171B46"/>
+      <stop offset=".65" stop-color="#11142A"/>
+      <stop offset="1" stop-color="#5F54FF"/>
+    </linearGradient>
+    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
+      <stop offset=".48" stop-color="#ECECFF" stop-opacity=".92"/>
+      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
+      <stop offset=".35" stop-color="#ECECFF" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="1000" fill="#f4f2ee"/>
+  <rect width="1600" height="1000" fill="#ffffff" filter="url(#paperNoise)" opacity=".38"/>
+  <rect x="82" y="92" width="686" height="816" rx="36" fill="#171B46" filter="url(#ambientShadow)"/>
+  <rect x="832" y="92" width="686" height="816" rx="36" fill="#ffffff" filter="url(#ambientShadow)"/>
+  <text x="132" y="166" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#ffffff" opacity=".48">REVERSE</text>
+  <g transform="translate(255 272) scale(2.45)"><g><path d="M50 14v72M14 50h72M27 27l46 46M73 27 27 73" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="16" fill="#ffffff"/><circle cx="50" cy="14" r="7" fill="#ffffff"/><circle cx="86" cy="50" r="7" fill="#ffffff"/><circle cx="50" cy="86" r="7" fill="#ffffff"/><circle cx="14" cy="50" r="7" fill="#ffffff"/><circle cx="50" cy="50" r="5" fill="#ffffff"/></g></g>
+  
+  <text x="425" y="676" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="950" fill="#ffffff">Nova Node</text>
+  <text x="425" y="699.04" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="4" fill="#ffffff" opacity=".48">DATA NODE IDENTITY</text>
+  <text x="425" y="780" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="850" letter-spacing="5" fill="#ffffff" opacity=".42">DARK BACKGROUND</text>
+  <text x="882" y="166" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#11142A" opacity=".42">MONO</text>
+  <g transform="translate(1005 272) scale(2.45)"><g><path d="M50 14v72M14 50h72M27 27l46 46M73 27 27 73" stroke="#11142A" stroke-width="5" stroke-linecap="round"/><circle cx="50" cy="50" r="16" fill="#11142A"/><circle cx="50" cy="14" r="7" fill="#11142A"/><circle cx="86" cy="50" r="7" fill="#11142A"/><circle cx="50" cy="86" r="7" fill="#11142A"/><circle cx="14" cy="50" r="7" fill="#11142A"/><circle cx="50" cy="50" r="5" fill="#ECECFF"/></g></g>
+  
+  <text x="1175" y="676" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="950" fill="#11142A">Nova Node</text>
+  <text x="1175" y="699.04" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="4" fill="#11142A" opacity=".48">DATA NODE IDENTITY</text>
+  <text x="1175" y="780" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="850" letter-spacing="5" fill="#11142A" opacity=".42">ONE-COLOR VERSION</text>
+</svg>

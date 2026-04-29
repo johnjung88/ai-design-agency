@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, DollarSign, User, MessageSquare } from "lucide-react";
+import { BadgeCheck, Headphones, Rocket, ShieldCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const ICONS = [Zap, DollarSign, User, MessageSquare];
-const KEYS = ["speed", "price", "fullCycle", "response"] as const;
+const ICONS = [Headphones, Rocket, BadgeCheck, ShieldCheck];
+const KEYS = ["response", "delivery", "quality", "maintenance"] as const;
 
 export function WhyUsSection() {
   const t = useTranslations("whyUs");

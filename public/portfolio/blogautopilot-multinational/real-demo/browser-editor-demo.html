@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BLOG_TRAVEL Browser Publishing Demo</title>
+  <style>
+    body { margin: 0; background: #edf2f7; color: #1f2937; font-family: "Segoe UI", "Malgun Gothic", sans-serif; }
+    .top { height: 58px; background: #03c75a; color: white; display: flex; align-items: center; padding: 0 28px; font-size: 18px; font-weight: 700; }
+    .wrap { display: grid; grid-template-columns: 270px 1fr; min-height: calc(100vh - 58px); }
+    aside { background: #17202e; color: #cbd5e1; padding: 22px; }
+    aside h2 { font-size: 15px; color: white; margin: 0 0 18px; }
+    aside div { padding: 10px 12px; border-radius: 8px; margin: 8px 0; background: rgba(255,255,255,.06); }
+    main { padding: 34px; }
+    .bar { display: flex; gap: 10px; margin-bottom: 18px; }
+    .badge { background: #dbeafe; color: #1d4ed8; border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 700; }
+    .editor { background: white; border: 1px solid #d7dee8; border-radius: 14px; box-shadow: 0 20px 70px rgba(31,41,55,.13); padding: 30px; }
+    input { width: 100%; border: none; border-bottom: 2px solid #e5e7eb; font-size: 34px; font-weight: 800; padding: 12px 0 18px; outline: none; }
+    textarea { width: 100%; height: 410px; margin-top: 24px; border: none; resize: none; outline: none; font-size: 18px; line-height: 1.75; color: #374151; }
+    .footer { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+    .status { color: #059669; font-weight: 800; }
+    button { border: 0; border-radius: 8px; background: #03c75a; color: white; font-weight: 800; font-size: 15px; padding: 12px 18px; }
+  </style>
+</head>
+<body>
+  <div class="top">NAVER Blog editor - safe portfolio demo</div>
+  <div class="wrap">
+    <aside>
+      <h2>BLOG_TRAVEL 자동 발행 단계</h2>
+      <div>1. 계정/카테고리 선택</div>
+      <div>2. AI 제목/본문 생성</div>
+      <div>3. 이미지/제휴 링크 삽입</div>
+      <div>4. 브라우저 에디터 자동 입력</div>
+      <div>5. 발행 전 최종 확인</div>
+    </aside>
+    <main>
+      <div class="bar">
+        <span class="badge">자동 브라우저 작성</span>
+        <span class="badge">발행 직전 안전 모드</span>
+        <span class="badge">Playwright 기반</span>
+      </div>
+      <section class="editor">
+        <input id="title" placeholder="제목이 자동 입력됩니다" />
+        <textarea id="body" placeholder="본문이 자동 입력됩니다"></textarea>
+        <div class="footer">
+          <div class="status" id="status">대기 중</div>
+          <button>발행 전 검토</button>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

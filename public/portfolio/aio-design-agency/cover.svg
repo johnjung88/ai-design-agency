@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#08090b"/>
+  <rect x="80" y="80" width="1040" height="515" rx="30" fill="#111318" stroke="#2a3344"/>
+  <text x="116" y="162" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="5" fill="#a3e635">AIO AGENCY</text>
+  <text x="116" y="270" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="900" fill="#f8fafc">5-day portfolio hub</text>
+  <text x="116" y="326" font-family="Inter, Arial, sans-serif" font-size="28" fill="#94a3b8">Web · App · Design · Video · Automation</text>
+  <rect x="116" y="404" width="215" height="74" rx="16" fill="#a3e635"/>
+  <text x="158" y="451" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#111827">Quote</text>
+  <rect x="735" y="160" width="285" height="330" rx="22" fill="#171b24" stroke="#2f3a4c"/>
+  <circle cx="878" cy="276" r="64" fill="#06b6d4"/>
+  <text x="878" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="900" fill="#f8fafc">AIO</text>
+</svg>

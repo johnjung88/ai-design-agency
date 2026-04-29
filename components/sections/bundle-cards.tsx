@@ -61,6 +61,7 @@ const BUNDLES: Bundle[] = [
 
 export function BundleCards() {
   const locale = useLocale() as "ko" | "en";
+  const base = `/${locale}`;
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -111,7 +112,7 @@ export function BundleCards() {
           </div>
 
           <Link
-            href="/contact"
+            href={`${base}/quote`}
             className="inline-flex h-9 items-center justify-center rounded-full border border-white/12 text-xs font-semibold text-foreground transition-colors hover:border-white/25 hover:bg-white/5"
           >
             {locale === "ko" ? "견적 문의" : "Get a Quote"}

@@ -5,7 +5,6 @@
     "back": "Back",
     "guarantee": "5-Day Promise",
     "rushOption": "Rush in 1 Day",
-    "contactKakao": "KakaoTalk Chat",
     "liveLink": "View Live Site",
     "caseDetail": "Case Study",
     "comingSoon": "Coming Soon"
@@ -44,7 +43,7 @@
     "ctaPrimary": "View Portfolio",
     "ctaSecondary": "Get a Quote",
     "promiseBadge": "10% refund if I miss the 5-day deadline",
-    "marquee": "Web Development · App Dev · Design · Video · Automation · 5-Day Guarantee · Fair Pricing · Fast Response · "
+    "marquee": "Website · Shopping Mall · Logo & Business Card · Detail Page · PPT Design · Automation & App · Video Content · Fast Response · Maintenance · "
   },
   "kpi": {
     "projects": "Projects",
@@ -60,7 +59,7 @@
   },
   "services": {
     "sectionTitle": "Services",
-    "sectionSubtitle": "In 5 days. 5 categories.",
+    "sectionSubtitle": "7 sales categories.",
     "web": "Web Development",
     "webDesc": "From landing pages to full sites — live in 5 days",
     "app": "Mobile App Dev",
@@ -74,14 +73,14 @@
   },
   "whyUs": {
     "sectionTitle": "Why AIO Agency",
-    "speed": "5-Day Delivery",
-    "speedDesc": "Guaranteed on every project. 10% refund if I miss the deadline.",
-    "price": "Fair Pricing",
-    "priceDesc": "30–50% below market rate during the launch event (until May 31).",
-    "fullCycle": "Solo Full-Cycle",
-    "fullCycleDesc": "Strategy, design, build, deploy, and handoff — one person.",
     "response": "Fast Response",
-    "responseDesc": "Temp reply in 1h, full quote in 24h."
+    "responseDesc": "A dedicated lead clarifies scope and timeline quickly after inquiry.",
+    "delivery": "Fast Deliverables",
+    "deliveryDesc": "Drafts, work-in-progress, and final delivery are shared without long waiting gaps.",
+    "quality": "Superior Quality",
+    "qualityDesc": "Real screens, print-ready assets, and operational proof are prepared for conversion.",
+    "maintenance": "Strong Maintenance",
+    "maintenanceDesc": "Post-delivery edits, operation guides, and follow-up improvements are handled cleanly."
   },
   "process": {
     "sectionTitle": "How It Works",
@@ -134,7 +133,7 @@
     "q5": "What about support and refunds?",
     "a5": "14-day free revisions after handoff. 10% refund if I miss the 5-day deadline. Unlimited revisions within contract scope.",
     "q6": "Any difference ordering via Soomgo/Kmong?",
-    "a6": "Same price. Platform secure payment and review system available. Direct email/KakaoTalk is also welcome."
+    "a6": "Same price. Platform secure payment and reviews are available, and direct email inquiry is also welcome."
   },
   "contact": {
     "sectionTitle": "Get a Quote",
@@ -155,15 +154,14 @@
     "channels": {
       "soomgo": "Quote via Soomgo",
       "kmong": "Buy via Kmong",
-      "email": "Direct Email",
-      "kakao": "KakaoTalk Channel"
+      "email": "Direct Email"
     }
   },
   "about": {
     "title": "About",
     "name": "Jaehong Jung",
-    "role": "Full-Stack Builder · AIO Agency",
-    "bio": "A full-stack builder focused on speed and fair pricing. In 4 months, I shipped 10 websites and 2 mobile apps. A live content automation system (8 countries, 18 accounts, 55 schedules) is proof of execution.",
+    "role": "AIO Agency Operations Team",
+    "bio": "AIO works like an integrated production team across consultation, planning, design, development, and operations. We focus on fast response, clear quotes, result-based portfolio proof, and reliable maintenance after delivery.",
     "stackTitle": "Tech Stack",
     "businessTitle": "Business Info"
   },

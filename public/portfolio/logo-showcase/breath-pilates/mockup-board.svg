@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img">
+  
+  <defs>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#1C3832" flood-opacity=".18"/>
+    </filter>
+    <filter id="tightShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#1C3832" flood-opacity=".18"/>
+    </filter>
+    <linearGradient id="paperGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EEF5F2"/>
+      <stop offset=".62" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#EEF5F2"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5F857D"/>
+      <stop offset="1" stop-color="#C8D8CA"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="1000" fill="#1C3832"/>
+  <rect x="70" y="74" width="1460" height="852" rx="44" fill="url(#paperGrad)"/>
+  <text x="126" y="154" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="900" letter-spacing="6" fill="#13231F" opacity=".5">APPLICATION SYSTEM</text>
+  <g transform="translate(130 250) scale(1.45)"><g>
+      <path d="M50 15v70" stroke="#13231F" stroke-width="5.5" stroke-linecap="round"/>
+      <path d="M50 28c-24 2-34 21-18 37 9 9 20 4 18-8" fill="none" stroke="#5F857D" stroke-width="7.5" stroke-linecap="round"/>
+      <path d="M50 28c24 2 34 21 18 37-9 9-20 4-18-8" fill="none" stroke="#C8D8CA" stroke-width="7.5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="7" fill="#ffffff" stroke="#13231F" stroke-width="3"/></g></g>
+  
+  <text x="300" y="328" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="950" letter-spacing="-1.4" fill="#13231F">Breath Pilates</text>
+  <text x="300" y="355.04" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="5" fill="#13231F" opacity=".52">ALIGNMENT STUDIO IDENTITY</text>
+  <text x="130" y="472" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#13231F" opacity=".58">Pilates Studio brand touchpoints</text>
+  <rect x="130" y="548" width="390" height="170" rx="26" fill="#ffffff" filter="url(#tightShadow)"/>
+  <g transform="translate(168 592) scale(.68)"><g>
+      <path d="M50 15v70" stroke="#13231F" stroke-width="5.5" stroke-linecap="round"/>
+      <path d="M50 28c-24 2-34 21-18 37 9 9 20 4 18-8" fill="none" stroke="#5F857D" stroke-width="7.5" stroke-linecap="round"/>
+      <path d="M50 28c24 2 34 21 18 37-9 9-20 4-18-8" fill="none" stroke="#C8D8CA" stroke-width="7.5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="7" fill="#ffffff" stroke="#13231F" stroke-width="3"/></g></g>
+  <text x="270" y="638" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="950" fill="#13231F">Breath Pilates</text>
+  <text x="270" y="672" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="3" fill="#13231F" opacity=".45">BUSINESS CARD</text>
+  
+      <rect x="929" y="280" width="410" height="520" rx="34" fill="#ffffff" filter="url(#softShadow)"/>
+      <rect x="971" y="340" width="326" height="398" rx="28" fill="#EEF5F2"/>
+      <g transform="translate(1083 418) scale(1.08)"><g>
+      <path d="M50 15v70" stroke="#13231F" stroke-width="5.5" stroke-linecap="round"/>
+      <path d="M50 28c-24 2-34 21-18 37 9 9 20 4 18-8" fill="none" stroke="#5F857D" stroke-width="7.5" stroke-linecap="round"/>
+      <path d="M50 28c24 2 34 21 18 37-9 9-20 4-18-8" fill="none" stroke="#C8D8CA" stroke-width="7.5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="7" fill="#ffffff" stroke="#13231F" stroke-width="3"/></g></g>
+      <text x="1135" y="618" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="950" fill="#13231F">Breath Pilates</text>
+      <path d="M1019 702h232" stroke="#5F857D" stroke-width="5" stroke-linecap="round" opacity=".45"/>
+</svg>

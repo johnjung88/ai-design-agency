@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#06131a"/>
+  <rect x="80" y="70" width="1040" height="535" rx="30" fill="#0b1f2a" stroke="#155e75"/>
+  <circle cx="600" cy="300" r="94" fill="#06b6d4"/>
+  <circle cx="600" cy="300" r="150" fill="none" stroke="#67e8f9" stroke-width="6" opacity=".45"/>
+  <circle cx="600" cy="300" r="220" fill="none" stroke="#22d3ee" stroke-width="3" opacity=".25"/>
+  <polygon points="574,248 574,352 664,300" fill="#f8fafc"/>
+  <text x="600" y="500" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="900" fill="#f8fafc">AIO Motion Intro</text>
+  <text x="600" y="548" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" fill="#a5f3fc">30-second brand animation sample</text>
+</svg>

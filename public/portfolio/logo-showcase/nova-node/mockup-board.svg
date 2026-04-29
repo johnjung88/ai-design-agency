@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img">
+  
+  <defs>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="24" stdDeviation="26" flood-color="#171B46" flood-opacity=".18"/>
+    </filter>
+    <filter id="tightShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#171B46" flood-opacity=".18"/>
+    </filter>
+    <linearGradient id="paperGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ECECFF"/>
+      <stop offset=".62" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ECECFF"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5F54FF"/>
+      <stop offset="1" stop-color="#12C8E8"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="1000" fill="#171B46"/>
+  <rect x="70" y="74" width="1460" height="852" rx="44" fill="url(#paperGrad)"/>
+  <text x="126" y="154" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="900" letter-spacing="6" fill="#11142A" opacity=".5">APPLICATION SYSTEM</text>
+  <g transform="translate(130 250) scale(1.45)"><g>
+      <path d="M50 14v72M14 50h72M27 27l46 46M73 27 27 73" stroke="#12C8E8" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="16" fill="#5F54FF"/>
+      <circle cx="50" cy="14" r="7" fill="#11142A"/>
+      <circle cx="86" cy="50" r="7" fill="#11142A"/>
+      <circle cx="50" cy="86" r="7" fill="#11142A"/>
+      <circle cx="14" cy="50" r="7" fill="#11142A"/>
+      <circle cx="50" cy="50" r="5" fill="#ffffff"/></g></g>
+  
+  <text x="300" y="328" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="950" letter-spacing="-.6" fill="#11142A">Nova Node</text>
+  <text x="300" y="355.04" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="5" fill="#11142A" opacity=".52">DATA NODE IDENTITY</text>
+  <text x="130" y="472" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#11142A" opacity=".58">Tech SaaS brand touchpoints</text>
+  <rect x="130" y="548" width="390" height="170" rx="26" fill="#ffffff" filter="url(#tightShadow)"/>
+  <g transform="translate(168 592) scale(.68)"><g>
+      <path d="M50 14v72M14 50h72M27 27l46 46M73 27 27 73" stroke="#12C8E8" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="16" fill="#5F54FF"/>
+      <circle cx="50" cy="14" r="7" fill="#11142A"/>
+      <circle cx="86" cy="50" r="7" fill="#11142A"/>
+      <circle cx="50" cy="86" r="7" fill="#11142A"/>
+      <circle cx="14" cy="50" r="7" fill="#11142A"/>
+      <circle cx="50" cy="50" r="5" fill="#ffffff"/></g></g>
+  <text x="270" y="638" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="950" fill="#11142A">Nova Node</text>
+  <text x="270" y="672" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="3" fill="#11142A" opacity=".45">BUSINESS CARD</text>
+  
+      <rect x="895" y="288" width="470" height="420" rx="30" fill="#171B46" filter="url(#softShadow)"/>
+      <g transform="translate(951 368) scale(.96)"><g>
+      <path d="M50 14v72M14 50h72M27 27l46 46M73 27 27 73" stroke="#12C8E8" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="16" fill="#5F54FF"/>
+      <circle cx="50" cy="14" r="7" fill="#ffffff"/>
+      <circle cx="86" cy="50" r="7" fill="#ffffff"/>
+      <circle cx="50" cy="86" r="7" fill="#ffffff"/>
+      <circle cx="14" cy="50" r="7" fill="#ffffff"/>
+      <circle cx="50" cy="50" r="5" fill="#ffffff"/></g></g>
+      
+  <text x="1085" y="415" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="950" letter-spacing="-.6" fill="#ffffff">Nova Node</text>
+  <text x="1085" y="434.76" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="5" fill="#ffffff" opacity=".52">DATA NODE IDENTITY</text>
+      <rect x="953" y="560" width="354" height="20" rx="10" fill="#12C8E8" opacity=".85"/>
+      <rect x="953" y="608" width="250" height="20" rx="10" fill="#ffffff" opacity=".28"/>
+      <circle cx="1295" cy="362" r="42" fill="#12C8E8" opacity=".55"/>
+</svg>

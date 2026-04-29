@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
@@ -21,22 +22,55 @@ export function Header() {
   }, []);
 
   const base = `/${locale}`;
+  const isKo = locale === "ko";
 
   const serviceItems = [
-    { label: t("servicesWeb"), href: `${base}/services/web`, description: "랜딩·홈페이지·CMS" },
-    { label: t("servicesApp"), href: `${base}/services/app`, description: "React Native MVP" },
-    { label: t("servicesDesign"), href: `${base}/services/design`, description: "로고·명함·PPT·상세" },
-    { label: t("servicesVideo"), href: `${base}/services/video`, description: "마케팅·쇼츠·Remotion" },
-    { label: t("servicesAutomation"), href: `${base}/services/automation`, description: "블로그·SNS·n8n" },
+    {
+      label: isKo ? "웹사이트" : "Website",
+      href: `${base}/services/website`,
+      description: isKo ? "랜딩·홈페이지·CMS" : "Landing · Website · CMS",
+    },
+    {
+      label: isKo ? "쇼핑몰" : "Store",
+      href: `${base}/services/shopping-mall`,
+      description: isKo ? "카페24·커머스형 메인" : "Cafe24 · Commerce storefront",
+    },
+    {
+      label: isKo ? "로고 및 명함" : "Logo & Business Card",
+      href: `${base}/services/logo-business-card`,
+      description: isKo ? "로고·명함·브랜드 키트" : "Logo · Card · Brand kit",
+    },
+    {
+      label: isKo ? "상세페이지" : "Detail Page",
+      href: `${base}/services/detail-page`,
+      description: isKo ? "쇼핑몰·크몽용 세로형 상세" : "Vertical sales detail page",
+    },
+    {
+      label: isKo ? "PPT 디자인" : "PPT Design",
+      href: `${base}/services/ppt-design`,
+      description: isKo ? "회사소개·제안서·피치덱" : "Company deck · Proposal · Pitch",
+    },
+    {
+      label: isKo ? "자동화 및 앱" : "Automation & App",
+      href: `${base}/services/automation-app`,
+      description: isKo ? "업무 자동화·MVP 앱" : "Ops automation · MVP app",
+    },
+    {
+      label: isKo ? "영상 컨텐츠" : "Video Content",
+      href: `${base}/services/video-content`,
+      description: isKo ? "마케팅·쇼츠·모션" : "Marketing · Shorts · Motion",
+    },
   ];
 
   const portfolioItems = [
     { label: t("portfolioAll"), href: `${base}/portfolio` },
-    { label: t("portfolioWeb"), href: `${base}/portfolio/category/web` },
-    { label: t("portfolioApp"), href: `${base}/portfolio/category/app` },
-    { label: t("portfolioDesign"), href: `${base}/portfolio/category/design` },
-    { label: t("portfolioVideo"), href: `${base}/portfolio/category/video` },
-    { label: t("portfolioAutomation"), href: `${base}/portfolio/category/automation` },
+    { label: isKo ? "웹사이트" : "Website", href: `${base}/portfolio/category/website` },
+    { label: isKo ? "쇼핑몰" : "Store", href: `${base}/portfolio/category/shopping-mall` },
+    { label: isKo ? "로고 및 명함" : "Logo & Business Card", href: `${base}/portfolio/category/logo-business-card` },
+    { label: isKo ? "상세페이지" : "Detail Page", href: `${base}/portfolio/category/detail-page` },
+    { label: isKo ? "PPT 디자인" : "PPT Design", href: `${base}/portfolio/category/ppt-design` },
+    { label: isKo ? "자동화 및 앱" : "Automation & App", href: `${base}/portfolio/category/automation-app` },
+    { label: isKo ? "영상 컨텐츠" : "Video Content", href: `${base}/portfolio/category/video-content` },
   ];
 
   return (
@@ -54,11 +88,14 @@ export function Header() {
           className="flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none"
           aria-label="AIO에이전시 홈"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="10" cy="10" r="10" fill="#a3e635"/>
-            <text x="10" y="14" textAnchor="middle" fontSize="9" fontWeight="800" fill="#0a0a0a" fontFamily="system-ui">A</text>
-          </svg>
-          <span className="text-sm font-bold tracking-[0.12em] text-foreground">AIO</span>
+          <Image
+            src="/logo.svg"
+            alt="AIO"
+            width={110}
+            height={28}
+            priority
+            className="h-7 w-auto"
+          />
         </Link>
 
         {/* 데스크톱 네비 */}
@@ -83,7 +120,7 @@ export function Header() {
         <div className="hidden items-center gap-3 md:flex">
           <LanguageSwitcher />
           <Link
-            href={`${base}/contact`}
+            href={`${base}/quote`}
             className="inline-flex h-9 items-center rounded-full bg-primary px-5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-80"
           >
             {t("contact")}
@@ -132,7 +169,7 @@ export function Header() {
             <div className="mt-4 flex items-center gap-3">
               <LanguageSwitcher />
               <Link
-                href={`${base}/contact`}
+                href={`${base}/quote`}
                 className="flex-1 inline-flex h-10 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground"
                 onClick={() => setMobileOpen(false)}
               >

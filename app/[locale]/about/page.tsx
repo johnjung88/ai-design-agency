@@ -48,21 +48,19 @@ export default async function AboutPage({
             </div>
             <p className="text-sm leading-8 text-muted-foreground">{t("bio")}</p>
 
-            {/* KPI 카드 */}
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {/* 운영 신뢰 카드 */}
+            <div className="grid grid-cols-2 gap-3">
               {[
-                { value: "18+", label: "완성 프로젝트" },
-                { value: "5일", label: "기본 납기" },
-                { value: "8개국", label: "자동화 운영" },
-                { value: "189", label: "Python 파일" },
-                { value: "68/68", label: "테스트 통과" },
-                { value: "2h", label: "견적 응답" },
+                { value: "응대", label: "상담·견적 담당" },
+                { value: "기획", label: "구조·카피 담당" },
+                { value: "제작", label: "디자인·개발 담당" },
+                { value: "운영", label: "유지보수 담당" },
               ].map((kpi) => (
                 <div
                   key={kpi.label}
                   className="flex flex-col gap-1 rounded-xl border border-white/8 bg-card p-4"
                 >
-                  <span className="font-mono text-2xl font-bold text-primary">{kpi.value}</span>
+                  <span className="text-lg font-bold text-primary">{kpi.value}</span>
                   <span className="text-xs text-muted-foreground">{kpi.label}</span>
                 </div>
               ))}

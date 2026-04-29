@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img">
+  
+  <defs>
+    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#4A3210" flood-opacity=".24"/>
+    </filter>
+    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    </filter>
+    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
+      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
+    </filter>
+    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#1AAE89" flood-opacity=".45"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#F2A900" flood-opacity=".28"/>
+    </filter>
+    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .045"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF4D4"/>
+      <stop offset=".52" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#1AAE89" stop-opacity=".52"/>
+    </linearGradient>
+    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4A3210"/>
+      <stop offset=".65" stop-color="#1F1A10"/>
+      <stop offset="1" stop-color="#F2A900"/>
+    </linearGradient>
+    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
+      <stop offset=".48" stop-color="#FFF4D4" stop-opacity=".92"/>
+      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
+      <stop offset=".35" stop-color="#FFF4D4" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="1000" fill="#4A3210"/>
+  <rect x="0" y="0" width="1600" height="640" fill="url(#studioBg)"/>
+  <rect x="0" y="640" width="1600" height="360" fill="#FFF4D4"/>
+  <rect width="1600" height="1000" fill="#ffffff" filter="url(#paperNoise)" opacity=".38"/>
+  <path d="M0 640h1600" stroke="#1F1A10" stroke-width="2" opacity=".08"/>
+  <rect x="160" y="160" width="1280" height="600" rx="8" fill="#ffffff" filter="url(#ambientShadow)"/>
+  <rect x="160" y="160" width="1280" height="146" rx="8" fill="url(#darkPanel)"/>
+  <rect x="202" y="205" width="1196" height="60" rx="30" fill="#ffffff" opacity=".08"/>
+  <g filter="url(#neonGlow)">
+    <g transform="translate(520 190) scale(.88)"><g><circle cx="46" cy="51" r="36" fill="#F2A900"/><circle cx="46" cy="51" r="24" fill="none" stroke="#ffffff" stroke-width="5"/><path d="M46 27v48M22 51h48M29 34l34 34M63 34 29 68" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/><circle cx="46" cy="51" r="8" fill="#ffffff"/><path d="M76 20l6 12 13 3-10 9 2 14-12-7-12 7 2-14-10-9 13-3Z" fill="#1AAE89" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/></g></g>
+    
+  <text x="655" y="247" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="950" fill="#ffffff">Salty Yuzu</text>
+  <text x="655" y="270.04" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="4" fill="#ffffff" opacity=".48">CITRUS DESSERT IDENTITY</text>
+  </g>
+  <rect x="214" y="348" width="570" height="360" rx="14" fill="#4A3210" opacity=".85"/>
+  <rect x="244" y="378" width="510" height="300" rx="12" fill="url(#glass)"/>
+  <path d="M260 660 724 392M340 690 744 456" stroke="#ffffff" stroke-width="12" opacity=".16"/>
+  <rect x="844" y="348" width="342" height="360" rx="14" fill="url(#glass)" stroke="#1F1A10" stroke-width="1" opacity=".74"/>
+  <rect x="1214" y="348" width="130" height="360" rx="12" fill="#4A3210" opacity=".82"/>
+  <circle cx="1238" cy="530" r="9" fill="#1AAE89"/>
+  <g transform="translate(936 435) scale(1.2)"><g><circle cx="46" cy="51" r="36" fill="#F2A900"/><circle cx="46" cy="51" r="24" fill="none" stroke="#1F1A10" stroke-width="5"/><path d="M46 27v48M22 51h48M29 34l34 34M63 34 29 68" stroke="#1F1A10" stroke-width="4" stroke-linecap="round"/><circle cx="46" cy="51" r="8" fill="#ffffff"/><path d="M76 20l6 12 13 3-10 9 2 14-12-7-12 7 2-14-10-9 13-3Z" fill="#1AAE89" stroke="#1F1A10" stroke-width="3" stroke-linejoin="round"/></g></g>
+  <text x="1015" y="610" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="950" fill="#1F1A10">Salty Yuzu</text>
+  <rect x="214" y="788" width="1130" height="58" rx="29" fill="#ffffff" opacity=".72"/>
+  <text x="872" y="766" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" letter-spacing="3" fill="#1F1A10" opacity=".45">YUZU TART</text><text x="1022" y="766" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" letter-spacing="3" fill="#1F1A10" opacity=".45">SALT COOKIE</text><text x="1172" y="766" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" letter-spacing="3" fill="#1F1A10" opacity=".45">GIFT BOX</text>
+  <text x="96" y="920" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#ffffff" opacity=".42">SIGNAGE MOCKUP</text>
+  <text x="96" y="962" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="850" fill="#ffffff" opacity=".74">Exterior sign, window decal, door plate</text>
+</svg>

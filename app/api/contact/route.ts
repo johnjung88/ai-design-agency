@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createSupabaseServerClient } from "@/lib/supabase";
+import { createResendClient, getInquiryRecipient } from "@/lib/resend";
 
 type ApiResponse<T> = {
   success: boolean;
@@ -20,6 +21,29 @@ const contactSchema = z.object({
 });
 
 type ContactInsertResult = { id: string };
+
+async function sendContactEmail(payload: z.infer<typeof contactSchema>, inquiryId?: string) {
+  const resend = createResendClient();
+  if (!resend) return;
+
+  await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL ?? "AIO Agency <onboarding@resend.dev>",
+    to: getInquiryRecipient(),
+    subject: `[AIO Contact] ${payload.service_category ?? "general"} - ${payload.name}`,
+    text: [
+      `Inquiry ID: ${inquiryId ?? "not saved"}`,
+      `Name: ${payload.name}`,
+      `Email: ${payload.email}`,
+      `Phone: ${payload.phone || "-"}`,
+      `Service: ${payload.service_category ?? "-"}`,
+      `Source: ${payload.source ?? "-"}`,
+      `Budget: ${payload.budget_range ?? "-"}`,
+      `Locale: ${payload.locale}`,
+      "",
+      payload.message,
+    ].join("\n"),
+  });
+}
 
 export async function POST(request: Request) {
   try {
@@ -56,6 +80,13 @@ export async function POST(request: Request) {
       console.error("[contact] supabase insert error:", error.message);
       const errorResponse: ApiResponse<null> = { success: false, error: error.message };
       return NextResponse.json(errorResponse, { status: 500 });
+    }
+
+    try {
+      await sendContactEmail(payload, data.id);
+    } catch (emailError) {
+      const message = emailError instanceof Error ? emailError.message : "Unknown email error";
+      console.error("[contact] email error:", message);
     }
 
     const successResponse: ApiResponse<{ inquiryId: string }> = {

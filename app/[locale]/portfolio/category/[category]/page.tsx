@@ -1,19 +1,19 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import { getProjectsByType } from "@/lib/portfolio-data";
-import type { PortfolioType } from "@/lib/portfolio-data";
+import { getProjectsByPortfolioGroup, portfolioGroups } from "@/lib/portfolio-data";
+import type { PortfolioGroup } from "@/lib/portfolio-data";
 import { PortfolioCard } from "@/components/ui/portfolio-card";
 
-const VALID_CATEGORIES: PortfolioType[] = ["web", "app", "design", "video", "automation"];
+const VALID_CATEGORIES = portfolioGroups
+  .filter((group) => group.value !== "all")
+  .map((group) => group.value as PortfolioGroup);
 
-const categoryLabels: Record<PortfolioType, { ko: string; en: string }> = {
-  web: { ko: "웹사이트", en: "Web" },
-  app: { ko: "모바일 앱", en: "App" },
-  design: { ko: "디자인", en: "Design" },
-  video: { ko: "영상", en: "Video" },
-  automation: { ko: "자동화", en: "Automation" },
-};
+const categoryLabels = Object.fromEntries(
+  portfolioGroups
+    .filter((group) => group.value !== "all")
+    .map((group) => [group.value, group.label]),
+) as Record<PortfolioGroup, { ko: string; en: string }>;
 
 export async function generateStaticParams() {
   return VALID_CATEGORIES.map((category) => ({ category }));
@@ -25,8 +25,8 @@ export async function generateMetadata({
   params: Promise<{ locale: string; category: string }>;
 }): Promise<Metadata> {
   const { locale, category } = await params;
-  if (!VALID_CATEGORIES.includes(category as PortfolioType)) return {};
-  const label = categoryLabels[category as PortfolioType][locale as "ko" | "en"];
+  if (!VALID_CATEGORIES.includes(category as PortfolioGroup)) return {};
+  const label = categoryLabels[category as PortfolioGroup][locale as "ko" | "en"];
   return { title: `${label} 포트폴리오` };
 }
 
@@ -38,13 +38,17 @@ export default async function CategoryPortfolioPage({
   const { locale, category } = await params;
   const t = await getTranslations({ locale, namespace: "portfolio" });
 
-  if (!VALID_CATEGORIES.includes(category as PortfolioType)) {
+  if (category === "logo-design") {
+    redirect(`/${locale}/portfolio/category/logo-business-card`);
+  }
+
+  if (!VALID_CATEGORIES.includes(category as PortfolioGroup)) {
     notFound();
   }
 
-  const type = category as PortfolioType;
-  const projects = getProjectsByType(type);
-  const label = categoryLabels[type][locale as "ko" | "en"];
+  const group = category as PortfolioGroup;
+  const projects = getProjectsByPortfolioGroup(group);
+  const label = categoryLabels[group][locale as "ko" | "en"];
 
   return (
     <main className="pb-24 pt-28">
@@ -57,12 +61,14 @@ export default async function CategoryPortfolioPage({
             </span>
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-foreground">{label}</h1>
-          <p className="mt-2 text-sm text-muted-foreground">{projects.length}개 작업물</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {locale === "ko" ? `${projects.length}개 작업물` : `${projects.length} projects`}
+          </p>
         </div>
 
         {projects.length === 0 ? (
           <div className="flex h-48 items-center justify-center rounded-2xl border border-dashed border-white/15 text-sm text-muted-foreground">
-            {t("comingSoon")} — 5월부터 채워집니다
+            {locale === "ko" ? `${t("comingSoon")} - 5월부터 채워집니다` : t("comingSoon")}
           </div>
         ) : (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

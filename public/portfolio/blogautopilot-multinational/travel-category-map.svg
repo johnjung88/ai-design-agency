@@ -1,0 +1,35 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#08121F"/>
+  <text x="70" y="84" fill="#55D6BE" font-family="Segoe UI, Malgun Gothic, Arial, sans-serif" font-size="24" font-weight="800">TRAVEL BLOG AUTOMATION MATRIX</text>
+  <text x="70" y="136" fill="#F3F8FF" font-family="Segoe UI, Malgun Gothic, Arial, sans-serif" font-size="52" font-weight="900">여행 전문 블로그 운영 구조</text>
+  <g font-family="Segoe UI, Malgun Gothic, Arial, sans-serif">
+    <rect x="70" y="190" width="350" height="390" rx="18" fill="#13233A" stroke="#284262"/>
+    <text x="102" y="244" fill="#F8FBFF" font-size="34" font-weight="850">여행 아이템</text>
+    <text x="102" y="292" fill="#C8D7EA" font-size="24">캐리어 · 여행용품 · 준비물</text>
+    <text x="102" y="356" fill="#55D6BE" font-size="24" font-weight="800">국가별 쇼핑 제휴</text>
+    <text x="102" y="402" fill="#D9E6F7" font-size="23">한국: 쿠팡</text>
+    <text x="102" y="442" fill="#D9E6F7" font-size="23">일본/미국/영국: Amazon</text>
+    <text x="102" y="482" fill="#D9E6F7" font-size="23">대만/베트남/인니: Shopee</text>
+    <text x="102" y="522" fill="#D9E6F7" font-size="23">태국: Lazada</text>
+
+    <rect x="465" y="190" width="350" height="390" rx="18" fill="#13233A" stroke="#284262"/>
+    <text x="497" y="244" fill="#F8FBFF" font-size="34" font-weight="850">축제 · 이벤트</text>
+    <text x="497" y="292" fill="#C8D7EA" font-size="24">행사 일정 · 도시 이벤트</text>
+    <text x="497" y="356" fill="#55D6BE" font-size="24" font-weight="800">투어 + 숙박 판매</text>
+    <text x="497" y="402" fill="#D9E6F7" font-size="23">Klook / GetYourGuide</text>
+    <text x="497" y="442" fill="#D9E6F7" font-size="23">Agoda / Booking</text>
+    <text x="497" y="482" fill="#D9E6F7" font-size="23">국가별 축제 API cascade</text>
+    <text x="497" y="522" fill="#D9E6F7" font-size="23">월별 캘린더 스케줄링</text>
+
+    <rect x="860" y="190" width="350" height="390" rx="18" fill="#13233A" stroke="#284262"/>
+    <text x="892" y="244" fill="#F8FBFF" font-size="34" font-weight="850">여행 종합</text>
+    <text x="892" y="292" fill="#C8D7EA" font-size="24">일정 · 코스 · 도시 가이드</text>
+    <text x="892" y="356" fill="#55D6BE" font-size="24" font-weight="800">다중 상품 매칭</text>
+    <text x="892" y="402" fill="#D9E6F7" font-size="23">투어 · 숙박 · 교통</text>
+    <text x="892" y="442" fill="#D9E6F7" font-size="23">유심 · 보험 · 패스</text>
+    <text x="892" y="482" fill="#D9E6F7" font-size="23">TripType 기반 구성</text>
+    <text x="892" y="522" fill="#D9E6F7" font-size="23">SEO 섹션 자동 생성</text>
+  </g>
+  <rect x="70" y="620" width="1140" height="54" rx="12" fill="#102944" stroke="#244A70"/>
+  <text x="102" y="655" fill="#D9E6F7" font-family="Segoe UI, Malgun Gothic, Arial, sans-serif" font-size="23" font-weight="700">API + CSV 콘텐츠 소스 → 스케줄 → 계정별 프롬프트 → 제휴 상품 → 자동 발행</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#17130b"/>
+  <rect x="458" y="72" width="284" height="530" rx="40" fill="#111827" stroke="#f59e0b" stroke-width="4"/>
+  <rect x="488" y="122" width="224" height="420" rx="24" fill="#fff7ed"/>
+  <text x="600" y="216" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="900" fill="#92400e">KoReady</text>
+  <rect x="520" y="270" width="160" height="56" rx="18" fill="#f59e0b"/><text x="600" y="305" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#111827">Quiz</text>
+  <rect x="520" y="350" width="160" height="56" rx="18" fill="#fde68a"/><text x="600" y="385" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#111827">Vocab</text>
+  <text x="600" y="628" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="26" fill="#fcd34d">Mobile app result preview</text>
+</svg>

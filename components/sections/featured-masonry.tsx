@@ -1,6 +1,5 @@
 "use client";
 
-import Masonry from "react-masonry-css";
 import { useTranslations } from "next-intl";
 import type { PortfolioProject } from "@/lib/portfolio-data";
 import { PortfolioCard } from "@/components/ui/portfolio-card";
@@ -8,12 +7,6 @@ import { PortfolioCard } from "@/components/ui/portfolio-card";
 interface FeaturedMasonryProps {
   projects: PortfolioProject[];
 }
-
-const breakpointCols = {
-  default: 3,
-  1024: 2,
-  640: 1,
-};
 
 export function FeaturedMasonry({ projects }: FeaturedMasonryProps) {
   const t = useTranslations("common");
@@ -27,14 +20,10 @@ export function FeaturedMasonry({ projects }: FeaturedMasonryProps) {
   }
 
   return (
-    <Masonry
-      breakpointCols={breakpointCols}
-      className="-ml-5 flex w-auto"
-      columnClassName="pl-5"
-    >
+    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
       {projects.map((project) => (
-        <PortfolioCard key={project.id} project={project} className="mb-5" />
+        <PortfolioCard key={project.id} project={project} />
       ))}
-    </Masonry>
+    </div>
   );
 }
