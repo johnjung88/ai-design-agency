@@ -9,6 +9,8 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {

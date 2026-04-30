@@ -9,6 +9,8 @@ import { TypeBadge } from "@/components/ui/type-badge";
 import { GuaranteeBadge } from "@/components/ui/guarantee-badge";
 import type { ServiceCategory } from "@/lib/services-data";
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   return portfolioProjects.map((p) => ({ slug: p.slug }));
 }
@@ -51,7 +53,7 @@ export default async function ProjectPage({
       ? [
           { label: "고객 고민", text: project.problem[l] },
           { label: "작업 방향", text: project.solution[l] },
-          { label: "기대 효과", text: project.impact[l] },
+          { label: "사용자가 얻는 변화", text: project.impact[l] },
         ]
       : [
           { label: "Client Need", text: project.problem[l] },
@@ -227,7 +229,7 @@ export default async function ProjectPage({
           </div>
         </div>
 
-        {/* 본문 — 고객 고민 · 작업 방향 · 기대 효과 */}
+        {/* 본문 — 고객 고민 · 작업 방향 · 사용자가 얻는 변화 */}
         <div className="grid gap-6 md:grid-cols-3 mb-12">
           {storyLabels.map(({ label, text }) => (
             <div

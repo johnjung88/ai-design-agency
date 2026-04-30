@@ -166,11 +166,11 @@ const logoConceptSpecs: LogoConceptSpec[] = [
       en: "The bean silhouette and cup surface were reduced into one restrained circular mark that stays legible on signs and cup stamps.",
     },
     impact: {
-      ko: "로스터리의 전문성과 동네 카페의 온기를 동시에 보여주는 컨셉 브랜드 샘플입니다.",
+      ko: "처음 보는 고객도 로스터리의 전문성과 편안한 카페 분위기를 동시에 느껴 방문 전 기대감을 갖게 됩니다.",
       en: "The concept balances roastery expertise with the warmth of a neighborhood cafe.",
     },
     resultSummary: {
-      ko: "심볼, 가로형 워드마크, 단색 스탬프, 컵 슬리브 적용 예시를 한 세트로 확인할 수 있습니다.",
+      ko: "간판, 컵, 스탬프 같은 실제 접점에 얹었을 때 브랜드가 어떻게 보일지 의뢰 전부터 선명하게 가늠됩니다.",
       en: "The set includes a symbol, horizontal wordmark, one-color stamp, and cup sleeve application.",
     },
     deliverables: [
@@ -234,11 +234,11 @@ const logoConceptSpecs: LogoConceptSpec[] = [
       en: "A table grid and wood-grain curve combine order, craft, and an editorial modern feel.",
     },
     impact: {
-      ko: "메뉴판, 간판, 예약 페이지까지 확장 가능한 차분한 한식 브랜드 방향을 제안합니다.",
+      ko: "방문자는 메뉴판, 간판, 예약 페이지 어디에서 보더라도 정갈한 한식 다이닝의 분위기를 일관되게 받아들입니다.",
       en: "The identity can extend calmly across menus, signage, and reservation pages.",
     },
     resultSummary: {
-      ko: "정사각 심볼과 세로형 로고를 함께 제작해 오프라인 매장 적용성을 높였습니다.",
+      ko: "오프라인 간판과 메뉴판에 바로 얹어도 어색하지 않은 비율과 형태가 먼저 검토됩니다.",
       en: "A square symbol and vertical logo variant improve usability for offline dining touchpoints.",
     },
     deliverables: [
@@ -306,7 +306,7 @@ const logoConceptSpecs: LogoConceptSpec[] = [
       en: "The identity can support bottle labels, product pages, and clinic collaboration materials.",
     },
     resultSummary: {
-      ko: "프리미엄 제품 라벨에 적합한 얇은 선, 저채도 컬러, 단색 변형을 함께 확인할 수 있습니다.",
+      ko: "라벨, 패키지, 작은 인쇄물에서도 고급감이 유지되는지 의뢰 전에 바로 판단됩니다.",
       en: "Thin lines, low-saturation colors, and monochrome variants make the logo suitable for premium labels.",
     },
     deliverables: [
@@ -340,7 +340,7 @@ const logoConceptSpecs: LogoConceptSpec[] = [
       en: "The gentle impression holds at small sizes across packaging, ingredient cards, and social thumbnails.",
     },
     resultSummary: {
-      ko: "클린 코스메틱에 맞춘 소프트 워드마크, 심볼, 패키지 라벨 보드를 확인할 수 있습니다.",
+      ko: "제품 라벨과 브랜드 보드에 적용했을 때 성분 중심 뷰티 브랜드의 차분한 인상이 유지됩니다.",
       en: "A soft wordmark, symbol, and package label board were created for clean cosmetics use.",
     },
     deliverables: [
@@ -374,7 +374,7 @@ const logoConceptSpecs: LogoConceptSpec[] = [
       en: "The wellness logo communicates calm expertise on signage, booking app icons, and class cards.",
     },
     resultSummary: {
-      ko: "선 중심의 심볼과 여백이 큰 워드마크로 고급 스튜디오에 어울리는 인상을 확인할 수 있습니다.",
+      ko: "간판, 예약 페이지, 프로필 이미지에 적용했을 때 프리미엄 스튜디오의 차분한 인상이 유지됩니다.",
       en: "A line-led symbol and spacious wordmark create a premium studio impression.",
     },
     deliverables: [
@@ -438,11 +438,11 @@ const logoConceptSpecs: LogoConceptSpec[] = [
       en: "A cross structure and root form are held inside a stable M symbol to express expertise and recovery.",
     },
     impact: {
-      ko: "클리닉 간판, 진료 안내서, 상담 카드에 적용 가능한 신뢰 중심 로고 샘플입니다.",
+      ko: "처음 방문한 고객은 간판과 상담 카드만 봐도 차분하고 신뢰감 있는 클리닉이라는 인상을 받습니다.",
       en: "The trust-led logo can apply to clinic signage, care guides, and consultation cards.",
     },
     resultSummary: {
-      ko: "블루·그린 계열의 안정된 팔레트와 단색 의료 사인 변형까지 함께 확인할 수 있습니다.",
+      ko: "의료 안내물, 상담 카드, 사인물에 적용해도 과하게 차갑지 않은 신뢰감이 유지됩니다.",
       en: "The set includes a stable blue-green palette and monochrome medical signage variants.",
     },
     deliverables: [
@@ -528,7 +528,7 @@ const logoConceptSpecs: LogoConceptSpec[] = [
     brand: "Promptly AI",
     industry: { ko: "테크 AI 도구", en: "Tech AI Tool" },
     summary: {
-      ko: "대화형 AI의 즉각성과 정돈된 답변 경험을 말풍선·커서 심볼로 만든 로고.",
+      ko: "대화형 서비스가 빠르고 정돈되어 보이도록 말풍선과 커서 이미지를 결합한 AI 브랜드 로고.",
       en: "An AI tool logo combining conversational immediacy with an organized answer experience.",
     },
     problem: {
@@ -540,7 +540,7 @@ const logoConceptSpecs: LogoConceptSpec[] = [
       en: "A cursor and spark inside a speech bubble compress prompting, generation, and quick action into one scene.",
     },
     impact: {
-      ko: "브라우저 확장, 웹앱, 소개 페이지에 바로 적용 가능한 밝은 AI 브랜드 샘플입니다.",
+      ko: "사용자는 낯선 AI 도구도 가볍고 쉽게 느끼며, 첫 화면에서 부담 없이 사용을 시작합니다.",
       en: "The bright AI identity is ready for browser extensions, web apps, and landing pages.",
     },
     resultSummary: {
@@ -626,11 +626,11 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "Trust badges, a farm-led hero, and category chips place conversion-critical information first.",
     },
     impact: {
-      ko: "방문자가 산지 신뢰, 배송 혜택, 카테고리를 빠르게 이해해 신선식품 구매를 더 쉽게 결정할 수 있습니다.",
+      ko: "방문자는 산지 신뢰, 배송 혜택, 카테고리를 빠르게 이해하고 신선식품 구매를 더 쉽게 결정합니다.",
       en: "Visitors can quickly understand origin trust, delivery benefits, and categories, making fresh-food purchases easier to decide.",
     },
     resultSummary: {
-      ko: "메인 비주얼, 혜택 띠배너, 카테고리 탐색, 인증 배지를 한 화면에서 확인할 수 있습니다.",
+      ko: "방문자는 메인 화면에서 산지 신뢰, 혜택, 카테고리, 인증 정보를 바로 읽고 구매 기준을 세웁니다.",
       en: "The layout combines a main visual, benefit strip, category browsing, and certification badges.",
     },
     deliverables: [
@@ -659,15 +659,15 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "Beauty stores need efficacy and mood together, but excessive imagery can weaken trust.",
     },
     solution: {
-      ko: "큰 여백, 성분 키워드, 제품 라벨형 카드가 전문성과 부드러운 구매 경험을 동시에 보여줍니다.",
+      ko: "큰 여백, 성분 키워드, 제품 라벨형 카드로 방문자가 제품 효능과 브랜드 무드를 차분하게 비교하도록 구성했습니다.",
       en: "Generous spacing, ingredient keywords, and label-like product cards balance credibility and softness.",
     },
     impact: {
-      ko: "방문자가 성분과 제품 라인업을 차분하게 비교하며 브랜드 신뢰와 구매 확신을 함께 얻을 수 있습니다.",
+      ko: "방문자는 성분과 제품 라인업을 차분하게 비교하며 브랜드 신뢰와 구매 확신을 함께 얻습니다.",
       en: "Visitors can calmly compare ingredients and product lines while building trust and purchase confidence.",
     },
     resultSummary: {
-      ko: "제품 라인업과 성분 메시지가 먼저 읽히는 히어로와 상품 그리드를 확인할 수 있습니다.",
+      ko: "방문자는 제품 라인업과 성분 메시지를 먼저 읽고, 자신에게 맞는 제품군으로 자연스럽게 이동합니다.",
       en: "The hero and product grid prioritize product lineups and ingredient messaging.",
     },
     deliverables: [
@@ -699,7 +699,7 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "Prep-time badges, popular menu cards, and review-led recommendations reduce choice fatigue.",
     },
     impact: {
-      ko: "조리 시간, 인기 메뉴, 후기 흐름이 먼저 보여 방문자가 메뉴 선택을 빠르게 끝내고 구매로 이동할 수 있습니다.",
+      ko: "조리 시간, 인기 메뉴, 후기 흐름이 먼저 보여 방문자는 메뉴 선택을 빠르게 끝내고 구매로 이동합니다.",
       en: "Prep time, popular menus, and review cues appear first so visitors can choose quickly and move toward purchase.",
     },
     resultSummary: {
@@ -735,11 +735,11 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "Broadcast cards, countdowns, and live deal zones create a clear reason to act now.",
     },
     impact: {
-      ko: "방송 시간과 한정 혜택이 명확해 방문자가 지금 봐야 할 이유를 느끼고 라이브 구매로 진입할 수 있습니다.",
+      ko: "방송 시간과 한정 혜택이 명확해 방문자는 지금 봐야 할 이유를 느끼고 라이브 구매로 진입합니다.",
       en: "Clear broadcast timing and limited offers help visitors feel urgency and enter the live purchase flow.",
     },
     resultSummary: {
-      ko: "방송 중심 히어로와 상품형 CTA가 결합되어 라이브 특가 흐름을 명확히 확인할 수 있습니다.",
+      ko: "방문자는 방송 시간, 특가 이유, 구매 버튼을 한 흐름으로 보고 라이브 상품을 빠르게 선택합니다.",
       en: "A broadcast-led hero and product CTA make the live deal flow easy to understand.",
     },
     deliverables: [
@@ -771,7 +771,7 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "A warm hero, safety badges, and age/breed categories simplify browsing.",
     },
     impact: {
-      ko: "보호자가 감성 이미지와 안전 정보를 함께 확인해 반려동물 제품을 안심하고 고를 수 있습니다.",
+      ko: "보호자는 감성 이미지와 안전 정보를 함께 보고 반려동물 제품을 더 안심하고 고릅니다.",
       en: "Pet owners can review emotional appeal and safety cues together, helping them choose products with confidence.",
     },
     resultSummary: {
@@ -803,11 +803,11 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "Minimal brands need careful spacing and message hierarchy so the product mood does not get diluted.",
     },
     solution: {
-      ko: "큰 히어로 이미지, 정돈된 카테고리, 저널형 정보 흐름으로 브랜드 톤을 먼저 느낄 수 있습니다.",
+      ko: "큰 히어로 이미지, 정돈된 카테고리, 저널형 정보 흐름으로 브랜드 톤이 먼저 전달됩니다.",
       en: "A large hero, clean categories, and journal-like flow make the brand tone immediately clear.",
     },
     impact: {
-      ko: "방문자가 상품을 보기 전 브랜드의 분위기와 취향을 먼저 이해해 더 자연스럽게 탐색을 시작할 수 있습니다.",
+      ko: "방문자는 상품을 보기 전 브랜드의 분위기와 취향을 먼저 이해하고 더 자연스럽게 탐색을 시작합니다.",
       en: "Visitors understand the brand mood before browsing products, making exploration feel more natural.",
     },
     resultSummary: {
@@ -843,7 +843,7 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "Need-state categories, ingredient cards, and subscription CTAs connect browsing to conversion.",
     },
     impact: {
-      ko: "성분, 인증, 섭취 루틴이 분명하게 보여 방문자가 건강식품을 더 신뢰하고 비교할 수 있습니다.",
+      ko: "방문자는 성분, 인증, 섭취 루틴을 기준으로 건강식품을 더 안심하고 비교합니다.",
       en: "Ingredients, certifications, and routines are clear, helping visitors trust and compare supplement products.",
     },
     resultSummary: {
@@ -915,11 +915,11 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "A seasonal hero, fit categories, and color swatches drive fast first clicks.",
     },
     impact: {
-      ko: "핏, 컬러, 시즌 정보를 빠르게 비교할 수 있어 방문자가 원하는 상품군으로 바로 이동할 수 있습니다.",
+      ko: "핏, 컬러, 시즌 정보가 빠르게 비교되어 방문자는 원하는 상품군으로 바로 이동합니다.",
       en: "Fit, color, and season cues are easy to compare, helping visitors move directly to the products they want.",
     },
     resultSummary: {
-      ko: "상품 상세로 가기 전 필요한 핏·컬러·시즌 정보를 메인에서 압축해 확인할 수 있습니다.",
+      ko: "방문자는 상품 상세로 들어가기 전 핏, 컬러, 시즌 기준을 먼저 잡고 원하는 상품군으로 이동합니다.",
       en: "Fit, color, and season cues are compressed on the main page before product detail entry.",
     },
     deliverables: [
@@ -987,7 +987,7 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "Age categories, material badges, and gift recommendation cards reduce browsing time for parents.",
     },
     impact: {
-      ko: "연령, 소재, 안전 정보를 먼저 확인할 수 있어 부모 고객이 구매 기준을 빠르게 세울 수 있습니다.",
+      ko: "부모 고객은 연령, 소재, 안전 정보를 먼저 보고 구매 기준을 빠르게 세웁니다.",
       en: "Parents can check age, material, and safety information first, helping them form purchase criteria quickly.",
     },
     resultSummary: {
@@ -1023,7 +1023,7 @@ const cafe24StorefrontSpecs: StorefrontConceptSpec[] = [
       en: "A strong hero, walking-proof messaging, and gear categories are placed up front.",
     },
     impact: {
-      ko: "방문자가 제품의 사용 장면과 안전 포인트를 빠르게 이해해 야외 활동용 펫 제품을 더 쉽게 비교할 수 있습니다.",
+      ko: "방문자는 제품의 사용 장면과 안전 포인트를 빠르게 이해하고 야외 활동용 펫 제품을 더 쉽게 고릅니다.",
       en: "Visitors can quickly understand use cases and safety points, making outdoor pet products easier to compare.",
     },
     resultSummary: {
@@ -1084,28 +1084,28 @@ const pptPortfolioProjects: PortfolioProject[] = [
     type: "design",
     subtype: "ppt",
     visibility: "private-result",
-    proofType: "video",
+    proofType: "screenshots",
     mediaPolicy: "rich-gallery",
-    title: { ko: "정부지원사업 발표 PPT 패키지", en: "Government Grant Presentation Decks" },
+    title: { ko: "예비창업패키지 발표 PPT", en: "Pre-Startup Grant Presentation Deck" },
     summary: {
-      ko: "예비창업패키지, TIPS, 청창사, 글로벌 진출, R&D 과제처럼 평가 기준이 중요한 발표자료를 구조화한 PPT 포트폴리오입니다.",
-      en: "Grant and public-funding presentation decks structured around evaluation criteria, milestones, budgets, and proof.",
+      ko: "예비창업패키지 심사자가 사업성, 실행 계획, 팀 역량을 빠르게 이해하도록 정리한 발표용 PPT입니다.",
+      en: "A pre-startup grant deck that helps reviewers quickly understand business viability, execution plan, and team readiness.",
     },
     problem: {
-      ko: "지원사업 발표자료는 예쁜 디자인보다 평가 항목, 정량 근거, 추진 일정, 예산 계획이 명확해야 심사자가 빠르게 판단할 수 있습니다.",
+      ko: "지원사업 발표자료는 예쁜 화면보다 평가 항목, 정량 근거, 추진 일정, 예산 계획이 명확해야 심사자가 사업성을 빠르게 이해합니다.",
       en: "Grant decks must help reviewers quickly judge fit, evidence, timeline, budget, and execution readiness.",
     },
     solution: {
-      ko: "사업별 평가표에 맞춘 목차, 핵심 메시지, 데이터 근거가 한 장씩 읽히는 발표 흐름이 필요합니다.",
+      ko: "사업별 평가표에 맞춘 목차, 핵심 메시지, 데이터 근거를 한 장씩 읽히게 정리해 발표 시간 안에 판단 근거가 남도록 구성합니다.",
       en: "We rebuilt the flow around each program's scoring criteria so every slide has one clear message and evidence point.",
     },
     impact: {
-      ko: "발표자는 제한된 시간 안에 사업성, 실행 가능성, 팀 신뢰도를 빠르게 설명할 수 있고, 심사자는 필요한 판단 근거를 놓치지 않고 확인할 수 있습니다.",
+      ko: "발표자는 제한된 시간 안에 사업성, 실행 가능성, 팀 신뢰도를 또렷하게 전달하고, 심사자는 평가에 필요한 근거를 빠르게 찾습니다.",
       en: "The presenter can explain viability, execution, and team trust within a short pitch while reviewers can find the proof they need.",
     },
     resultSummary: {
-      ko: "기획서 1개와 PPT 원본 1개를 한 세트로 확인할 수 있으며, 예비창업패키지·TIPS·청창사·글로벌 진출·정부 R&D 유형별 구성을 비교할 수 있습니다.",
-      en: "Each portfolio item is composed of one planning document and one editable PPT deck, covering grant, TIPS, youth startup, global expansion, and R&D formats.",
+      ko: "평가 기준에 맞춘 발표 흐름, 핵심 근거 배치, 편집 가능한 원본 구성을 확인하고 바로 의뢰 수준을 판단할 수 있습니다.",
+      en: "The planning file and editable deck let clients review the structure, readability, and finish before ordering.",
     },
     deliverables: [
       { ko: "기획서 1개 + PPT 원본 1개 구성", en: "One planning document plus one editable PPT deck" },
@@ -1113,14 +1113,14 @@ const pptPortfolioProjects: PortfolioProject[] = [
       { ko: "정량 데이터·예산·일정 중심 슬라이드", en: "Slides for data, budget, timeline, and milestones" },
     ],
     kpis: [
-      { value: "5", unit: "종", label: { ko: "지원사업 유형", en: "Grant formats" } },
-      { value: "25-30", unit: "P", label: { ko: "권장 분량", en: "Recommended length" } },
+      { value: "30", unit: "P", label: { ko: "PPT 분량", en: "Slides" } },
+      { value: "1", unit: "개", label: { ko: "기획서", en: "Planning doc" } },
       { value: "1+1", label: { ko: "기획서 + PPT", en: "Plan + PPT" } },
     ],
     stack: ["Grant Deck", "Business Plan", "Data Story", "Editable PPTX"],
     role: ["기획", "자료 구조화", "카피 정리", "PPT 디자인"],
     duration: "2-4일",
-    client: "PPT 포트폴리오 샘플",
+    client: "PPT 제작 의뢰 고객",
     links: { live: null, github: null, case: "/portfolio/ppt-government-grant" },
     downloads: {
       planning: "/portfolio/ppt-design/government-grant/planning.md",
@@ -1133,6 +1133,7 @@ const pptPortfolioProjects: PortfolioProject[] = [
       "/portfolio/ppt-design/government-grant/sample-3.png",
       "/portfolio/ppt-design/government-grant/sample-4.png",
       "/portfolio/ppt-design/government-grant/sample-5.png",
+      "/portfolio/ppt-design/government-grant/sample-6.png",
     ],
     size: "md",
     featured: false,
@@ -1146,26 +1147,26 @@ const pptPortfolioProjects: PortfolioProject[] = [
     visibility: "private-result",
     proofType: "screenshots",
     mediaPolicy: "rich-gallery",
-    title: { ko: "IR·투자유치 피치덱 패키지", en: "IR & Investment Pitch Decks" },
+    title: { ko: "Seed 투자유치 피치덱", en: "Seed Investment Pitch Deck" },
     summary: {
-      ko: "Seed, Pre-A, Series A/B, 데모데이 발표처럼 투자자와 파트너가 빠르게 이해해야 하는 피치덱 포트폴리오입니다.",
-      en: "Pitch deck portfolio for seed, Pre-A, Series A/B, and demo-day presentations.",
+      ko: "초기 투자자가 시장성, 문제 해결력, 수익모델, 실행 가능성을 빠르게 판단할 수 있도록 정리한 Seed 단계 피치덱입니다.",
+      en: "A seed-stage pitch deck built for quick investor review of market, solution, business model, and execution readiness.",
     },
     problem: {
       ko: "투자자용 자료는 기능 설명만 많으면 설득력이 약해지고, 시장성·트랙션·수익모델·확장성이 한 흐름으로 보여야 합니다.",
       en: "Investor decks need a clear flow from market and traction to business model and scale, not just feature descriptions.",
     },
     solution: {
-      ko: "문제, 시장, 해결책, 트랙션, BM, 팀, 투자 요청 금액이 자연스럽게 이어지는 발표 순서가 필요합니다.",
+      ko: "문제, 시장, 해결책, 트랙션, BM, 팀, 투자 요청 금액이 자연스럽게 이어져 투자자가 다음 질문을 떠올리기 전에 핵심 근거를 보게 합니다.",
       en: "We organized the pitch around problem, market, solution, traction, business model, team, and funding ask.",
     },
     impact: {
-      ko: "발표자는 핵심 투자 포인트를 짧게 전달할 수 있고, 투자자는 현재 단계와 다음 성장 가능성을 빠르게 비교할 수 있습니다.",
+      ko: "발표자는 핵심 투자 포인트를 짧게 전달하고, 투자자는 현재 단계·트랙션·성장 가능성을 빠르게 비교합니다.",
       en: "Founders can present the investment thesis clearly while investors can compare stage, traction, and growth potential.",
     },
     resultSummary: {
-      ko: "기획서 1개와 PPT 원본 1개를 한 세트로 확인할 수 있으며, Seed·Pre-A·Series A/B·데모데이 발표 유형별 구성을 비교할 수 있습니다.",
-      en: "Each portfolio item is composed of one planning document and one editable PPT deck across seed, Pre-A, Series A/B, and demo-day formats.",
+      ko: "투자자가 가장 먼저 보는 시장성, 트랙션, 수익모델 흐름이 어떻게 설득 화면으로 바뀌는지 확인할 수 있습니다.",
+      en: "The planning file and editable deck let founders review the investor-facing story and visual finish before ordering.",
     },
     deliverables: [
       { ko: "기획서 1개 + PPT 원본 1개 구성", en: "One planning document plus one editable PPT deck" },
@@ -1173,14 +1174,14 @@ const pptPortfolioProjects: PortfolioProject[] = [
       { ko: "시장·트랙션·BM 슬라이드 구성", en: "Market, traction, and business model slides" },
     ],
     kpis: [
-      { value: "5", unit: "종", label: { ko: "투자 단계", en: "Investment stages" } },
-      { value: "10-20", unit: "P", label: { ko: "권장 분량", en: "Recommended length" } },
+      { value: "17", unit: "P", label: { ko: "PPT 분량", en: "Slides" } },
+      { value: "1", unit: "개", label: { ko: "기획서", en: "Planning doc" } },
       { value: "1+1", label: { ko: "기획서 + PPT", en: "Plan + PPT" } },
     ],
     stack: ["IR Deck", "Pitch Story", "Traction", "Editable PPTX"],
     role: ["스토리 설계", "카피 정리", "지표 구성", "PPT 디자인"],
     duration: "2-4일",
-    client: "PPT 포트폴리오 샘플",
+    client: "PPT 제작 의뢰 고객",
     links: { live: null, github: null, case: "/portfolio/ppt-ir-investment" },
     downloads: {
       planning: "/portfolio/ppt-design/ir-investment/planning.md",
@@ -1193,6 +1194,8 @@ const pptPortfolioProjects: PortfolioProject[] = [
       "/portfolio/ppt-design/ir-investment/sample-3.png",
       "/portfolio/ppt-design/ir-investment/sample-4.png",
       "/portfolio/ppt-design/ir-investment/sample-5.png",
+      "/portfolio/ppt-design/ir-investment/sample-6.png",
+      "/portfolio/ppt-design/ir-investment/sample-7.png",
     ],
     size: "md",
     featured: false,
@@ -1206,26 +1209,26 @@ const pptPortfolioProjects: PortfolioProject[] = [
     visibility: "private-result",
     proofType: "screenshots",
     mediaPolicy: "rich-gallery",
-    title: { ko: "회사소개서·브랜드 제안서 PPT", en: "Company Profile & Proposal Decks" },
+    title: { ko: "스튜디오 회사소개서 PPT", en: "Studio Company Profile Deck" },
     summary: {
-      ko: "회사소개서, 스튜디오 소개서, B2B 제안서, 마케팅 제안서, 상품 제안서까지 상담 전 검토용으로 확인할 수 있는 PPT 포트폴리오입니다.",
-      en: "Sales-ready company profile and proposal deck portfolio for brands, studios, B2B offers, and campaigns.",
+      ko: "스튜디오의 분위기, 서비스 범위, 작업 방식을 첫 상담 전에 선명하게 보여줄 수 있도록 정리한 회사소개서 PPT입니다.",
+      en: "A studio profile deck that presents brand mood, service scope, and work process before the first sales call.",
     },
     problem: {
-      ko: "영업 제안서는 고객이 서비스 범위, 강점, 가격, 진행 방식을 빠르게 이해하고 내부 공유까지 할 수 있어야 합니다.",
+      ko: "영업 제안서는 받는 사람이 서비스 범위, 강점, 가격, 진행 방식을 빠르게 이해하고 내부 공유까지 이어져야 합니다.",
       en: "Sales decks must make scope, strengths, pricing, and process easy to understand and share internally.",
     },
     solution: {
-      ko: "첫인상, 서비스 구조, 사례, 견적 근거, 다음 액션이 순서대로 보이는 브랜드형 제안서 흐름이 필요합니다.",
+      ko: "첫인상, 서비스 구조, 사례, 견적 근거, 다음 액션이 순서대로 보여 받는 사람이 제안 내용을 바로 이해하게 구성합니다.",
       en: "We built a proposal flow that moves from first impression to services, proof, pricing logic, and next steps.",
     },
     impact: {
-      ko: "고객은 우리 서비스가 어떤 결과물을 주는지 빠르게 비교할 수 있고, 담당자는 상담 전에 제안 범위와 예산감을 명확히 전달할 수 있습니다.",
+      ko: "제안서를 받는 사람은 서비스 가치와 진행 범위를 빠르게 이해하고, 내부 공유나 의사결정에 필요한 정보를 한 번에 정리합니다.",
       en: "Prospects can compare the service value quickly, and sales teams can clarify scope and budget before a call.",
     },
     resultSummary: {
-      ko: "기획서 1개와 PPT 원본 1개를 한 세트로 확인할 수 있으며, 회사소개서·브랜드 소개서·B2B·마케팅·상품 제안서 유형별 구성을 비교할 수 있습니다.",
-      en: "Each portfolio item is composed of one planning document and one editable PPT deck across company, brand, B2B, marketing, and product proposal formats.",
+      ko: "브랜드 첫인상, 서비스 소개, 제안 흐름이 한 번에 정리된 영업용 PPT 완성도를 미리 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review the sales-ready tone and information structure before ordering.",
     },
     deliverables: [
       { ko: "기획서 1개 + PPT 원본 1개 구성", en: "One planning document plus one editable PPT deck" },
@@ -1233,14 +1236,14 @@ const pptPortfolioProjects: PortfolioProject[] = [
       { ko: "서비스·가격·프로세스 제안 슬라이드", en: "Service, pricing, and process proposal slides" },
     ],
     kpis: [
-      { value: "5", unit: "종", label: { ko: "제안서 유형", en: "Proposal types" } },
-      { value: "14-20", unit: "P", label: { ko: "권장 분량", en: "Recommended length" } },
+      { value: "20", unit: "P", label: { ko: "PPT 분량", en: "Slides" } },
+      { value: "1", unit: "개", label: { ko: "기획서", en: "Planning doc" } },
       { value: "1+1", label: { ko: "기획서 + PPT", en: "Plan + PPT" } },
     ],
     stack: ["Company Deck", "Proposal", "Sales Copy", "Editable PPTX"],
     role: ["브랜드 구조화", "제안 카피", "시각 디자인", "PPT 편집"],
     duration: "1-3일",
-    client: "PPT 포트폴리오 샘플",
+    client: "PPT 제작 의뢰 고객",
     links: { live: null, github: null, case: "/portfolio/ppt-brand-proposal" },
     downloads: {
       planning: "/portfolio/ppt-design/brand-proposal/planning.md",
@@ -1266,26 +1269,26 @@ const pptPortfolioProjects: PortfolioProject[] = [
     visibility: "private-result",
     proofType: "screenshots",
     mediaPolicy: "rich-gallery",
-    title: { ko: "세미나·강연 발표자료 PPT", en: "Seminar & Lecture Presentation Decks" },
+    title: { ko: "ESG CEO 강연 PPT", en: "ESG CEO Lecture Deck" },
     summary: {
-      ko: "AI 자동화, 솔로프리너, 마케팅, 데이터 입문, ESG 강연처럼 청중 이해와 발표 흐름이 중요한 강연용 PPT 포트폴리오입니다.",
-      en: "Lecture and seminar deck portfolio designed for audience understanding, pacing, and speaker flow.",
+      ko: "CEO·리더 대상 ESG 강연에서 메시지, 사례, 핵심 요약이 자연스럽게 이어지도록 정리한 발표용 PPT입니다.",
+      en: "An ESG executive lecture deck built around message clarity, examples, and speaker pacing.",
     },
     problem: {
       ko: "강연 자료는 읽는 문서가 아니라 듣는 사람이 따라올 수 있는 흐름, 예시, 강조 장면이 중요합니다.",
       en: "Lecture decks need a rhythm that audiences can follow, with examples and emphasis points, not dense reading pages.",
     },
     solution: {
-      ko: "섹션 전환, 핵심 문장, 설명용 다이어그램, 요약 슬라이드가 나뉘어 발표자가 자연스럽게 말할 수 있는 구조가 필요합니다.",
+      ko: "섹션 전환, 핵심 문장, 설명용 다이어그램, 요약 슬라이드를 나누어 청중이 놓치지 않고 따라오도록 구성합니다.",
       en: "We structured section breaks, key statements, explainers, and summaries so speakers can deliver naturally.",
     },
     impact: {
-      ko: "청중은 핵심 개념을 단계적으로 이해하고, 발표자는 시간 안배와 메시지 강조를 안정적으로 가져갈 수 있습니다.",
+      ko: "청중은 핵심 개념을 단계적으로 이해하고, 발표자는 시간 안배와 메시지 강조를 안정적으로 가져갑니다.",
       en: "Audiences can follow the content step by step, while speakers can control timing and emphasis.",
     },
     resultSummary: {
-      ko: "기획서 1개와 PPT 원본 1개를 한 세트로 확인할 수 있으며, 세미나·키노트·교육 강의·CEO 토크 유형별 구성을 비교할 수 있습니다.",
-      en: "Each portfolio item is composed of one planning document and one editable PPT deck across seminar, keynote, education, and executive talk formats.",
+      ko: "청중이 따라오기 쉬운 강연 흐름, 메시지 강조 장면, 발표자가 바로 쓰기 좋은 화면 구성을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let speakers review pacing, audience fit, and message delivery before ordering.",
     },
     deliverables: [
       { ko: "기획서 1개 + PPT 원본 1개 구성", en: "One planning document plus one editable PPT deck" },
@@ -1293,14 +1296,14 @@ const pptPortfolioProjects: PortfolioProject[] = [
       { ko: "개념 설명·예시·요약 슬라이드", en: "Concept, example, and recap slides" },
     ],
     kpis: [
-      { value: "5", unit: "종", label: { ko: "강연 유형", en: "Lecture formats" } },
-      { value: "18-30", unit: "P", label: { ko: "권장 분량", en: "Recommended length" } },
+      { value: "12", unit: "P", label: { ko: "PPT 분량", en: "Slides" } },
+      { value: "1", unit: "개", label: { ko: "기획서", en: "Planning doc" } },
       { value: "1+1", label: { ko: "기획서 + PPT", en: "Plan + PPT" } },
     ],
     stack: ["Seminar Deck", "Keynote", "Education", "Editable PPTX"],
     role: ["강연 구성", "교육 흐름", "슬라이드 디자인", "카피 정리"],
     duration: "2-4일",
-    client: "PPT 포트폴리오 샘플",
+    client: "PPT 제작 의뢰 고객",
     links: { live: null, github: null, case: "/portfolio/ppt-seminar-lecture" },
     downloads: {
       planning: "/portfolio/ppt-design/seminar-lecture/planning.md",
@@ -1326,26 +1329,26 @@ const pptPortfolioProjects: PortfolioProject[] = [
     visibility: "private-result",
     proofType: "screenshots",
     mediaPolicy: "rich-gallery",
-    title: { ko: "학교과제·팀프로젝트 발표 PPT", en: "Academic & Team Project Decks" },
+    title: { ko: "자기소개 발표 PPT", en: "Career Self-Introduction Deck" },
     summary: {
-      ko: "캡스톤, 논문 발표, 팀프로젝트, 인턴십 보고, 취업 자기소개처럼 과제 제출과 발표를 함께 고려한 PPT 포트폴리오입니다.",
-      en: "Academic presentation portfolio for capstone, paper review, team projects, internship reports, and career self-intros.",
+      ko: "지원자의 강점, 경험, 목표가 면접·발표 자리에서 또렷하게 전달되도록 정리한 자기소개 PPT입니다.",
+      en: "A career self-introduction deck that makes strengths, experience, and goals easy to understand in interviews or presentations.",
     },
     problem: {
       ko: "과제 발표는 내용 정리와 발표 가독성이 동시에 필요하고, 팀원별 역할과 결과가 명확히 보여야 평가자가 이해하기 쉽습니다.",
       en: "Academic decks need both clear content structure and presentation readability, with roles and outcomes easy to evaluate.",
     },
     solution: {
-      ko: "주제, 문제 정의, 조사 내용, 결과, 느낀 점 또는 제안까지 발표 순서에 맞춰 정돈된 흐름이 필요합니다.",
+      ko: "주제, 문제 정의, 조사 내용, 결과, 느낀 점 또는 제안까지 발표 순서에 맞춰 평가자가 쉽게 따라오도록 정리합니다.",
       en: "We organized topic, problem, research, results, and takeaways into a polished presentation flow.",
     },
     impact: {
-      ko: "발표자는 자료를 보며 안정적으로 설명할 수 있고, 평가자는 핵심 내용과 팀 기여도를 빠르게 확인할 수 있습니다.",
+      ko: "발표자는 자료를 보며 안정적으로 설명하고, 평가자는 핵심 내용과 팀 기여도를 빠르게 이해합니다.",
       en: "Presenters can speak confidently from the deck, while evaluators can quickly understand the content and team contribution.",
     },
     resultSummary: {
-      ko: "기획서 1개와 PPT 원본 1개를 한 세트로 확인할 수 있으며, 캡스톤·논문·팀프로젝트·인턴십 보고·자기소개 발표 유형별 구성을 비교할 수 있습니다.",
-      en: "Each portfolio item is composed of one planning document and one editable PPT deck across capstone, paper, team project, internship, and self-introduction formats.",
+      ko: "발표 목적에 맞춘 이야기 흐름, 한눈에 읽히는 화면 구성, 제출용 원본 완성도를 미리 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review structure, readability, and design quality before ordering.",
     },
     deliverables: [
       { ko: "기획서 1개 + PPT 원본 1개 구성", en: "One planning document plus one editable PPT deck" },
@@ -1353,14 +1356,14 @@ const pptPortfolioProjects: PortfolioProject[] = [
       { ko: "팀 역할·조사·결과 시각화", en: "Role, research, and result visualization" },
     ],
     kpis: [
-      { value: "5", unit: "종", label: { ko: "과제 유형", en: "Academic formats" } },
-      { value: "10-20", unit: "P", label: { ko: "권장 분량", en: "Recommended length" } },
+      { value: "10", unit: "P", label: { ko: "PPT 분량", en: "Slides" } },
+      { value: "1", unit: "개", label: { ko: "기획서", en: "Planning doc" } },
       { value: "1+1", label: { ko: "기획서 + PPT", en: "Plan + PPT" } },
     ],
     stack: ["Academic Deck", "Team Project", "Report", "Editable PPTX"],
     role: ["자료 정리", "발표 구성", "시각 디자인", "PPT 편집"],
     duration: "1-3일",
-    client: "PPT 포트폴리오 샘플",
+    client: "PPT 제작 의뢰 고객",
     links: { live: null, github: null, case: "/portfolio/ppt-school-assignment" },
     downloads: {
       planning: "/portfolio/ppt-design/school-assignment/planning.md",
@@ -1380,9 +1383,423 @@ const pptPortfolioProjects: PortfolioProject[] = [
   },
 ];
 
+interface AdditionalPptSpec {
+  slug: string;
+  assetDir: string;
+  title: LocalizedString;
+  summary: LocalizedString;
+  problem: LocalizedString;
+  solution: LocalizedString;
+  impact: LocalizedString;
+  resultSummary: LocalizedString;
+  deliverables: LocalizedString[];
+  stack: string[];
+  role: string[];
+  duration: string;
+  slides: string;
+  sampleCount: number;
+  featured?: boolean;
+}
+
+const createPptGallery = (assetDir: string, sampleCount: number) => [
+  `/portfolio/ppt-design/${assetDir}/cover-slide.png`,
+  ...Array.from({ length: Math.max(sampleCount - 1, 0) }, (_, index) => `/portfolio/ppt-design/${assetDir}/sample-${index + 2}.png`),
+];
+
+const additionalPptSpecs: AdditionalPptSpec[] = [
+  {
+    slug: "ppt-tips-vibestack",
+    assetDir: "tips-vibestack",
+    title: { ko: "TIPS R&D 발표 PPT", en: "TIPS R&D Presentation Deck" },
+    summary: {
+      ko: "기술성, 사업화 가능성, 개발 일정, 시장 확장성을 TIPS 심사 흐름에 맞춰 보여주는 R&D 발표자료입니다.",
+      en: "A TIPS R&D deck that presents technology, commercialization plan, roadmap, and market expansion for reviewer evaluation.",
+    },
+    problem: {
+      ko: "기술 과제는 설명이 길어질수록 핵심 가치가 흐려지기 쉬워, 심사자가 판단할 기술성과 사업화 근거를 빠르게 보여줘야 합니다.",
+      en: "Technical grant decks must make technology and commercialization evidence easy to judge without overwhelming reviewers.",
+    },
+    solution: {
+      ko: "기술 문제, 해결 방식, 개발 로드맵, 사업화 계획을 한 흐름으로 묶어 발표자가 제한 시간 안에 핵심 근거를 전달하게 구성했습니다.",
+      en: "The deck connects technical problem, solution, development roadmap, and commercialization plan in one review-friendly flow.",
+    },
+    impact: {
+      ko: "심사자는 기술의 차별점과 실행 계획을 빠르게 이해하고, 발표자는 복잡한 내용을 평가 기준에 맞춰 안정적으로 설명할 수 있습니다.",
+      en: "Reviewers can quickly grasp differentiation and execution plan, while presenters can explain complex material with confidence.",
+    },
+    resultSummary: {
+      ko: "기술 설명이 길어지지 않도록 핵심 근거와 사업화 계획을 압축한 R&D 발표 화면을 미리 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review the density and flow of an R&D presentation before ordering.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "기술성·사업화·로드맵 구조", en: "Technology, commercialization, and roadmap structure" },
+      { ko: "심사용 발표 흐름 정리", en: "Reviewer-friendly pitch flow" },
+    ],
+    stack: ["Grant Deck", "R&D Story", "Roadmap", "Editable PPTX"],
+    role: ["기획", "자료 구조화", "PPT 디자인"],
+    duration: "2-4일",
+    slides: "30",
+    sampleCount: 6,
+  },
+  {
+    slug: "ppt-youngceo-greenpet",
+    assetDir: "youngceo-greenpet",
+    title: { ko: "청년창업 지원사업 발표 PPT", en: "Youth Startup Grant Deck" },
+    summary: {
+      ko: "창업 아이템의 시장성, 고객 문제, 실행 계획을 청년창업 지원사업 발표에 맞춰 정리한 PPT입니다.",
+      en: "A youth startup grant deck that organizes market fit, customer pain, and execution plan for evaluation.",
+    },
+    problem: {
+      ko: "초기 창업 발표는 아이디어만 강조하면 실행력이 약해 보이기 때문에 문제, 고객, 수익 구조, 일정이 함께 보여야 합니다.",
+      en: "Early startup decks need more than an idea; they must show customer problem, business model, and execution plan.",
+    },
+    solution: {
+      ko: "아이템 소개, 고객 문제, 시장 검증, 실행 일정, 기대 성과를 발표 순서에 맞춰 정리해 심사자가 사업성을 빠르게 판단하게 했습니다.",
+      en: "The deck orders item overview, customer problem, validation, execution timeline, and expected outcome for clear review.",
+    },
+    impact: {
+      ko: "심사자는 아이템의 가능성과 준비 수준을 쉽게 비교하고, 발표자는 사업 계획을 한눈에 이해되는 화면으로 전달할 수 있습니다.",
+      en: "Reviewers can compare opportunity and readiness, while founders can present the plan through easy-to-read slides.",
+    },
+    resultSummary: {
+      ko: "아이디어, 고객 문제, 실행 계획이 심사자에게 빠르게 읽히는 창업 발표자료의 완성 톤을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review the tone and structure of a startup grant presentation.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "아이템·고객·실행계획 슬라이드", en: "Item, customer, and execution slides" },
+      { ko: "지원사업 발표용 구성", en: "Grant presentation structure" },
+    ],
+    stack: ["Startup Deck", "Grant Story", "Editable PPTX"],
+    role: ["기획", "카피 정리", "PPT 디자인"],
+    duration: "2-4일",
+    slides: "25",
+    sampleCount: 1,
+  },
+  {
+    slug: "ppt-prea-silvercarelab",
+    assetDir: "prea-silvercarelab",
+    title: { ko: "Pre-A 투자유치 피치덱", en: "Pre-A Investment Pitch Deck" },
+    summary: {
+      ko: "제품 검증 이후 투자자가 확인해야 할 트랙션, 확장 전략, 수익 구조를 중심으로 정리한 Pre-A 피치덱입니다.",
+      en: "A Pre-A pitch deck focused on traction, expansion strategy, and business model after product validation.",
+    },
+    problem: {
+      ko: "Pre-A 단계에서는 아이디어보다 실제 지표와 확장 가능성이 중요해, 투자자가 다음 성장을 가늠할 근거가 필요합니다.",
+      en: "At Pre-A, investors need evidence of traction and scalability rather than only product vision.",
+    },
+    solution: {
+      ko: "현재 성과, 고객 반응, 시장 확장, 투자금 사용 계획을 연결해 투자자가 성장 경로를 빠르게 이해하도록 구성했습니다.",
+      en: "The deck connects current traction, customer response, market expansion, and use of funds into a clear growth story.",
+    },
+    impact: {
+      ko: "투자자는 현재 단계와 다음 성장 가능성을 비교하기 쉽고, 발표자는 핵심 지표 중심으로 설득력을 높일 수 있습니다.",
+      en: "Investors can assess the current stage and next growth path, while founders can lead with stronger proof.",
+    },
+    resultSummary: {
+      ko: "현재 성과와 다음 성장 계획이 투자 검토 흐름에 맞게 정리된 Pre-A 피치덱 구성을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review metric structure and Pre-A story flow before ordering.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "트랙션·시장·투자금 사용 구조", en: "Traction, market, and fund-use structure" },
+      { ko: "투자자 검토용 발표 흐름", en: "Investor review flow" },
+    ],
+    stack: ["IR Deck", "Traction", "Growth Story", "Editable PPTX"],
+    role: ["스토리 설계", "지표 정리", "PPT 디자인"],
+    duration: "2-4일",
+    slides: "18",
+    sampleCount: 2,
+  },
+  {
+    slug: "ppt-seriesa-greenpet",
+    assetDir: "seriesa-greenpet",
+    title: { ko: "Series A 투자유치 피치덱", en: "Series A Investment Pitch Deck" },
+    summary: {
+      ko: "검증된 서비스의 성장 지표, 시장 점유 전략, 조직 확장 계획을 Series A 투자 검토용으로 정리한 PPT입니다.",
+      en: "A Series A deck that organizes growth metrics, market strategy, and team expansion for investor review.",
+    },
+    problem: {
+      ko: "Series A 자료는 시장 기회와 실행 규모가 동시에 보여야 하며, 투자자가 큰 성장 그림을 빠르게 판단할 수 있어야 합니다.",
+      en: "Series A decks must show both market opportunity and execution scale so investors can judge the next growth phase.",
+    },
+    solution: {
+      ko: "핵심 지표, 고객 확장, 경쟁 우위, 조직 계획, 투자 요청을 한 흐름으로 연결해 성장 가능성이 선명하게 보이도록 구성했습니다.",
+      en: "The deck connects metrics, customer growth, competitive edge, organization plan, and funding ask into one scale story.",
+    },
+    impact: {
+      ko: "투자자는 성장 근거와 자금 사용 방향을 빠르게 확인하고, 발표자는 큰 시장 안에서의 확장 전략을 일관되게 전달합니다.",
+      en: "Investors can review growth proof and use of funds quickly, while founders can present a coherent scaling strategy.",
+    },
+    resultSummary: {
+      ko: "성장 지표, 시장 전략, 투자금 사용 계획이 큰 투자 검토에 맞게 정리된 화면 밀도를 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review the information density and presentation flow for Series A.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "성장 지표·시장 전략·조직 계획", en: "Growth metrics, market strategy, and team plan" },
+      { ko: "투자 검토용 피치덱 구조", en: "Investor-ready pitch structure" },
+    ],
+    stack: ["IR Deck", "Series A", "Market Strategy", "Editable PPTX"],
+    role: ["투자 스토리", "자료 구조화", "PPT 디자인"],
+    duration: "2-4일",
+    slides: "25",
+    sampleCount: 2,
+  },
+  {
+    slug: "ppt-vibestack-company-profile",
+    assetDir: "vibestack-company-profile",
+    title: { ko: "기업 회사소개서 PPT", en: "Corporate Company Profile Deck" },
+    summary: {
+      ko: "기업의 서비스 구조, 강점, 협업 방식, 문의 흐름을 처음 보는 고객도 빠르게 이해하도록 정리한 회사소개서입니다.",
+      en: "A corporate profile deck that helps prospects understand services, strengths, collaboration flow, and next steps.",
+    },
+    problem: {
+      ko: "회사소개서는 브랜드가 무엇을 잘하는지와 어떤 방식으로 함께 일하는지가 짧은 시간 안에 보여야 합니다.",
+      en: "Company decks must quickly show what the brand does well and how prospects can work with it.",
+    },
+    solution: {
+      ko: "첫인상, 서비스 범위, 차별점, 진행 과정, 상담 유도 흐름을 순서대로 배치해 영업 자료로 바로 활용할 수 있게 구성했습니다.",
+      en: "The deck sequences first impression, scope, differentiation, process, and inquiry flow for sales use.",
+    },
+    impact: {
+      ko: "고객은 서비스 적합성과 의뢰 범위를 빠르게 판단하고, 내부 공유가 필요한 경우에도 자료만으로 핵심 내용을 전달할 수 있습니다.",
+      en: "Prospects can judge fit and scope quickly, and the deck can carry the key message when shared internally.",
+    },
+    resultSummary: {
+      ko: "처음 보는 고객도 서비스 범위와 강점을 빠르게 이해하는 회사소개서 흐름과 디자인 톤을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review the information structure and design tone before ordering.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "회사소개·서비스·프로세스 구조", en: "Company, service, and process structure" },
+      { ko: "영업 상담용 화면 구성", en: "Sales consultation slide flow" },
+    ],
+    stack: ["Company Deck", "Sales Copy", "Editable PPTX"],
+    role: ["브랜드 구조화", "카피 정리", "PPT 디자인"],
+    duration: "1-3일",
+    slides: "20",
+    sampleCount: 1,
+    featured: true,
+  },
+  {
+    slug: "ppt-beanbrew-b2b-proposal",
+    assetDir: "beanbrew-b2b-proposal",
+    title: { ko: "B2B 제안서 PPT", en: "B2B Proposal Deck" },
+    summary: {
+      ko: "제안 받는 담당자가 서비스 가치, 도입 방식, 기대 사용 장면을 빠르게 검토할 수 있도록 만든 B2B 제안서입니다.",
+      en: "A B2B proposal deck that helps buyers review value, adoption flow, and use cases quickly.",
+    },
+    problem: {
+      ko: "B2B 제안서는 담당자뿐 아니라 내부 결재자까지 이해해야 하므로, 제안 가치와 도입 근거가 명확해야 합니다.",
+      en: "B2B proposals need to be clear enough for both the direct contact and internal decision makers.",
+    },
+    solution: {
+      ko: "문제 상황, 제안 솔루션, 적용 사례, 진행 방식, 다음 액션을 한 흐름으로 정리해 내부 공유가 쉬운 제안서로 구성했습니다.",
+      en: "The deck organizes problem, proposed solution, use case, process, and next step for internal sharing.",
+    },
+    impact: {
+      ko: "담당자는 제안 내용을 빠르게 파악하고, 내부 검토 시 필요한 근거와 화면을 그대로 공유할 수 있습니다.",
+      en: "The buyer can understand the proposal quickly and share the required proof and visuals internally.",
+    },
+    resultSummary: {
+      ko: "제안 가치, 도입 근거, 다음 액션이 내부 공유까지 이어지도록 정리된 B2B 제안서 완성도를 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review B2B persuasion flow and delivery quality.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "문제·제안·도입 흐름", en: "Problem, offer, and adoption flow" },
+      { ko: "내부 공유용 제안 구조", en: "Internal-share proposal structure" },
+    ],
+    stack: ["Proposal", "B2B Sales", "Editable PPTX"],
+    role: ["제안 구조", "카피 정리", "PPT 디자인"],
+    duration: "1-3일",
+    slides: "20",
+    sampleCount: 1,
+  },
+  {
+    slug: "ppt-ai-automation-seminar",
+    assetDir: "ai-automation-seminar",
+    title: { ko: "AI 자동화 세미나 PPT", en: "AI Automation Seminar Deck" },
+    summary: {
+      ko: "처음 듣는 청중도 자동화 개념, 활용 장면, 실행 순서를 따라올 수 있도록 정리한 세미나 발표자료입니다.",
+      en: "A seminar deck that helps audiences understand automation concepts, use cases, and execution steps.",
+    },
+    problem: {
+      ko: "기술 주제 세미나는 용어가 많아질수록 청중이 흐름을 놓치기 쉬워, 개념과 예시가 단계적으로 보여야 합니다.",
+      en: "Technical seminars can lose audiences when jargon dominates, so concepts and examples must unfold step by step.",
+    },
+    solution: {
+      ko: "개념 설명, 실제 업무 예시, 적용 순서, 정리 슬라이드를 나누어 발표자가 자연스럽게 설명할 수 있게 구성했습니다.",
+      en: "The deck separates concept, practical examples, application sequence, and recap for natural delivery.",
+    },
+    impact: {
+      ko: "청중은 자동화가 내 업무에 어떻게 적용되는지 쉽게 이해하고, 발표자는 복잡한 내용을 안정적으로 전달할 수 있습니다.",
+      en: "Audiences can see how automation applies to their work, while speakers can explain complex ideas clearly.",
+    },
+    resultSummary: {
+      ko: "어려운 개념도 청중이 따라올 수 있게 나눈 설명 흐름과 세미나용 화면 구성을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review seminar pacing and visual structure before ordering.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "개념·예시·실행 순서 구성", en: "Concept, example, and execution structure" },
+      { ko: "강연용 요약 슬라이드", en: "Speaker recap slides" },
+    ],
+    stack: ["Seminar Deck", "Education", "Editable PPTX"],
+    role: ["교육 구성", "카피 정리", "PPT 디자인"],
+    duration: "1-3일",
+    slides: "10",
+    sampleCount: 1,
+  },
+  {
+    slug: "ppt-solopreneur-talk",
+    assetDir: "solopreneur-talk",
+    title: { ko: "솔로프리너 강연 PPT", en: "Solopreneur Talk Deck" },
+    summary: {
+      ko: "1인 사업자가 청중에게 경험, 전략, 실행 루틴을 명확하게 전달할 수 있도록 만든 강연용 PPT입니다.",
+      en: "A talk deck that helps solopreneurs present experience, strategy, and execution routines clearly.",
+    },
+    problem: {
+      ko: "경험 기반 강연은 이야기가 흩어지기 쉬워, 청중이 기억할 핵심 메시지와 장면이 필요합니다.",
+      en: "Experience-based talks need memorable messages and scenes so the story does not feel scattered.",
+    },
+    solution: {
+      ko: "문제 제기, 경험 사례, 실행 방식, 청중 적용 포인트를 강연 흐름에 맞춰 정리했습니다.",
+      en: "The deck structures problem, experience, execution method, and audience takeaway into a clear talk flow.",
+    },
+    impact: {
+      ko: "청중은 발표자의 경험을 자신의 상황에 연결해 이해하고, 발표자는 메시지를 흔들림 없이 전달할 수 있습니다.",
+      en: "Audiences can connect the speaker's experience to their own situation, while speakers keep the message focused.",
+    },
+    resultSummary: {
+      ko: "경험, 전략, 실행 루틴이 청중에게 기억되는 이야기로 정리된 개인 브랜딩 강연 구성을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review the structure of a personal-brand talk deck.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "경험 사례·실행 루틴 구조", en: "Experience and execution routine structure" },
+      { ko: "청중 적용 포인트 정리", en: "Audience takeaway slides" },
+    ],
+    stack: ["Lecture Deck", "Personal Branding", "Editable PPTX"],
+    role: ["강연 구성", "메시지 정리", "PPT 디자인"],
+    duration: "1-3일",
+    slides: "10",
+    sampleCount: 1,
+  },
+  {
+    slug: "ppt-capstone-recycleme",
+    assetDir: "capstone-recycleme",
+    title: { ko: "캡스톤 발표 PPT", en: "Capstone Presentation Deck" },
+    summary: {
+      ko: "팀 프로젝트의 문제 정의, 개발 과정, 결과물을 평가자가 쉽게 이해하도록 정리한 캡스톤 발표자료입니다.",
+      en: "A capstone deck that makes problem definition, build process, and outcome easy for evaluators to understand.",
+    },
+    problem: {
+      ko: "캡스톤 발표는 결과물만 보여주면 과정과 기여도가 약해 보일 수 있어, 문제 해결 흐름이 함께 보여야 합니다.",
+      en: "Capstone decks need to show not just the output but the problem-solving process and contribution.",
+    },
+    solution: {
+      ko: "문제 정의, 조사, 구현 과정, 결과, 개선 방향을 발표 순서에 맞춰 배치했습니다.",
+      en: "The deck orders problem definition, research, build process, result, and improvement direction.",
+    },
+    impact: {
+      ko: "평가자는 팀의 문제 해결 과정과 결과물을 빠르게 이해하고, 발표자는 맡은 역할과 성과를 명확하게 보여줄 수 있습니다.",
+      en: "Evaluators can understand process and result quickly, while presenters can show roles and outcomes clearly.",
+    },
+    resultSummary: {
+      ko: "문제 해결 과정과 팀 결과물이 평가자에게 선명하게 보이는 캡스톤 발표자료 구성을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review capstone presentation structure and finish before ordering.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "문제 정의·구현·결과 구조", en: "Problem, build, and result structure" },
+      { ko: "팀 발표용 화면 구성", en: "Team presentation slide flow" },
+    ],
+    stack: ["Academic Deck", "Capstone", "Editable PPTX"],
+    role: ["자료 정리", "발표 구성", "PPT 디자인"],
+    duration: "1-3일",
+    slides: "10",
+    sampleCount: 1,
+  },
+  {
+    slug: "ppt-academic-paper",
+    assetDir: "academic-paper",
+    title: { ko: "논문 발표 PPT", en: "Academic Paper Presentation Deck" },
+    summary: {
+      ko: "논문의 배경, 연구 방법, 핵심 결과, 시사점을 발표자가 설명하기 쉽게 정리한 발표용 PPT입니다.",
+      en: "An academic paper deck that organizes background, method, key findings, and implications for presentation.",
+    },
+    problem: {
+      ko: "논문 발표는 원문을 그대로 옮기면 이해가 어렵기 때문에, 청중이 따라올 수 있는 요약과 흐름이 필요합니다.",
+      en: "Paper presentations become hard to follow when the original text is copied directly into slides.",
+    },
+    solution: {
+      ko: "연구 배경, 질문, 방법, 결과, 시사점을 슬라이드 단위로 나누어 발표자가 핵심만 전달하도록 구성했습니다.",
+      en: "The deck separates background, question, method, result, and implication so presenters can focus on the essentials.",
+    },
+    impact: {
+      ko: "청중은 논문의 핵심을 짧은 시간 안에 이해하고, 발표자는 복잡한 내용을 구조화된 화면으로 설명할 수 있습니다.",
+      en: "Audiences can grasp the paper quickly, while presenters can explain complex material through structured slides.",
+    },
+    resultSummary: {
+      ko: "논문 핵심을 짧은 발표 시간 안에 전달할 수 있도록 요약된 흐름과 가독성 있는 화면 구성을 확인할 수 있습니다.",
+      en: "The planning file and editable deck let clients review summarization style and readability before ordering.",
+    },
+    deliverables: [
+      { ko: "기획서 1개 + PPT 원본 1개", en: "One planning document plus one editable PPT deck" },
+      { ko: "연구 배경·방법·결과 구조", en: "Research background, method, and result structure" },
+      { ko: "발표용 요약 슬라이드", en: "Presentation-ready summary slides" },
+    ],
+    stack: ["Academic Deck", "Paper Review", "Editable PPTX"],
+    role: ["논문 요약", "발표 구성", "PPT 디자인"],
+    duration: "1-3일",
+    slides: "12",
+    sampleCount: 1,
+  },
+];
+
+const additionalPptPortfolioProjects: PortfolioProject[] = additionalPptSpecs.map((project) => ({
+  id: project.slug,
+  slug: project.slug,
+  type: "design",
+  subtype: "ppt",
+  visibility: "private-result",
+  proofType: "screenshots",
+  mediaPolicy: "rich-gallery",
+  title: project.title,
+  summary: project.summary,
+  problem: project.problem,
+  solution: project.solution,
+  impact: project.impact,
+  resultSummary: project.resultSummary,
+  deliverables: project.deliverables,
+  kpis: [
+    { value: project.slides, unit: "P", label: { ko: "PPT 분량", en: "Slides" } },
+    { value: "1", unit: "개", label: { ko: "기획서", en: "Planning doc" } },
+    { value: "1", unit: "개", label: { ko: "PPT 원본", en: "Editable deck" } },
+  ],
+  stack: project.stack,
+  role: project.role,
+  duration: project.duration,
+  client: "PPT 제작 의뢰 고객",
+  links: { live: null, github: null, case: `/portfolio/${project.slug}` },
+  downloads: {
+    planning: `/portfolio/ppt-design/${project.assetDir}/planning.md`,
+    deck: `/portfolio/ppt-design/${project.assetDir}/deck.pptx`,
+  },
+  cover: `/portfolio/ppt-design/${project.assetDir}/cover-slide.png`,
+  gallery: createPptGallery(project.assetDir, project.sampleCount),
+  size: "md",
+  featured: project.featured ?? false,
+  publishedAt: "2026-04-30",
+}));
+
 export const portfolioProjects: PortfolioProject[] = [
   ...logoConceptProjects,
   ...pptPortfolioProjects,
+  ...additionalPptPortfolioProjects,
   {
     id: "data-crawling-demo",
     slug: "data-crawling-demo",
@@ -1401,11 +1818,11 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "Manual searching and copying wasted time and caused missing records.",
     },
     solution: {
-      ko: "수집 대상, 정리 기준, 엑셀/CSV 납품 형식이 정해져 있어 반복 요청에도 같은 품질로 데이터를 받을 수 있습니다.",
+      ko: "수집 대상, 정리 기준, 엑셀/CSV 납품 형식을 먼저 정해 반복 요청에도 같은 품질의 데이터를 받는 구조입니다.",
       en: "Built a repeatable data pipeline with fixed collection, cleaning, and export rules.",
     },
     impact: {
-      ko: "고객은 반복 검색 시간을 줄이고, 정리된 표를 바로 검토하거나 보고서·영업 리스트로 활용할 수 있습니다.",
+      ko: "담당자는 반복 검색 시간을 줄이고, 정리된 표를 보고서·영업 리스트·운영 자료로 바로 활용합니다.",
       en: "Converted the workflow into a service that scales from one-off collection to recurring reports.",
     },
     deliverables: [
@@ -1446,7 +1863,7 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "Long detail pages can lose the purchase reason, so the persuasion order needed to be clear.",
     },
     solution: {
-      ko: "첫 화면에서 핵심 성분을 확인하고, 사용 장면·리뷰·구매 버튼으로 자연스럽게 이어지는 세로 흐름이 필요합니다.",
+      ko: "첫 화면에서 핵심 성분을 읽고, 사용 장면·리뷰·구매 버튼까지 자연스럽게 내려가도록 세로 흐름을 정리합니다.",
       en: "The page starts with key ingredients, then moves through usage scenes, reviews, and purchase CTA.",
     },
     impact: {
@@ -1491,11 +1908,11 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "Video leads needed a moving sample rather than static design proof.",
     },
     solution: {
-      ko: "브랜드 메시지, 썸네일, 자막, CTA가 30초 내외 숏폼에서 어떻게 보이는지 한 번에 확인할 수 있어야 합니다.",
+      ko: "브랜드 메시지, 썸네일, 자막, CTA가 30초 내외 숏폼에서 어떻게 보이는지 한 번에 판단되도록 구성합니다.",
       en: "Reframed the brand message into a 30-second short-form package with thumbnail, captions, and CTA.",
     },
     impact: {
-      ko: "고객은 짧은 영상 안에서 로고 모션, 메시지, CTA가 어떻게 보이는지 미리 확인하고 홍보용 영상 의뢰 범위를 정할 수 있습니다.",
+      ko: "의뢰자는 짧은 영상 안에서 로고 모션, 메시지, CTA의 노출 방식을 보고 홍보용 영상 범위를 빠르게 정합니다.",
       en: "Works as a flagship proof sample for the video content category.",
     },
     deliverables: [
@@ -1524,7 +1941,7 @@ export const portfolioProjects: PortfolioProject[] = [
     mediaPolicy: "external-link",
     title: { ko: "추억코리아 여행 랜딩페이지", en: "Chueok Korea Travel Landing" },
     summary: {
-      ko: "여행 서비스의 첫인상, 상품 신뢰도, 문의 전환 흐름을 한 화면에서 확인할 수 있는 반응형 랜딩페이지입니다.",
+      ko: "여행 서비스의 첫인상, 상품 신뢰도, 문의 전환 흐름이 한 화면에서 바로 읽히는 반응형 랜딩페이지입니다.",
       en: "A responsive landing page that shows the travel brand impression, offer trust, and inquiry flow at a glance.",
     },
     problem: {
@@ -1532,7 +1949,7 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "Travel offers need both visual mood and schedule credibility before visitors are ready to inquire.",
     },
     solution: {
-      ko: "첫 화면에서 여행 감성, 핵심 상품, 예약 CTA, 모바일 화면 흐름을 바로 확인할 수 있어야 합니다.",
+      ko: "첫 화면에서 여행 감성, 핵심 상품, 예약 CTA, 모바일 흐름이 바로 읽히도록 구성합니다.",
       en: "The first screen combines destination mood, core offer, booking CTA, and mobile-ready flow so visitors understand quickly.",
     },
     impact: {
@@ -1573,7 +1990,7 @@ export const portfolioProjects: PortfolioProject[] = [
     mediaPolicy: "external-link",
     title: { ko: "AIO 포트폴리오 사이트", en: "AIO Portfolio Site" },
     summary: {
-      ko: "서비스, 포트폴리오, 가격, 견적 문의까지 한 번에 확인할 수 있도록 만든 AIO의 영업용 포트폴리오 사이트입니다.",
+      ko: "외주 의뢰자가 서비스 범위, 실제 결과물, 가격, 견적 문의를 한 번에 비교하고 상담 여부를 결정할 수 있는 포트폴리오 사이트입니다.",
       en: "AIO's sales portfolio site where visitors can review services, proof, pricing, and quote flow in one place.",
     },
     problem: {
@@ -1581,11 +1998,11 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "When scope, proof, and pricing are scattered, potential clients take longer to move into consultation.",
     },
     solution: {
-      ko: "7개 서비스 카테고리, 실제 결과물, 가격표, 견적 문의 흐름이 이어져 방문자가 필요한 정보를 빠르게 확인할 수 있어야 합니다.",
+      ko: "7개 서비스 카테고리, 실제 결과물, 가격표, 견적 문의 흐름을 이어 방문자가 필요한 정보를 빠르게 찾도록 구성합니다.",
       en: "Seven service categories, real project proof, pricing, and a structured quote form are connected for fast client review.",
     },
     impact: {
-      ko: "방문자가 서비스 종류, 실제 사례, 가격, 문의 방법을 한 번에 확인해 상담 전 의사결정 시간을 줄일 수 있습니다.",
+      ko: "방문자는 서비스 종류, 실제 사례, 가격, 문의 방법을 한 번에 보고 상담 전 의사결정 시간을 줄입니다.",
       en: "Visitors can review services, proof, pricing, and inquiry options in one place, reducing decision time before consultation.",
     },
     deliverables: [
@@ -1626,15 +2043,15 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "A private website result screen designed to help E-7/E-9 visa clients understand the service and move into inquiry.",
     },
     problem: {
-      ko: "비자 서비스는 절차가 복잡해 고객이 처음 방문했을 때 대상, 진행 순서, 상담 방법을 빠르게 이해해야 합니다.",
+      ko: "비자 서비스는 절차가 복잡해 처음 방문한 상담 고객이 대상, 진행 순서, 상담 방법을 빠르게 이해해야 문의로 이어집니다.",
       en: "Visa services are complex, so first-time visitors need to quickly understand eligibility, process, and consultation options.",
     },
     solution: {
-      ko: "서비스 소개, E-7/E-9 상담 CTA, 진행 프로세스, 운영 화면 연결 흐름을 한 웹 경험 안에서 확인할 수 있어야 합니다.",
+      ko: "서비스 소개, E-7/E-9 상담 CTA, 진행 프로세스, 운영 화면 연결 흐름을 한 웹 경험 안에 정리합니다.",
       en: "Service explanation, E-7/E-9 inquiry CTA, process guide, and admin handoff are organized into one web experience.",
     },
     impact: {
-      ko: "방문자가 복잡한 비자 절차를 한눈에 이해하고, 상담이 필요한 지점을 빠르게 찾아 문의할 수 있습니다.",
+      ko: "방문자는 복잡한 비자 절차를 한눈에 이해하고, 상담이 필요한 지점을 빠르게 찾아 문의합니다.",
       en: "Visitors can understand the complex visa process at a glance and quickly find where to request consultation.",
     },
     deliverables: [
@@ -1676,8 +2093,8 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "A public automation case combining content creation, scheduling, and analytics.",
     },
     problem: { ko: "SNS 운영은 작성, 예약, 성과 확인이 반복되어 매일 많은 시간이 들어갑니다.", en: "Daily SNS operations required repetitive manual time." },
-    solution: { ko: "작성, 예약, 성과 확인 흐름이 한 화면에서 이어져 반복 운영을 줄일 수 있어야 합니다.", en: "Built an operations pipeline connecting writing, scheduling, and analytics." },
-    impact: { ko: "운영자는 매일 반복하던 콘텐츠 관리 시간을 줄이고, 예약 발행과 성과 확인을 더 안정적으로 처리할 수 있습니다.", en: "A public automation proof that significantly reduces daily ops time." },
+    solution: { ko: "작성, 예약, 성과 확인 흐름을 한 화면으로 이어 반복 운영 시간을 줄이는 구조입니다.", en: "Built an operations pipeline connecting writing, scheduling, and analytics." },
+    impact: { ko: "운영자는 매일 반복하던 콘텐츠 관리 시간을 줄이고, 예약 발행과 성과 확인을 더 안정적으로 처리합니다.", en: "A public automation proof that significantly reduces daily ops time." },
     deliverables: [
       { ko: "운영 현황 화면", en: "Dashboard screen" },
       { ko: "예약 발행 흐름", en: "Scheduling flow" },
@@ -1720,15 +2137,15 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "Managing content across multiple countries and accounts manually was not scalable.",
     },
     solution: {
-      ko: "수집, 작성, 발행, 스케줄, 모니터링 흐름이 분리되어 운영자가 상태를 쉽게 확인할 수 있어야 합니다.",
+      ko: "수집, 작성, 발행, 스케줄, 모니터링 흐름을 분리해 운영자가 현재 상태를 빠르게 읽도록 구성합니다.",
       en: "Separated collection, writing, publishing, scheduling, and monitoring into an operable system.",
     },
     impact: {
-      ko: "고객은 민감한 계정 정보 없이도 운영 규모, 발행 흐름, 처리 지표를 확인해 자동화 수준을 판단할 수 있습니다.",
+      ko: "운영 담당자는 민감한 계정 정보를 노출하지 않고도 자동화 규모, 발행 흐름, 처리 지표를 보고 도입 범위를 정합니다.",
       en: "Only sanitized result screens and KPIs are shown, so sensitive operating details stay private.",
     },
     resultSummary: {
-      ko: "계정명과 민감 데이터는 제거하고, 실제 운영 흐름을 이해할 수 있는 결과 화면과 지표만 공개합니다.",
+      ko: "계정명과 민감 데이터는 가리고, 운영 화면과 지표만으로 실제 적용 방식과 관리 난이도를 파악합니다.",
       en: "Because this is private, account names and sensitive data are masked in demo screens.",
     },
     deliverables: [
@@ -1782,11 +2199,11 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "Video production and upload steps were scattered and repetitive.",
     },
     solution: {
-      ko: "대본 작성부터 영상 생성, 업로드 준비까지의 단계를 한 운영 흐름에서 확인할 수 있어야 합니다.",
+      ko: "대본 작성부터 영상 생성, 업로드 준비까지의 단계를 한 운영 흐름으로 묶어 상태가 바로 보이게 합니다.",
       en: "Connected dashboard, pipeline, rendering, and upload screens into one workflow.",
     },
     impact: {
-      ko: "고객은 민감한 내부 정보 없이도 영상 제작 단계와 운영 화면을 확인해 자동화 범위를 판단할 수 있습니다.",
+      ko: "운영 담당자는 민감한 내부 정보 없이도 대본, 렌더, 업로드 준비 단계를 보고 자동화할 업무 범위를 정합니다.",
       en: "Code remains private; result screens and workflow are used as automation/app proof.",
     },
     deliverables: [
@@ -1818,9 +2235,9 @@ export const portfolioProjects: PortfolioProject[] = [
       ko: "학습 진도, 퀴즈, 어휘 카드 흐름을 갖춘 앱 MVP 결과물.",
       en: "A mobile MVP with progress, quiz, and vocabulary card flows.",
     },
-    problem: { ko: "앱 아이디어를 검토하려면 가입, 학습, 퀴즈 흐름이 실제 화면처럼 보여야 합니다.", en: "A quick mobile app was needed for idea validation." },
-    solution: { ko: "온보딩, 홈, 학습 진도, 퀴즈 화면을 중심으로 사용 흐름을 빠르게 확인할 수 있어야 합니다.", en: "Built an MVP around core screens and packaged it as app proof." },
-    impact: { ko: "고객은 앱 출시 전에도 핵심 화면과 사용 동선을 검토해 MVP 제작 범위를 결정할 수 있습니다.", en: "Can be used as app portfolio proof even before store submission." },
+    problem: { ko: "앱 아이디어 검토 단계에서는 가입, 학습, 퀴즈 흐름이 실제 화면처럼 보여야 의사결정이 빨라집니다.", en: "A quick mobile app was needed for idea validation." },
+    solution: { ko: "온보딩, 홈, 학습 진도, 퀴즈 화면을 중심으로 사용자가 앱을 어떻게 이동하는지 먼저 보여줍니다.", en: "Built an MVP around core screens and packaged it as app proof." },
+    impact: { ko: "의뢰자는 출시 전에도 핵심 화면과 사용 동선을 보고 MVP 제작 범위와 우선순위를 결정합니다.", en: "Can be used as app portfolio proof even before store submission." },
     deliverables: [
       { ko: "온보딩·홈·퀴즈 화면", en: "Onboarding, home, and quiz screens" },
       { ko: "학습 진도 구조", en: "Learning progress structure" },
@@ -1854,11 +2271,11 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "Consultations, visa types, company/worker status, and documents were scattered across the workflow.",
     },
     solution: {
-      ko: "상담 접수, 기업 진단, 서류 상태, 챗봇 응답, API와 DB 상태가 한 운영 화면 안에서 이어져야 합니다.",
+      ko: "상담 접수, 기업 진단, 서류 상태, 챗봇 응답, API와 DB 상태를 한 운영 화면 안에서 이어지게 구성합니다.",
       en: "Built admin dashboards and consultation management screens, then connected a VisaBot chat flow aware of E-7/E-9 context.",
     },
     impact: {
-      ko: "운영자는 상담 현황과 챗봇 응답, 비자 진행 단계, DB 상태를 함께 확인해 반복 안내와 관리 누락을 줄일 수 있습니다.",
+      ko: "운영자는 상담 현황과 챗봇 응답, 비자 진행 단계, DB 상태를 함께 보며 반복 안내와 관리 누락을 줄입니다.",
       en: "Sensitive operating details are removed, while admin screens, chatbot screens, and feature structure remain reviewable.",
     },
     kpis: [

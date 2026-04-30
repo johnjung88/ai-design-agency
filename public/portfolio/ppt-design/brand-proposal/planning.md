@@ -1,41 +1,40 @@
-# 3-1 ㈜바이브스택 · 회사소개서 기획서
+# 3-2 ㈜리빙랩 · 인테리어 디자인 스튜디오 회사소개서 기획서
 
 ## 프로젝트 개요
 | 항목 | 내용 |
 |---|---|
-| 가상 회사 | ㈜바이브스택 (VibeStack Inc.) |
-| 가상 대표 | 박지훈 (CEO & Founder) |
-| 사업 | AI 페어 프로그래밍 기반 개발 에이전시 |
-| 분량 | 20p · 톤: Modern Tech Editorial |
-| PPT 파일 | `3-1_VibeStack_CompanyProfile.pptx` |
+| 가상 회사 | ㈜리빙랩 (LivingLab Studio) |
+| 가상 대표 | 윤서영 (Creative Director) |
+| 사업 | 주거·상업 공간 인테리어 디자인 |
+| 분량 | 20p · 톤: Magazine Editorial (우드·크림·딥그린) |
 
 ## 청자
-B2B 의사결정자 (CTO·PM·창업자). **속도 + 가격 명확성 + 사례**가 핵심 결정 요소.
+잠재 고객 (주거 리노베이션 의뢰자·카페 창업자·소형 오피스 운영자). **감각·작품 사진·신뢰·가격 투명성**.
 
 ## 자료조사
-| 지표 | 수치 |
-|---|---|
-| 글로벌 개발 외주 시장 (2026E) | $580B |
-| AI 페어 프로그래밍 코드 작성 시간 절감 | 50% (GitHub Copilot 보고) |
-| 평균 SaaS MVP 출시 시간 | 6-12개월 (전통 방식) |
-| VibeStack 5일 보장 사례 | 47건 (자체) |
+| 지표 | 수치 | 출처 |
+|---|---|---|
+| 국내 인테리어 시장 (2026E) | ₩42조 | KB국민은행 |
+| 주거 리노베이션 평균 | ₩28M (30평 기준) | 한국감정원 |
+| 셀프 셀렉트 vs 디자이너 선호 | 61% 디자이너 선호 | 호갱노노 2025 |
+| 자체 누적 프로젝트 | 187건 | 자체 |
 
 ## 슬라이드 트리 (20p)
-Cover · Confidential · Index · About · Numbers · Services · Approach · Tech Stack · Process (5-Day) · Cases ×3 · Why Us · Testimonials · Pricing · Team · Roadmap · Promise · Contact · Thank You
+Cover · Studio About · Philosophy · 4 Service Lines (주거/상업/오피스/리테일) · Featured Works ×6 (Before/After) · Process · Pricing Tiers · Team · Awards · Pricing Sample · Studio Visit · Testimonials · Contact
 
 ## 키 메시지
-> **"5 days. Idea → Product."**
+> **"공간을 다시 쓰는 사람들."**
 
 ## Q&A 5개
 | Q | A |
 |---|---|
-| 5일 보장 진짜? | 47건 출시·92% 정시 |
-| AI 페어 프로그래밍? | Claude Code + Cursor + 검수 |
-| 가격? | Starter 2.5M / Standard 7M / Enterprise 20M+ |
-| 보안? | NDA + ISO 27001 협력사 |
-| 운영 지원? | 출시 후 30일 무상 |
+| 평균 가격? | 주거 ₩25M~ / 상업 ₩40M~ |
+| 일정? | 주거 6주 / 상업 8주 |
+| 가구·소품 포함? | 옵션 (별도 견적) |
+| AS? | 1년 무상 + 5년 자재 보증 |
+| 본인 자재 가능? | 사전 협의 + 견적 조정 |
 
 ## 출처
-- GitHub Octoverse 2025
-- Stack Overflow Developer Survey 2025
-- Gartner Software Outsourcing Market 2026
+- KB국민은행 「2026 인테리어 시장 동향」
+- 한국감정원 주거 리노베이션 통계
+- 호갱노노 「2025 디자이너 선호도 조사」
