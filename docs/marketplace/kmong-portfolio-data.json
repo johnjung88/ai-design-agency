@@ -1,0 +1,170 @@
+[
+  {
+    "id": "website",
+    "title": "반응형 웹사이트 제작 포트폴리오",
+    "category": "웹사이트",
+    "tone": [
+      "#07111f",
+      "#0ea5e9",
+      "#22d3ee"
+    ],
+    "summary": "브랜드 소개, 서비스 설명, 문의 전환까지 이어지는 PC·모바일 웹 화면 구성",
+    "assets": [
+      "public/portfolio/aio-design-agency/preview.png",
+      "public/portfolio/v-aio-website/live.png",
+      "public/portfolio/chueok-korea/live.png",
+      "public/portfolio/aio-design-agency/mobile-preview.png"
+    ],
+    "points": [
+      "랜딩/기업 홈페이지",
+      "PC·모바일 반응형",
+      "문의 CTA 흐름"
+    ],
+    "cover": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\website-portfolio-cover.png",
+    "detail": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\website-portfolio-detail.png"
+  },
+  {
+    "id": "shopping-mall",
+    "title": "카페24 쇼핑몰 디자인 포트폴리오",
+    "category": "쇼핑몰",
+    "tone": [
+      "#062318",
+      "#10b981",
+      "#f59e0b"
+    ],
+    "summary": "상품 진열, 메인 배너, 카테고리 흐름을 구매 동선 기준으로 정리한 쇼핑몰 샘플",
+    "assets": [
+      "public/portfolio/cafe24-design-pack/contact-sheet.png",
+      "public/portfolio/cafe24-design-pack/d01-wide.png",
+      "public/portfolio/cafe24-design-pack/d04-preview.png",
+      "public/portfolio/cafe24-design-pack/d10-preview.png"
+    ],
+    "points": [
+      "카페24 12종 메인",
+      "모바일 상품 진열",
+      "시즌 배너 구성"
+    ],
+    "cover": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\shopping-mall-portfolio-cover.png",
+    "detail": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\shopping-mall-portfolio-detail.png"
+  },
+  {
+    "id": "brand",
+    "title": "브랜드 로고·명함 디자인 포트폴리오",
+    "category": "로고·명함",
+    "tone": [
+      "#22111b",
+      "#ec4899",
+      "#f9a8d4"
+    ],
+    "summary": "업종별 로고, 명함, 사인, 간단 브랜드 적용 이미지를 함께 구성한 브랜드 키트",
+    "assets": [
+      "public/portfolio/logo-showcase/moru-coffee/logo-board.svg",
+      "public/portfolio/logo-showcase/vela-skin/mockup-board.svg",
+      "public/portfolio/logo-showcase/danchae-table/business-card-mockup.svg",
+      "public/portfolio/logo-showcase/flowstack/signage-mockup.svg"
+    ],
+    "points": [
+      "심볼·워드마크",
+      "명함 양면",
+      "실사용 목업"
+    ],
+    "cover": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\brand-portfolio-cover.png",
+    "detail": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\brand-portfolio-detail.png"
+  },
+  {
+    "id": "detail-page",
+    "title": "모바일 상세페이지 디자인 포트폴리오",
+    "category": "상세페이지",
+    "tone": [
+      "#261506",
+      "#f97316",
+      "#fde68a"
+    ],
+    "summary": "제품 USP, 사용 장면, 스펙, FAQ를 모바일 구매 흐름대로 배치한 상세페이지",
+    "assets": [
+      "public/portfolio/detail-page-skincare/cover.png",
+      "public/portfolio/detail-page-skincare/detail.png",
+      "public/portfolio/detail-page-skincare/mobile.png",
+      "public/portfolio/cafe24-design-pack/d02-mobile-final.png"
+    ],
+    "points": [
+      "제품 장점 정리",
+      "모바일 가독성",
+      "스펙·FAQ 구성"
+    ],
+    "cover": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\detail-page-portfolio-cover.png",
+    "detail": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\detail-page-portfolio-detail.png"
+  },
+  {
+    "id": "ppt",
+    "title": "목적별 PPT 디자인 포트폴리오",
+    "category": "PPT",
+    "tone": [
+      "#161126",
+      "#8b5cf6",
+      "#a78bfa"
+    ],
+    "summary": "회사소개서, 제안서, IR, 강의자료를 발표 흐름에 맞게 정리한 PPT 샘플",
+    "assets": [
+      "public/portfolio/ppt-design/brand-proposal/cover.png",
+      "public/portfolio/ppt-design/ir-investment/sample-1.png",
+      "public/portfolio/ppt-design/government-grant/sample-2.png",
+      "public/portfolio/ppt-design/seminar-lecture/sample-3.png"
+    ],
+    "points": [
+      "회사소개서",
+      "IR·제안서",
+      "강의자료"
+    ],
+    "cover": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\ppt-portfolio-cover.png",
+    "detail": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\ppt-portfolio-detail.png"
+  },
+  {
+    "id": "automation-app",
+    "title": "업무 자동화·앱 MVP 포트폴리오",
+    "category": "자동화·앱",
+    "tone": [
+      "#061c18",
+      "#14b8a6",
+      "#60a5fa"
+    ],
+    "summary": "반복 업무, 데이터 처리, 운영 대시보드, MVP 화면을 실제 사용 흐름 기준으로 구성",
+    "assets": [
+      "public/portfolio/blogautopilot-multinational/real-demo/app-dashboard.png",
+      "public/portfolio/v-aio-admin/dashboard.png",
+      "public/portfolio/v-aio-admin/chatbot.png",
+      "public/portfolio/blogautopilot-multinational/published-post-ko.png"
+    ],
+    "points": [
+      "운영 대시보드",
+      "챗봇·DB 흐름",
+      "콘텐츠 자동화"
+    ],
+    "cover": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\automation-app-portfolio-cover.png",
+    "detail": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\automation-app-portfolio-detail.png"
+  },
+  {
+    "id": "video",
+    "title": "숏폼·브랜드 영상 포트폴리오",
+    "category": "영상 콘텐츠",
+    "tone": [
+      "#081625",
+      "#06b6d4",
+      "#f43f5e"
+    ],
+    "summary": "짧은 시간 안에 메시지가 보이도록 구성한 숏폼, 브랜드 인트로, 홍보 영상 샘플",
+    "assets": [
+      "public/portfolio/video-content-samples/brand-shorts.png",
+      "public/portfolio/aio-motion-intro/cover.svg",
+      "public/marketplace/video-content-detail-proof.png",
+      "public/portfolio/ppt-design/brand-proposal/cover-slide.png"
+    ],
+    "points": [
+      "숏폼 구성",
+      "브랜드 인트로",
+      "자막·썸네일"
+    ],
+    "cover": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\video-portfolio-cover.png",
+    "detail": "C:\\Users\\PC\\OneDrive\\Desktop\\ai-design-agency\\public\\marketplace\\kmong-portfolio\\video-portfolio-detail.png"
+  }
+]

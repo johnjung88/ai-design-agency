@@ -11,15 +11,15 @@ interface Bundle {
   items: { ko: string; en: string }[];
   eventPrice: string;
   regularPrice: string;
-  savings: string;
+  badge: string;
   featured?: boolean;
 }
 
 const BUNDLES: Bundle[] = [
   {
     id: "a",
-    name: { ko: "런치 번들", en: "Launch Bundle" },
-    description: { ko: "창업·MVP 론칭에 최적", en: "Perfect for startup launch" },
+    name: { ko: "런칭 패키지", en: "Launch Package" },
+    description: { ko: "브랜드 첫 화면을 빠르게 준비하는 구성", en: "A fast starter set for a new brand" },
     items: [
       { ko: "랜딩페이지 (1P)", en: "Landing page (1P)" },
       { ko: "로고 디자인", en: "Logo design" },
@@ -27,12 +27,12 @@ const BUNDLES: Bundle[] = [
     ],
     eventPrice: "₩60,000~",
     regularPrice: "₩400,000~",
-    savings: "-25%",
+    badge: "빠른 시작",
   },
   {
     id: "b",
-    name: { ko: "그로스 번들", en: "Growth Bundle" },
-    description: { ko: "홈페이지 + 마케팅 콘텐츠", en: "Site + marketing content" },
+    name: { ko: "성장 패키지", en: "Growth Package" },
+    description: { ko: "홈페이지와 마케팅 콘텐츠를 함께 정리", en: "Website and marketing content together" },
     featured: true,
     items: [
       { ko: "홈페이지 기본 5P", en: "Site Basic (5 pages)" },
@@ -42,20 +42,20 @@ const BUNDLES: Bundle[] = [
     ],
     eventPrice: "₩350,000~",
     regularPrice: "₩1,300,000~",
-    savings: "-30%",
+    badge: "추천 구성",
   },
   {
     id: "c",
-    name: { ko: "풀 패키지", en: "Full Package" },
-    description: { ko: "앱·웹·자동화 통합", en: "App + web + automation" },
+    name: { ko: "통합 패키지", en: "Integrated Package" },
+    description: { ko: "웹·앱·자동화를 한 번에 준비", en: "Website, app, and automation together" },
     items: [
       { ko: "홈페이지 기본 5P", en: "Site Basic (5 pages)" },
       { ko: "앱 MVP 기본", en: "App MVP Basic" },
       { ko: "간단 자동화 1종", en: "Simple automation ×1" },
     ],
     eventPrice: "₩700,000~",
-    regularPrice: "₩3,000,000~",
-    savings: "-35%",
+    regularPrice: "₩2,100,000~",
+    badge: "통합 구성",
   },
 ];
 
@@ -107,7 +107,7 @@ export function BundleCards() {
               <p className="text-xs text-muted-foreground line-through">{bundle.regularPrice}</p>
             </div>
             <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-bold text-emerald-400">
-              {bundle.savings}
+              {bundle.badge}
             </span>
           </div>
 

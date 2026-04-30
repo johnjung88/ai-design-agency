@@ -45,10 +45,11 @@ const SUBTYPES: Record<ServiceCategory, { value: string; ko: string; en: string 
 
 const BUDGET_OPTIONS = [
   { value: "", ko: "-", en: "-" },
-  { value: "under-100k", ko: "10만원 이하", en: "Under ₩100,000" },
-  { value: "100k-500k", ko: "10만~50만원", en: "₩100,000-₩500,000" },
-  { value: "500k-1m", ko: "50만~100만원", en: "₩500,000-₩1,000,000" },
-  { value: "1m-plus", ko: "100만원 이상", en: "₩1,000,000+" },
+  { value: "under-50k", ko: "5만원 이하", en: "Under ₩50,000" },
+  { value: "50k-300k", ko: "5만~30만원", en: "₩50,000-₩300,000" },
+  { value: "300k-1m", ko: "30만~100만원", en: "₩300,000-₩1,000,000" },
+  { value: "1m-3m", ko: "100만~300만원", en: "₩1,000,000-₩3,000,000" },
+  { value: "3m-plus", ko: "300만원 이상", en: "₩3,000,000+" },
 ];
 
 const TIMELINE_OPTIONS = [
@@ -106,10 +107,10 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       budget: "예산",
       timeline: "희망 일정",
       source: "유입 채널",
-      contact: "선호 연락",
+      contact: "연락 방법",
       description: "요구사항",
-      rush: "긴급 1일 상담 희망",
-      submit: "구조화 견적 문의 보내기",
+      rush: "긴급 1일 작업 상담 희망",
+      submit: "견적 문의 보내기",
       sending: "발송 중...",
       success: "견적 문의가 접수됐습니다. 빠르게 확인하겠습니다.",
       error: "전송 중 오류가 발생했습니다. 이메일로 직접 문의해주세요.",
@@ -126,10 +127,10 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       source: "Source",
       contact: "Preferred contact",
       description: "Requirements",
-      rush: "I need a 1-day rush consultation",
+      rush: "Need a 1-day rush consultation",
       submit: "Send structured quote request",
       sending: "Sending...",
-      success: "Quote request received. I will review it shortly.",
+      success: "Quote request received. We will review it shortly.",
       error: "Something went wrong. Please email directly.",
       placeholder: "Tell me your business, desired result, references, and deadline.",
     },
@@ -178,9 +179,9 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
         <div>
           <label className={labelClass}>{copy.source}</label>
           <select className={inputClass} value={form.source} onChange={(e) => set("source", e.target.value)}>
-            <option value="soomgo">Soomgo</option>
-            <option value="kmong">Kmong</option>
-            <option value="email">Email</option>
+            <option value="soomgo">{locale === "ko" ? "숨고" : "Soomgo"}</option>
+            <option value="kmong">{locale === "ko" ? "크몽" : "Kmong"}</option>
+            <option value="email">{locale === "ko" ? "이메일" : "Email"}</option>
           </select>
         </div>
       </div>
@@ -232,8 +233,8 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
         <div>
           <label className={labelClass}>{copy.contact}</label>
           <select className={inputClass} value={form.contact_method} onChange={(e) => set("contact_method", e.target.value)}>
-            <option value="email">Email</option>
-            <option value="phone">Phone</option>
+            <option value="email">{locale === "ko" ? "이메일" : "Email"}</option>
+            <option value="phone">{locale === "ko" ? "전화" : "Phone"}</option>
           </select>
         </div>
       </div>

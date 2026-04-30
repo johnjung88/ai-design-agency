@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "video:blogautopilot": "remotion render remotion/index.ts BlogAutoPilotProof public/portfolio/blogautopilot-multinational/blogautopilot-proof.mp4",
+    "video:v-aio": "remotion render remotion/index.ts VAioAdminProof public/portfolio/v-aio-admin/v-aio-admin-proof.mp4",
     "start": "next start",
     "lint": "eslint"
   },

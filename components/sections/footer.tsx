@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { ChannelBadges } from "@/components/sections/channel-badges";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { serviceCategories } from "@/lib/services-data";
 
 export function Footer() {
@@ -18,7 +18,7 @@ export function Footer() {
           {/* 브랜드 */}
           <div className="flex flex-col gap-4">
             <div>
-              <Image src="/logo.svg" alt="AIO" width={132} height={34} className="h-8 w-auto" />
+              <BrandLogo variant="footer" />
               <p className="mt-2 max-w-xs text-xs leading-6 text-muted-foreground">
                 {t("tagline")}
               </p>

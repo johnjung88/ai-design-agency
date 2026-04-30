@@ -10,8 +10,9 @@ interface FeaturedMasonryProps {
 
 export function FeaturedMasonry({ projects }: FeaturedMasonryProps) {
   const t = useTranslations("common");
+  const visibleProjects = projects.slice(0, 9);
 
-  if (projects.length === 0) {
+  if (visibleProjects.length === 0) {
     return (
       <div className="flex h-48 items-center justify-center rounded-2xl border border-dashed border-white/15 text-sm text-muted-foreground">
         {t("comingSoon")}
@@ -20,8 +21,8 @@ export function FeaturedMasonry({ projects }: FeaturedMasonryProps) {
   }
 
   return (
-    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-      {projects.map((project) => (
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {visibleProjects.map((project) => (
         <PortfolioCard key={project.id} project={project} />
       ))}
     </div>

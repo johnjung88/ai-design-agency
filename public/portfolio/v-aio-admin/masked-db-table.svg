@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#f8fafc"/>
+  <text x="70" y="86" font-family="Segoe UI, Malgun Gothic, Arial" font-size="42" font-weight="850" fill="#111827">DB 관리 화면은 개인정보를 노출하지 않습니다</text>
+  <text x="72" y="128" font-family="Segoe UI, Malgun Gothic, Arial" font-size="22" fill="#64748b">포트폴리오 영상에서는 실명, 연락처, 이메일을 블럭 처리하고 상태값 중심으로 보여줍니다.</text>
+  <rect x="72" y="180" width="1136" height="410" rx="26" fill="#ffffff" stroke="#dbe7f5"/>
+  <g font-family="Segoe UI, Malgun Gothic, Arial" font-size="18">
+    <rect x="104" y="220" width="1072" height="48" rx="12" fill="#e8f1ff"/>
+    <text x="132" y="251" font-weight="800" fill="#1e293b">구분</text>
+    <text x="268" y="251" font-weight="800" fill="#1e293b">이름</text>
+    <text x="454" y="251" font-weight="800" fill="#1e293b">연락처</text>
+    <text x="648" y="251" font-weight="800" fill="#1e293b">비자 타입</text>
+    <text x="832" y="251" font-weight="800" fill="#1e293b">서류 상태</text>
+    <text x="1010" y="251" font-weight="800" fill="#1e293b">단계</text>
+    <g fill="#334155">
+      <text x="132" y="314">상담</text><rect x="268" y="292" width="88" height="18" rx="6" fill="#111827"/><rect x="454" y="292" width="138" height="18" rx="6" fill="#111827"/><text x="648" y="314">E-7</text><text x="832" y="314">요청</text><text x="1010" y="314">신규</text>
+      <text x="132" y="370">기업</text><rect x="268" y="348" width="116" height="18" rx="6" fill="#111827"/><rect x="454" y="348" width="138" height="18" rx="6" fill="#111827"/><text x="648" y="370">E-9</text><text x="832" y="370">검증</text><text x="1010" y="370">진행</text>
+      <text x="132" y="426">근로자</text><rect x="268" y="404" width="96" height="18" rx="6" fill="#111827"/><rect x="454" y="404" width="138" height="18" rx="6" fill="#111827"/><text x="648" y="426">E-7</text><text x="832" y="426">보완</text><text x="1010" y="426">대기</text>
+      <text x="132" y="482">신청</text><rect x="268" y="460" width="112" height="18" rx="6" fill="#111827"/><rect x="454" y="460" width="138" height="18" rx="6" fill="#111827"/><text x="648" y="482">E-9</text><text x="832" y="482">완료</text><text x="1010" y="482">승인</text>
+      <text x="132" y="538">서류</text><rect x="268" y="516" width="80" height="18" rx="6" fill="#111827"/><rect x="454" y="516" width="138" height="18" rx="6" fill="#111827"/><text x="648" y="538">E-7</text><text x="832" y="538">확인</text><text x="1010" y="538">완료</text>
+    </g>
+  </g>
+  <rect x="72" y="622" width="1136" height="44" rx="14" fill="#eef6ff"/>
+  <text x="104" y="651" font-family="Segoe UI, Malgun Gothic, Arial" font-size="20" font-weight="800" fill="#2563eb">공개 기준: 개인정보는 숨기고, 업무 흐름과 자동화 구조만 보여줍니다.</text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#08111f"/>
+  <text x="68" y="88" font-family="Segoe UI, Malgun Gothic, Arial" font-size="42" font-weight="850" fill="#f8fafc">챗봇 로직 · API · DB 흐름</text>
+  <text x="70" y="130" font-family="Segoe UI, Malgun Gothic, Arial" font-size="22" fill="#b8c7dc">사용자 질문을 비자 조건 로직으로 분류하고, 필요한 데이터만 관리자 DB와 연결</text>
+  <g font-family="Segoe UI, Malgun Gothic, Arial">
+    <rect x="72" y="210" width="180" height="122" rx="22" fill="#12243d" stroke="#2e4b73"/>
+    <text x="104" y="260" font-size="24" font-weight="800" fill="#ffffff">문의 입력</text>
+    <text x="104" y="296" font-size="18" fill="#9fb0c8">웹/챗봇 질문</text>
+    <rect x="306" y="210" width="180" height="122" rx="22" fill="#17345d" stroke="#3b82f6"/>
+    <text x="338" y="260" font-size="24" font-weight="800" fill="#ffffff">VisaBot</text>
+    <text x="338" y="296" font-size="18" fill="#bfdbfe">E-7/E-9 분기</text>
+    <rect x="540" y="210" width="180" height="122" rx="22" fill="#2d1b63" stroke="#8b5cf6"/>
+    <text x="572" y="260" font-size="24" font-weight="800" fill="#ffffff">로직 엔진</text>
+    <text x="572" y="296" font-size="18" fill="#ddd6fe">요건/서류 체크</text>
+    <rect x="774" y="210" width="180" height="122" rx="22" fill="#174b38" stroke="#34d399"/>
+    <text x="806" y="260" font-size="24" font-weight="800" fill="#ffffff">API 작업</text>
+    <text x="806" y="296" font-size="18" fill="#bbf7d0">OpenAI · n8n</text>
+    <rect x="1008" y="210" width="180" height="122" rx="22" fill="#3b1b0a" stroke="#fb923c"/>
+    <text x="1040" y="260" font-size="24" font-weight="800" fill="#ffffff">DB 반영</text>
+    <text x="1040" y="296" font-size="18" fill="#fed7aa">Supabase</text>
+  </g>
+  <g stroke="#7dd3fc" stroke-width="4" stroke-linecap="round">
+    <path d="M252 271H306"/>
+    <path d="M486 271H540"/>
+    <path d="M720 271H774"/>
+    <path d="M954 271H1008"/>
+  </g>
+  <g font-family="Segoe UI, Malgun Gothic, Arial">
+    <rect x="100" y="428" width="1080" height="174" rx="28" fill="#0f1c31" stroke="#263c5d"/>
+    <text x="144" y="480" font-size="26" font-weight="850" fill="#ffffff">관리자 카테고리 연동</text>
+    <text x="144" y="526" font-size="22" fill="#cbd5e1">상담 문의 → 기업 진단 → 비자 신청 → 기업/근로자 관리 → 서류 관리 → 상태 리포트</text>
+    <text x="144" y="568" font-size="18" fill="#80cbc4">실명, 연락처, 민감 값은 포트폴리오 화면에서 블럭 마스킹 처리</text>
+  </g>
+</svg>

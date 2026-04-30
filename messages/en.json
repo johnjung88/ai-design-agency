@@ -38,11 +38,11 @@
   },
   "hero": {
     "label": "AIO Agency",
-    "headline": "Ship in 5 days max",
-    "subheadline": "Rush option in 1 day. Fair pricing, speed first.",
+    "headline": "Outsource after seeing the result quality",
+    "subheadline": "See real results and pricing first across websites, stores, design, automation, and video.",
     "ctaPrimary": "View Portfolio",
     "ctaSecondary": "Get a Quote",
-    "promiseBadge": "10% refund if I miss the 5-day deadline",
+    "promiseBadge": "5-day delivery promise",
     "marquee": "Website · Shopping Mall · Logo & Business Card · Detail Page · PPT Design · Automation & App · Video Content · Fast Response · Maintenance · "
   },
   "kpi": {
@@ -54,7 +54,7 @@
     "testsPassing": "Tests Passing",
     "responseTime": "Quote Response",
     "responseTimeUnit": "h",
-    "refundGuarantee": "Refund Guarantee",
+    "refundGuarantee": "Delay Credit",
     "refundGuaranteeUnit": "%"
   },
   "services": {
@@ -99,7 +99,7 @@
     "regularBadge": "Regular Price (from June)",
     "toggle": "Event / Regular",
     "rebookDiscount": "Returning clients get -20% off",
-    "refundPolicy": "10% refund if I miss the 5-day deadline",
+    "refundPolicy": "10% credit if delivery is late",
     "addons": "Add-ons",
     "bundles": "Bundle Packages",
     "eventPrice": "Event Price",
@@ -123,15 +123,15 @@
   "faq": {
     "sectionTitle": "FAQ",
     "q1": "Is 5 days really enough?",
-    "a1": "Simple landing pages take 1–2 days, standard sites 3–5 days. Rush in 1 day available (+30–50%). 10% refund if I miss the deadline.",
+    "a1": "Simple landing pages usually take 1-2 days, and standard websites 3-5 days. Same-day rush work is available by agreement (+30-70%). If the confirmed delivery date is missed, a 10% credit is applied.",
     "q2": "Does fast delivery mean lower quality?",
-    "a2": "A live 8-country automation system and 10 websites + 2 apps shipped in 4 months speak for themselves. Speed and quality aren't a trade-off.",
+    "a2": "Repeatable production flows are systemized, while project-specific time goes into the screens, message, and inquiry path that matter most. That keeps delivery fast without sacrificing the customer-facing result.",
     "q3": "How is the quote calculated?",
-    "a3": "Based on scope, design level, timeline, and ops support. Free consultation first, then a transparent proposal. No hidden fees.",
+    "a3": "Based on scope, design level, timeline, and ops support. Free consultation first, then a transparent proposal. Any out-of-scope cost is confirmed before work starts.",
     "q4": "Is the English version the same price?",
     "a4": "Base price is for Korean. Extra languages are +₩20,000 per language.",
-    "q5": "What about support and refunds?",
-    "a5": "14-day free revisions after handoff. 10% refund if I miss the 5-day deadline. Unlimited revisions within contract scope.",
+    "q5": "What about support after delivery?",
+    "a5": "Basic revisions are available for 14 days after handoff within the agreed scope. If the confirmed delivery date is missed, a 10% credit is applied, and any added scope is confirmed before work begins.",
     "q6": "Any difference ordering via Soomgo/Kmong?",
     "a6": "Same price. Platform secure payment and reviews are available, and direct email inquiry is also welcome."
   },
@@ -149,7 +149,7 @@
     "messagePlaceholder": "Tell me about your project",
     "submit": "Send Inquiry",
     "sending": "Sending...",
-    "success": "Inquiry received! I'll get back to you shortly.",
+    "success": "Inquiry received. We will get back to you shortly.",
     "error": "Something went wrong. Please email directly.",
     "channels": {
       "soomgo": "Quote via Soomgo",

@@ -27,12 +27,12 @@ export default async function QuotePage({
             </span>
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-            {l === "ko" ? "구조화 견적 문의" : "Structured Quote Request"}
+            {l === "ko" ? "견적 문의" : "Quote Request"}
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">
             {l === "ko"
               ? "작업 종류, 예산, 일정이 정리되어 들어오면 1시간 내 임시 답변과 24시간 내 견적 제안서를 더 정확하게 드릴 수 있습니다."
-              : "A structured request lets me send a quick first reply within 1 hour and a clearer quote within 24 hours."}
+              : "Share the work type, budget, and timeline so we can send a quick first reply within 1 hour and a clearer quote within 24 hours."}
           </p>
         </div>
 

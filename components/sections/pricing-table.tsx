@@ -29,7 +29,7 @@ export function PricingTable({ tiers, showToggle = true }: PricingTableProps) {
                 : "bg-white/8 text-muted-foreground hover:bg-white/12"
             }`}
           >
-            {t("eventPrice")} (~5/31)
+            {locale === "ko" ? `${t("eventPrice")} (5/31까지)` : `${t("eventPrice")} (until 5/31)`}
           </button>
           <button
             type="button"

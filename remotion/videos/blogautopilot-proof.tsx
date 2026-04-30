@@ -14,7 +14,14 @@ const demo = (name: string) => proof(`real-demo/${name}`);
 const bg = "linear-gradient(135deg, #07111f 0%, #10213a 48%, #101522 100%)";
 
 function fade(frame: number, duration: number) {
-  return interpolate(frame, [0, 8, duration - 8, duration], [0, 1, 1, 0], {
+  return interpolate(frame, [0, 5, duration - 5, duration], [0, 1, 1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+}
+
+function enter(frame: number, delay = 0, distance = 22) {
+  return interpolate(frame, [delay, delay + 10], [distance, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -39,9 +46,11 @@ function Stage({
 }) {
   const frame = useCurrentFrame();
   const opacity = fade(frame, duration);
+  const imageLift = enter(frame, 0, 14);
+  const textLift = enter(frame, 4, 18);
   const imageBox = {
     position: "absolute" as const,
-    top: 44,
+    top: 44 + imageLift,
     left: imageSide === "left" ? 42 : 530,
     width: 708,
     height: 632,
@@ -53,7 +62,7 @@ function Stage({
   };
   const textBox = {
     position: "absolute" as const,
-    top: 70,
+    top: 70 + textLift,
     left: imageSide === "left" ? 790 : 58,
     width: 410,
     height: 580,
@@ -69,8 +78,8 @@ function Stage({
       </div>
       <div style={textBox}>
         <div style={{ color: "#55d6be", fontSize: 22, fontWeight: 900, marginBottom: 18 }}>{kicker}</div>
-        <div style={{ fontSize: 48, lineHeight: 1.12, fontWeight: 930, wordBreak: "keep-all" }}>{title}</div>
-        <div style={{ color: "#c9d7eb", fontSize: 24, lineHeight: 1.45, marginTop: 24, wordBreak: "keep-all" }}>{body}</div>
+        <div style={{ fontSize: 44, lineHeight: 1.12, fontWeight: 930, wordBreak: "keep-all" }}>{title}</div>
+        <div style={{ color: "#c9d7eb", fontSize: 23, lineHeight: 1.46, marginTop: 24, wordBreak: "keep-all" }}>{body}</div>
       </div>
     </AbsoluteFill>
   );
@@ -83,14 +92,14 @@ function Intro() {
     <AbsoluteFill style={{ background: bg, color: "#eef5ff", fontFamily: "Segoe UI, Malgun Gothic, Arial, sans-serif", opacity }}>
       <Img src={proof("travel-category-map.svg")} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.42 }} />
       <div style={{ position: "absolute", left: 72, top: 94, width: 880 }}>
-        <div style={{ color: "#55d6be", fontSize: 24, fontWeight: 900, marginBottom: 24 }}>여행 전문 블로그 자동화</div>
+        <div style={{ color: "#55d6be", fontSize: 24, fontWeight: 900, marginBottom: 24 }}>TRAVEL BLOG AUTOPILOT</div>
         <div style={{ fontSize: 74, lineHeight: 1.02, fontWeight: 950, wordBreak: "keep-all" }}>
-          콘텐츠 확보부터 발행까지
+          여행 소재 확보부터
           <br />
-          한 번에 운영
+          수익화 발행까지
         </div>
         <div style={{ marginTop: 32, color: "#d6e3f4", fontSize: 30, lineHeight: 1.34, width: 760 }}>
-          API, CSV, 스케줄, 국가별 제휴 링크, SEO 프롬프트, 브라우저 자동작성까지 연결한 여행 블로그 운영 시스템입니다.
+          API와 CSV로 콘텐츠를 모으고, 스케줄·제휴 링크·SEO 프롬프트·브라우저 발행기를 한 흐름으로 연결했습니다.
         </div>
       </div>
     </AbsoluteFill>
@@ -115,10 +124,10 @@ function BrowserWrite() {
         <OffthreadVideo src={demo("browser-write-demo.webm")} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
       <div style={{ position: "absolute", right: 58, top: 92, width: 365 }}>
-        <div style={{ color: "#55d6be", fontSize: 22, fontWeight: 900, marginBottom: 18 }}>네이버 자동작성</div>
-        <div style={{ fontSize: 47, lineHeight: 1.08, fontWeight: 950, wordBreak: "keep-all" }}>브라우저를 열고 글을 입력</div>
+        <div style={{ color: "#55d6be", fontSize: 22, fontWeight: 900, marginBottom: 18 }}>브라우저 발행기</div>
+        <div style={{ fontSize: 47, lineHeight: 1.08, fontWeight: 950, wordBreak: "keep-all" }}>글 입력 과정까지 자동화</div>
         <div style={{ color: "#c9d7eb", fontSize: 23, lineHeight: 1.45, marginTop: 24, wordBreak: "keep-all" }}>
-          실제 발행기는 네이버 에디터에 제목, 본문, 이미지, 해시태그를 순서대로 입력합니다. 최종 발행 클릭은 촬영 안전을 위해 제외했습니다.
+          발행기는 브라우저를 열고 제목, 본문, 태그 입력을 순서대로 처리합니다. 최종 발행 클릭은 촬영 안전을 위해 제외했습니다.
         </div>
       </div>
     </AbsoluteFill>
@@ -129,17 +138,17 @@ function Closing() {
   const frame = useCurrentFrame();
   const opacity = fade(frame, 100);
   const items = [
-    "여행 아이템: 쿠팡·Amazon·Shopee·Lazada 국가별 매칭",
-    "축제/이벤트: 투어와 숙박 상품 연결",
-    "여행 종합: 투어·숙박·유심·보험·교통까지 확장",
-    "계정별 프롬프트로 동일 주제도 다른 글 생성",
+    "콘텐츠 소스: API + CSV 업로드 + 월별 스케줄",
+    "여행 아이템: 국가별 쇼핑 제휴 자동 매칭",
+    "축제/이벤트: 투어·숙박 상품 연결",
+    "계정별 프롬프트: 동일 주제도 다른 글로 생성",
   ];
   return (
     <AbsoluteFill style={{ background: bg, color: "#eef5ff", fontFamily: "Segoe UI, Malgun Gothic, Arial, sans-serif", opacity }}>
       <div style={{ position: "absolute", left: 80, top: 72 }}>
-        <div style={{ color: "#55d6be", fontSize: 24, fontWeight: 900, marginBottom: 20 }}>핵심 어필 포인트</div>
+        <div style={{ color: "#55d6be", fontSize: 24, fontWeight: 900, marginBottom: 20 }}>PORTFOLIO POINT</div>
         <div style={{ fontSize: 58, lineHeight: 1.12, fontWeight: 950, wordBreak: "keep-all", width: 810 }}>
-          여행 블로그 수익화 운영을 자동화
+          여행 블로그 운영을 수익화 흐름으로 자동화
         </div>
       </div>
       <div style={{ position: "absolute", left: 82, top: 250, display: "grid", gap: 14, width: 780 }}>
@@ -163,18 +172,18 @@ export function BlogAutoPilotProof() {
       <Sequence from={82} durationInFrames={100}>
         <Stage
           image="app-content-api.png"
-          kicker="콘텐츠 확보"
-          title="API와 CSV로 여행 소재 수집"
-          body="축제, 이벤트, 투어, 도시 정보를 API와 엑셀 CSV 업로드로 확보하고 월별 콘텐츠 캘린더로 관리합니다."
+          kicker="01 콘텐츠 소스"
+          title="여행 소재를 먼저 확보합니다"
+          body="축제, 도시, 투어, 일정 데이터를 API와 엑셀 CSV로 등록하고 운영자가 월별 콘텐츠 풀을 관리합니다."
           duration={100}
         />
       </Sequence>
       <Sequence from={174} durationInFrames={96}>
         <Stage
           image="app-content-source.png"
-          kicker="스케줄 운영"
-          title="국가별 소스를 자동 배분"
-          body="한국, 일본, 대만, 태국, 베트남, 인도네시아, 미국, 영국 계정에 발행 소스를 균등하게 배분합니다."
+          kicker="02 스케줄 운영"
+          title="계정과 국가별로 발행을 나눕니다"
+          body="여러 국가와 블로그 계정에 콘텐츠 소스를 배정해 한 화면에서 일정, 상태, 발행 흐름을 확인합니다."
           duration={96}
           imageSide="right"
         />
@@ -185,18 +194,18 @@ export function BlogAutoPilotProof() {
       <Sequence from={364} durationInFrames={100}>
         <Stage
           image="app-affiliate.png"
-          kicker="여행 제휴 수익화"
-          title="컨텐츠별 상품 링크 자동 매칭"
-          body="여행 아이템은 쇼핑 제휴, 축제는 투어와 숙박, 여행 종합은 투어·숙박·교통·유심·보험까지 연결합니다."
+          kicker="03 제휴 수익화"
+          title="카테고리별 상품을 붙입니다"
+          body="여행 아이템은 쇼핑 제휴, 축제는 투어와 숙박, 여행 종합은 교통·유심·보험까지 확장해 매칭합니다."
           duration={100}
         />
       </Sequence>
       <Sequence from={456} durationInFrames={96}>
         <Stage
           image="app-project.png"
-          kicker="중복 컨텐츠 방지"
-          title="계정별 프롬프트 분리"
-          body="동일한 주제라도 계정별 페르소나, 국가 프롬프트, 매체 프롬프트를 다르게 적용해 반복 글을 줄입니다."
+          kicker="04 중복 방지"
+          title="같은 주제도 다른 글로 만듭니다"
+          body="계정별 페르소나와 국가별 프롬프트를 따로 관리해 다수 계정 운영에서 반복 문장을 줄입니다."
           duration={96}
           imageSide="right"
         />
@@ -204,9 +213,9 @@ export function BlogAutoPilotProof() {
       <Sequence from={544} durationInFrames={96}>
         <Stage
           image="app-settings.png"
-          kicker="검색 노출 로직"
-          title="여행 전문 SEO 세팅"
-          body="글 생성 모델, 이미지 소스, 축제 API, 검색 노출용 구조화 섹션을 운영 설정으로 관리합니다."
+          kicker="05 SEO 운영"
+          title="여행 검색 노출에 맞춰 세팅합니다"
+          body="글 구조, 이미지 소스, 모델 설정, API 키를 분리해 여행 전문 블로그에 맞는 작성 규칙을 유지합니다."
           duration={96}
         />
       </Sequence>
@@ -216,9 +225,9 @@ export function BlogAutoPilotProof() {
       <Sequence from={812} durationInFrames={108}>
         <Stage
           image="portfolio/blogautopilot-multinational/published-post-ko.png"
-          kicker="발행 결과"
-          title="실제 게시 화면으로 증명"
-          body="자동 생성된 글은 플랫폼별 발행기로 전송되고, 발행 내역과 링크가 대시보드에 누적됩니다."
+          kicker="06 발행 결과"
+          title="생성된 글은 운영 이력으로 남습니다"
+          body="작성 결과와 발행 링크는 대시보드에 누적되어 어떤 계정에서 어떤 주제가 처리됐는지 추적할 수 있습니다."
           duration={108}
           imageSide="right"
           crop="cover"

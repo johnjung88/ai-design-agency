@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#f6f8fc"/>
+  <rect x="38" y="34" width="1204" height="652" rx="34" fill="#ffffff" stroke="#d9e4f5" stroke-width="2"/>
+  <text x="80" y="102" font-family="Segoe UI, Malgun Gothic, Arial" font-size="42" font-weight="800" fill="#101827">V-AIO 관리자 운영 구조</text>
+  <text x="80" y="144" font-family="Segoe UI, Malgun Gothic, Arial" font-size="22" fill="#64748b">상담 문의부터 비자 신청, 서류, DB 관리까지 카테고리별로 분리</text>
+  <rect x="80" y="190" width="238" height="410" rx="24" fill="#101827"/>
+  <text x="118" y="242" font-family="Segoe UI, Malgun Gothic, Arial" font-size="24" font-weight="800" fill="#ffffff">관리 메뉴</text>
+  <g font-family="Segoe UI, Malgun Gothic, Arial" font-size="21" font-weight="700" fill="#ffffff">
+    <rect x="112" y="274" width="174" height="40" rx="12" fill="#2563eb"/><text x="132" y="301">대시보드</text>
+    <rect x="112" y="328" width="174" height="40" rx="12" fill="#243044"/><text x="132" y="355">상담 문의</text>
+    <rect x="112" y="382" width="174" height="40" rx="12" fill="#243044"/><text x="132" y="409">기업 진단</text>
+    <rect x="112" y="436" width="174" height="40" rx="12" fill="#243044"/><text x="132" y="463">비자 신청</text>
+    <rect x="112" y="490" width="174" height="40" rx="12" fill="#243044"/><text x="132" y="517">서류 관리</text>
+    <rect x="112" y="544" width="174" height="40" rx="12" fill="#243044"/><text x="132" y="571">DB/API 설정</text>
+  </g>
+  <g font-family="Segoe UI, Malgun Gothic, Arial">
+    <rect x="374" y="206" width="236" height="142" rx="22" fill="#edf5ff" stroke="#bfdbfe"/>
+    <text x="406" y="250" font-size="24" font-weight="800" fill="#111827">상담 수집</text>
+    <text x="406" y="288" font-size="19" fill="#53647d">웹 문의와 챗봇 질문을</text>
+    <text x="406" y="316" font-size="19" fill="#53647d">운영 큐로 통합</text>
+    <rect x="662" y="206" width="236" height="142" rx="22" fill="#f4f0ff" stroke="#ddd6fe"/>
+    <text x="694" y="250" font-size="24" font-weight="800" fill="#111827">비자 로직</text>
+    <text x="694" y="288" font-size="19" fill="#53647d">E-7/E-9 조건과</text>
+    <text x="694" y="316" font-size="19" fill="#53647d">서류 준비 상태 확인</text>
+    <rect x="950" y="206" width="236" height="142" rx="22" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="982" y="250" font-size="24" font-weight="800" fill="#111827">진행 관리</text>
+    <text x="982" y="288" font-size="19" fill="#53647d">신청 단계와 담당 상태를</text>
+    <text x="982" y="316" font-size="19" fill="#53647d">대시보드에 반영</text>
+    <rect x="374" y="406" width="236" height="142" rx="22" fill="#ecfdf5" stroke="#bbf7d0"/>
+    <text x="406" y="450" font-size="24" font-weight="800" fill="#111827">기업/근로자 DB</text>
+    <text x="406" y="488" font-size="19" fill="#53647d">실명은 마스킹하고</text>
+    <text x="406" y="516" font-size="19" fill="#53647d">상태값 중심으로 관리</text>
+    <rect x="662" y="406" width="236" height="142" rx="22" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="694" y="450" font-size="24" font-weight="800" fill="#111827">API 연결</text>
+    <text x="694" y="488" font-size="19" fill="#53647d">OpenAI, Supabase, n8n</text>
+    <text x="694" y="516" font-size="19" fill="#53647d">업무 자동화 연동</text>
+    <rect x="950" y="406" width="236" height="142" rx="22" fill="#fef2f2" stroke="#fecaca"/>
+    <text x="982" y="450" font-size="24" font-weight="800" fill="#111827">서류 상태</text>
+    <text x="982" y="488" font-size="19" fill="#53647d">요청, 검증, 보완, 승인</text>
+    <text x="982" y="516" font-size="19" fill="#53647d">단계를 분리</text>
+  </g>
+  <path d="M610 277H662" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M898 277H950" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M492 348V406" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M780 348V406" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1068 348V406" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+</svg>

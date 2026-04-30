@@ -15,7 +15,19 @@ const contactSchema = z.object({
   phone: z.string().trim().max(30).optional().default(""),
   service_category: z.enum(["web", "app", "design", "video", "automation"]).optional(),
   source: z.enum(["soomgo", "kmong", "search", "referral", "direct"]).optional(),
-  budget_range: z.enum(["under-100k", "100k-500k", "500k-1m", "1m-plus"]).optional(),
+  budget_range: z
+    .enum([
+      "under-50k",
+      "50k-300k",
+      "300k-1m",
+      "1m-3m",
+      "3m-plus",
+      "under-100k",
+      "100k-500k",
+      "500k-1m",
+      "1m-plus",
+    ])
+    .optional(),
   message: z.string().trim().min(1).max(2000),
   locale: z.enum(["ko", "en"]),
 });

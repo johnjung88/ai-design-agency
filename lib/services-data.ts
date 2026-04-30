@@ -82,7 +82,7 @@ export const servicesData: ServiceDetail[] = [
       {
         name: { ko: "랜딩 1P", en: "Landing 1P" },
         eventPrice: "₩50,000~",
-        regularPrice: "₩300,000~",
+        regularPrice: "₩250,000~",
         duration: "1일",
         includes: [
           { ko: "1페이지 반응형 구성", en: "1 responsive page" },
@@ -117,7 +117,7 @@ export const servicesData: ServiceDetail[] = [
     addons: [
       { name: { ko: "페이지 추가", en: "Extra page" }, price: "+₩30,000~" },
       { name: { ko: "다국어 1언어", en: "Extra language" }, price: "+₩20,000~" },
-      { name: { ko: "긴급 당일 작업", en: "Same-day rush" }, price: "+50%" },
+      { name: { ko: "긴급 당일 작업", en: "Same-day rush" }, price: "+30~70%" },
     ],
     relatedPortfolio: ["chueok-korea", "aio-design-agency", "v-aio-website"],
     cta: { ko: "웹사이트 견적 문의", en: "Request website quote" },
@@ -139,7 +139,7 @@ export const servicesData: ServiceDetail[] = [
     process: sharedProcess,
     pricing: [
       {
-        name: { ko: "쇼핑몰 메인 시안", en: "Storefront concept" },
+        name: { ko: "쇼핑몰 메인", en: "Storefront main" },
         eventPrice: "₩150,000~",
         regularPrice: "₩500,000~",
         duration: "2일",
@@ -150,15 +150,26 @@ export const servicesData: ServiceDetail[] = [
         ],
       },
       {
-        name: { ko: "카페24 디자인 패키지", en: "Cafe24 design pack" },
+        name: { ko: "쇼핑몰 풀세팅", en: "Storefront full setup" },
         eventPrice: "₩300,000~",
-        regularPrice: "₩900,000~",
+        regularPrice: "₩1,000,000~",
         duration: "3-5일",
         recommended: true,
         includes: [
           { ko: "메인 + 카테고리 + 배너 세트", en: "Home, category, and banner set" },
           { ko: "12종 레퍼런스 기반 방향 제안", en: "Direction based on 12 reference designs" },
           { ko: "운영 가이드", en: "Operation guide" },
+        ],
+      },
+      {
+        name: { ko: "쇼핑몰 풀커스텀", en: "Storefront full custom" },
+        eventPrice: "₩1,000,000~",
+        regularPrice: "₩3,000,000~",
+        duration: "7-10일",
+        includes: [
+          { ko: "브랜드몰 맞춤 디자인", en: "Custom brand storefront design" },
+          { ko: "주요 화면 흐름 및 운영 가이드", en: "Core screen flow and operation guide" },
+          { ko: "수정 3회", en: "3 revisions" },
         ],
       },
     ],
@@ -182,7 +193,7 @@ export const servicesData: ServiceDetail[] = [
     process: sharedProcess,
     pricing: [
       {
-        name: { ko: "로고", en: "Logo" },
+        name: { ko: "로고 단독", en: "Logo only" },
         eventPrice: "₩10,000~",
         regularPrice: "₩50,000~",
         duration: "1일",
@@ -195,13 +206,24 @@ export const servicesData: ServiceDetail[] = [
       {
         name: { ko: "로고 + 명함", en: "Logo + card" },
         eventPrice: "₩30,000~",
-        regularPrice: "₩120,000~",
+        regularPrice: "₩150,000~",
         duration: "1-2일",
         recommended: true,
         includes: [
           { ko: "로고 세트", en: "Logo set" },
           { ko: "양면 명함 디자인", en: "Double-sided business card" },
           { ko: "인쇄용 PDF", en: "Print-ready PDF" },
+        ],
+      },
+      {
+        name: { ko: "풀브랜딩", en: "Full branding" },
+        eventPrice: "₩100,000~",
+        regularPrice: "₩400,000~",
+        duration: "3일",
+        includes: [
+          { ko: "로고 시스템", en: "Logo system" },
+          { ko: "명함 및 프로필 키트", en: "Business card and profile kit" },
+          { ko: "간단 브랜드 가이드", en: "Simple brand guide" },
         ],
       },
     ],
@@ -218,13 +240,13 @@ export const servicesData: ServiceDetail[] = [
     },
     items: [
       { icon: "◈", name: { ko: "상품 상세", en: "Product detail" }, detail: { ko: "판매 포인트와 이미지 흐름 정리", en: "Sales points and image flow" } },
-      { icon: "◈", name: { ko: "서비스 상세", en: "Service detail" }, detail: { ko: "문제, 해결, 결과, 가격 구조화", en: "Problem, solution, result, and pricing" } },
+      { icon: "◈", name: { ko: "서비스 상세", en: "Service detail" }, detail: { ko: "문제, 해결, 결과, 가격 흐름 정리", en: "Problem, solution, result, and pricing" } },
       { icon: "◈", name: { ko: "플랫폼용 이미지", en: "Marketplace assets" }, detail: { ko: "숨고, 크몽, 쇼핑몰 등록용", en: "For Soomgo, Kmong, and stores" } },
     ],
     process: sharedProcess,
     pricing: [
       {
-        name: { ko: "상세페이지 1장", en: "Detail page 1" },
+        name: { ko: "상세 1장", en: "Detail page 1" },
         eventPrice: "₩30,000~",
         regularPrice: "₩100,000~",
         duration: "1일",
@@ -233,6 +255,28 @@ export const servicesData: ServiceDetail[] = [
           { ko: "1,000~2,000px 세로형", en: "1,000-2,000px vertical design" },
           { ko: "모바일 최적화", en: "Mobile optimized" },
           { ko: "PNG/JPG 납품", en: "PNG/JPG delivery" },
+        ],
+      },
+      {
+        name: { ko: "상세 5장 세트", en: "Detail page 5-set" },
+        eventPrice: "₩120,000~",
+        regularPrice: "₩300,000~",
+        duration: "2-3일",
+        includes: [
+          { ko: "5장 또는 5섹션 세트", en: "5-page or 5-section set" },
+          { ko: "카피 정리", en: "Copy cleanup" },
+          { ko: "수정 2회", en: "2 revisions" },
+        ],
+      },
+      {
+        name: { ko: "상세 풀스택", en: "Full-stack detail page" },
+        eventPrice: "₩250,000~",
+        regularPrice: "₩600,000~",
+        duration: "3-5일",
+        includes: [
+          { ko: "기획 + 카피 + 디자인", en: "Planning, copy, and design" },
+          { ko: "판매 흐름 구성", en: "Sales flow structure" },
+          { ko: "수정 2회", en: "2 revisions" },
         ],
       },
     ],
@@ -256,8 +300,8 @@ export const servicesData: ServiceDetail[] = [
     process: sharedProcess,
     pricing: [
       {
-        name: { ko: "PPT 10페이지", en: "PPT 10 slides" },
-        eventPrice: "₩30,000~",
+        name: { ko: "PPT 10P", en: "PPT 10P" },
+        eventPrice: "₩50,000~",
         regularPrice: "₩100,000~",
         duration: "1-2일",
         recommended: true,
@@ -265,6 +309,28 @@ export const servicesData: ServiceDetail[] = [
           { ko: "10슬라이드 디자인", en: "10-slide design" },
           { ko: "PPTX + PDF 납품", en: "PPTX + PDF delivery" },
           { ko: "수정 1회", en: "1 revision" },
+        ],
+      },
+      {
+        name: { ko: "PPT 20P", en: "PPT 20P" },
+        eventPrice: "₩100,000~",
+        regularPrice: "₩250,000~",
+        duration: "2일",
+        includes: [
+          { ko: "20슬라이드 디자인", en: "20-slide design" },
+          { ko: "도식화 및 레이아웃 정리", en: "Diagram and layout cleanup" },
+          { ko: "수정 2회", en: "2 revisions" },
+        ],
+      },
+      {
+        name: { ko: "PPT 30P+", en: "PPT 30P+" },
+        eventPrice: "₩250,000~",
+        regularPrice: "₩500,000~",
+        duration: "3-5일",
+        includes: [
+          { ko: "30슬라이드 이상 디자인", en: "30+ slide design" },
+          { ko: "기획 흐름 및 도식화", en: "Structure and diagramming" },
+          { ko: "수정 2회", en: "2 revisions" },
         ],
       },
     ],
@@ -289,12 +355,12 @@ export const servicesData: ServiceDetail[] = [
     process: sharedProcess,
     pricing: [
       {
-        name: { ko: "데이터 크롤링", en: "Data crawling" },
-        eventPrice: "₩50,000~",
-        regularPrice: "₩200,000~",
+        name: { ko: "자동화 단순", en: "Simple automation" },
+        eventPrice: "₩100,000~",
+        regularPrice: "₩300,000~",
         duration: "1일",
         includes: [
-          { ko: "공개 데이터 기준", en: "Public data only" },
+          { ko: "단일 업무 자동화/크롤링", en: "Single workflow or crawling task" },
           { ko: "엑셀/CSV 납품", en: "Excel/CSV delivery" },
           { ko: "처리 흐름 설명", en: "Workflow explanation" },
         ],
@@ -312,10 +378,10 @@ export const servicesData: ServiceDetail[] = [
         ],
       },
       {
-        name: { ko: "MVP 앱", en: "MVP app" },
-        eventPrice: "₩500,000~",
-        regularPrice: "₩1,500,000~",
-        duration: "5일",
+        name: { ko: "고급 자동화/앱 MVP", en: "Advanced automation / MVP app" },
+        eventPrice: "₩1,500,000~",
+        regularPrice: "₩5,000,000~",
+        duration: "5-7일",
         includes: [
           { ko: "핵심 화면 2~3개", en: "2-3 core screens" },
           { ko: "기본 DB/인증", en: "Basic DB/auth" },
@@ -336,7 +402,7 @@ export const servicesData: ServiceDetail[] = [
   },
   {
     id: "video-content",
-    title: { ko: "영상 컨텐츠", en: "Video Content" },
+    title: { ko: "영상 콘텐츠", en: "Video Content" },
     subtitle: "Video",
     description: {
       ko: "브랜드 인트로, 홍보 영상, 쇼츠·릴스, 튜토리얼 영상을 제작합니다.",
@@ -351,26 +417,37 @@ export const servicesData: ServiceDetail[] = [
     process: sharedProcess,
     pricing: [
       {
-        name: { ko: "30초 홍보 영상", en: "30s promo video" },
-        eventPrice: "₩50,000~",
-        regularPrice: "₩200,000~",
+        name: { ko: "30초 숏폼 1개", en: "30s short-form video" },
+        eventPrice: "₩100,000~",
+        regularPrice: "₩150,000~",
         duration: "1-3일",
         recommended: true,
         includes: [
-          { ko: "16:9 또는 9:16 1개 비율", en: "One ratio: 16:9 or 9:16" },
+          { ko: "30초 숏폼 1개", en: "One 30s short-form video" },
           { ko: "BGM 및 자막", en: "BGM and captions" },
-          { ko: "수정 2회", en: "2 revisions" },
+          { ko: "수정 1회", en: "1 revision" },
         ],
       },
       {
-        name: { ko: "쇼츠·릴스 세트", en: "Shorts/Reels set" },
-        eventPrice: "₩100,000~",
-        regularPrice: "₩400,000~",
+        name: { ko: "60초 또는 숏폼 3개", en: "60s video or 3 shorts" },
+        eventPrice: "₩250,000~",
+        regularPrice: "₩350,000~",
         duration: "2-3일",
         includes: [
-          { ko: "세로형 영상 3~9개", en: "3-9 vertical videos" },
+          { ko: "60초 홍보 영상 또는 숏폼 3개", en: "60s promo video or 3 short-form videos" },
           { ko: "썸네일/캡션 포함", en: "Thumbnail and caption included" },
           { ko: "플랫폼별 내보내기", en: "Platform-ready exports" },
+        ],
+      },
+      {
+        name: { ko: "브랜드 영상 세트", en: "Brand video set" },
+        eventPrice: "₩600,000~",
+        regularPrice: "₩900,000~",
+        duration: "3-7일",
+        includes: [
+          { ko: "브랜드 영상 세트", en: "Brand video set" },
+          { ko: "구성안 포함", en: "Storyboard included" },
+          { ko: "수정 2회", en: "2 revisions" },
         ],
       },
     ],
@@ -391,5 +468,5 @@ export const serviceCategories: { label: LocalizedString; value: ServiceCategory
   { label: { ko: "상세페이지", en: "Detail Page" }, value: "detail-page", icon: "FileImage" },
   { label: { ko: "PPT 디자인", en: "PPT Design" }, value: "ppt-design", icon: "Presentation" },
   { label: { ko: "자동화 및 앱", en: "Automation & App" }, value: "automation-app", icon: "Bot" },
-  { label: { ko: "영상 컨텐츠", en: "Video Content" }, value: "video-content", icon: "Video" },
+  { label: { ko: "영상 콘텐츠", en: "Video Content" }, value: "video-content", icon: "Video" },
 ];

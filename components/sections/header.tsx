@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { NavDropdown, MobileNavAccordion } from "@/components/ui/nav-dropdown";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { BrandLogo } from "@/components/ui/brand-logo";
 
 export function Header() {
   const locale = useLocale();
@@ -56,7 +56,7 @@ export function Header() {
       description: isKo ? "업무 자동화·MVP 앱" : "Ops automation · MVP app",
     },
     {
-      label: isKo ? "영상 컨텐츠" : "Video Content",
+      label: isKo ? "영상 콘텐츠" : "Video Content",
       href: `${base}/services/video-content`,
       description: isKo ? "마케팅·쇼츠·모션" : "Marketing · Shorts · Motion",
     },
@@ -70,7 +70,7 @@ export function Header() {
     { label: isKo ? "상세페이지" : "Detail Page", href: `${base}/portfolio/category/detail-page` },
     { label: isKo ? "PPT 디자인" : "PPT Design", href: `${base}/portfolio/category/ppt-design` },
     { label: isKo ? "자동화 및 앱" : "Automation & App", href: `${base}/portfolio/category/automation-app` },
-    { label: isKo ? "영상 컨텐츠" : "Video Content", href: `${base}/portfolio/category/video-content` },
+    { label: isKo ? "영상 콘텐츠" : "Video Content", href: `${base}/portfolio/category/video-content` },
   ];
 
   return (
@@ -85,17 +85,10 @@ export function Header() {
         {/* 로고 */}
         <Link
           href={base}
-          className="flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none"
+          className="flex shrink-0 items-center py-1 transition-opacity hover:opacity-85 focus-visible:outline-none"
           aria-label="AIO에이전시 홈"
         >
-          <Image
-            src="/logo.svg"
-            alt="AIO"
-            width={110}
-            height={28}
-            priority
-            className="h-7 w-auto"
-          />
+          <BrandLogo />
         </Link>
 
         {/* 데스크톱 네비 */}

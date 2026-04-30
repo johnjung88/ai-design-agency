@@ -129,7 +129,7 @@ export const portfolioGroups: {
   { value: "detail-page", label: { ko: "상세페이지", en: "Detail Page" }, icon: "📄" },
   { value: "ppt-design", label: { ko: "PPT 디자인", en: "PPT Design" }, icon: "📊" },
   { value: "automation-app", label: { ko: "자동화 및 앱", en: "Automation & App" }, icon: "⚙️" },
-  { value: "video-content", label: { ko: "영상 컨텐츠", en: "Video Content" }, icon: "🎬" },
+  { value: "video-content", label: { ko: "영상 콘텐츠", en: "Video Content" }, icon: "🎬" },
 ];
 
 interface LogoConceptSpec {
@@ -1084,7 +1084,7 @@ const pptPortfolioProjects: PortfolioProject[] = [
     type: "design",
     subtype: "ppt",
     visibility: "private-result",
-    proofType: "screenshots",
+    proofType: "video",
     mediaPolicy: "rich-gallery",
     title: { ko: "정부지원사업 발표 PPT 패키지", en: "Government Grant Presentation Decks" },
     summary: {
@@ -1127,7 +1127,13 @@ const pptPortfolioProjects: PortfolioProject[] = [
       deck: "/portfolio/ppt-design/government-grant/deck.pptx",
     },
     cover: "/portfolio/ppt-design/government-grant/cover-slide.png",
-    gallery: ["/portfolio/ppt-design/government-grant/cover-slide.png"],
+    gallery: [
+      "/portfolio/ppt-design/government-grant/cover-slide.png",
+      "/portfolio/ppt-design/government-grant/sample-2.png",
+      "/portfolio/ppt-design/government-grant/sample-3.png",
+      "/portfolio/ppt-design/government-grant/sample-4.png",
+      "/portfolio/ppt-design/government-grant/sample-5.png",
+    ],
     size: "md",
     featured: false,
     publishedAt: "2026-04-29",
@@ -1181,7 +1187,13 @@ const pptPortfolioProjects: PortfolioProject[] = [
       deck: "/portfolio/ppt-design/ir-investment/deck.pptx",
     },
     cover: "/portfolio/ppt-design/ir-investment/cover-slide.png",
-    gallery: ["/portfolio/ppt-design/ir-investment/cover-slide.png"],
+    gallery: [
+      "/portfolio/ppt-design/ir-investment/cover-slide.png",
+      "/portfolio/ppt-design/ir-investment/sample-2.png",
+      "/portfolio/ppt-design/ir-investment/sample-3.png",
+      "/portfolio/ppt-design/ir-investment/sample-4.png",
+      "/portfolio/ppt-design/ir-investment/sample-5.png",
+    ],
     size: "md",
     featured: false,
     publishedAt: "2026-04-29",
@@ -1235,7 +1247,13 @@ const pptPortfolioProjects: PortfolioProject[] = [
       deck: "/portfolio/ppt-design/brand-proposal/deck.pptx",
     },
     cover: "/portfolio/ppt-design/brand-proposal/cover-slide.png",
-    gallery: ["/portfolio/ppt-design/brand-proposal/cover-slide.png"],
+    gallery: [
+      "/portfolio/ppt-design/brand-proposal/cover-slide.png",
+      "/portfolio/ppt-design/brand-proposal/sample-2.png",
+      "/portfolio/ppt-design/brand-proposal/sample-3.png",
+      "/portfolio/ppt-design/brand-proposal/sample-4.png",
+      "/portfolio/ppt-design/brand-proposal/sample-5.png",
+    ],
     size: "md",
     featured: true,
     publishedAt: "2026-04-29",
@@ -1289,7 +1307,13 @@ const pptPortfolioProjects: PortfolioProject[] = [
       deck: "/portfolio/ppt-design/seminar-lecture/deck.pptx",
     },
     cover: "/portfolio/ppt-design/seminar-lecture/cover-slide.png",
-    gallery: ["/portfolio/ppt-design/seminar-lecture/cover-slide.png"],
+    gallery: [
+      "/portfolio/ppt-design/seminar-lecture/cover-slide.png",
+      "/portfolio/ppt-design/seminar-lecture/sample-2.png",
+      "/portfolio/ppt-design/seminar-lecture/sample-3.png",
+      "/portfolio/ppt-design/seminar-lecture/sample-4.png",
+      "/portfolio/ppt-design/seminar-lecture/sample-5.png",
+    ],
     size: "md",
     featured: false,
     publishedAt: "2026-04-29",
@@ -1343,7 +1367,13 @@ const pptPortfolioProjects: PortfolioProject[] = [
       deck: "/portfolio/ppt-design/school-assignment/deck.pptx",
     },
     cover: "/portfolio/ppt-design/school-assignment/cover-slide.png",
-    gallery: ["/portfolio/ppt-design/school-assignment/cover-slide.png"],
+    gallery: [
+      "/portfolio/ppt-design/school-assignment/cover-slide.png",
+      "/portfolio/ppt-design/school-assignment/sample-2.png",
+      "/portfolio/ppt-design/school-assignment/sample-3.png",
+      "/portfolio/ppt-design/school-assignment/sample-4.png",
+      "/portfolio/ppt-design/school-assignment/sample-5.png",
+    ],
     size: "md",
     featured: false,
     publishedAt: "2026-04-29",
@@ -1453,7 +1483,7 @@ export const portfolioProjects: PortfolioProject[] = [
     mediaPolicy: "rich-gallery",
     title: { ko: "AIO 브랜드 숏폼 영상 패키지", en: "AIO Brand Shorts Package" },
     summary: {
-      ko: "브랜드 인트로, 자막, CTA를 쇼츠·릴스용 9:16 포맷으로 구성한 영상 컨텐츠 샘플.",
+      ko: "브랜드 인트로, 자막, CTA를 쇼츠·릴스용 9:16 포맷으로 구성한 영상 콘텐츠 샘플.",
       en: "A short-form video content sample with brand intro, subtitles, and CTA in 9:16 format.",
     },
     problem: {
@@ -1551,7 +1581,7 @@ export const portfolioProjects: PortfolioProject[] = [
       en: "When scope, proof, and pricing are scattered, potential clients take longer to move into consultation.",
     },
     solution: {
-      ko: "7개 서비스 카테고리, 실제 결과물, 가격표, 구조화 견적 폼이 이어져 방문자가 필요한 정보를 빠르게 확인할 수 있어야 합니다.",
+      ko: "7개 서비스 카테고리, 실제 결과물, 가격표, 견적 문의 흐름이 이어져 방문자가 필요한 정보를 빠르게 확인할 수 있어야 합니다.",
       en: "Seven service categories, real project proof, pricing, and a structured quote form are connected for fast client review.",
     },
     impact: {
@@ -1618,12 +1648,12 @@ export const portfolioProjects: PortfolioProject[] = [
     client: "비공개 결과물",
     links: { live: null, github: null, case: "/portfolio/v-aio-website" },
     responsivePreview: {
-      desktop: "/portfolio/v-aio-website/site.png",
+      desktop: "/portfolio/v-aio-website/live.png",
       mobile: "/portfolio/v-aio-website/mobile-preview.png",
     },
-    cover: "/portfolio/v-aio-website/site.png",
+    cover: "/portfolio/v-aio-website/live.png",
     gallery: [
-      "/portfolio/v-aio-website/site.png",
+      "/portfolio/v-aio-website/live.png",
       "/portfolio/v-aio-website/mobile-preview.png",
       "/portfolio/v-aio-admin/dashboard.png",
       "/portfolio/v-aio-admin/chatbot.png",
@@ -1695,7 +1725,7 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     impact: {
       ko: "고객은 민감한 계정 정보 없이도 운영 규모, 발행 흐름, 처리 지표를 확인해 자동화 수준을 판단할 수 있습니다.",
-      en: "Only result screens and KPIs are shown; code and repositories stay private.",
+      en: "Only sanitized result screens and KPIs are shown, so sensitive operating details stay private.",
     },
     resultSummary: {
       ko: "계정명과 민감 데이터는 제거하고, 실제 운영 흐름을 이해할 수 있는 결과 화면과 지표만 공개합니다.",
@@ -1816,40 +1846,50 @@ export const portfolioProjects: PortfolioProject[] = [
     mediaPolicy: "rich-gallery",
     title: { ko: "V-AIO 관리자·챗봇 운영 시스템", en: "V-AIO Admin & Chatbot Operations System" },
     summary: {
-      ko: "E-7/E-9 비자 상담, 기업 진단, 신청 관리, 서류 흐름, VisaBot 챗봇을 연결한 운영 시스템 결과 화면.",
-      en: "A private operations system connecting E-7/E-9 consultations, company checks, applications, documents, and VisaBot chat.",
+      ko: "E-7/E-9 비자 상담, 관리자 대시보드, VisaBot 챗봇, API/DB 운영 흐름을 영상으로 정리한 자동화 사례.",
+      en: "A video proof case connecting E-7/E-9 consultations, admin dashboards, VisaBot, APIs, and DB operations.",
     },
     problem: {
       ko: "상담 문의, 비자 타입, 기업/근로자 상태, 서류 확인이 흩어져 있어 운영자가 한 화면에서 관리하기 어려웠습니다.",
       en: "Consultations, visa types, company/worker status, and documents were scattered across the workflow.",
     },
     solution: {
-      ko: "상담 접수, 기업 진단, 서류 상태, 챗봇 응답 흐름이 한 운영 화면 안에서 이어져야 합니다.",
+      ko: "상담 접수, 기업 진단, 서류 상태, 챗봇 응답, API와 DB 상태가 한 운영 화면 안에서 이어져야 합니다.",
       en: "Built admin dashboards and consultation management screens, then connected a VisaBot chat flow aware of E-7/E-9 context.",
     },
     impact: {
-      ko: "운영자는 상담 현황과 챗봇 응답 흐름을 함께 확인해 반복 안내를 줄이고, 고객은 필요한 절차를 더 빠르게 이해할 수 있습니다.",
-      en: "Code and repository remain private; only admin screens, chatbot screens, and feature structure are shown as automation/app proof.",
+      ko: "운영자는 상담 현황과 챗봇 응답, 비자 진행 단계, DB 상태를 함께 확인해 반복 안내와 관리 누락을 줄일 수 있습니다.",
+      en: "Sensitive operating details are removed, while admin screens, chatbot screens, and feature structure remain reviewable.",
     },
     kpis: [
       { value: "E-7/E-9", unit: "", label: { ko: "비자 타입 대응", en: "Visa type coverage" } },
       { value: "9", unit: "개", label: { ko: "관리 메뉴 구조", en: "Admin menu modules" } },
+      { value: "3", unit: "개", label: { ko: "API/DB 연동 축", en: "API/DB layers" } },
     ],
     deliverables: [
       { ko: "운영 현황 화면", en: "Operations dashboard" },
       { ko: "상담 문의 관리", en: "Consultation management" },
       { ko: "VisaBot 챗봇 화면", en: "VisaBot chatbot screen" },
+      { ko: "API·DB·업무 로직 구조도", en: "API, DB, and workflow logic map" },
       { ko: "기업 진단·비자 신청·서류 관리 흐름", en: "Company check, application, and document flow" },
     ],
-    stack: ["Next.js", "TypeScript", "Supabase", "n8n", "Chat Workflow"],
+    stack: ["Next.js", "TypeScript", "Supabase", "OpenAI API", "n8n", "Chat Workflow"],
     role: ["기획", "관리자 UI", "챗봇 흐름", "운영 설계"],
     duration: "5일+",
     client: "비공개 결과물",
-    links: { live: null, github: null, case: "/portfolio/v-aio-chatbot" },
+    links: {
+      live: null,
+      github: null,
+      case: "/portfolio/v-aio-chatbot",
+      video: "/portfolio/v-aio-admin/v-aio-admin-proof.mp4",
+    },
     cover: "/portfolio/v-aio-admin/dashboard.png",
     gallery: [
       "/portfolio/v-aio-admin/dashboard.png",
       "/portfolio/v-aio-admin/chatbot.png",
+      "/portfolio/v-aio-admin/admin-module-map.svg",
+      "/portfolio/v-aio-admin/logic-api-db.svg",
+      "/portfolio/v-aio-admin/masked-db-table.svg",
       "/portfolio/v-aio-chatbot/cover.svg",
     ],
     size: "lg",
@@ -1863,7 +1903,17 @@ export function getPortfolioProjectBySlug(slug: string): PortfolioProject | unde
 }
 
 export function getFeaturedProjects(): PortfolioProject[] {
-  return portfolioProjects.filter((p) => p.featured);
+  const featured = portfolioProjects.filter((p) => p.featured);
+  const featuredIds = new Set(featured.map((p) => p.id));
+  const supplemental = portfolioProjects.filter(
+    (p) =>
+      !featuredIds.has(p.id) &&
+      p.cover &&
+      p.cover !== "/portfolio/placeholder.svg" &&
+      !p.cover.endsWith(".svg")
+  );
+
+  return [...featured, ...supplemental].slice(0, 9);
 }
 
 export function getProjectsByType(type: PortfolioType): PortfolioProject[] {

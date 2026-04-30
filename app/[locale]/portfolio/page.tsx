@@ -46,7 +46,7 @@ export default function PortfolioPage() {
           />
           <div className="mt-6 rounded-lg border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-6 text-cyan-100">
             {locale === "ko"
-              ? "비공개 레포와 로컬 작업물은 코드·레포 링크를 공개하지 않고, 민감 정보를 제거한 결과 화면·KPI·작업 설명만 포트폴리오로 보여줍니다."
+              ? "비공개 작업물은 민감 정보를 제거한 결과 화면, 핵심 지표, 작업 설명만 공개해 고객이 완성도와 납품 수준을 확인할 수 있도록 보여줍니다."
               : "Private repositories and local work are shown only through sanitized result screens, KPIs, and work summaries. Code and repository links are hidden."}
           </div>
         </div>
