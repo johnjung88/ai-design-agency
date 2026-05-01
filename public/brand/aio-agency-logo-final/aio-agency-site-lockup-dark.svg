@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="136" viewBox="0 0 320 136" fill="none">
+  <defs>
+    <linearGradient id="aioAgencyLine" x1="52" y1="0" x2="268" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06B6D4"/>
+      <stop offset=".58" stop-color="#2F6BFF"/>
+      <stop offset="1" stop-color="#A8FF3E"/>
+    </linearGradient>
+  </defs>
+  <text x="160" y="58" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="950" letter-spacing="-1.8" fill="#F8FAFC">AIO</text>
+  <rect x="82" y="70" width="156" height="5.5" rx="2.75" fill="url(#aioAgencyLine)"/>
+  <text x="160" y="100" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" letter-spacing="5.2" fill="#A9B5C5">ALL-IN-ONE</text>
+  <text x="160" y="125" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="900" letter-spacing="5.8" fill="#A9B5C5">AGENCY</text>
+</svg>
