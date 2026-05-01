@@ -16,22 +16,22 @@ const plansByTab: Record<ServiceTab, Plan[]> = {
   branding: [
     {
       name: "Basic",
-      price: "₩10,000~",
-      desc: "로고 단독",
-      features: ["로고 1안", "PNG/SVG 납품", "수정 1회"],
+      price: "₩29,000",
+      desc: "입문형 로고·명함",
+      features: ["로고 1안", "명함 1안", "수정 1회", "PNG/JPG/PDF"],
     },
     {
       name: "Pro",
-      price: "₩30,000~",
-      desc: "로고 + 명함",
-      features: ["로고 2안", "명함 양면", "인쇄용 PDF"],
+      price: "₩49,000",
+      desc: "실속형 로고 3안·명함",
+      features: ["로고 3안", "최종 1안 선택", "명함 1안", "수정 2회"],
       highlight: true,
     },
     {
       name: "Enterprise",
-      price: "₩100,000~",
-      desc: "풀브랜딩",
-      features: ["로고 시스템", "명함 및 프로필 키트", "간단 브랜드 가이드"],
+      price: "₩99,000",
+      desc: "창업형 브랜드 키트",
+      features: ["로고 3안", "명함 1안", "SNS 프로필", "실사 목업 3컷", "미니 가이드"],
     },
   ],
   web: [

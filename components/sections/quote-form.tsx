@@ -15,9 +15,9 @@ const SUBTYPES: Record<ServiceCategory, { value: string; ko: string; en: string 
     { value: "commerce-banner", ko: "배너/상품 진열", en: "Banner/product layout" },
   ],
   "logo-business-card": [
-    { value: "logo", ko: "로고", en: "Logo" },
-    { value: "business-card", ko: "명함", en: "Business card" },
-    { value: "brand-kit", ko: "로고+명함 세트", en: "Logo+card kit" },
+    { value: "starter-logo-card", ko: "입문형 로고·명함 29,000원", en: "Starter logo & card ₩29,000" },
+    { value: "value-logo-3-card", ko: "실속형 로고 3안·명함 49,000원", en: "Value logo 3 concepts & card ₩49,000" },
+    { value: "startup-brand-kit", ko: "창업형 브랜드 키트 99,000원", en: "Startup brand kit ₩99,000" },
   ],
   "detail-page": [
     { value: "product-detail", ko: "상품 상세페이지", en: "Product detail page" },
