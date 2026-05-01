@@ -75,7 +75,7 @@ const testimonials = [
     tag: { ko: "제안서", en: "Proposal" },
     name: { ko: "B2B 제안 담당자", en: "B2B proposal manager" },
     meta: { ko: "제안서 리디자인 · 원본 납품", en: "Proposal redesign · editable deck" },
-    image: "/marketplace/kmong-portfolio/ppt-portfolio-cover.png",
+    image: "/portfolio/ppt-design/beanbrew-b2b-proposal/cover.png",
     result: { ko: "제안 흐름과 표지 인상을 발표용으로 정리", en: "Proposal flow and cover presence polished" },
     points: {
       ko: ["표지 개선", "흐름 정리", "원본 납품"],

@@ -20,7 +20,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "hero" });
   return {
     title: {
-      default: `AIO에이전시 · 정재홍 | ${t("headline")}`,
+      default: `AIO에이전시 | ${t("headline")}`,
       template: "%s | AIO에이전시",
     },
   };

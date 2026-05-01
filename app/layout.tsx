@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "AIO에이전시 · 정재홍 | 5일 결과물 보장",
+    default: "AIO에이전시 | 5일 결과물 보장",
     template: "%s | AIO에이전시",
   },
   description:
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
     "긴급 당일 작업",
     "가성비",
   ],
-  authors: [{ name: "정재홍", url: "https://aio-agency.vercel.app" }],
-  creator: "정재홍 (AIO에이전시)",
+  authors: [{ name: "AIO에이전시", url: "https://aio-make.com" }],
+  creator: "AIO에이전시",
   openGraph: {
     type: "website",
     locale: "ko_KR",
