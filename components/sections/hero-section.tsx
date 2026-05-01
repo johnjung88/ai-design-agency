@@ -15,7 +15,7 @@ export function HeroSection() {
   const proofTiles = [
     { value: isKo ? "5일" : "5D", label: isKo ? "최대 결과물 보장" : "max delivery promise" },
     { value: "7", label: isKo ? "판매 카테고리" : "service categories" },
-    { value: "V6", label: isKo ? "공개 단가표 기준" : "published pricing" },
+    { value: isKo ? "가격" : "Price", label: isKo ? "공개 단가표 운영" : "transparent pricing" },
     { value: isKo ? "14일" : "14D", label: isKo ? "기본 A/S 기간" : "basic support window" },
   ];
 

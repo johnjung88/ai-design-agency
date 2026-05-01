@@ -281,7 +281,7 @@ export const servicesData: ServiceDetail[] = [
       },
     ],
     addons: [{ name: { ko: "길이 +1,000px", en: "+1,000px length" }, price: "+₩10,000" }],
-    relatedPortfolio: ["detail-page-skincare"],
+    relatedPortfolio: ["detail-page-ampoule-anti-aging", "detail-page-premium-mealkit", "detail-page-linen-onepiece"],
     cta: { ko: "상세페이지 견적 문의", en: "Request detail page quote" },
   },
   {

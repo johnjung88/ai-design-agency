@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, ArrowLeft, Github, CheckCircle2, FileText, Clock3, Monitor, Smartphone, Download } from "lucide-react";
+import { ExternalLink, ArrowLeft, CheckCircle2, FileText, Clock3, Monitor, Smartphone, Download } from "lucide-react";
 import type { Metadata } from "next";
 import { formatProjectDuration, getPortfolioProjectBySlug, getPortfolioGroup, portfolioProjects } from "@/lib/portfolio-data";
 import { TypeBadge } from "@/components/ui/type-badge";
@@ -42,6 +42,7 @@ export default async function ProjectPage({
   const projectGroup = getPortfolioGroup(project);
   const isShoppingMall = projectGroup === "shopping-mall";
   const isPptProject = projectGroup === "ppt-design";
+  const isDetailPageProject = projectGroup === "detail-page";
   const quoteHref = `${base}/quote?category=${projectGroup}`;
   const similarWorkLabel = isShoppingMall
     ? l === "ko" ? "비슷한 쇼핑몰 문의" : "Request similar store"
@@ -133,12 +134,28 @@ export default async function ProjectPage({
             </div>
           </section>
         ) : project.cover && project.cover !== "/portfolio/placeholder.svg" && (
-          <div className={`relative mb-10 w-full overflow-hidden rounded-lg bg-secondary ${isPptProject ? "aspect-video" : "aspect-[16/7]"}`}>
+          <div
+            className={`relative mb-10 w-full overflow-hidden rounded-lg ${
+              isDetailPageProject
+                ? "aspect-[4/3] border border-white/8 bg-white md:aspect-[16/9]"
+                : isPptProject
+                  ? "aspect-video bg-secondary"
+                  : "aspect-[16/7] bg-secondary"
+            }`}
+          >
             <Image
               src={project.cover}
               alt={project.title[l]}
               fill
-              className={isPptProject ? "object-contain" : isRasterCover ? "object-cover" : "object-contain p-2"}
+              className={
+                isDetailPageProject
+                  ? "object-contain object-top"
+                  : isPptProject
+                    ? "object-contain"
+                    : isRasterCover
+                      ? "object-cover"
+                      : "object-contain p-2"
+              }
               priority
               sizes="(max-width: 1400px) 100vw"
             />
@@ -188,17 +205,6 @@ export default async function ProjectPage({
                 <Clock3 className="size-3.5" />
                 {l === "ko" ? "카페24 디자인센터 등록 예정" : "Cafe24 Design Center planned"}
               </span>
-            )}
-            {project.visibility === "public" && project.links.github && (
-              <Link
-                href={project.links.github}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/12 px-5 text-xs font-semibold text-foreground transition-colors hover:border-white/25"
-              >
-                <Github className="size-3.5" />
-                GitHub
-              </Link>
             )}
             {project.downloads?.planning && (
               <a
@@ -336,30 +342,56 @@ export default async function ProjectPage({
         {project.gallery.length > 0 && (
           <div>
             <h2 className="mb-4 text-sm font-semibold text-foreground">
-              {l === "ko" ? "결과 화면" : "Gallery"}
+              {isDetailPageProject
+                ? l === "ko" ? "전체 상세페이지 결과 화면" : "Full Detail Page Result"
+                : l === "ko" ? "결과 화면" : "Gallery"}
             </h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {project.gallery.map((src, i) => (
-                <div
-                  key={i}
-                  className={`relative overflow-hidden rounded-lg bg-secondary ${isPptProject ? "aspect-video" : "aspect-[16/10]"}`}
-                >
-                  {(() => {
-                    const isRasterGallery = /\.(png|jpe?g|webp)$/i.test(src);
-                    const isPortraitPreview = /(?:^|\/|-)mobile(?:-preview|-v2|-final|-photo)?\.(png|jpe?g|webp)$/i.test(src);
-                    return (
-                  <Image
-                    src={src}
-                    alt={`${project.title[l]} ${i + 1}`}
-                    fill
-                    className={isPptProject || isPortraitPreview ? "object-contain" : isRasterGallery ? "object-cover" : "object-contain p-2"}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                    );
-                  })()}
-                </div>
-              ))}
-            </div>
+            {isDetailPageProject ? (
+              <div className="space-y-6">
+                {project.gallery.filter((src) => /detail\.(jpe?g|png|webp)$/i.test(src)).map((src, i) => (
+                  <a
+                    key={src}
+                    href={src}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block overflow-hidden rounded-lg border border-white/8 bg-white"
+                    aria-label={`${project.title[l]} ${l === "ko" ? "전체 상세페이지 원본 보기" : "open full detail page"}`}
+                  >
+                    <Image
+                      src={src}
+                      alt={`${project.title[l]} ${l === "ko" ? "전체 상세페이지" : "full detail page"} ${i + 1}`}
+                      width={1000}
+                      height={7200}
+                      className="h-auto w-full"
+                      sizes="(max-width: 1400px) 100vw, 1200px"
+                    />
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {project.gallery.map((src, i) => (
+                  <div
+                    key={i}
+                    className={`relative overflow-hidden rounded-lg bg-secondary ${isPptProject ? "aspect-video" : "aspect-[16/10]"}`}
+                  >
+                    {(() => {
+                      const isRasterGallery = /\.(png|jpe?g|webp)$/i.test(src);
+                      const isPortraitPreview = /(?:^|\/|-)mobile(?:-preview|-v2|-final|-photo)?\.(png|jpe?g|webp)$/i.test(src);
+                      return (
+                        <Image
+                          src={src}
+                          alt={`${project.title[l]} ${i + 1}`}
+                          fill
+                          className={isPptProject || isPortraitPreview ? "object-contain" : isRasterGallery ? "object-cover" : "object-contain p-2"}
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      );
+                    })()}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 

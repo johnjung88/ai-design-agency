@@ -1796,6 +1796,462 @@ const additionalPptPortfolioProjects: PortfolioProject[] = additionalPptSpecs.ma
   publishedAt: "2026-04-30",
 }));
 
+interface DetailPageSpec {
+  slug: string;
+  title: LocalizedString;
+  summary: LocalizedString;
+  problem: LocalizedString;
+  solution: LocalizedString;
+  impact: LocalizedString;
+  resultSummary: LocalizedString;
+  stack: string[];
+  role: string[];
+  duration: string;
+  featured?: boolean;
+}
+
+const detailPageSpecs: DetailPageSpec[] = [
+  {
+    slug: "ampoule-anti-aging",
+    title: { ko: "안티에이징 앰플 상세페이지", en: "Anti-Aging Ampoule Detail Page" },
+    summary: {
+      ko: "성분 신뢰, 피부 고민, 사용 루틴을 한 흐름으로 연결한 뷰티 앰플 판매 상세페이지입니다.",
+      en: "A beauty ampoule detail page connecting ingredient trust, skin concerns, and usage routine.",
+    },
+    problem: {
+      ko: "기능성 앰플은 성분과 효과를 어렵게 설명하면 구매자가 차이를 느끼기 어렵습니다.",
+      en: "Functional ampoules are hard to compare when ingredients and effects are explained too technically.",
+    },
+    solution: {
+      ko: "첫 화면에서 핵심 효능을 먼저 보여주고, 성분 근거와 사용 장면을 순서대로 배치해 구매 이유가 자연스럽게 쌓이도록 구성했습니다.",
+      en: "The page leads with the key benefit, then organizes ingredient proof and usage scenes in order.",
+    },
+    impact: {
+      ko: "구매자는 내 피부 고민에 맞는 제품인지 빠르게 판단하고, 상세페이지를 읽는 동안 구매 확신을 단계적으로 얻습니다.",
+      en: "Shoppers can judge fit quickly and build purchase confidence as they scroll.",
+    },
+    resultSummary: {
+      ko: "앰플의 기능성, 신뢰 근거, 사용 루틴이 한눈에 이어지는 세로형 상세페이지 결과물입니다.",
+      en: "A vertical sales page that connects function, trust proof, and product routine.",
+    },
+    stack: ["Beauty Detail", "Ingredient Trust", "Sales Copy", "Vertical Design"],
+    role: ["상품 구조화", "카피", "상세페이지 디자인"],
+    duration: "1-2일",
+    featured: true,
+  },
+  {
+    slug: "vegan-cleanser",
+    title: { ko: "비건 클렌저 상세페이지", en: "Vegan Cleanser Detail Page" },
+    summary: {
+      ko: "저자극, 세정력, 비건 포인트를 첫 구매자가 쉽게 이해하도록 정리한 클렌저 상세페이지입니다.",
+      en: "A cleanser detail page that makes gentle cleansing, vegan positioning, and usage value easy to understand.",
+    },
+    problem: {
+      ko: "클렌저는 비슷한 제품이 많아 저자극과 세정력을 동시에 설득하지 못하면 구매 이유가 약해집니다.",
+      en: "Cleansers need to prove both gentleness and cleansing power to stand out.",
+    },
+    solution: {
+      ko: "피부 자극 걱정, 사용감, 세정 후 만족감을 순서대로 보여줘 구매자가 제품 장점을 빠르게 비교하도록 구성했습니다.",
+      en: "The page sequences irritation concern, usage feel, and after-cleansing satisfaction.",
+    },
+    impact: {
+      ko: "구매자는 민감 피부에도 쓸 수 있는지와 실제 사용감이 어떤지 빠르게 이해해 장바구니 진입 장벽이 낮아집니다.",
+      en: "Shoppers can quickly understand skin fit and expected usage feel, reducing purchase hesitation.",
+    },
+    resultSummary: {
+      ko: "저자극 클렌징 제품의 구매 포인트를 모바일에서 읽기 쉽게 정리한 상세페이지입니다.",
+      en: "A mobile-readable detail page for a gentle cleansing product.",
+    },
+    stack: ["Beauty Detail", "Vegan Concept", "Mobile Sales Page"],
+    role: ["상품 메시지", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "herbal-cream",
+    title: { ko: "한방 크림 상세페이지", en: "Herbal Cream Detail Page" },
+    summary: {
+      ko: "프리미엄 선물감, 원료 신뢰, 보습 케어를 고급스럽게 전달하는 한방 크림 상세페이지입니다.",
+      en: "A premium herbal cream detail page built around gift value, ingredient trust, and moisture care.",
+    },
+    problem: {
+      ko: "고가 크림은 첫 화면에서 선물 가치와 제품 신뢰가 동시에 느껴지지 않으면 가격 설득이 어렵습니다.",
+      en: "Premium creams need to communicate gift value and product trust from the first screen.",
+    },
+    solution: {
+      ko: "고급스러운 비주얼 톤과 원료·효능 설명을 함께 배치해 제품의 가격대와 구매 명분이 자연스럽게 보이도록 구성했습니다.",
+      en: "The page pairs premium visuals with ingredient and benefit explanations to support price perception.",
+    },
+    impact: {
+      ko: "구매자는 선물용으로 적합한지, 고가 제품다운 신뢰가 있는지 빠르게 판단할 수 있습니다.",
+      en: "Shoppers can quickly judge whether it fits gifting and premium skincare expectations.",
+    },
+    resultSummary: {
+      ko: "고급 화장품의 선물감과 제품 신뢰를 함께 보여주는 세로형 상세페이지입니다.",
+      en: "A vertical detail page balancing premium gifting and product trust.",
+    },
+    stack: ["Premium Beauty", "Gift Positioning", "Detail Design"],
+    role: ["비주얼 방향", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "premium-mealkit",
+    title: { ko: "프리미엄 밀키트 상세페이지", en: "Premium Meal Kit Detail Page" },
+    summary: {
+      ko: "조리 편의성, 맛 기대감, 홈스토랑 분위기를 빠르게 전달하는 밀키트 상세페이지입니다.",
+      en: "A meal kit detail page that sells convenience, taste expectation, and home-restaurant mood.",
+    },
+    problem: {
+      ko: "밀키트는 맛있어 보이는 사진만으로는 부족하고, 조리 난이도와 완성 결과가 함께 보여야 구매가 쉬워집니다.",
+      en: "Meal kits need to show cooking ease and final result, not just appetizing images.",
+    },
+    solution: {
+      ko: "완성 비주얼, 조리 시간, 구성품, 식사 장면을 순서대로 보여줘 구매자가 머릿속으로 식탁을 그리게 구성했습니다.",
+      en: "The page shows final visuals, cooking time, ingredients, and dining scenes in order.",
+    },
+    impact: {
+      ko: "구매자는 오늘 저녁에 바로 만들 수 있는지 판단하고, 완성 모습에 대한 기대감으로 구매 결정을 앞당깁니다.",
+      en: "Shoppers can imagine tonight's meal and decide faster.",
+    },
+    resultSummary: {
+      ko: "식품 상세페이지에 필요한 맛, 편의성, 구성 정보를 한 흐름으로 묶은 결과물입니다.",
+      en: "A food detail page combining taste, convenience, and package information.",
+    },
+    stack: ["Food Detail", "Meal Kit", "Commerce Copy"],
+    role: ["판매 흐름", "카피", "디자인"],
+    duration: "1-2일",
+    featured: true,
+  },
+  {
+    slug: "office-vitamin",
+    title: { ko: "직장인 비타민 상세페이지", en: "Office Vitamin Detail Page" },
+    summary: {
+      ko: "피로 관리, 섭취 루틴, 성분 체크 포인트를 직장인 고객에게 맞춘 건강식품 상세페이지입니다.",
+      en: "A supplement detail page for office workers focused on fatigue care, routine, and ingredient checkpoints.",
+    },
+    problem: {
+      ko: "건강식품은 성분표만 나열하면 구매자가 내 상황에 필요한 제품인지 바로 판단하기 어렵습니다.",
+      en: "Supplements are hard to judge when only ingredient tables are shown.",
+    },
+    solution: {
+      ko: "직장인의 하루 루틴과 피로 상황을 먼저 보여주고, 성분·섭취 이유·구매 포인트를 체크리스트처럼 정리했습니다.",
+      en: "The page starts from the office worker routine and organizes ingredients and reasons to buy as clear checkpoints.",
+    },
+    impact: {
+      ko: "구매자는 내 생활 패턴에 맞는 제품인지 빠르게 이해하고, 복잡한 성분 정보를 부담 없이 확인합니다.",
+      en: "Shoppers can connect the product to their routine and review ingredients without friction.",
+    },
+    resultSummary: {
+      ko: "건강식품의 신뢰 정보와 구매 이유를 체크리스트형 흐름으로 정리한 상세페이지입니다.",
+      en: "A checklist-style supplement detail page for trust and purchase reasoning.",
+    },
+    stack: ["Health Detail", "Checklist Copy", "Ingredient UX"],
+    role: ["상품 구조화", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "senior-protein",
+    title: { ko: "시니어 단백질 상세페이지", en: "Senior Protein Detail Page" },
+    summary: {
+      ko: "시니어 건강 고민, 섭취 이유, 가족 구매 관점을 함께 고려한 단백질 상세페이지입니다.",
+      en: "A senior protein detail page built around health concerns, intake reasons, and family purchase decisions.",
+    },
+    problem: {
+      ko: "시니어 제품은 실제 섭취 대상과 구매자가 다를 수 있어 안심 근거와 효능 이해가 함께 필요합니다.",
+      en: "Senior products often involve both the user and family buyer, so trust and benefit clarity matter.",
+    },
+    solution: {
+      ko: "근력·영양 케어 메시지와 가족이 확인할 성분·섭취 방식 정보를 함께 배치했습니다.",
+      en: "The page combines muscle and nutrition care messaging with ingredient and intake guidance for family buyers.",
+    },
+    impact: {
+      ko: "구매자는 부모님이나 시니어 고객에게 적합한 제품인지 신뢰 기준을 가지고 판단할 수 있습니다.",
+      en: "Buyers can evaluate whether the product fits parents or senior customers with clearer trust cues.",
+    },
+    resultSummary: {
+      ko: "시니어 건강식품의 효능, 신뢰, 섭취 편의성을 균형 있게 보여주는 상세페이지입니다.",
+      en: "A senior supplement detail page balancing benefits, trust, and ease of intake.",
+    },
+    stack: ["Health Detail", "Senior Care", "Trust Copy"],
+    role: ["상품 메시지", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "linen-onepiece",
+    title: { ko: "여성 린넨 원피스 상세페이지", en: "Linen One-Piece Detail Page" },
+    summary: {
+      ko: "출근룩과 주말룩을 함께 보여줘 착용 장면이 바로 그려지는 패션 상세페이지입니다.",
+      en: "A fashion detail page showing weekday and weekend styling for a linen one-piece.",
+    },
+    problem: {
+      ko: "의류 상세페이지는 핏과 활용 장면이 충분히 보이지 않으면 사이즈와 코디 걱정으로 구매가 늦어집니다.",
+      en: "Fashion pages need to reduce concerns around fit, styling, and occasion.",
+    },
+    solution: {
+      ko: "소재감, 실루엣, 출근·주말 코디 장면을 순서대로 배치해 구매자가 입을 상황을 쉽게 상상하게 했습니다.",
+      en: "The page presents fabric, silhouette, and styling scenes so shoppers can picture wearing it.",
+    },
+    impact: {
+      ko: "구매자는 내 옷장에 어떻게 활용할지 빠르게 판단하고, 소재와 핏에 대한 불안을 줄입니다.",
+      en: "Shoppers can judge styling fit quickly and reduce hesitation around material and silhouette.",
+    },
+    resultSummary: {
+      ko: "패션 상품의 소재, 핏, 코디 장면을 판매 흐름으로 연결한 상세페이지입니다.",
+      en: "A fashion detail page connecting material, fit, and styling scenes.",
+    },
+    stack: ["Fashion Detail", "Lookbook Flow", "Mobile Design"],
+    role: ["상품 연출", "카피", "디자인"],
+    duration: "1-2일",
+    featured: true,
+  },
+  {
+    slug: "business-shirt",
+    title: { ko: "남성 비즈니스 셔츠 상세페이지", en: "Men's Business Shirt Detail Page" },
+    summary: {
+      ko: "출근 셔츠의 핏, 기능성, 관리 편의성을 직장인 구매자 기준으로 정리한 상세페이지입니다.",
+      en: "A men's business shirt page organized around fit, functionality, and easy care.",
+    },
+    problem: {
+      ko: "셔츠는 디자인보다 핏, 구김, 활동성이 구매 판단에 중요해 기능 포인트가 명확해야 합니다.",
+      en: "Business shirts are judged by fit, wrinkle resistance, and movement as much as design.",
+    },
+    solution: {
+      ko: "착용 상황, 활동성, 소재 기능, 관리 편의성을 한 흐름으로 보여줘 출근복 구매 기준을 빠르게 세우게 했습니다.",
+      en: "The page presents wearing scenes, movement, fabric function, and care points in one flow.",
+    },
+    impact: {
+      ko: "구매자는 매일 입기 좋은 셔츠인지 판단하고, 기능성 차이를 쉽게 비교할 수 있습니다.",
+      en: "Shoppers can judge daily usability and compare functional differences easily.",
+    },
+    resultSummary: {
+      ko: "남성 의류의 실용성과 핏을 구매 기준으로 풀어낸 상세페이지입니다.",
+      en: "A menswear detail page built around practical value and fit.",
+    },
+    stack: ["Fashion Detail", "Functional Copy", "Commerce UX"],
+    role: ["상품 메시지", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "kids-organic-wear",
+    title: { ko: "키즈 친환경 의류 상세페이지", en: "Kids Organic Wear Detail Page" },
+    summary: {
+      ko: "등원복 활용성, 오가닉 소재, 아이 피부 안심 포인트를 부모 구매자 기준으로 정리했습니다.",
+      en: "A kidswear detail page built around school-day use, organic material, and parent trust.",
+    },
+    problem: {
+      ko: "키즈 의류는 예쁜 디자인보다 소재 안전성, 활동성, 세탁 편의성이 구매 결정에 크게 작용합니다.",
+      en: "Kidswear purchases depend heavily on safety, movement, and washing convenience.",
+    },
+    solution: {
+      ko: "부모가 먼저 보는 소재·안전·활동성 정보를 앞쪽에 두고, 등원복 활용 장면을 함께 보여줬습니다.",
+      en: "The page prioritizes material, safety, and movement information with school-day use scenes.",
+    },
+    impact: {
+      ko: "부모 고객은 아이에게 입혀도 되는지 빠르게 판단하고, 실사용 장면을 보고 구매 확신을 얻습니다.",
+      en: "Parents can quickly judge safety and gain confidence from practical use scenes.",
+    },
+    resultSummary: {
+      ko: "키즈 의류의 신뢰 정보와 착용 장면을 부모 눈높이에 맞춘 상세페이지입니다.",
+      en: "A kidswear detail page tailored to parent decision-making.",
+    },
+    stack: ["Kids Fashion", "Parent Trust", "Detail Design"],
+    role: ["상품 구조화", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "hotel-bedding",
+    title: { ko: "호텔식 침구 상세페이지", en: "Hotel Bedding Detail Page" },
+    summary: {
+      ko: "호텔 침실 분위기, 촉감, 소재 신뢰를 고급스럽게 보여주는 리빙 상세페이지입니다.",
+      en: "A bedding detail page presenting hotel mood, texture, and material trust.",
+    },
+    problem: {
+      ko: "침구는 직접 만져볼 수 없어 촉감과 분위기를 화면에서 설득하지 못하면 구매 전환이 어렵습니다.",
+      en: "Bedding needs to sell texture and room mood without physical touch.",
+    },
+    solution: {
+      ko: "첫 화면에서 침실 분위기를 만들고, 소재·촉감·관리 포인트를 이어 보여줘 구매자가 사용 장면을 상상하게 했습니다.",
+      en: "The page builds bedroom mood first, then explains material, texture, and care points.",
+    },
+    impact: {
+      ko: "구매자는 내 침실이 어떻게 바뀔지 떠올리고, 소재와 관리 기준을 확인해 구매 불안을 줄입니다.",
+      en: "Shoppers can imagine the room transformation and check material and care criteria.",
+    },
+    resultSummary: {
+      ko: "리빙 상품의 분위기와 제품 정보를 함께 설득하는 상세페이지입니다.",
+      en: "A living product detail page balancing mood and product information.",
+    },
+    stack: ["Living Detail", "Mood Selling", "Material Copy"],
+    role: ["비주얼 방향", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "one-room-furniture",
+    title: { ko: "1인가구 가구 상세페이지", en: "Small Space Furniture Detail Page" },
+    summary: {
+      ko: "작은 공간에 맞는 사이즈, 배치, 활용성을 실측 관점으로 보여주는 가구 상세페이지입니다.",
+      en: "A furniture detail page showing size, placement, and usability for small spaces.",
+    },
+    problem: {
+      ko: "가구는 사이즈와 배치가 불확실하면 구매 망설임이 커져 실측 정보와 사용 장면이 중요합니다.",
+      en: "Furniture purchases hesitate when size and placement are unclear.",
+    },
+    solution: {
+      ko: "공간 배치, 실측 정보, 수납·작업 활용 장면을 순서대로 보여줘 구매자가 내 방에 놓인 모습을 가늠하게 했습니다.",
+      en: "The page presents layout, measurements, storage, and work scenes in order.",
+    },
+    impact: {
+      ko: "구매자는 내 공간에 맞는지 빠르게 판단하고, 설치 후 활용 모습을 미리 상상할 수 있습니다.",
+      en: "Shoppers can judge fit for their space and imagine actual use after setup.",
+    },
+    resultSummary: {
+      ko: "가구 상세페이지에 필요한 실측, 배치, 활용 장면을 한 흐름으로 정리한 결과물입니다.",
+      en: "A furniture detail page organizing measurements, placement, and use cases.",
+    },
+    stack: ["Furniture Detail", "Space UX", "Use Case Copy"],
+    role: ["상품 구조화", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "mood-light",
+    title: { ko: "무드등 상세페이지", en: "Mood Light Detail Page" },
+    summary: {
+      ko: "침대 옆 사용 장면, 조도 분위기, 선물 가치를 짧고 감성적으로 전달하는 상세페이지입니다.",
+      en: "A mood light detail page communicating bedside use, lighting mood, and gift value.",
+    },
+    problem: {
+      ko: "조명 상품은 실제 분위기가 화면에서 느껴지지 않으면 디자인 차이가 약하게 보입니다.",
+      en: "Lighting products need to make the mood visible on screen.",
+    },
+    solution: {
+      ko: "불빛 분위기, 사용 위치, 선물 포인트를 중심으로 구성해 짧은 스크롤 안에서도 감성 구매 이유가 보이게 했습니다.",
+      en: "The page centers light mood, placement, and gifting cues within a short sales flow.",
+    },
+    impact: {
+      ko: "구매자는 방 안 분위기가 어떻게 달라질지 쉽게 상상하고, 선물용 구매 가치도 함께 판단합니다.",
+      en: "Shoppers can imagine the room mood and judge gift value quickly.",
+    },
+    resultSummary: {
+      ko: "감성 리빙 상품의 사용 장면과 구매 이유를 압축한 상세페이지입니다.",
+      en: "A compact emotional detail page for a living product.",
+    },
+    stack: ["Living Detail", "Mood Copy", "Visual Sales"],
+    role: ["감성 카피", "상품 연출", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "premium-pet-food",
+    title: { ko: "프리미엄 반려견 화식 상세페이지", en: "Premium Pet Food Detail Page" },
+    summary: {
+      ko: "원재료, 한 끼 구성, 보호자 안심 포인트를 중심으로 만든 반려견 화식 상세페이지입니다.",
+      en: "A premium dog food detail page focused on ingredients, meal composition, and owner trust.",
+    },
+    problem: {
+      ko: "반려동물 식품은 보호자가 원재료와 안전성을 납득해야 구매로 이어집니다.",
+      en: "Pet food needs ingredient and safety trust before owners purchase.",
+    },
+    solution: {
+      ko: "원재료가 보이는 비주얼, 급여 장면, 영양 포인트를 앞쪽에 배치해 보호자가 안심하고 비교하게 했습니다.",
+      en: "The page highlights visible ingredients, feeding scenes, and nutrition points early.",
+    },
+    impact: {
+      ko: "보호자는 반려견에게 먹여도 되는 제품인지 신뢰 기준을 가지고 판단하고, 한 끼 구성을 쉽게 이해합니다.",
+      en: "Owners can evaluate trust and understand the meal composition easily.",
+    },
+    resultSummary: {
+      ko: "펫푸드의 원재료 신뢰와 급여 장면을 구매 흐름으로 연결한 상세페이지입니다.",
+      en: "A pet food detail page connecting ingredient trust and feeding scenes.",
+    },
+    stack: ["Pet Detail", "Ingredient Trust", "Owner UX"],
+    role: ["상품 구조화", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "auto-pet-feeder",
+    title: { ko: "자동급식기 상세페이지", en: "Automatic Pet Feeder Detail Page" },
+    summary: {
+      ko: "외출 중 정확한 급식, 예약 기능, 보호자 안심 포인트를 보여주는 펫 기기 상세페이지입니다.",
+      en: "A pet device detail page showing scheduled feeding, accuracy, and owner peace of mind.",
+    },
+    problem: {
+      ko: "펫 기기는 기능이 많아도 사용 상황과 안심 효과가 보이지 않으면 필요성이 약하게 느껴집니다.",
+      en: "Pet devices need to show use cases and peace-of-mind value, not just features.",
+    },
+    solution: {
+      ko: "외출 상황, 예약 급식, 사용 편의성, 관리 포인트를 순서대로 보여줘 기능이 생활 문제 해결로 이어지게 구성했습니다.",
+      en: "The page connects going-out situations, scheduled feeding, ease of use, and care points.",
+    },
+    impact: {
+      ko: "보호자는 외출 중에도 급식이 안정적으로 관리되는지 이해하고, 제품 필요성을 빠르게 판단합니다.",
+      en: "Owners can understand how feeding stays managed while away and decide faster.",
+    },
+    resultSummary: {
+      ko: "펫 기기의 기능과 생활 속 사용 가치를 함께 보여주는 상세페이지입니다.",
+      en: "A pet device detail page combining features and everyday use value.",
+    },
+    stack: ["Pet Device", "Feature UX", "Detail Design"],
+    role: ["기능 구조화", "카피", "디자인"],
+    duration: "1-2일",
+  },
+  {
+    slug: "senior-pet-supplement",
+    title: { ko: "시니어 반려견 영양제 상세페이지", en: "Senior Pet Supplement Detail Page" },
+    summary: {
+      ko: "노견 관절 루틴, 급여 이유, 보호자 안심 정보를 중심으로 구성한 펫 영양제 상세페이지입니다.",
+      en: "A senior pet supplement page focused on joint-care routine, feeding reason, and owner trust.",
+    },
+    problem: {
+      ko: "시니어 반려동물 제품은 보호자가 증상, 급여 이유, 안전성을 함께 이해해야 구매로 이어집니다.",
+      en: "Senior pet products need to explain symptoms, feeding reasons, and safety together.",
+    },
+    solution: {
+      ko: "노견의 일상 변화, 관절 케어 필요성, 성분 신뢰, 급여 루틴을 단계적으로 보여줬습니다.",
+      en: "The page shows senior pet changes, joint-care needs, ingredient trust, and feeding routine step by step.",
+    },
+    impact: {
+      ko: "보호자는 반려견 상태와 제품 필요성을 연결해 이해하고, 꾸준히 급여할 이유를 명확히 확인합니다.",
+      en: "Owners can connect pet condition with product need and understand why routine intake matters.",
+    },
+    resultSummary: {
+      ko: "펫 영양제의 케어 필요성과 보호자 신뢰를 함께 설득하는 상세페이지입니다.",
+      en: "A pet supplement detail page that sells care need and owner trust together.",
+    },
+    stack: ["Pet Health", "Routine Copy", "Trust Detail"],
+    role: ["상품 메시지", "카피", "디자인"],
+    duration: "1-2일",
+  },
+];
+
+const detailPagePortfolioProjects: PortfolioProject[] = detailPageSpecs.map((project, index) => ({
+  id: `detail-page-${project.slug}`,
+  slug: `detail-page-${project.slug}`,
+  type: "design",
+  subtype: "detail-page",
+  visibility: "private-result",
+  proofType: "screenshots",
+  mediaPolicy: "rich-gallery",
+  title: project.title,
+  summary: project.summary,
+  problem: project.problem,
+  solution: project.solution,
+  impact: project.impact,
+  resultSummary: project.resultSummary,
+  deliverables: [
+    { ko: "세로형 상세페이지 결과 화면", en: "Vertical detail page result screen" },
+    { ko: "상품별 판매 카피 흐름", en: "Product-specific sales copy flow" },
+    { ko: "모바일 쇼핑몰 등록용 이미지 구성", en: "Image structure for mobile commerce listing" },
+  ],
+  stack: project.stack,
+  role: project.role,
+  duration: project.duration,
+  client: "상세페이지 제작 의뢰 고객",
+  links: { live: null, github: null, case: `/portfolio/detail-page-${project.slug}` },
+  cover: `/portfolio/detail-page/${project.slug}/cover.webp`,
+  gallery: [`/portfolio/detail-page/${project.slug}/cover.webp`, `/portfolio/detail-page/${project.slug}/detail.jpg`],
+  size: index % 5 === 0 ? "lg" : "md",
+  featured: project.featured ?? false,
+  publishedAt: "2026-05-01",
+}));
+
 export const portfolioProjects: PortfolioProject[] = [
   ...logoConceptProjects,
   ...pptPortfolioProjects,
@@ -1845,51 +2301,7 @@ export const portfolioProjects: PortfolioProject[] = [
     featured: false,
     publishedAt: "2026-04-29",
   },
-  {
-    id: "detail-page-skincare",
-    slug: "detail-page-skincare",
-    type: "design",
-    subtype: "detail-page",
-    visibility: "private-result",
-    proofType: "screenshots",
-    mediaPolicy: "rich-gallery",
-    title: { ko: "저자극 스킨케어 상세페이지", en: "Sensitive Skincare Detail Page" },
-    summary: {
-      ko: "성분 신뢰, 사용감, 리뷰, 구매 CTA를 한 흐름으로 정리한 세로형 판매 상세페이지 시안.",
-      en: "A vertical sales detail page concept organizing ingredient trust, usage feel, reviews, and CTA.",
-    },
-    problem: {
-      ko: "상세페이지는 이미지가 길어질수록 고객이 구매 이유를 놓치기 쉬워 핵심 설득 순서가 필요했습니다.",
-      en: "Long detail pages can lose the purchase reason, so the persuasion order needed to be clear.",
-    },
-    solution: {
-      ko: "첫 화면에서 핵심 성분을 읽고, 사용 장면·리뷰·구매 버튼까지 자연스럽게 내려가도록 세로 흐름을 정리합니다.",
-      en: "The page starts with key ingredients, then moves through usage scenes, reviews, and purchase CTA.",
-    },
-    impact: {
-      ko: "방문자가 성분과 사용 이유를 빠르게 이해해 상세페이지를 끝까지 읽고 구매 버튼까지 이동하기 쉬워집니다.",
-      en: "Visitors can quickly understand ingredients and reasons to buy, making it easier to continue to the CTA.",
-    },
-    resultSummary: {
-      ko: "숨고·크몽·쇼핑몰 등록에 바로 활용할 수 있는 이미지 중심 상세페이지 구성입니다.",
-      en: "An image-led detail page structure ready for marketplaces and shopping mall listings.",
-    },
-    deliverables: [
-      { ko: "세로형 상세페이지 시안", en: "Vertical detail page concept" },
-      { ko: "성분·사용감·리뷰 흐름", en: "Ingredient, usage, and review flow" },
-      { ko: "구매 CTA 배치", en: "Purchase CTA placement" },
-    ],
-    stack: ["Detail Page", "Sales Copy", "Commerce UX", "Image Layout"],
-    role: ["기획", "카피", "디자인"],
-    duration: "1-2일",
-    client: "뷰티 상세페이지 컨셉",
-    links: { live: null, github: null, case: "/portfolio/detail-page-skincare" },
-    cover: "/portfolio/detail-page-skincare/cover.png",
-    gallery: ["/portfolio/detail-page-skincare/cover.png", "/portfolio/detail-page-skincare/detail.png"],
-    size: "md",
-    featured: false,
-    publishedAt: "2026-04-29",
-  },
+  ...detailPagePortfolioProjects,
   {
     id: "aio-motion-intro",
     slug: "aio-motion-intro",

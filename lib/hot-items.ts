@@ -42,8 +42,8 @@ export const hotItems: HotItem[] = [
     description: { ko: "로고와 명함을 온라인 프로필과 인쇄 사용까지 바로 쓸 수 있게 정리합니다.", en: "Prepare logo and card assets for online profiles and print use." },
     price: { ko: "1만원~", en: "from ₩10,000" },
     duration: { ko: "1일", en: "1 day" },
-    proof: { ko: "로고·명함 결과물 예시", en: "Logo/card result sample" },
-    image: "/portfolio/aio-brand-kit/business-card-front.png",
+    proof: { ko: "로고·명함 실제 목업", en: "Logo/card mockup sample" },
+    image: "/portfolio/logo-showcase/moru-coffee/photo-business-card.jpg",
     href: "/quote?category=logo-business-card",
   },
   {
@@ -53,8 +53,8 @@ export const hotItems: HotItem[] = [
     description: { ko: "상품 장점, 사용 장면, 구매 이유가 자연스럽게 읽히는 상세 이미지입니다.", en: "A vertical sales image that explains benefits, use cases, and buying reasons." },
     price: { ko: "3만원~", en: "from ₩30,000" },
     duration: { ko: "1일", en: "1 day" },
-    proof: { ko: "상세페이지 이미지 예시", en: "Detail page image sample" },
-    image: "/portfolio/detail-page-skincare/cover.png",
+    proof: { ko: "15종 상세페이지 결과 화면", en: "15 detail page result samples" },
+    image: "/portfolio/detail-page/ampoule-anti-aging/cover.webp",
     href: "/quote?category=detail-page",
   },
   {

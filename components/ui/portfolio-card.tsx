@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, CheckCircle2, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ExternalLink } from "lucide-react";
 import { useLocale } from "next-intl";
 import { formatProjectDuration, type PortfolioProject } from "@/lib/portfolio-data";
 import { TypeBadge } from "@/components/ui/type-badge";
@@ -97,30 +97,17 @@ export function PortfolioCard({ project, className = "" }: PortfolioCardProps) {
         </div>
       </Link>
 
-      {isPublic && (project.links.live || project.links.github) && (
+      {isPublic && project.links.live && (
         <div className="flex flex-wrap gap-2 border-t border-white/8 px-4 py-3">
-          {project.links.live && (
-            <Link
-              href={project.links.live}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-8 items-center gap-1.5 rounded-full border border-white/10 px-3 text-[11px] font-semibold text-foreground transition-colors hover:border-primary/50 hover:text-primary"
-            >
-              <ExternalLink className="size-3" />
-              Live
-            </Link>
-          )}
-          {project.links.github && (
-            <Link
-              href={project.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-8 items-center gap-1.5 rounded-full border border-white/10 px-3 text-[11px] font-semibold text-foreground transition-colors hover:border-primary/50 hover:text-primary"
-            >
-              <Github className="size-3" />
-              GitHub
-            </Link>
-          )}
+          <Link
+            href={project.links.live}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-white/10 px-3 text-[11px] font-semibold text-foreground transition-colors hover:border-primary/50 hover:text-primary"
+          >
+            <ExternalLink className="size-3" />
+            Live
+          </Link>
         </div>
       )}
 
