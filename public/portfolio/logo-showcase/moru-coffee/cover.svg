@@ -1,72 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img">
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
   
   <defs>
-    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#2B1A13" flood-opacity=".24"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A100C"/>
+      <stop offset=".58" stop-color="#21140F"/>
+      <stop offset="1" stop-color="#1A100C"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#FFF4E4"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#C9954A"/>
+      <stop offset="1" stop-color="#6B442E"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000000" flood-opacity=".34"/>
     </filter>
-    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".20"/>
     </filter>
-    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
-    </filter>
-    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#C99B6A" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#7A4E2E" flood-opacity=".28"/>
-    </filter>
-    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+    <filter id="texture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 .045"/>
-      </feComponentTransfer>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
     </filter>
-    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#F5EFE6"/>
-      <stop offset=".52" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#C99B6A" stop-opacity=".52"/>
-    </linearGradient>
-    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2B1A13"/>
-      <stop offset=".65" stop-color="#211712"/>
-      <stop offset="1" stop-color="#7A4E2E"/>
-    </linearGradient>
-    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
-      <stop offset=".48" stop-color="#F5EFE6" stop-opacity=".92"/>
-      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
-      <stop offset=".35" stop-color="#F5EFE6" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
-    </linearGradient>
   </defs>
   
-  <rect width="1600" height="900" fill="#2B1A13"/>
-  <rect x="42" y="42" width="1516" height="816" rx="40" fill="url(#studioBg)"/>
-  <rect x="42" y="42" width="1516" height="816" rx="40" fill="#ffffff" filter="url(#paperNoise)" opacity=".42"/>
-  <text x="110" y="128" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#211712" opacity=".42">F&amp;B CAFE</text>
-  
-  <g transform="translate(112 242) scale(1.8)" filter="url(#pressedInk)"><g><circle cx="50" cy="50" r="42" fill="#7A4E2E"/><path d="M28 52c6-28 39-36 48-8 7 23-16 43-36 30-9-6-14-14-12-22Z" fill="#C99B6A"/><path d="M42 27c16 16 17 41-3 56" fill="none" stroke="#211712" stroke-width="6.5" stroke-linecap="round"/><path d="M26 58h48" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".92"/><path d="M36 39c9-7 18-7 27 0" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/></g></g>
-  
-  <text x="337" y="346.4" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="950" fill="#211712">MORU Coffee</text>
-  <text x="337" y="378.08" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="850" letter-spacing="4" fill="#211712" opacity=".48">ROASTERY IDENTITY</text>
-  <text x="116" y="515" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="850" fill="#7A4E2E">Roastery identity</text>
-  <text x="116" y="570" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#211712" opacity=".58">logo system / mono version / brand guide</text>
-  <rect x="112" y="648" width="86" height="42" rx="21" fill="#7A4E2E"/>
-  <rect x="214" y="648" width="86" height="42" rx="21" fill="#C99B6A"/>
-  <rect x="316" y="648" width="86" height="42" rx="21" fill="#211712"/>
-  <g transform="translate(875 142) scale(.72)">
-    <rect x="120" y="70" width="650" height="300" rx="8" fill="url(#darkPanel)" filter="url(#ambientShadow)"/>
-    <g transform="translate(250 142) scale(.72)" filter="url(#neonGlow)"><g><circle cx="50" cy="50" r="42" fill="#7A4E2E"/><path d="M28 52c6-28 39-36 48-8 7 23-16 43-36 30-9-6-14-14-12-22Z" fill="#C99B6A"/><path d="M42 27c16 16 17 41-3 56" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round"/><path d="M26 58h48" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".92"/><path d="M36 39c9-7 18-7 27 0" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/></g></g>
-    
-  <text x="360" y="202" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="950" fill="#ffffff">MORU Coffee</text>
-  <text x="360" y="221.2" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="4" fill="#ffffff" opacity=".48">ROASTERY IDENTITY</text>
-    <rect x="150" y="418" width="520" height="288" rx="22" fill="url(#cardSheen)" filter="url(#ambientShadow)" transform="rotate(-8 410 562)"/>
-    <g transform="translate(210 495) rotate(-8) scale(.58)"><g><circle cx="50" cy="50" r="42" fill="#7A4E2E"/><path d="M28 52c6-28 39-36 48-8 7 23-16 43-36 30-9-6-14-14-12-22Z" fill="#C99B6A"/><path d="M42 27c16 16 17 41-3 56" fill="none" stroke="#211712" stroke-width="6.5" stroke-linecap="round"/><path d="M26 58h48" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".92"/><path d="M36 39c9-7 18-7 27 0" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/></g></g>
-    <text x="314" y="544" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="950" fill="#211712" transform="rotate(-8 314 544)">MORU Coffee</text>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".10"><circle cx="1300" cy="120" r="220" stroke="#C9954A"/><circle cx="1380" cy="760" r="360" stroke="#C9954A"/><path d="M70 118h1460M70 770h1460" stroke="#C9954A"/></g>
+  <text x="92" y="116" fill="#C9954A" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="6">F&amp;B CAFE</text>
+  <text x="92" y="178" fill="#FFF4E4" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="860">Quiet Roastery Identity</text>
+  <text x="92" y="222" fill="#FFF4E4" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="560">M + bean + cup silhouette / logo, business card, brand kit</text>
+  <g filter="url(#shadow)"><g transform="translate(154 328) scale(1.55)"><circle cx="100" cy="100" r="80" fill="#21140F"/><circle cx="100" cy="100" r="74" fill="none" stroke="#C9954A" stroke-width="9"/><path d="M44 129V81c0-22 14-36 34-36 13 0 22 6 28 17 6-11 15-17 28-17 20 0 34 14 34 36v48" stroke="#FFF4E4" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/><path d="M48 137c25-18 79-18 104 0" stroke="#C9954A" stroke-width="18" stroke-linecap="round"/><path d="M100 66c16 15 16 40 0 55-16-15-16-40 0-55Z" fill="#C9954A"/><path d="M100 72c-4 18-4 30 0 45" stroke="#21140F" stroke-width="4" stroke-linecap="round"/><path d="M57 158c31 14 58 14 86 0" stroke="#FFF4E4" stroke-width="5" stroke-linecap="round"/></g></g>
+  <text x="112" y="670" fill="#FFF4E4" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="860" letter-spacing="-2">MORU Coffee</text>
+  <text x="116" y="722" fill="#C9954A" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="820" letter-spacing="7">SMALL BATCH ROASTERY</text>
+  <g transform="translate(885 212)" filter="url(#shadow)">
+    <rect x="0" y="45" width="520" height="292" rx="18" fill="url(#paper)" transform="rotate(-6 0 45)"/>
+    <rect x="54" y="276" width="520" height="292" rx="18" fill="#1A100C" transform="rotate(8 54 276)"/>
+    <g transform="translate(130 120) rotate(-6)"><g transform="translate(0 0) scale(0.52)"><circle cx="100" cy="100" r="80" fill="#21140F"/><circle cx="100" cy="100" r="74" fill="none" stroke="#C9954A" stroke-width="9"/><path d="M44 129V81c0-22 14-36 34-36 13 0 22 6 28 17 6-11 15-17 28-17 20 0 34 14 34 36v48" stroke="#FFF4E4" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/><path d="M48 137c25-18 79-18 104 0" stroke="#C9954A" stroke-width="18" stroke-linecap="round"/><path d="M100 66c16 15 16 40 0 55-16-15-16-40 0-55Z" fill="#C9954A"/><path d="M100 72c-4 18-4 30 0 45" stroke="#21140F" stroke-width="4" stroke-linecap="round"/><path d="M57 158c31 14 58 14 86 0" stroke="#FFF4E4" stroke-width="5" stroke-linecap="round"/></g><text x="120" y="60" text-anchor="start" fill="#21140F" font-family="Inter, Montserrat, Arial, sans-serif" font-size="30" font-weight="860" letter-spacing="-1">MORU Coffee</text>
+  <text x="120" y="74.4" text-anchor="start" fill="#21140F" opacity=".58" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="820" letter-spacing="4">SMALL BATCH ROASTERY</text></g>
+    <g transform="translate(190 362) rotate(8)"><g transform="translate(0 0) scale(0.5)"><circle cx="100" cy="100" r="80" fill="#1A100C"/><circle cx="100" cy="100" r="74" fill="none" stroke="#C9954A" stroke-width="9"/><path d="M44 129V81c0-22 14-36 34-36 13 0 22 6 28 17 6-11 15-17 28-17 20 0 34 14 34 36v48" stroke="#FFF4E4" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/><path d="M48 137c25-18 79-18 104 0" stroke="#C9954A" stroke-width="18" stroke-linecap="round"/><path d="M100 66c16 15 16 40 0 55-16-15-16-40 0-55Z" fill="#C9954A"/><path d="M100 72c-4 18-4 30 0 45" stroke="#1A100C" stroke-width="4" stroke-linecap="round"/><path d="M57 158c31 14 58 14 86 0" stroke="#FFF4E4" stroke-width="5" stroke-linecap="round"/></g><text x="116" y="58" text-anchor="start" fill="#FFF4E4" font-family="Inter, Montserrat, Arial, sans-serif" font-size="29" font-weight="860" letter-spacing="-1">MORU Coffee</text>
+  <text x="116" y="71.92" text-anchor="start" fill="#FFF4E4" opacity=".58" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="820" letter-spacing="4">SMALL BATCH ROASTERY</text></g>
+  </g>
+  <g transform="translate(92 760)">
+    <rect x="0" y="0" width="70" height="34" rx="17" fill="#C9954A"/><rect x="86" y="0" width="70" height="34" rx="17" fill="#6B442E"/><rect x="172" y="0" width="70" height="34" rx="17" fill="#FFF4E4"/>
+    <text x="286" y="24" fill="#FFF4E4" opacity=".56" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="4">PRIMARY / ACCENT / PAPER</text>
   </g>
 </svg>

@@ -1,69 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img">
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
   
   <defs>
-    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#17233A" flood-opacity=".24"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121A2B"/>
+      <stop offset=".58" stop-color="#101827"/>
+      <stop offset="1" stop-color="#121A2B"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#EAF1FF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#22C55E"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000000" flood-opacity=".34"/>
     </filter>
-    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".20"/>
     </filter>
-    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
-    </filter>
-    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#22C55E" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#2563EB" flood-opacity=".28"/>
-    </filter>
-    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+    <filter id="texture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 .045"/>
-      </feComponentTransfer>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
     </filter>
-    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#EAF1FF"/>
-      <stop offset=".52" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#22C55E" stop-opacity=".52"/>
-    </linearGradient>
-    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#17233A"/>
-      <stop offset=".65" stop-color="#101827"/>
-      <stop offset="1" stop-color="#2563EB"/>
-    </linearGradient>
-    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
-      <stop offset=".48" stop-color="#EAF1FF" stop-opacity=".92"/>
-      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
-      <stop offset=".35" stop-color="#EAF1FF" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
-    </linearGradient>
   </defs>
   
-  <rect width="1600" height="1000" fill="#EAF1FF"/>
-  <rect width="1600" height="1000" fill="#ffffff" filter="url(#paperNoise)" opacity=".48"/>
-  <rect x="78" y="72" width="1444" height="856" rx="38" fill="#ffffff" filter="url(#ambientShadow)"/>
-  <text x="132" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#2563EB">WORKFLOW SAAS</text>
-  
-  <g transform="translate(175 265) scale(2.75)" filter="url(#pressedInk)"><g><rect x="17" y="22" width="48" height="17" rx="6" fill="#2563EB"/><rect x="27" y="43" width="48" height="17" rx="6" fill="#22C55E"/><rect x="37" y="64" width="48" height="17" rx="6" fill="#2563EB"/><path d="M66 29 84 50 66 71" fill="none" stroke="#101827" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 31h31M36 52h31M46 73h31" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".65"/></g></g>
-  
-  <text x="518.75" y="424.5" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="950" fill="#101827">Flowstack</text>
-  <text x="518.75" y="464.82" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="850" letter-spacing="4" fill="#101827" opacity=".48">AUTOMATION SYSTEM IDENTITY</text>
-  <path d="M132 604h1336" stroke="#101827" stroke-width="2" opacity=".1"/>
-  <text x="132" y="692" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="950" fill="#101827">Identity system</text>
-  <text x="132" y="742" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#101827" opacity=".62">Automation system identity with primary, mono, reverse, and small-size usage.</text>
-  <rect x="972" y="670" width="136" height="136" rx="30" fill="#2563EB"/>
-  <rect x="1140" y="670" width="136" height="136" rx="30" fill="#22C55E"/>
-  <rect x="1308" y="670" width="136" height="136" rx="30" fill="#101827"/>
-  <g transform="translate(990 688) scale(1)"><g><rect x="17" y="22" width="48" height="17" rx="6" fill="#ffffff"/><rect x="27" y="43" width="48" height="17" rx="6" fill="#ffffff"/><rect x="37" y="64" width="48" height="17" rx="6" fill="#ffffff"/><path d="M66 29 84 50 66 71" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 31h31M36 52h31M46 73h31" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".65"/></g></g>
-  <g transform="translate(1158 688) scale(1)"><g><rect x="17" y="22" width="48" height="17" rx="6" fill="#ffffff"/><rect x="27" y="43" width="48" height="17" rx="6" fill="#ffffff"/><rect x="37" y="64" width="48" height="17" rx="6" fill="#ffffff"/><path d="M66 29 84 50 66 71" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 31h31M36 52h31M46 73h31" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".65"/></g></g>
-  <g transform="translate(1326 688) scale(1)"><g><rect x="17" y="22" width="48" height="17" rx="6" fill="#ffffff"/><rect x="27" y="43" width="48" height="17" rx="6" fill="#ffffff"/><rect x="37" y="64" width="48" height="17" rx="6" fill="#ffffff"/><path d="M66 29 84 50 66 71" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 31h31M36 52h31M46 73h31" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".65"/></g></g>
-  <text x="972" y="858" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" letter-spacing="3" fill="#101827" opacity=".46">PRIMARY</text>
-  <text x="1140" y="858" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" letter-spacing="3" fill="#101827" opacity=".46">ACCENT</text>
-  <text x="1308" y="858" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" letter-spacing="3" fill="#101827" opacity=".46">MONO</text>
+  <rect width="1600" height="1000" fill="#121A2B"/>
+  <g opacity=".12"><circle cx="1250" cy="210" r="168" stroke="#2563EB"/><circle cx="1300" cy="790" r="300" stroke="#2563EB"/><path d="M1010 155h440M1010 844h440" stroke="#2563EB"/></g>
+  <g filter="url(#shadow)"><g transform="translate(335 215) scale(2.4)"><rect x="32" y="44" width="95" height="34" rx="11" fill="#2563EB"/><rect x="53" y="84" width="95" height="34" rx="11" fill="#22C55E"/><rect x="74" y="124" width="95" height="34" rx="11" fill="#2563EB"/><path d="M128 58 166 100 128 142" fill="none" stroke="#101827" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 62h61M71 102h61M92 142h61" stroke="#FFF4E4" stroke-width="6" stroke-linecap="round" opacity=".65"/></g></g>
+  <text x="575" y="754" text-anchor="middle" fill="#EAF1FF" font-family="Inter, Arial, sans-serif" font-size="106" font-weight="860" letter-spacing="-2">Flowstack</text>
+  <text x="575" y="824" text-anchor="middle" fill="#2563EB" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="12">AUTOMATION SYSTEM</text>
+  <g transform="translate(1040 330)">
+    <text x="0" y="0" fill="#2563EB" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850" letter-spacing="4">DESIGN LOGIC</text>
+    <text x="0" y="76" fill="#EAF1FF" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="800">stack layers + flow arrow</text>
+    <text x="0" y="132" fill="#EAF1FF" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500">A compact mark designed for signs,</text>
+    <text x="0" y="169" fill="#EAF1FF" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500">cards, stickers, profiles and packages.</text>
+    <rect x="0" y="244" width="72" height="72" rx="36" fill="#121A2B" stroke="#2563EB"/>
+    <rect x="96" y="244" width="72" height="72" rx="36" fill="#22C55E"/>
+    <rect x="192" y="244" width="72" height="72" rx="36" fill="#2563EB"/>
+    <rect x="288" y="244" width="72" height="72" rx="36" fill="#EAF1FF"/>
+    <text x="0" y="358" fill="#EAF1FF" opacity=".52" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="3">BRAND SYSTEM / VECTOR MASTER</text>
+  </g>
 </svg>

@@ -182,13 +182,13 @@ export const servicesData: ServiceDetail[] = [
     title: { ko: "로고 및 명함", en: "Logo & Business Card" },
     subtitle: "Brand Kit",
     description: {
-      ko: "5월 입점 이벤트 한정가로 로고부터 명함까지 빠르게 제작합니다. 합리적인 가격 안에서도 실제 브랜드에 바로 사용할 수 있는 결과물 중심으로 정리합니다.",
-      en: "Limited May launch pricing for fast logo and business card production, focused on practical assets ready for real brand use.",
+      ko: "새 브랜드를 시작할 때 필요한 로고와 명함을 부담 없는 5월 이벤트가로 준비할 수 있습니다. 온라인 프로필, 인쇄, 상담 자료에 바로 적용할 수 있는 실사용 파일로 받아보세요.",
+      en: "Prepare the logo and business card assets needed for a new brand at limited May launch pricing, delivered as practical files for profiles, print, and sales materials.",
     },
     items: [
-      { icon: "◈", name: { ko: "합리적인 이벤트가", en: "Launch event pricing" }, detail: { ko: "상위 판매자보다 부담은 낮추고, 저가 상품보다 완성도 있게 구성합니다.", en: "Lower entry cost than top sellers, with stronger finish than low-end listings." } },
-      { icon: "◈", name: { ko: "빠른 시안", en: "Fast draft" }, detail: { ko: "로고 시안과 명함 구성을 빠르게 공유해 오픈 준비 시간을 줄입니다.", en: "Quick logo drafts and card layouts to speed up launch preparation." } },
-      { icon: "◈", name: { ko: "실사용 결과물", en: "Ready-to-use assets" }, detail: { ko: "온라인 프로필, 인쇄, 실사 목업까지 바로 확인 가능한 파일로 납품합니다.", en: "Deliver files for online profiles, print, and realistic mockup checks." } },
+      { icon: "◈", name: { ko: "부담 없는 시작 비용", en: "Affordable launch cost" }, detail: { ko: "초기 창업자와 소상공인도 로고와 명함을 합리적인 가격으로 먼저 갖출 수 있습니다.", en: "A practical starting point for founders and small businesses that need brand assets quickly." } },
+      { icon: "◈", name: { ko: "빠른 시안 확인", en: "Fast draft review" }, detail: { ko: "브랜드 방향을 빠르게 확인하고, 마음에 드는 안을 골라 최종 파일로 받을 수 있습니다.", en: "Review directions quickly, choose the preferred concept, and receive final files." } },
+      { icon: "◈", name: { ko: "바로 쓰는 납품 파일", en: "Ready-to-use files" }, detail: { ko: "SNS 프로필, 명함 인쇄, 소개 자료에 바로 적용할 수 있는 형식으로 제공합니다.", en: "Delivered in formats ready for SNS profiles, card printing, and sales materials." } },
     ],
     process: sharedProcess,
     pricing: [

@@ -110,4 +110,17 @@
   [role="button"] {
     @apply cursor-pointer;
   }
+
+  select,
+  select option,
+  select optgroup {
+    background-color: #1a1a1a;
+    color: #fafafa;
+  }
+
+  select option:checked,
+  select option:hover {
+    background-color: #2a2a2a;
+    color: #fafafa;
+  }
 }

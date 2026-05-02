@@ -1,69 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img">
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
   
   <defs>
-    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#1C3832" flood-opacity=".24"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#132822"/>
+      <stop offset=".58" stop-color="#12231F"/>
+      <stop offset="1" stop-color="#132822"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#EEF5F2"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5F857D"/>
+      <stop offset="1" stop-color="#C7D8CA"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000000" flood-opacity=".34"/>
     </filter>
-    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".20"/>
     </filter>
-    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
-    </filter>
-    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#C8D8CA" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#5F857D" flood-opacity=".28"/>
-    </filter>
-    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+    <filter id="texture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 .045"/>
-      </feComponentTransfer>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
     </filter>
-    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#EEF5F2"/>
-      <stop offset=".52" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#C8D8CA" stop-opacity=".52"/>
-    </linearGradient>
-    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1C3832"/>
-      <stop offset=".65" stop-color="#13231F"/>
-      <stop offset="1" stop-color="#5F857D"/>
-    </linearGradient>
-    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
-      <stop offset=".48" stop-color="#EEF5F2" stop-opacity=".92"/>
-      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
-      <stop offset=".35" stop-color="#EEF5F2" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
-    </linearGradient>
   </defs>
   
-  <rect width="1600" height="1000" fill="#EEF5F2"/>
-  <rect width="1600" height="1000" fill="#ffffff" filter="url(#paperNoise)" opacity=".48"/>
-  <rect x="78" y="72" width="1444" height="856" rx="38" fill="#ffffff" filter="url(#ambientShadow)"/>
-  <text x="132" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#5F857D">PILATES STUDIO</text>
-  
-  <g transform="translate(175 265) scale(2.75)" filter="url(#pressedInk)"><g><path d="M50 15v70" stroke="#13231F" stroke-width="5.5" stroke-linecap="round"/><path d="M50 28c-24 2-34 21-18 37 9 9 20 4 18-8" fill="none" stroke="#5F857D" stroke-width="7.5" stroke-linecap="round"/><path d="M50 28c24 2 34 21 18 37-9 9-20 4-18-8" fill="none" stroke="#C8D8CA" stroke-width="7.5" stroke-linecap="round"/><circle cx="50" cy="50" r="7" fill="#ffffff" stroke="#13231F" stroke-width="3"/></g></g>
-  
-  <text x="518.75" y="424.5" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="84" font-weight="950" fill="#13231F">Breath Pilates</text>
-  <text x="518.75" y="464.82" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="850" letter-spacing="4" fill="#13231F" opacity=".48">ALIGNMENT STUDIO IDENTITY</text>
-  <path d="M132 604h1336" stroke="#13231F" stroke-width="2" opacity=".1"/>
-  <text x="132" y="692" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="950" fill="#13231F">Identity system</text>
-  <text x="132" y="742" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#13231F" opacity=".62">Alignment studio identity with primary, mono, reverse, and small-size usage.</text>
-  <rect x="972" y="670" width="136" height="136" rx="30" fill="#5F857D"/>
-  <rect x="1140" y="670" width="136" height="136" rx="30" fill="#C8D8CA"/>
-  <rect x="1308" y="670" width="136" height="136" rx="30" fill="#13231F"/>
-  <g transform="translate(990 688) scale(1)"><g><path d="M50 15v70" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round"/><path d="M50 28c-24 2-34 21-18 37 9 9 20 4 18-8" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linecap="round"/><path d="M50 28c24 2 34 21 18 37-9 9-20 4-18-8" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linecap="round"/><circle cx="50" cy="50" r="7" fill="#ffffff" stroke="#ffffff" stroke-width="3"/></g></g>
-  <g transform="translate(1158 688) scale(1)"><g><path d="M50 15v70" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round"/><path d="M50 28c-24 2-34 21-18 37 9 9 20 4 18-8" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linecap="round"/><path d="M50 28c24 2 34 21 18 37-9 9-20 4-18-8" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linecap="round"/><circle cx="50" cy="50" r="7" fill="#ffffff" stroke="#ffffff" stroke-width="3"/></g></g>
-  <g transform="translate(1326 688) scale(1)"><g><path d="M50 15v70" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round"/><path d="M50 28c-24 2-34 21-18 37 9 9 20 4 18-8" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linecap="round"/><path d="M50 28c24 2 34 21 18 37-9 9-20 4-18-8" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linecap="round"/><circle cx="50" cy="50" r="7" fill="#ffffff" stroke="#ffffff" stroke-width="3"/></g></g>
-  <text x="972" y="858" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" letter-spacing="3" fill="#13231F" opacity=".46">PRIMARY</text>
-  <text x="1140" y="858" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" letter-spacing="3" fill="#13231F" opacity=".46">ACCENT</text>
-  <text x="1308" y="858" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900" letter-spacing="3" fill="#13231F" opacity=".46">MONO</text>
+  <rect width="1600" height="1000" fill="#132822"/>
+  <g opacity=".12"><circle cx="1250" cy="210" r="168" stroke="#5F857D"/><circle cx="1300" cy="790" r="300" stroke="#5F857D"/><path d="M1010 155h440M1010 844h440" stroke="#5F857D"/></g>
+  <g filter="url(#shadow)"><g transform="translate(335 215) scale(2.4)"><path d="M100 30v140" stroke="#12231F" stroke-width="10" stroke-linecap="round"/><path d="M100 58c-48 4-68 42-36 74 18 18 41 8 36-16" fill="none" stroke="#5F857D" stroke-width="15" stroke-linecap="round"/><path d="M100 58c48 4 68 42 36 74-18 18-41 8-36-16" fill="none" stroke="#C7D8CA" stroke-width="15" stroke-linecap="round"/><circle cx="100" cy="100" r="14" fill="#FFF4E4" stroke="#12231F" stroke-width="6"/></g></g>
+  <text x="575" y="754" text-anchor="middle" fill="#EEF5F2" font-family="Inter, Arial, sans-serif" font-size="106" font-weight="860" letter-spacing="-2">Breath Pilates</text>
+  <text x="575" y="824" text-anchor="middle" fill="#5F857D" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="12">PILATES STUDIO</text>
+  <g transform="translate(1040 330)">
+    <text x="0" y="0" fill="#5F857D" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="850" letter-spacing="4">DESIGN LOGIC</text>
+    <text x="0" y="76" fill="#EEF5F2" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="800">breath curve + body axis</text>
+    <text x="0" y="132" fill="#EEF5F2" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500">A compact mark designed for signs,</text>
+    <text x="0" y="169" fill="#EEF5F2" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500">cards, stickers, profiles and packages.</text>
+    <rect x="0" y="244" width="72" height="72" rx="36" fill="#132822" stroke="#5F857D"/>
+    <rect x="96" y="244" width="72" height="72" rx="36" fill="#C7D8CA"/>
+    <rect x="192" y="244" width="72" height="72" rx="36" fill="#5F857D"/>
+    <rect x="288" y="244" width="72" height="72" rx="36" fill="#EEF5F2"/>
+    <text x="0" y="358" fill="#EEF5F2" opacity=".52" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="3">BRAND SYSTEM / VECTOR MASTER</text>
+  </g>
 </svg>

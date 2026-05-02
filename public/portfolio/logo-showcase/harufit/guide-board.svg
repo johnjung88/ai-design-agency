@@ -1,68 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img">
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
   
   <defs>
-    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#263238" flood-opacity=".24"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20272A"/>
+      <stop offset=".58" stop-color="#171B1D"/>
+      <stop offset="1" stop-color="#20272A"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#FFF1E8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F05A2A"/>
+      <stop offset="1" stop-color="#20B8AB"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000000" flood-opacity=".34"/>
     </filter>
-    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".20"/>
     </filter>
-    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
-    </filter>
-    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#20B8AB" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#F05A2A" flood-opacity=".28"/>
-    </filter>
-    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+    <filter id="texture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 .045"/>
-      </feComponentTransfer>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
     </filter>
-    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FFF1E8"/>
-      <stop offset=".52" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#20B8AB" stop-opacity=".52"/>
-    </linearGradient>
-    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#263238"/>
-      <stop offset=".65" stop-color="#1A1D1F"/>
-      <stop offset="1" stop-color="#F05A2A"/>
-    </linearGradient>
-    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
-      <stop offset=".48" stop-color="#FFF1E8" stop-opacity=".92"/>
-      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
-      <stop offset=".35" stop-color="#FFF1E8" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
-    </linearGradient>
   </defs>
   
   <rect width="1600" height="1000" fill="#FFF1E8"/>
-  <rect width="1600" height="1000" fill="#ffffff" filter="url(#paperNoise)" opacity=".42"/>
-  <rect x="78" y="72" width="1444" height="856" rx="38" fill="#ffffff" filter="url(#ambientShadow)"/>
+  <rect width="1600" height="1000" fill="#ffffff" filter="url(#texture)" opacity=".42"/>
+  <rect x="78" y="72" width="1444" height="856" rx="38" fill="#ffffff" filter="url(#soft)"/>
   <text x="132" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#F05A2A">BRAND GUIDE</text>
-  <text x="132" y="220" font-family="Inter, Arial, sans-serif" font-size="50" font-weight="950" fill="#1A1D1F">HaruFit</text>
-  <text x="132" y="268" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="750" fill="#1A1D1F" opacity=".58">Daily routine identity / clearspace, scale, and palette rules</text>
-  <g transform="translate(180 390) scale(1.8)"><g><rect x="17" y="17" width="66" height="66" rx="21" fill="#F05A2A"/><path d="M32 56 45 69 71 33" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36h18m15 0h7M49 36v25" stroke="#20B8AB" stroke-width="6" stroke-linecap="round"/><path d="M28 78h45" stroke="#1A1D1F" stroke-width="4" stroke-linecap="round" opacity=".35"/></g></g>
-  <path d="M150 360h260v260H150Z" fill="none" stroke="#F05A2A" stroke-width="3" stroke-dasharray="10 12" opacity=".45"/>
-  <path d="M180 390h200v200H180Z" fill="none" stroke="#1A1D1F" stroke-width="2" opacity=".12"/>
-  <text x="150" y="682" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3" fill="#1A1D1F" opacity=".45">CLEARSPACE</text>
-  <g transform="translate(590 392) scale(1.1)"><g><rect x="17" y="17" width="66" height="66" rx="21" fill="#F05A2A"/><path d="M32 56 45 69 71 33" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36h18m15 0h7M49 36v25" stroke="#20B8AB" stroke-width="6" stroke-linecap="round"/><path d="M28 78h45" stroke="#1A1D1F" stroke-width="4" stroke-linecap="round" opacity=".35"/></g></g>
-  <g transform="translate(815 420) scale(.72)"><g><rect x="17" y="17" width="66" height="66" rx="21" fill="#F05A2A"/><path d="M32 56 45 69 71 33" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36h18m15 0h7M49 36v25" stroke="#20B8AB" stroke-width="6" stroke-linecap="round"/><path d="M28 78h45" stroke="#1A1D1F" stroke-width="4" stroke-linecap="round" opacity=".35"/></g></g>
-  <g transform="translate(985 448) scale(.45)"><g><rect x="17" y="17" width="66" height="66" rx="21" fill="#F05A2A"/><path d="M32 56 45 69 71 33" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36h18m15 0h7M49 36v25" stroke="#20B8AB" stroke-width="6" stroke-linecap="round"/><path d="M28 78h45" stroke="#1A1D1F" stroke-width="4" stroke-linecap="round" opacity=".35"/></g></g>
-  <path d="M570 620h548" stroke="#1A1D1F" stroke-width="2" opacity=".12"/>
-  <text x="570" y="682" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3" fill="#1A1D1F" opacity=".45">SCALE TEST</text>
-  <rect x="1190" y="380" width="120" height="120" rx="26" fill="#F05A2A"/>
-  <rect x="1340" y="380" width="120" height="120" rx="26" fill="#20B8AB"/>
-  <rect x="1190" y="535" width="120" height="120" rx="26" fill="#1A1D1F"/>
-  <rect x="1340" y="535" width="120" height="120" rx="26" fill="#FFF1E8" stroke="#1A1D1F" stroke-width="2" opacity=".9"/>
-  <text x="1190" y="710" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3" fill="#1A1D1F" opacity=".45">PALETTE</text>
+  <text x="132" y="220" font-family="Inter, Arial, sans-serif" font-size="50" font-weight="950" fill="#171B1D">HaruFit</text>
+  <text x="132" y="268" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="750" fill="#171B1D" opacity=".58">H + check + progress / clearspace, scale, and palette rules</text>
+  <g transform="translate(180 390) scale(1.8)"><rect x="34" y="34" width="132" height="132" rx="42" fill="#F05A2A"/><path d="M64 112 89 137 142 66" fill="none" stroke="#FFF4E4" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 72h36m30 0h14M98 72v50" stroke="#20B8AB" stroke-width="12" stroke-linecap="round"/><path d="M57 155h88" stroke="#171B1D" stroke-width="7" stroke-linecap="round" opacity=".35"/></g><path d="M150 360h260v260H150Z" fill="none" stroke="#F05A2A" stroke-width="3" stroke-dasharray="10 12" opacity=".45"/><path d="M180 390h200v200H180Z" fill="none" stroke="#171B1D" stroke-width="2" opacity=".12"/><text x="150" y="682" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3" fill="#171B1D" opacity=".45">CLEARSPACE</text>
+  <g transform="translate(590 392) scale(1.1)"><rect x="34" y="34" width="132" height="132" rx="42" fill="#F05A2A"/><path d="M64 112 89 137 142 66" fill="none" stroke="#FFF4E4" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 72h36m30 0h14M98 72v50" stroke="#20B8AB" stroke-width="12" stroke-linecap="round"/><path d="M57 155h88" stroke="#171B1D" stroke-width="7" stroke-linecap="round" opacity=".35"/></g><g transform="translate(815 420) scale(0.72)"><rect x="34" y="34" width="132" height="132" rx="42" fill="#F05A2A"/><path d="M64 112 89 137 142 66" fill="none" stroke="#FFF4E4" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 72h36m30 0h14M98 72v50" stroke="#20B8AB" stroke-width="12" stroke-linecap="round"/><path d="M57 155h88" stroke="#171B1D" stroke-width="7" stroke-linecap="round" opacity=".35"/></g><g transform="translate(985 448) scale(0.45)"><rect x="34" y="34" width="132" height="132" rx="42" fill="#F05A2A"/><path d="M64 112 89 137 142 66" fill="none" stroke="#FFF4E4" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 72h36m30 0h14M98 72v50" stroke="#20B8AB" stroke-width="12" stroke-linecap="round"/><path d="M57 155h88" stroke="#171B1D" stroke-width="7" stroke-linecap="round" opacity=".35"/></g><path d="M570 620h548" stroke="#171B1D" stroke-width="2" opacity=".12"/><text x="570" y="682" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3" fill="#171B1D" opacity=".45">SCALE TEST</text>
+  <rect x="1190" y="380" width="120" height="120" rx="26" fill="#F05A2A"/><rect x="1340" y="380" width="120" height="120" rx="26" fill="#20B8AB"/><rect x="1190" y="535" width="120" height="120" rx="26" fill="#171B1D"/><rect x="1340" y="535" width="120" height="120" rx="26" fill="#FFF1E8" stroke="#171B1D" stroke-width="2" opacity=".9"/><text x="1190" y="710" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="3" fill="#171B1D" opacity=".45">PALETTE</text>
 </svg>

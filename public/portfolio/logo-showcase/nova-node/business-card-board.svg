@@ -1,0 +1,54 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10132F"/>
+      <stop offset=".58" stop-color="#11142A"/>
+      <stop offset="1" stop-color="#10132F"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#ECECFF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#665CFF"/>
+      <stop offset="1" stop-color="#12C8E8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000000" flood-opacity=".34"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".20"/>
+    </filter>
+    <filter id="texture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
+    </filter>
+  </defs>
+  
+  <rect width="1600" height="1000" fill="#ECECFF"/>
+  <rect width="1600" height="1000" fill="#ffffff" filter="url(#texture)" opacity=".50"/>
+  <g opacity=".36"><circle cx="1320" cy="130" r="230" fill="#12C8E8"/><circle cx="230" cy="860" r="210" fill="#665CFF"/></g>
+  <text x="115" y="126" fill="#12C8E8" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="850" letter-spacing="6">BUSINESS CARD SYSTEM</text>
+  <text x="115" y="192" fill="#11142A" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="860">Nova Node</text>
+  <text x="115" y="238" fill="#11142A" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="540">front / back layout for logo and business card sales portfolio</text>
+  <g transform="translate(380 300) rotate(-7)" filter="url(#shadow)">
+    <rect width="840" height="486" rx="26" fill="url(#paper)"/>
+    <rect x="40" y="40" width="760" height="406" rx="14" stroke="#12C8E8" stroke-width="2" opacity=".6"/>
+    <g transform="translate(150 155) scale(0.86)"><path d="M100 27v146M27 100h146M54 54l92 92M146 54l-92 92" stroke="#12C8E8" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="100" r="31" fill="#665CFF"/><circle cx="100" cy="27" r="13" fill="#11142A"/><circle cx="173" cy="100" r="13" fill="#11142A"/><circle cx="100" cy="173" r="13" fill="#11142A"/><circle cx="27" cy="100" r="13" fill="#11142A"/><circle cx="100" cy="100" r="9" fill="#FFF4E4"/></g>
+    <text x="345" y="246" text-anchor="start" fill="#11142A" font-family="Inter, Montserrat, Arial, sans-serif" font-size="52" font-weight="860" letter-spacing="-1">Nova Node</text>
+  <text x="345" y="270.96" text-anchor="start" fill="#11142A" opacity=".58" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="820" letter-spacing="4">DATA INTELLIGENCE</text>
+    <path d="M347 342h280" stroke="#665CFF" stroke-width="3"/>
+  </g>
+  <g transform="translate(705 535) rotate(8)" filter="url(#shadow)">
+    <rect width="840" height="486" rx="26" fill="#10132F"/>
+    <rect x="40" y="40" width="760" height="406" rx="14" stroke="#665CFF" stroke-width="2" opacity=".28"/>
+    <g transform="translate(635 185) scale(0.82)"><path d="M100 27v146M27 100h146M54 54l92 92M146 54l-92 92" stroke="#12C8E8" stroke-width="10" stroke-linecap="round"/><circle cx="100" cy="100" r="31" fill="#665CFF"/><circle cx="100" cy="27" r="13" fill="#10132F"/><circle cx="173" cy="100" r="13" fill="#10132F"/><circle cx="100" cy="173" r="13" fill="#10132F"/><circle cx="27" cy="100" r="13" fill="#10132F"/><circle cx="100" cy="100" r="9" fill="#ECECFF"/></g>
+    <text x="90" y="154" fill="#ECECFF" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="850">Nova Node</text>
+    <text x="92" y="202" fill="#665CFF" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="850" letter-spacing="5">DATA INTELLIGENCE</text>
+    <path d="M92 292h278" stroke="#12C8E8" stroke-width="2" opacity=".56"/>
+    <text x="92" y="342" fill="#ECECFF" opacity=".62" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="540">novanode.kr</text>
+    <text x="92" y="380" fill="#ECECFF" opacity=".62" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="540">@nova.node</text>
+  </g>
+</svg>

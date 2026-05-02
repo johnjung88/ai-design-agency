@@ -1,72 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img">
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
   
   <defs>
-    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#3B241A" flood-opacity=".24"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24150E"/>
+      <stop offset=".58" stop-color="#211711"/>
+      <stop offset="1" stop-color="#24150E"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#F7EFE4"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#B6532C"/>
+      <stop offset="1" stop-color="#D5A64F"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000000" flood-opacity=".34"/>
     </filter>
-    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".20"/>
     </filter>
-    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
-    </filter>
-    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#D4A64D" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#A84A2A" flood-opacity=".28"/>
-    </filter>
-    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+    <filter id="texture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 .045"/>
-      </feComponentTransfer>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
     </filter>
-    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#F6EFE5"/>
-      <stop offset=".52" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#D4A64D" stop-opacity=".52"/>
-    </linearGradient>
-    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#3B241A"/>
-      <stop offset=".65" stop-color="#1E1712"/>
-      <stop offset="1" stop-color="#A84A2A"/>
-    </linearGradient>
-    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
-      <stop offset=".48" stop-color="#F6EFE5" stop-opacity=".92"/>
-      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
-      <stop offset=".35" stop-color="#F6EFE5" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
-    </linearGradient>
   </defs>
   
-  <rect width="1600" height="900" fill="#3B241A"/>
-  <rect x="42" y="42" width="1516" height="816" rx="40" fill="url(#studioBg)"/>
-  <rect x="42" y="42" width="1516" height="816" rx="40" fill="#ffffff" filter="url(#paperNoise)" opacity=".42"/>
-  <text x="110" y="128" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#1E1712" opacity=".42">KOREAN DINING</text>
-  
-  <g transform="translate(112 242) scale(1.8)" filter="url(#pressedInk)"><g><rect x="17" y="18" width="29" height="29" rx="8" fill="#A84A2A"/><rect x="54" y="18" width="29" height="29" rx="8" fill="#D4A64D"/><rect x="17" y="55" width="29" height="29" rx="8" fill="#D4A64D"/><rect x="54" y="55" width="29" height="29" rx="8" fill="#A84A2A"/><path d="M30 72c13-18 27-18 40 0" fill="none" stroke="#1E1712" stroke-width="6" stroke-linecap="round"/><path d="M27 30h56M17 47h66M17 55h66M27 84h56" stroke="#ffffff" stroke-width="3" opacity=".55"/></g></g>
-  
-  <text x="337" y="346.4" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="950" fill="#1E1712">Danchae Table</text>
-  <text x="337" y="378.08" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="850" letter-spacing="4" fill="#1E1712" opacity=".48">MODERN TABLE IDENTITY</text>
-  <text x="116" y="515" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="850" fill="#A84A2A">Modern table identity</text>
-  <text x="116" y="570" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#1E1712" opacity=".58">logo system / mono version / brand guide</text>
-  <rect x="112" y="648" width="86" height="42" rx="21" fill="#A84A2A"/>
-  <rect x="214" y="648" width="86" height="42" rx="21" fill="#D4A64D"/>
-  <rect x="316" y="648" width="86" height="42" rx="21" fill="#1E1712"/>
-  <g transform="translate(875 142) scale(.72)">
-    <rect x="120" y="70" width="650" height="300" rx="8" fill="url(#darkPanel)" filter="url(#ambientShadow)"/>
-    <g transform="translate(250 142) scale(.72)" filter="url(#neonGlow)"><g><rect x="17" y="18" width="29" height="29" rx="8" fill="#A84A2A"/><rect x="54" y="18" width="29" height="29" rx="8" fill="#D4A64D"/><rect x="17" y="55" width="29" height="29" rx="8" fill="#D4A64D"/><rect x="54" y="55" width="29" height="29" rx="8" fill="#A84A2A"/><path d="M30 72c13-18 27-18 40 0" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/><path d="M27 30h56M17 47h66M17 55h66M27 84h56" stroke="#ffffff" stroke-width="3" opacity=".55"/></g></g>
-    
-  <text x="360" y="202" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="950" fill="#ffffff">Danchae Table</text>
-  <text x="360" y="221.2" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="4" fill="#ffffff" opacity=".48">MODERN TABLE IDENTITY</text>
-    <rect x="150" y="418" width="520" height="288" rx="22" fill="url(#cardSheen)" filter="url(#ambientShadow)" transform="rotate(-8 410 562)"/>
-    <g transform="translate(210 495) rotate(-8) scale(.58)"><g><rect x="17" y="18" width="29" height="29" rx="8" fill="#A84A2A"/><rect x="54" y="18" width="29" height="29" rx="8" fill="#D4A64D"/><rect x="17" y="55" width="29" height="29" rx="8" fill="#D4A64D"/><rect x="54" y="55" width="29" height="29" rx="8" fill="#A84A2A"/><path d="M30 72c13-18 27-18 40 0" fill="none" stroke="#1E1712" stroke-width="6" stroke-linecap="round"/><path d="M27 30h56M17 47h66M17 55h66M27 84h56" stroke="#ffffff" stroke-width="3" opacity=".55"/></g></g>
-    <text x="314" y="544" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="950" fill="#1E1712" transform="rotate(-8 314 544)">Danchae Table</text>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".10"><circle cx="1300" cy="120" r="220" stroke="#B6532C"/><circle cx="1380" cy="760" r="360" stroke="#B6532C"/><path d="M70 118h1460M70 770h1460" stroke="#B6532C"/></g>
+  <text x="92" y="116" fill="#B6532C" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="6">KOREAN DINING</text>
+  <text x="92" y="178" fill="#F7EFE4" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="860">Modern Table Grid Identity</text>
+  <text x="92" y="222" fill="#F7EFE4" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="560">bansang grid + table curve / logo, business card, brand kit</text>
+  <g filter="url(#shadow)"><g transform="translate(154 328) scale(1.55)"><rect x="36" y="35" width="52" height="52" rx="13" fill="#B6532C"/><rect x="112" y="35" width="52" height="52" rx="13" fill="#D5A64F"/><rect x="36" y="112" width="52" height="52" rx="13" fill="#D5A64F"/><rect x="112" y="112" width="52" height="52" rx="13" fill="#B6532C"/><path d="M57 150c25-36 61-36 86 0" fill="none" stroke="#211711" stroke-width="10" stroke-linecap="round"/><path d="M53 59h111M36 88h128M36 112h128M53 164h111" stroke="#FFF4E4" stroke-width="4" opacity=".56"/></g></g>
+  <text x="112" y="670" fill="#F7EFE4" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="860" letter-spacing="-2">Danchae Table</text>
+  <text x="116" y="722" fill="#B6532C" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="820" letter-spacing="7">KOREAN DINING</text>
+  <g transform="translate(885 212)" filter="url(#shadow)">
+    <rect x="0" y="45" width="520" height="292" rx="18" fill="url(#paper)" transform="rotate(-6 0 45)"/>
+    <rect x="54" y="276" width="520" height="292" rx="18" fill="#24150E" transform="rotate(8 54 276)"/>
+    <g transform="translate(130 120) rotate(-6)"><g transform="translate(0 0) scale(0.52)"><rect x="36" y="35" width="52" height="52" rx="13" fill="#B6532C"/><rect x="112" y="35" width="52" height="52" rx="13" fill="#D5A64F"/><rect x="36" y="112" width="52" height="52" rx="13" fill="#D5A64F"/><rect x="112" y="112" width="52" height="52" rx="13" fill="#B6532C"/><path d="M57 150c25-36 61-36 86 0" fill="none" stroke="#211711" stroke-width="10" stroke-linecap="round"/><path d="M53 59h111M36 88h128M36 112h128M53 164h111" stroke="#FFF4E4" stroke-width="4" opacity=".56"/></g><text x="120" y="60" text-anchor="start" fill="#211711" font-family="Inter, Montserrat, Arial, sans-serif" font-size="30" font-weight="860" letter-spacing="-1">Danchae Table</text>
+  <text x="120" y="74.4" text-anchor="start" fill="#211711" opacity=".58" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="820" letter-spacing="4">KOREAN DINING</text></g>
+    <g transform="translate(190 362) rotate(8)"><g transform="translate(0 0) scale(0.5)"><rect x="36" y="35" width="52" height="52" rx="13" fill="#B6532C"/><rect x="112" y="35" width="52" height="52" rx="13" fill="#D5A64F"/><rect x="36" y="112" width="52" height="52" rx="13" fill="#D5A64F"/><rect x="112" y="112" width="52" height="52" rx="13" fill="#B6532C"/><path d="M57 150c25-36 61-36 86 0" fill="none" stroke="#24150E" stroke-width="10" stroke-linecap="round"/><path d="M53 59h111M36 88h128M36 112h128M53 164h111" stroke="#F7EFE4" stroke-width="4" opacity=".56"/></g><text x="116" y="58" text-anchor="start" fill="#F7EFE4" font-family="Inter, Montserrat, Arial, sans-serif" font-size="29" font-weight="860" letter-spacing="-1">Danchae Table</text>
+  <text x="116" y="71.92" text-anchor="start" fill="#F7EFE4" opacity=".58" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="820" letter-spacing="4">KOREAN DINING</text></g>
+  </g>
+  <g transform="translate(92 760)">
+    <rect x="0" y="0" width="70" height="34" rx="17" fill="#B6532C"/><rect x="86" y="0" width="70" height="34" rx="17" fill="#D5A64F"/><rect x="172" y="0" width="70" height="34" rx="17" fill="#F7EFE4"/>
+    <text x="286" y="24" fill="#F7EFE4" opacity=".56" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="4">PRIMARY / ACCENT / PAPER</text>
   </g>
 </svg>

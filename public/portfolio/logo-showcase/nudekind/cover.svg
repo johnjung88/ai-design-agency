@@ -1,72 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img">
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
   
   <defs>
-    <filter id="ambientShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="34" stdDeviation="30" flood-color="#3B2923" flood-opacity=".24"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#281A16"/>
+      <stop offset=".58" stop-color="#211714"/>
+      <stop offset="1" stop-color="#281A16"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#F8EEE9"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#C88973"/>
+      <stop offset="1" stop-color="#A8B996"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000000" flood-opacity=".34"/>
     </filter>
-    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#000000" flood-opacity=".22"/>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity=".20"/>
     </filter>
-    <filter id="pressedInk" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="1.4" stdDeviation=".6" flood-color="#ffffff" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#000000" flood-opacity=".16"/>
-    </filter>
-    <filter id="neonGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#A7B797" flood-opacity=".45"/>
-      <feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#C88B75" flood-opacity=".28"/>
-    </filter>
-    <filter id="paperNoise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".92" numOctaves="2" stitchTiles="stitch"/>
+    <filter id="texture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
       <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer>
-        <feFuncA type="table" tableValues="0 .045"/>
-      </feComponentTransfer>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer>
     </filter>
-    <linearGradient id="studioBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#F8EFEA"/>
-      <stop offset=".52" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#A7B797" stop-opacity=".52"/>
-    </linearGradient>
-    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#3B2923"/>
-      <stop offset=".65" stop-color="#211916"/>
-      <stop offset="1" stop-color="#C88B75"/>
-    </linearGradient>
-    <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".96"/>
-      <stop offset=".48" stop-color="#F8EFEA" stop-opacity=".92"/>
-      <stop offset=".51" stop-color="#ffffff" stop-opacity=".45"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".86"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity=".78"/>
-      <stop offset=".35" stop-color="#F8EFEA" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ffffff" stop-opacity=".06"/>
-    </linearGradient>
   </defs>
   
-  <rect width="1600" height="900" fill="#3B2923"/>
-  <rect x="42" y="42" width="1516" height="816" rx="40" fill="url(#studioBg)"/>
-  <rect x="42" y="42" width="1516" height="816" rx="40" fill="#ffffff" filter="url(#paperNoise)" opacity=".42"/>
-  <text x="110" y="128" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="6" fill="#211916" opacity=".42">CLEAN COSMETICS</text>
-  
-  <g transform="translate(112 242) scale(1.8)" filter="url(#pressedInk)"><g><rect x="18" y="20" width="64" height="60" rx="30" fill="#A7B797"/><path d="M31 73V35h17c13 0 21 8 21 22v16" fill="none" stroke="#211916" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36c13-13 30-14 44-2" fill="none" stroke="#C88B75" stroke-width="7" stroke-linecap="round"/><path d="M70 24c-7-3-16-2-24 5" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/></g></g>
-  
-  <text x="337" y="346.4" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="950" fill="#211916">Nudekind</text>
-  <text x="337" y="378.08" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="850" letter-spacing="4" fill="#211916" opacity=".48">GENTLE BEAUTY IDENTITY</text>
-  <text x="116" y="515" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="850" fill="#C88B75">Gentle beauty identity</text>
-  <text x="116" y="570" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#211916" opacity=".58">logo system / mono version / brand guide</text>
-  <rect x="112" y="648" width="86" height="42" rx="21" fill="#C88B75"/>
-  <rect x="214" y="648" width="86" height="42" rx="21" fill="#A7B797"/>
-  <rect x="316" y="648" width="86" height="42" rx="21" fill="#211916"/>
-  <g transform="translate(875 142) scale(.72)">
-    <rect x="120" y="70" width="650" height="300" rx="8" fill="url(#darkPanel)" filter="url(#ambientShadow)"/>
-    <g transform="translate(250 142) scale(.72)" filter="url(#neonGlow)"><g><rect x="18" y="20" width="64" height="60" rx="30" fill="#A7B797"/><path d="M31 73V35h17c13 0 21 8 21 22v16" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36c13-13 30-14 44-2" fill="none" stroke="#C88B75" stroke-width="7" stroke-linecap="round"/><path d="M70 24c-7-3-16-2-24 5" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/></g></g>
-    
-  <text x="360" y="202" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="950" fill="#ffffff">Nudekind</text>
-  <text x="360" y="221.2" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="4" fill="#ffffff" opacity=".48">GENTLE BEAUTY IDENTITY</text>
-    <rect x="150" y="418" width="520" height="288" rx="22" fill="url(#cardSheen)" filter="url(#ambientShadow)" transform="rotate(-8 410 562)"/>
-    <g transform="translate(210 495) rotate(-8) scale(.58)"><g><rect x="18" y="20" width="64" height="60" rx="30" fill="#A7B797"/><path d="M31 73V35h17c13 0 21 8 21 22v16" fill="none" stroke="#211916" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 36c13-13 30-14 44-2" fill="none" stroke="#C88B75" stroke-width="7" stroke-linecap="round"/><path d="M70 24c-7-3-16-2-24 5" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity=".9"/></g></g>
-    <text x="314" y="544" font-family="Inter, Arial, sans-serif" font-size="31" font-weight="950" fill="#211916" transform="rotate(-8 314 544)">Nudekind</text>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".10"><circle cx="1300" cy="120" r="220" stroke="#C88973"/><circle cx="1380" cy="760" r="360" stroke="#C88973"/><path d="M70 118h1460M70 770h1460" stroke="#C88973"/></g>
+  <text x="92" y="116" fill="#C88973" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900" letter-spacing="6">CLEAN COSMETICS</text>
+  <text x="92" y="178" fill="#F8EEE9" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="860">Gentle Barrier Identity</text>
+  <text x="92" y="222" fill="#F8EEE9" opacity=".58" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="560">soft n + skin barrier / logo, business card, brand kit</text>
+  <g filter="url(#shadow)"><g transform="translate(154 328) scale(1.55)"><rect x="35" y="38" width="130" height="124" rx="62" fill="#A8B996"/><path d="M61 151V75h35c27 0 42 17 42 44v32" fill="none" stroke="#211714" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M61 76c26-26 61-28 90-5" fill="none" stroke="#C88973" stroke-width="13" stroke-linecap="round"/><path d="M141 52c-15-6-35-3-52 12" fill="none" stroke="#FFF4E4" stroke-width="7" stroke-linecap="round" opacity=".82"/></g></g>
+  <text x="112" y="670" fill="#F8EEE9" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="860" letter-spacing="-2">Nudekind</text>
+  <text x="116" y="722" fill="#C88973" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="820" letter-spacing="7">CLEAN BEAUTY</text>
+  <g transform="translate(885 212)" filter="url(#shadow)">
+    <rect x="0" y="45" width="520" height="292" rx="18" fill="url(#paper)" transform="rotate(-6 0 45)"/>
+    <rect x="54" y="276" width="520" height="292" rx="18" fill="#281A16" transform="rotate(8 54 276)"/>
+    <g transform="translate(130 120) rotate(-6)"><g transform="translate(0 0) scale(0.52)"><rect x="35" y="38" width="130" height="124" rx="62" fill="#A8B996"/><path d="M61 151V75h35c27 0 42 17 42 44v32" fill="none" stroke="#211714" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M61 76c26-26 61-28 90-5" fill="none" stroke="#C88973" stroke-width="13" stroke-linecap="round"/><path d="M141 52c-15-6-35-3-52 12" fill="none" stroke="#FFF4E4" stroke-width="7" stroke-linecap="round" opacity=".82"/></g><text x="120" y="60" text-anchor="start" fill="#211714" font-family="Inter, Montserrat, Arial, sans-serif" font-size="30" font-weight="860" letter-spacing="-1">Nudekind</text>
+  <text x="120" y="74.4" text-anchor="start" fill="#211714" opacity=".58" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="820" letter-spacing="4">CLEAN BEAUTY</text></g>
+    <g transform="translate(190 362) rotate(8)"><g transform="translate(0 0) scale(0.5)"><rect x="35" y="38" width="130" height="124" rx="62" fill="#A8B996"/><path d="M61 151V75h35c27 0 42 17 42 44v32" fill="none" stroke="#281A16" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M61 76c26-26 61-28 90-5" fill="none" stroke="#C88973" stroke-width="13" stroke-linecap="round"/><path d="M141 52c-15-6-35-3-52 12" fill="none" stroke="#F8EEE9" stroke-width="7" stroke-linecap="round" opacity=".82"/></g><text x="116" y="58" text-anchor="start" fill="#F8EEE9" font-family="Inter, Montserrat, Arial, sans-serif" font-size="29" font-weight="860" letter-spacing="-1">Nudekind</text>
+  <text x="116" y="71.92" text-anchor="start" fill="#F8EEE9" opacity=".58" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="820" letter-spacing="4">CLEAN BEAUTY</text></g>
+  </g>
+  <g transform="translate(92 760)">
+    <rect x="0" y="0" width="70" height="34" rx="17" fill="#C88973"/><rect x="86" y="0" width="70" height="34" rx="17" fill="#A8B996"/><rect x="172" y="0" width="70" height="34" rx="17" fill="#F8EEE9"/>
+    <text x="286" y="24" fill="#F8EEE9" opacity=".56" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="4">PRIMARY / ACCENT / PAPER</text>
   </g>
 </svg>

@@ -5,7 +5,12 @@ import { join } from "node:path";
 const outRoot = join(process.cwd(), "public", "portfolio", "logo-showcase");
 const sourceRoot = join(outRoot, "_sources");
 const cardSource = join(sourceRoot, "business-card-base.jpg");
-const signSource = join(sourceRoot, "signage-base.jpg");
+const premiumSources = {
+  fnb: join(sourceRoot, "premium-fnb-mockup.png"),
+  beauty: join(sourceRoot, "premium-beauty-mockup.png"),
+  wellness: join(sourceRoot, "premium-wellness-mockup.png"),
+  tech: join(sourceRoot, "premium-tech-mockup.png"),
+};
 
 const brands = [
   { slug: "moru-coffee", brand: "MORU Coffee", descriptor: "Roastery identity", accent: "#7A4E2E", accent2: "#C99B6A", ink: "#211712", paper: "#F5EFE6" },
@@ -52,18 +57,76 @@ function mark(slug, spec, mono = false) {
   return `<g>${marks[slug]}</g>`;
 }
 
-function lockupSvg(spec, width, height, color = spec.ink, mono = false) {
+function lockupSvg(spec, width, height, color = spec.ink, mono = false, options = {}) {
+  const { opacity = 1, shadow = false } = options;
   const markSpec = color === "#ffffff" ? { ...spec, ink: "#ffffff", paper: "#ffffff" } : spec;
   return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
     <filter id="softInk" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="2" stdDeviation="1.2" flood-color="#000000" flood-opacity=".18"/>
     </filter>
-    <g filter="url(#softInk)">
+    <g opacity="${opacity}"${shadow ? ' filter="url(#softInk)"' : ""}>
       <g transform="translate(0 2) scale(${height * 0.007})">${mark(spec.slug, markSpec, mono)}</g>
       <text x="${height * 0.9}" y="${height * 0.48}" font-family="Arial, sans-serif" font-size="${height * 0.26}" font-weight="900" fill="${color}">${esc(spec.brand)}</text>
       <text x="${height * 0.92}" y="${height * 0.66}" font-family="Arial, sans-serif" font-size="${height * 0.065}" font-weight="800" letter-spacing="3" fill="${color}" opacity=".62">${esc(spec.descriptor.toUpperCase())}</text>
     </g>
   </svg>`);
+}
+
+function applicationGroup(spec) {
+  if (["moru-coffee", "salty-yuzu", "danchae-table"].includes(spec.slug)) return "fnb";
+  if (["onda-hair", "vela-skin", "nudekind"].includes(spec.slug)) return "beauty";
+  if (["breath-pilates", "harufit", "mediroot"].includes(spec.slug)) return "wellness";
+  return "tech";
+}
+
+async function logoPng(spec, width, height, color = spec.ink, rotate = 0, options = {}) {
+  let image = sharp(lockupSvg(spec, width, height, color, false, options)).png();
+  if (rotate !== 0) {
+    image = image.rotate(rotate, { background: { r: 0, g: 0, b: 0, alpha: 0 } });
+  }
+  return image.toBuffer();
+}
+
+async function generateApplication(spec) {
+  const dir = join(outRoot, spec.slug);
+  mkdirSync(dir, { recursive: true });
+
+  const group = applicationGroup(spec);
+  const base = await sharp(premiumSources[group])
+    .resize(1600, 1000, { fit: "cover", position: "centre" })
+    .modulate({ brightness: 0.99, saturation: group === "tech" ? 0.92 : 0.96 })
+    .jpeg({ quality: 92, mozjpeg: true })
+    .toBuffer();
+
+  const largePrint = await logoPng(spec, 440, 112, spec.ink, 0, { opacity: 0.76 });
+  const mediumPrint = await logoPng(spec, 340, 88, spec.ink, 0, { opacity: 0.78 });
+  const wallMark = await logoPng(spec, 500, 128, spec.ink, 0, { opacity: 0.82 });
+  const screenMark = await logoPng(spec, 520, 132, "#ffffff", 0, { opacity: 0.92, shadow: true });
+
+  const placements = {
+    fnb: [
+      { input: largePrint, left: 1045, top: 480, blend: "multiply" },
+    ],
+    beauty: [
+      { input: mediumPrint, left: 1102, top: 492, blend: "multiply" },
+    ],
+    wellness: [
+      { input: wallMark, left: 434, top: 282, blend: "multiply" },
+    ],
+    tech: [
+      { input: screenMark, left: 770, top: 274, blend: "screen" },
+    ],
+  }[group];
+
+  await sharp(base)
+    .composite(placements)
+    .jpeg({ quality: 90, mozjpeg: true })
+    .toFile(join(dir, "photo-application.jpg"));
+
+  await sharp(base)
+    .composite(placements)
+    .jpeg({ quality: 90, mozjpeg: true })
+    .toFile(join(dir, "photo-signage.jpg"));
 }
 
 async function generateBusinessCard(spec) {
@@ -77,50 +140,22 @@ async function generateBusinessCard(spec) {
     .modulate({ brightness: 0.98, saturation: 0.94 })
     .toBuffer();
 
-  const logo = await sharp(lockupSvg(spec, 720, 180, spec.ink, false))
+  const logo = await sharp(lockupSvg(spec, 620, 150, spec.ink, false, { opacity: 0.72 }))
     .rotate(0.5, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
     .toBuffer();
 
   await sharp(await base)
     .composite([
-      { input: logo, left: 440, top: 360, blend: "multiply" },
+      { input: logo, left: 480, top: 375, blend: "multiply" },
     ])
     .jpeg({ quality: 88, mozjpeg: true })
     .toFile(join(dir, "photo-business-card.jpg"));
 }
 
-async function generateSignage(spec) {
-  const dir = join(outRoot, spec.slug);
-  mkdirSync(dir, { recursive: true });
-
-  const base = await sharp(signSource)
-    .rotate()
-    .resize(1600, 1000, { fit: "cover", position: "centre" })
-    .modulate({ brightness: 0.92, saturation: 0.94 })
-    .toBuffer();
-
-  const logo = await sharp(lockupSvg(spec, 780, 150, spec.ink, false)).png().toBuffer();
-  const plate = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
-    <filter id="plateShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#000000" flood-opacity=".28"/>
-    </filter>
-    <rect x="386" y="254" width="900" height="178" rx="8" fill="#f8f6ee" opacity=".84" filter="url(#plateShadow)"/>
-    <rect x="386" y="254" width="900" height="178" rx="8" fill="${spec.paper}" opacity=".42"/>
-  </svg>`);
-
-  await sharp(base)
-    .composite([
-      { input: plate, left: 0, top: 0 },
-      { input: logo, left: 545, top: 276 },
-    ])
-    .jpeg({ quality: 88, mozjpeg: true })
-    .toFile(join(dir, "photo-signage.jpg"));
-}
-
 for (const spec of brands) {
   await generateBusinessCard(spec);
-  await generateSignage(spec);
+  await generateApplication(spec);
 }
 
 writeFileSync(
@@ -129,10 +164,11 @@ writeFileSync(
     "# Photo mockup sources",
     "",
     "- `business-card-base.jpg`: Pexels photo 8490063 by PNW Production.",
-    "- `signage-base.jpg`: Pexels photo 30419483 by Victor Moragriega.",
+    "- `signage-base.jpg`: legacy Pexels sign photo kept for reference.",
+    "- `premium-*-mockup.png`: AI-generated blank physical mockup backgrounds, composited with vector logo artwork.",
     "- Generated photo mockups are composited JPGs for fictitious portfolio brands.",
   ].join("\n"),
   "utf8",
 );
 
-console.log(`Generated ${brands.length * 2} photo-based logo mockups.`);
+console.log(`Generated ${brands.length * 2} premium photo-based logo mockups.`);

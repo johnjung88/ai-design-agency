@@ -138,6 +138,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
 
   const inputClass =
     "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30";
+  const selectClass = `${inputClass} [color-scheme:dark] [&>option]:bg-[#1a1a1a] [&>option]:text-[#fafafa]`;
   const labelClass = "mb-1.5 block text-xs font-medium text-muted-foreground";
 
   async function handleSubmit(e: React.FormEvent) {
@@ -178,7 +179,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
         </div>
         <div>
           <label className={labelClass}>{copy.source}</label>
-          <select className={inputClass} value={form.source} onChange={(e) => set("source", e.target.value)}>
+          <select className={selectClass} value={form.source} onChange={(e) => set("source", e.target.value)}>
             <option value="soomgo">{locale === "ko" ? "숨고" : "Soomgo"}</option>
             <option value="kmong">{locale === "ko" ? "크몽" : "Kmong"}</option>
             <option value="email">{locale === "ko" ? "이메일" : "Email"}</option>
@@ -189,7 +190,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className={labelClass}>{copy.category} *</label>
-          <select className={inputClass} value={form.category} onChange={(e) => set("category", e.target.value)}>
+          <select className={selectClass} value={form.category} onChange={(e) => set("category", e.target.value)}>
             {serviceCategories.map((service) => (
               <option key={service.value} value={service.value}>
                 {service.label[locale]}
@@ -199,7 +200,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
         </div>
         <div>
           <label className={labelClass}>{copy.subtype}</label>
-          <select className={inputClass} value={form.subtype} onChange={(e) => set("subtype", e.target.value)}>
+          <select className={selectClass} value={form.subtype} onChange={(e) => set("subtype", e.target.value)}>
             {SUBTYPES[form.category].map((item) => (
               <option key={item.value} value={item.value}>
                 {item[locale]}
@@ -212,7 +213,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       <div className="grid gap-5 sm:grid-cols-3">
         <div>
           <label className={labelClass}>{copy.budget}</label>
-          <select className={inputClass} value={form.budget_range} onChange={(e) => set("budget_range", e.target.value)}>
+          <select className={selectClass} value={form.budget_range} onChange={(e) => set("budget_range", e.target.value)}>
             {BUDGET_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option[locale]}
@@ -222,7 +223,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
         </div>
         <div>
           <label className={labelClass}>{copy.timeline}</label>
-          <select className={inputClass} value={form.timeline} onChange={(e) => set("timeline", e.target.value)}>
+          <select className={selectClass} value={form.timeline} onChange={(e) => set("timeline", e.target.value)}>
             {TIMELINE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option[locale]}
@@ -232,7 +233,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
         </div>
         <div>
           <label className={labelClass}>{copy.contact}</label>
-          <select className={inputClass} value={form.contact_method} onChange={(e) => set("contact_method", e.target.value)}>
+          <select className={selectClass} value={form.contact_method} onChange={(e) => set("contact_method", e.target.value)}>
             <option value="email">{locale === "ko" ? "이메일" : "Email"}</option>
             <option value="phone">{locale === "ko" ? "전화" : "Phone"}</option>
           </select>
