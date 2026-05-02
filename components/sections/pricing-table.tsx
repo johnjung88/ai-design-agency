@@ -63,9 +63,14 @@ export function PricingTable({ tiers, showToggle = true }: PricingTableProps) {
 
             <div>
               <h3 className="text-sm font-semibold text-foreground">{tier.name[locale]}</h3>
-              <p className="mt-1 font-mono text-2xl font-bold text-primary">
+              <p className="mt-1 text-2xl font-extrabold tracking-tight text-primary">
                 {isEvent ? tier.eventPrice : tier.regularPrice}
               </p>
+              {isEvent && tier.regularPrice && !tier.regularPrice.includes("추후") && (
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  {t("regularPrice")} <span className="line-through">{tier.regularPrice}</span>
+                </p>
+              )}
               <p className="mt-0.5 text-xs text-muted-foreground">
                 {t("duration")}: {tier.duration}
               </p>

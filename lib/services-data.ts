@@ -195,7 +195,7 @@ export const servicesData: ServiceDetail[] = [
       {
         name: { ko: "입문형 로고·명함", en: "Starter Logo & Card" },
         eventPrice: "₩29,000",
-        regularPrice: "추후 인상 예정",
+        regularPrice: "₩59,000",
         duration: "1일",
         includes: [
           { ko: "로고 1안", en: "1 logo concept" },
@@ -207,7 +207,7 @@ export const servicesData: ServiceDetail[] = [
       {
         name: { ko: "실속형 로고 3안·명함", en: "Value Logo 3 Concepts & Card" },
         eventPrice: "₩49,000",
-        regularPrice: "추후 인상 예정",
+        regularPrice: "₩99,000",
         duration: "1-2일",
         recommended: true,
         includes: [
@@ -221,7 +221,7 @@ export const servicesData: ServiceDetail[] = [
       {
         name: { ko: "창업형 브랜드 키트", en: "Startup Brand Kit" },
         eventPrice: "₩99,000",
-        regularPrice: "추후 인상 예정",
+        regularPrice: "₩199,000",
         duration: "2-3일",
         includes: [
           { ko: "로고 3안 + 명함 1안", en: "3 logo concepts + 1 card concept" },
