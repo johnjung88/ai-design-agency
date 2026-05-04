@@ -62,7 +62,7 @@ export const hotItems: HotItem[] = [
     type: "ppt-design",
     title: { ko: "PPT 디자인", en: "PPT Design" },
     description: { ko: "회사소개, 제안, 발표 흐름이 바로 전달되는 편집 가능한 원본 파일입니다.", en: "Editable decks that clearly communicate company, proposal, and pitch stories." },
-    price: { ko: "5만원~", en: "from ₩50,000" },
+    price: { ko: "4만원~", en: "from ₩40,000" },
     duration: { ko: "1-2일", en: "1-2 days" },
     proof: { ko: "PPT 표지 및 원본 구성", en: "Deck cover and editable source" },
     image: "/portfolio/ppt-design/brand-proposal/cover-slide.png",
