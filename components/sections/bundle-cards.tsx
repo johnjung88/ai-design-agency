@@ -35,7 +35,7 @@ const BUNDLES: Bundle[] = [
     description: { ko: "홈페이지와 마케팅 콘텐츠를 함께 정리", en: "Website and marketing content together" },
     featured: true,
     items: [
-      { ko: "홈페이지 기본 5P", en: "Site Basic (5 pages)" },
+      { ko: "프리미엄 5페이지 홈페이지", en: "Premium 5-page website" },
       { ko: "마케팅 영상 30초", en: "Marketing video 30s" },
       { ko: "카드뉴스 5장", en: "Card news ×5" },
       { ko: "SNS 프로필 세팅", en: "SNS profile setup" },
@@ -49,7 +49,7 @@ const BUNDLES: Bundle[] = [
     name: { ko: "통합 패키지", en: "Integrated Package" },
     description: { ko: "웹·앱·자동화를 한 번에 준비", en: "Website, app, and automation together" },
     items: [
-      { ko: "홈페이지 기본 5P", en: "Site Basic (5 pages)" },
+      { ko: "프리미엄 5페이지 홈페이지", en: "Premium 5-page website" },
       { ko: "앱 MVP 기본", en: "App MVP Basic" },
       { ko: "간단 자동화 1종", en: "Simple automation ×1" },
     ],

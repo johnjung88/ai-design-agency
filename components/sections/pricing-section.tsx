@@ -37,22 +37,22 @@ const plansByTab: Record<ServiceTab, Plan[]> = {
   web: [
     {
       name: "Basic",
-      price: "₩50,000~",
-      desc: "랜딩 1P",
-      features: ["1페이지 반응형", "기본 CTA", "수정 1회"],
+      price: "₩99,000",
+      desc: "라이트 원페이지 랜딩형",
+      features: ["회사소개/서비스소개", "문의유도 1페이지", "수정 1회"],
     },
     {
       name: "Pro",
-      price: "₩300,000~",
-      desc: "홈피 5P",
-      features: ["5페이지 사이트", "문의 폼", "SEO 기본 세팅"],
+      price: "₩199,000",
+      desc: "스탠다드 3페이지",
+      features: ["메인/소개/서비스·문의", "3페이지 사이트", "SEO 기본 세팅"],
       highlight: true,
     },
     {
       name: "Enterprise",
-      price: "₩800,000~",
-      desc: "홈피 10P",
-      features: ["10페이지 내외", "고급 섹션", "배포 가이드"],
+      price: "₩349,000",
+      desc: "프리미엄 5페이지",
+      features: ["메인/회사소개/서비스", "포트폴리오·사례", "문의 페이지"],
     },
   ],
   motion: [
