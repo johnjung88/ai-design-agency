@@ -29,7 +29,7 @@ export const hotItems: HotItem[] = [
     type: "shopping-mall",
     title: { ko: "쇼핑몰", en: "Shopping Mall" },
     description: { ko: "첫 화면에서 상품성, 배송 혜택, 카테고리 탐색이 보이도록 정리합니다.", en: "Make products, benefits, and categories easy to scan from the first screen." },
-    price: { ko: "15만원~", en: "from ₩150,000" },
+    price: { ko: "14.9만원~", en: "from ₩149,000" },
     duration: { ko: "2-5일", en: "2-5 days" },
     proof: { ko: "카페24 쇼핑몰 실제 시안", en: "Cafe24 storefront design sample" },
     image: "/portfolio/cafe24-design-pack/d01-wide.png",
