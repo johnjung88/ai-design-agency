@@ -1,0 +1,53 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1080" fill="#E7DED1"/>
+  <defs>
+    <linearGradient id="paper" x1="342" y1="166" x2="1488" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8EB"/>
+      <stop offset="1" stop-color="#CDBBA5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="42" stdDeviation="34" flood-color="#301A10" flood-opacity="0.28"/>
+    </filter>
+    <filter id="smallShadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#301A10" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <g opacity="0.42">
+    <circle cx="1530" cy="170" r="240" fill="#D1B795"/>
+    <circle cx="275" cy="930" r="225" fill="#C5A37D"/>
+  </g>
+  <text x="120" y="132" fill="#6B442E" font-family="Inter, Montserrat, Arial, sans-serif" font-size="24" font-weight="860" letter-spacing="6">BUSINESS CARD SYSTEM</text>
+  <text x="120" y="198" fill="#20140F" font-family="Inter, Montserrat, Arial, sans-serif" font-size="58" font-weight="820">MORU Coffee</text>
+  <text x="120" y="244" fill="#7F6B5B" font-family="Inter, Montserrat, Arial, sans-serif" font-size="22" font-weight="520">front / back layout for logo and business card sales portfolio</text>
+  <g transform="translate(430 322) rotate(-7)" filter="url(#shadow)">
+    <rect width="900" height="520" rx="26" fill="url(#paper)"/>
+    <rect x="42" y="42" width="816" height="436" rx="14" stroke="#D5C2A7" stroke-width="2"/>
+    <circle cx="240" cy="260" r="88" fill="#20140F" stroke="#C9954A" stroke-width="9"/>
+    <path d="M193 286V237C193 216 208 202 228 202C242 202 251 208 257 219C264 208 274 202 287 202C308 202 322 216 322 237V286" stroke="#FFF4E4" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M197 296C221 279 292 279 317 296" stroke="#C9954A" stroke-width="20" stroke-linecap="round"/>
+    <path d="M246 222C261 237 261 260 246 275C231 260 231 237 246 222Z" fill="#C9954A"/>
+    <text x="376" y="250" fill="#20140F" font-family="Inter, Montserrat, Arial, sans-serif" font-size="56" font-weight="850">MORU Coffee</text>
+    <text x="380" y="304" fill="#8F6B43" font-family="Inter, Montserrat, Arial, sans-serif" font-size="17" font-weight="850" letter-spacing="6">SMALL BATCH ROASTERY</text>
+    <path d="M381 345H682" stroke="#C9954A" stroke-width="3"/>
+  </g>
+  <g transform="translate(770 540) rotate(8)" filter="url(#shadow)">
+    <rect width="900" height="520" rx="26" fill="#23160F"/>
+    <rect x="42" y="42" width="816" height="436" rx="14" stroke="#513723" stroke-width="2"/>
+    <circle cx="702" cy="260" r="94" fill="#20140F" stroke="#C9954A" stroke-width="9"/>
+    <path d="M652 288V236C652 214 667 199 689 199C703 199 713 206 720 218C726 206 737 199 751 199C773 199 788 214 788 236V288" stroke="#FFF4E4" stroke-width="29" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M656 298C682 280 758 280 784 298" stroke="#C9954A" stroke-width="21" stroke-linecap="round"/>
+    <text x="92" y="164" fill="#FFF4E4" font-family="Inter, Montserrat, Arial, sans-serif" font-size="38" font-weight="820">MORU Coffee</text>
+    <text x="94" y="214" fill="#C9954A" font-family="Inter, Montserrat, Arial, sans-serif" font-size="16" font-weight="820" letter-spacing="5">SMALL BATCH ROASTERY</text>
+    <path d="M94 300H376" stroke="#6D5034" stroke-width="2"/>
+    <text x="94" y="350" fill="#B7A18C" font-family="Inter, Montserrat, Arial, sans-serif" font-size="21" font-weight="540">morucoffee.kr</text>
+    <text x="94" y="388" fill="#B7A18C" font-family="Inter, Montserrat, Arial, sans-serif" font-size="21" font-weight="540">@moru.roastery</text>
+  </g>
+  <g transform="translate(125 820)" filter="url(#smallShadow)">
+    <rect x="0" y="0" width="280" height="160" rx="18" fill="#20140F"/>
+    <circle cx="78" cy="80" r="42" fill="#20140F" stroke="#C9954A" stroke-width="5"/>
+    <path d="M55 93V68C55 57 62 51 73 51C80 51 85 54 88 60C92 54 97 51 104 51C115 51 122 57 122 68V93" stroke="#FFF4E4" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M57 97C69 88 108 88 120 97" stroke="#C9954A" stroke-width="9" stroke-linecap="round"/>
+    <text x="146" y="75" fill="#FFF4E4" font-family="Inter, Montserrat, Arial, sans-serif" font-size="24" font-weight="820">Sticker</text>
+    <text x="148" y="108" fill="#C9954A" font-family="Inter, Montserrat, Arial, sans-serif" font-size="12" font-weight="820" letter-spacing="3">ROUND MARK</text>
+  </g>
+</svg>

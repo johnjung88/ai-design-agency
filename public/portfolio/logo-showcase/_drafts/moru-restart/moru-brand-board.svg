@@ -1,0 +1,83 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1080" fill="#17100C"/>
+  <defs>
+    <linearGradient id="boardBg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22150F"/>
+      <stop offset="0.54" stop-color="#17100C"/>
+      <stop offset="1" stop-color="#0F0B09"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="310" y1="170" x2="675" y2="635" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EFC26F"/>
+      <stop offset="0.48" stop-color="#C4924B"/>
+      <stop offset="1" stop-color="#7A4A29"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="1110" y1="188" x2="1665" y2="785" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8EC"/>
+      <stop offset="1" stop-color="#D8C7B1"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="36" stdDeviation="28" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#boardBg)"/>
+  <g opacity="0.08">
+    <circle cx="1588" cy="180" r="240" stroke="#D8A45A" stroke-width="2"/>
+    <circle cx="1655" cy="914" r="335" stroke="#D8A45A" stroke-width="2"/>
+    <path d="M83 130H1838" stroke="#D8A45A" stroke-width="1"/>
+    <path d="M83 956H1838" stroke="#D8A45A" stroke-width="1"/>
+  </g>
+  <text x="98" y="118" fill="#C9954A" font-family="Inter, Montserrat, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="6">MORU COFFEE / BRAND IDENTITY</text>
+  <text x="98" y="178" fill="#FFF7EA" font-family="Inter, Montserrat, Arial, sans-serif" font-size="58" font-weight="800">Quiet Roastery Identity</text>
+  <text x="98" y="226" fill="#A89784" font-family="Inter, Montserrat, Arial, sans-serif" font-size="24" font-weight="500">warm, minimal, crafted system for a fictional small-batch coffee brand</text>
+  <g transform="translate(145 300)" filter="url(#shadow)">
+    <circle cx="258" cy="206" r="196" fill="#251812"/>
+    <circle cx="258" cy="206" r="185" stroke="url(#brass)" stroke-width="18"/>
+    <path d="M118 274V155C118 102 152 68 201 68C232 68 253 83 267 109C282 83 303 68 335 68C384 68 418 102 418 155V274" stroke="#FFF3E2" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M122 291C179 250 337 250 394 291" stroke="url(#brass)" stroke-width="43" stroke-linecap="round"/>
+    <path d="M151 337C221 367 313 367 384 337" stroke="#FFF3E2" stroke-width="9" stroke-linecap="round"/>
+    <path d="M258 127C291 159 291 210 258 242C225 210 225 159 258 127Z" fill="#C9954A"/>
+    <path d="M258 139C251 174 251 198 258 231" stroke="#2D1B13" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <text x="500" y="795" text-anchor="middle" fill="#FFF7EA" font-family="Inter, Montserrat, Arial, sans-serif" font-size="104" font-weight="820" letter-spacing="-2">MORU Coffee</text>
+  <text x="500" y="864" text-anchor="middle" fill="#C9954A" font-family="Inter, Montserrat, Arial, sans-serif" font-size="26" font-weight="760" letter-spacing="12">SMALL BATCH ROASTERY</text>
+  <g transform="translate(875 228)" filter="url(#cardShadow)">
+    <rect x="0" y="40" width="535" height="302" rx="18" fill="url(#paper)" transform="rotate(-6 0 40)"/>
+    <rect x="58" y="295" width="535" height="302" rx="18" fill="#271914" transform="rotate(8 58 295)"/>
+    <g transform="translate(152 110) rotate(-6)">
+      <circle cx="52" cy="52" r="45" fill="#2A1B14" stroke="#C9954A" stroke-width="6"/>
+      <path d="M25 65V39C25 28 33 21 43 21C50 21 55 25 58 31C62 25 67 21 74 21C85 21 92 28 92 39V65" stroke="#FFF4E4" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M27 69C40 60 76 60 89 69" stroke="#C9954A" stroke-width="10" stroke-linecap="round"/>
+      <text x="128" y="50" fill="#211510" font-family="Inter, Montserrat, Arial, sans-serif" font-size="34" font-weight="820">MORU Coffee</text>
+      <text x="130" y="83" fill="#8F6B43" font-family="Inter, Montserrat, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="4">SMALL BATCH ROASTERY</text>
+    </g>
+    <g transform="translate(212 390) rotate(8)">
+      <circle cx="48" cy="48" r="42" fill="#20140F" stroke="#C9954A" stroke-width="6"/>
+      <path d="M24 60V37C24 27 31 20 41 20C48 20 52 24 56 30C59 24 64 20 71 20C81 20 88 27 88 37V60" stroke="#FFF4E4" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M26 64C38 56 74 56 86 64" stroke="#C9954A" stroke-width="9" stroke-linecap="round"/>
+      <text x="118" y="51" fill="#FFF4E4" font-family="Inter, Montserrat, Arial, sans-serif" font-size="30" font-weight="820">MORU Coffee</text>
+      <text x="120" y="82" fill="#C9954A" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="800" letter-spacing="4">SMALL BATCH ROASTERY</text>
+    </g>
+  </g>
+  <g transform="translate(1418 218)" filter="url(#cardShadow)">
+    <path d="M88 80C88 50 112 26 142 26H336C368 26 394 52 394 84V686H88V80Z" fill="#B58458"/>
+    <path d="M88 80C88 50 112 26 142 26H336C368 26 394 52 394 84V686H88V80Z" fill="#C99A6A" opacity="0.24"/>
+    <path d="M116 122H366V566H116V122Z" fill="#2A1B14"/>
+    <circle cx="240" cy="224" r="67" fill="#20140F" stroke="#C9954A" stroke-width="8"/>
+    <path d="M205 244V207C205 191 216 181 232 181C242 181 249 186 254 194C259 186 266 181 277 181C293 181 304 191 304 207V244" stroke="#FFF4E4" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M207 251C225 238 281 238 299 251" stroke="#C9954A" stroke-width="16" stroke-linecap="round"/>
+    <text x="241" y="358" text-anchor="middle" fill="#FFF4E4" font-family="Inter, Montserrat, Arial, sans-serif" font-size="28" font-weight="820">MORU Coffee</text>
+    <text x="241" y="399" text-anchor="middle" fill="#C9954A" font-family="Inter, Montserrat, Arial, sans-serif" font-size="11" font-weight="800" letter-spacing="3">SMALL BATCH ROASTERY</text>
+    <path d="M164 482H318" stroke="#C9954A" stroke-width="2"/>
+    <text x="241" y="523" text-anchor="middle" fill="#E6CFAA" font-family="Inter, Montserrat, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">WHOLE BEAN COFFEE</text>
+  </g>
+  <g transform="translate(100 920)">
+    <rect x="0" y="0" width="72" height="72" rx="36" fill="#20140F" stroke="#6F5033"/>
+    <rect x="96" y="0" width="72" height="72" rx="36" fill="#6B442E"/>
+    <rect x="192" y="0" width="72" height="72" rx="36" fill="#C9954A"/>
+    <rect x="288" y="0" width="72" height="72" rx="36" fill="#FFF4E0"/>
+    <text x="404" y="44" fill="#A89784" font-family="Inter, Montserrat, Arial, sans-serif" font-size="18" font-weight="780" letter-spacing="5">ESPRESSO / CLAY / BRASS / CREAM</text>
+  </g>
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img">
+  
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="34" stdDeviation="32" flood-color="#1b0d08" flood-opacity=".18"/>
+    </filter>
+    <filter id="tightShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#1b0d08" flood-opacity=".22"/>
+    </filter>
+    <filter id="printTexture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".74" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .035"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="warmPaper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf2"/>
+      <stop offset=".58" stop-color="#f5eee4"/>
+      <stop offset="1" stop-color="#e8d0b4"/>
+    </linearGradient>
+    <linearGradient id="darkRoast" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24140f"/>
+      <stop offset=".58" stop-color="#4a2b1f"/>
+      <stop offset="1" stop-color="#6f4631"/>
+    </linearGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6c7a4"/>
+      <stop offset=".52" stop-color="#a87652"/>
+      <stop offset="1" stop-color="#f1d9b8"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="#fffaf2"/>
+  <rect width="1800" height="1200" fill="#ffffff" filter="url(#printTexture)" opacity=".42"/>
+  
+  <text x="110" y="122" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="7" fill="#a87652">02 LOGO SYSTEM</text>
+  <text x="110" y="205" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="950" fill="#16110f">Built to Scale</text>
+  <text x="112" y="256" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="720" fill="#82746a">Primary lockup, symbol, reverse mark, one-color version, and small-size test.</text>
+  <g transform="translate(110 350)">
+    <rect x="0" y="0" width="760" height="320" rx="32" fill="#ffffff" filter="url(#softShadow)"/>
+    <text x="44" y="62" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="950" letter-spacing="5" fill="#a87652">PRIMARY</text>
+    
+  
+  <g transform="translate(46 118) scale(0.825)">
+    <circle cx="80" cy="80" r="72" fill="url(#darkRoast)"/>
+    <circle cx="80" cy="80" r="56" fill="none" stroke="#d8b78f" stroke-width="5" opacity=".9"/>
+    <path d="M41 106V58c0-13 17-18 25-7l14 22 14-22c8-11 25-6 25 7v48" fill="none" stroke="#fffaf2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M45 103c20-10 50-10 70 0" fill="none" stroke="#d8b78f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="6" fill="#d8b78f"/>
+  </g>
+  
+  <g>
+    <text x="212" y="190.60000000000002" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="950" letter-spacing="-1" fill="#16110f">MORU Coffee</text>
+    <text x="212" y="219.16000000000003" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="6" fill="#16110f" opacity=".55">SMALL BATCH ROASTERY</text>
+  </g>
+  </g>
+  <g transform="translate(930 350)">
+    <rect x="0" y="0" width="760" height="320" rx="32" fill="#24140f" filter="url(#softShadow)"/>
+    <text x="44" y="62" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="950" letter-spacing="5" fill="#d8b78f">REVERSE</text>
+    
+  
+  <g transform="translate(46 118) scale(0.825)">
+    <circle cx="80" cy="80" r="72" fill="url(#darkRoast)"/>
+    <circle cx="80" cy="80" r="56" fill="none" stroke="#d8b78f" stroke-width="5" opacity=".9"/>
+    <path d="M41 106V58c0-13 17-18 25-7l14 22 14-22c8-11 25-6 25 7v48" fill="none" stroke="#fffaf2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M45 103c20-10 50-10 70 0" fill="none" stroke="#d8b78f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="6" fill="#d8b78f"/>
+  </g>
+  
+  <g>
+    <text x="212" y="190.60000000000002" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="950" letter-spacing="-1" fill="#fffaf2">MORU Coffee</text>
+    <text x="212" y="219.16000000000003" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="850" letter-spacing="6" fill="#fffaf2" opacity=".55">SMALL BATCH ROASTERY</text>
+  </g>
+  </g>
+  <g transform="translate(110 735)">
+    <rect x="0" y="0" width="490" height="290" rx="32" fill="#ffffff" filter="url(#softShadow)"/>
+    <text x="38" y="58" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="950" letter-spacing="5" fill="#82746a">SYMBOL</text>
+    
+  <g transform="translate(154 84) scale(1.0625)">
+    <circle cx="80" cy="80" r="72" fill="url(#darkRoast)"/>
+    <circle cx="80" cy="80" r="56" fill="none" stroke="#d8b78f" stroke-width="5" opacity=".9"/>
+    <path d="M41 106V58c0-13 17-18 25-7l14 22 14-22c8-11 25-6 25 7v48" fill="none" stroke="#fffaf2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M45 103c20-10 50-10 70 0" fill="none" stroke="#d8b78f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="6" fill="#d8b78f"/>
+  </g>
+  </g>
+  <g transform="translate(655 735)">
+    <rect x="0" y="0" width="490" height="290" rx="32" fill="#ffffff" filter="url(#softShadow)"/>
+    <text x="38" y="58" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="950" letter-spacing="5" fill="#82746a">ONE COLOR</text>
+    
+  <g transform="translate(154 84) scale(1.0625)">
+    <circle cx="80" cy="80" r="72" fill="#16110f"/>
+    <circle cx="80" cy="80" r="56" fill="none" stroke="#d8b78f" stroke-width="5" opacity=".9"/>
+    <path d="M41 106V58c0-13 17-18 25-7l14 22 14-22c8-11 25-6 25 7v48" fill="none" stroke="#fffaf2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M45 103c20-10 50-10 70 0" fill="none" stroke="#d8b78f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="6" fill="#d8b78f"/>
+  </g>
+  </g>
+  <g transform="translate(1200 735)">
+    <rect x="0" y="0" width="490" height="290" rx="32" fill="#ffffff" filter="url(#softShadow)"/>
+    <text x="38" y="58" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="950" letter-spacing="5" fill="#82746a">SMALL SIZE</text>
+    
+  <g transform="translate(62 118) scale(0.4)">
+    <circle cx="80" cy="80" r="72" fill="url(#darkRoast)"/>
+    <circle cx="80" cy="80" r="56" fill="none" stroke="#d8b78f" stroke-width="5" opacity=".9"/>
+    <path d="M41 106V58c0-13 17-18 25-7l14 22 14-22c8-11 25-6 25 7v48" fill="none" stroke="#fffaf2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M45 103c20-10 50-10 70 0" fill="none" stroke="#d8b78f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="6" fill="#d8b78f"/>
+  </g>
+    
+  <g transform="translate(172 108) scale(0.525)">
+    <circle cx="80" cy="80" r="72" fill="url(#darkRoast)"/>
+    <circle cx="80" cy="80" r="56" fill="none" stroke="#d8b78f" stroke-width="5" opacity=".9"/>
+    <path d="M41 106V58c0-13 17-18 25-7l14 22 14-22c8-11 25-6 25 7v48" fill="none" stroke="#fffaf2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M45 103c20-10 50-10 70 0" fill="none" stroke="#d8b78f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="6" fill="#d8b78f"/>
+  </g>
+    
+  <g transform="translate(306 92) scale(0.725)">
+    <circle cx="80" cy="80" r="72" fill="url(#darkRoast)"/>
+    <circle cx="80" cy="80" r="56" fill="none" stroke="#d8b78f" stroke-width="5" opacity=".9"/>
+    <path d="M41 106V58c0-13 17-18 25-7l14 22 14-22c8-11 25-6 25 7v48" fill="none" stroke="#fffaf2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M45 103c20-10 50-10 70 0" fill="none" stroke="#d8b78f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="6" fill="#d8b78f"/>
+  </g>
+  </g>
+</svg>

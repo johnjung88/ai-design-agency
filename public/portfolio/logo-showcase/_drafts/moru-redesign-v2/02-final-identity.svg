@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img">
+  
+  <defs>
+    <filter id="shadowLg" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="32" stdDeviation="30" flood-color="#160a06" flood-opacity=".18"/>
+    </filter>
+    <filter id="shadowMd" x="-25%" y="-25%" width="150%" height="155%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#160a06" flood-opacity=".18"/>
+    </filter>
+    <filter id="paperGrain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .032"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="paperWarm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf2"/>
+      <stop offset=".64" stop-color="#f7efe3"/>
+      <stop offset="1" stop-color="#ead3b7"/>
+    </linearGradient>
+    <linearGradient id="roastDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24140e"/>
+      <stop offset=".62" stop-color="#4d2d21"/>
+      <stop offset="1" stop-color="#9b6644"/>
+    </linearGradient>
+    <linearGradient id="cardLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".58" stop-color="#fffaf2"/>
+      <stop offset="1" stop-color="#f7efe3"/>
+    </linearGradient>
+  </defs>
+  
+  
+  <rect width="1800" height="1200" fill="#24140e"/>
+  <rect x="54" y="54" width="1692" height="1092" rx="44" fill="url(#paperWarm)"/>
+  <rect x="54" y="54" width="1692" height="1092" rx="44" fill="#ffffff" filter="url(#paperGrain)" opacity=".44"/>
+  
+  <text x="112" y="122" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="7" fill="#9b6644">02  FINAL IDENTITY</text>
+  <text x="112" y="206" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="950" letter-spacing="-1" fill="#17110d">MORU Coffee</text>
+  <text x="114" y="258" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="720" fill="#7c7066">Selected direction: warm seal mark with a bold, readable wordmark.</text>
+  <g transform="translate(122 360)">
+    
+  <g transform="translate(0 0) scale(1.36)">
+    <circle cx="100" cy="100" r="88" fill="url(#roastDark)"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#c99a67" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#fffaf2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#c99a67" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#c99a67"/>
+  </g>
+    
+  <g>
+    <text x="0" y="352" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="96" font-weight="950" letter-spacing="-1.2" fill="#17110d">MORU Coffee</text>
+    <text x="0" y="392.32" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="850" letter-spacing="6" fill="#17110d" opacity=".55">SMALL BATCH ROASTERY</text>
+  </g>
+    <text x="4" y="510" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="760" fill="#7c7066">Designed for stamps, labels, takeout,</text>
+    <text x="4" y="546" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="760" fill="#7c7066">and profile images.</text>
+    <g transform="translate(0 630)">
+      <rect x="0" y="0" width="90" height="90" rx="22" fill="#24140e"/>
+      <rect x="118" y="0" width="90" height="90" rx="22" fill="#4d2d21"/>
+      <rect x="236" y="0" width="90" height="90" rx="22" fill="#9b6644"/>
+      <rect x="354" y="0" width="90" height="90" rx="22" fill="#c99a67"/>
+      <rect x="472" y="0" width="90" height="90" rx="22" fill="#fffaf2" stroke="#e8dccd" stroke-width="2"/>
+    </g>
+  </g>
+  <g transform="translate(930 318)" filter="url(#shadowLg)">
+    <rect x="140" y="0" width="460" height="650" rx="30" fill="#4d2d21"/>
+    <rect x="190" y="82" width="360" height="430" rx="18" fill="#fffaf2" opacity=".1"/>
+    
+  <g transform="translate(292 172) scale(1.12)">
+    <circle cx="100" cy="100" r="88" fill="url(#roastDark)"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#c99a67" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#fffaf2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#c99a67" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#c99a67"/>
+  </g>
+    <text x="370" y="380" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="950" fill="#fffaf2">MORU</text>
+    <text x="370" y="419" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="850" letter-spacing="6" fill="#fffaf2" opacity=".62">ROASTERY</text>
+    <rect x="0" y="418" width="530" height="288" rx="22" fill="url(#cardLight)" transform="rotate(-7 265 562)"/>
+    
+  <g transform="translate(70 492) scale(0.55)">
+    <circle cx="100" cy="100" r="88" fill="#fffaf2"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#9b6644" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#24140e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#9b6644" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#9b6644"/>
+  </g>
+    <text x="176" y="535" font-family="Inter, Arial, sans-serif" font-size="37" font-weight="950" fill="#17110d" transform="rotate(-7 176 535)">MORU Coffee</text>
+    <text x="176" y="568" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="850" letter-spacing="5" fill="#17110d" opacity=".45" transform="rotate(-7 176 568)">SMALL BATCH ROASTERY</text>
+    <circle cx="610" cy="660" r="86" fill="#24140e"/>
+    
+  <g transform="translate(552 602) scale(0.58)">
+    <circle cx="100" cy="100" r="88" fill="url(#roastDark)"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#c99a67" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#fffaf2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#c99a67" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#c99a67"/>
+  </g>
+  </g>
+</svg>

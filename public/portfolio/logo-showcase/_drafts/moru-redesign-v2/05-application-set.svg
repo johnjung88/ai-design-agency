@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img">
+  
+  <defs>
+    <filter id="shadowLg" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="32" stdDeviation="30" flood-color="#160a06" flood-opacity=".18"/>
+    </filter>
+    <filter id="shadowMd" x="-25%" y="-25%" width="150%" height="155%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#160a06" flood-opacity=".18"/>
+    </filter>
+    <filter id="paperGrain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .032"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="paperWarm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf2"/>
+      <stop offset=".64" stop-color="#f7efe3"/>
+      <stop offset="1" stop-color="#ead3b7"/>
+    </linearGradient>
+    <linearGradient id="roastDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24140e"/>
+      <stop offset=".62" stop-color="#4d2d21"/>
+      <stop offset="1" stop-color="#9b6644"/>
+    </linearGradient>
+    <linearGradient id="cardLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".58" stop-color="#fffaf2"/>
+      <stop offset="1" stop-color="#f7efe3"/>
+    </linearGradient>
+  </defs>
+  
+  
+  <rect width="1800" height="1200" fill="#fffaf2"/>
+  <rect x="54" y="54" width="1692" height="1092" rx="44" fill="#ffffff"/>
+  <rect x="54" y="54" width="1692" height="1092" rx="44" fill="#ffffff" filter="url(#paperGrain)" opacity=".44"/>
+  
+  <text x="112" y="122" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="7" fill="#9b6644">05  APPLICATION SET</text>
+  <text x="112" y="206" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="950" letter-spacing="-1" fill="#17110d">Brand Touchpoints</text>
+  <text x="114" y="258" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="720" fill="#7c7066">Not a fake photo mockup: clean vector applications prepared for presentation and sales pages.</text>
+  <g transform="translate(118 340)" filter="url(#shadowLg)">
+    <rect x="70" y="230" width="540" height="310" rx="24" fill="url(#cardLight)" transform="rotate(-6 340 385)"/>
+    
+  <g transform="translate(158 340) scale(0.58)">
+    <circle cx="100" cy="100" r="88" fill="#fffaf2"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#9b6644" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#24140e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#9b6644" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#9b6644"/>
+  </g>
+    <text x="270" y="384" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="950" fill="#17110d" transform="rotate(-6 270 384)">MORU Coffee</text>
+    <rect x="720" y="0" width="450" height="650" rx="32" fill="#4d2d21"/>
+    <rect x="778" y="84" width="334" height="430" rx="18" fill="#fffaf2" opacity=".1"/>
+    
+  <g transform="translate(878 178) scale(1.04)">
+    <circle cx="100" cy="100" r="88" fill="url(#roastDark)"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#c99a67" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#fffaf2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#c99a67" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#c99a67"/>
+  </g>
+    <text x="945" y="382" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="950" fill="#fffaf2">MORU</text>
+    <text x="945" y="420" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="850" letter-spacing="6" fill="#fffaf2" opacity=".62">ROASTERY</text>
+    <rect x="1280" y="70" width="174" height="174" rx="42" fill="#24140e"/>
+    
+  <g transform="translate(1314 104) scale(0.53)">
+    <circle cx="100" cy="100" r="88" fill="url(#roastDark)"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#c99a67" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#fffaf2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#c99a67" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#c99a67"/>
+  </g>
+    <rect x="1218" y="340" width="370" height="176" rx="88" fill="#24140e"/>
+    <path d="M1218 428h370" stroke="#fffaf2" stroke-width="3" opacity=".16"/>
+    
+  <g transform="translate(1350 376) scale(0.54)">
+    <circle cx="100" cy="100" r="88" fill="url(#roastDark)"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#c99a67" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#fffaf2" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#c99a67" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#c99a67"/>
+  </g>
+    <circle cx="1466" cy="680" r="90" fill="#fffaf2"/>
+    
+  <g transform="translate(1408 622) scale(0.58)">
+    <circle cx="100" cy="100" r="88" fill="#fffaf2"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#9b6644" stroke-width="7"/>
+    <path d="M53 122V76c0-23 28-32 42-13l5 7 5-7c14-19 42-10 42 13v46" fill="none" stroke="#24140e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M54 122c28-17 64-17 92 0" fill="none" stroke="#9b6644" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="100" cy="91" r="7" fill="#9b6644"/>
+  </g>
+  </g>
+  <text x="118" y="1042" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="5" fill="#7c7066">LOGO / BUSINESS CARD / PACKAGE LABEL / SNS PROFILE / STICKER</text>
+</svg>

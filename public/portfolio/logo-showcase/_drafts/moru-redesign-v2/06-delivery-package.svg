@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img">
+  
+  <defs>
+    <filter id="shadowLg" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="32" stdDeviation="30" flood-color="#160a06" flood-opacity=".18"/>
+    </filter>
+    <filter id="shadowMd" x="-25%" y="-25%" width="150%" height="155%">
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#160a06" flood-opacity=".18"/>
+    </filter>
+    <filter id="paperGrain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .032"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="paperWarm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf2"/>
+      <stop offset=".64" stop-color="#f7efe3"/>
+      <stop offset="1" stop-color="#ead3b7"/>
+    </linearGradient>
+    <linearGradient id="roastDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24140e"/>
+      <stop offset=".62" stop-color="#4d2d21"/>
+      <stop offset="1" stop-color="#9b6644"/>
+    </linearGradient>
+    <linearGradient id="cardLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".58" stop-color="#fffaf2"/>
+      <stop offset="1" stop-color="#f7efe3"/>
+    </linearGradient>
+  </defs>
+  
+  
+  <rect width="1800" height="1200" fill="#fffaf2"/>
+  <rect x="54" y="54" width="1692" height="1092" rx="44" fill="#ffffff"/>
+  <rect x="54" y="54" width="1692" height="1092" rx="44" fill="#ffffff" filter="url(#paperGrain)" opacity=".44"/>
+  
+  <text x="112" y="122" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="7" fill="#9b6644">06  DELIVERY PACKAGE</text>
+  <text x="112" y="206" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="950" letter-spacing="-1" fill="#17110d">What Clients Receive</text>
+  <text x="114" y="258" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="720" fill="#7c7066">Clear deliverables make the low event price still feel professional.</text>
+  <g transform="translate(112 350)">
+    
+    <g transform="translate(0 0)">
+      <rect width="274" height="230" rx="30" fill="#ffffff" filter="url(#shadowLg)"/>
+      <text x="38" y="110" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="950" fill="#17110d">AI</text>
+      <text x="40" y="156" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#7c7066">Editable source</text>
+    </g>
+    <g transform="translate(320 0)">
+      <rect width="274" height="230" rx="30" fill="#ffffff" filter="url(#shadowLg)"/>
+      <text x="38" y="110" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="950" fill="#17110d">SVG</text>
+      <text x="40" y="156" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#7c7066">Vector web</text>
+    </g>
+    <g transform="translate(640 0)">
+      <rect width="274" height="230" rx="30" fill="#ffffff" filter="url(#shadowLg)"/>
+      <text x="38" y="110" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="950" fill="#17110d">PNG</text>
+      <text x="40" y="156" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#7c7066">Transparent</text>
+    </g>
+    <g transform="translate(960 0)">
+      <rect width="274" height="230" rx="30" fill="#ffffff" filter="url(#shadowLg)"/>
+      <text x="38" y="110" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="950" fill="#17110d">JPG</text>
+      <text x="40" y="156" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#7c7066">Preview</text>
+    </g>
+    <g transform="translate(1280 0)">
+      <rect width="274" height="230" rx="30" fill="#ffffff" filter="url(#shadowLg)"/>
+      <text x="38" y="110" font-family="Inter, Arial, sans-serif" font-size="60" font-weight="950" fill="#17110d">PDF</text>
+      <text x="40" y="156" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#7c7066">Print handoff</text>
+    </g>
+  </g>
+  <g transform="translate(112 708)">
+    <rect width="762" height="310" rx="34" fill="#24140e" filter="url(#shadowLg)"/>
+    <text x="48" y="70" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="950" letter-spacing="6" fill="#c99a67">USAGE GUIDE</text>
+    <text x="48" y="132" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="900" fill="#fffaf2">Clear space / color / minimum size</text>
+    <text x="48" y="190" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="720" fill="#f7efe3" opacity=".72">Built for profile images, simple signs, labels,</text>
+    <text x="48" y="226" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="720" fill="#f7efe3" opacity=".72">name cards, stickers, and future edits.</text>
+    <rect x="820" y="0" width="762" height="310" rx="34" fill="#ffffff" filter="url(#shadowLg)"/>
+    <text x="868" y="70" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="950" letter-spacing="6" fill="#9b6644">COLOR SYSTEM</text>
+    <rect x="870" y="118" width="116" height="116" rx="28" fill="#24140e"/>
+    <rect x="1020" y="118" width="116" height="116" rx="28" fill="#4d2d21"/>
+    <rect x="1170" y="118" width="116" height="116" rx="28" fill="#9b6644"/>
+    <rect x="1320" y="118" width="116" height="116" rx="28" fill="#c99a67"/>
+    <rect x="1470" y="118" width="72" height="116" rx="24" fill="#fffaf2" stroke="#e8dccd" stroke-width="2"/>
+    <text x="870" y="276" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="760" fill="#7c7066">Warm, confident, small-business friendly.</text>
+  </g>
+</svg>

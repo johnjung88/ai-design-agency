@@ -1,0 +1,46 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#20140F"/>
+  <defs>
+    <linearGradient id="brass" x1="392" y1="220" x2="772" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0C26F"/>
+      <stop offset="0.48" stop-color="#B98242"/>
+      <stop offset="1" stop-color="#6E4326"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="463" y1="280" x2="704" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9ED"/>
+      <stop offset="1" stop-color="#E8D8BF"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="24" flood-color="#070403" flood-opacity="0.42"/>
+    </filter>
+  </defs>
+  <g opacity="0.18">
+    <circle cx="1228" cy="228" r="168" stroke="#C99A53" stroke-width="1"/>
+    <circle cx="1276" cy="782" r="270" stroke="#C99A53" stroke-width="1"/>
+    <path d="M1014 155H1450" stroke="#C99A53" stroke-width="1"/>
+    <path d="M1014 843H1450" stroke="#C99A53" stroke-width="1"/>
+  </g>
+  <g filter="url(#softShadow)">
+    <circle cx="575" cy="421" r="207" fill="#251812"/>
+    <circle cx="575" cy="421" r="197" stroke="url(#brass)" stroke-width="20"/>
+    <path d="M426 488V363C426 307 462 270 514 270C547 270 569 286 584 313C599 286 622 270 655 270C707 270 742 307 742 363V488"
+      stroke="url(#cream)" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M426 506C486 463 664 463 724 506" stroke="url(#brass)" stroke-width="47" stroke-linecap="round"/>
+    <path d="M456 555C530 587 628 588 704 555" stroke="#F2E6D1" stroke-width="10" stroke-linecap="round" opacity="0.92"/>
+    <path d="M576 333C611 367 611 421 576 455C541 421 541 367 576 333Z" fill="#C9954A"/>
+    <path d="M576 345C568 381 568 408 576 443" stroke="#2D1B13" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <text x="575" y="754" text-anchor="middle" fill="#FFF9ED" font-family="Inter, Montserrat, Arial, sans-serif" font-size="112" font-weight="800" letter-spacing="-2">MORU Coffee</text>
+  <text x="575" y="829" text-anchor="middle" fill="#C99A53" font-family="Inter, Montserrat, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="15">SMALL BATCH ROASTERY</text>
+  <g transform="translate(1050 330)">
+    <text x="0" y="0" fill="#C99A53" font-family="Inter, Montserrat, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="4">DESIGN LOGIC</text>
+    <text x="0" y="76" fill="#FFF9ED" font-family="Inter, Montserrat, Arial, sans-serif" font-size="40" font-weight="780">M + bean + cup silhouette</text>
+    <text x="0" y="132" fill="#A89A89" font-family="Inter, Montserrat, Arial, sans-serif" font-size="24" font-weight="500">A compact emblem for signage, labels,</text>
+    <text x="0" y="169" fill="#A89A89" font-family="Inter, Montserrat, Arial, sans-serif" font-size="24" font-weight="500">business cards, stickers and SNS icons.</text>
+    <rect x="0" y="244" width="72" height="72" rx="36" fill="#20140F" stroke="#B98242"/>
+    <rect x="96" y="244" width="72" height="72" rx="36" fill="#6B442E"/>
+    <rect x="192" y="244" width="72" height="72" rx="36" fill="#C9954A"/>
+    <rect x="288" y="244" width="72" height="72" rx="36" fill="#FFF4E0"/>
+    <text x="0" y="358" fill="#A89A89" font-family="Inter, Montserrat, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">ESPRESSO / CLAY / BRASS / CREAM</text>
+  </g>
+</svg>

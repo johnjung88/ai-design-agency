@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img">
+  
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="34" stdDeviation="32" flood-color="#1b0d08" flood-opacity=".18"/>
+    </filter>
+    <filter id="tightShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#1b0d08" flood-opacity=".22"/>
+    </filter>
+    <filter id="printTexture" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".74" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .035"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="warmPaper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf2"/>
+      <stop offset=".58" stop-color="#f5eee4"/>
+      <stop offset="1" stop-color="#e8d0b4"/>
+    </linearGradient>
+    <linearGradient id="darkRoast" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24140f"/>
+      <stop offset=".58" stop-color="#4a2b1f"/>
+      <stop offset="1" stop-color="#6f4631"/>
+    </linearGradient>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6c7a4"/>
+      <stop offset=".52" stop-color="#a87652"/>
+      <stop offset="1" stop-color="#f1d9b8"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1800" height="1200" fill="#fffaf2"/>
+  <rect width="1800" height="1200" fill="#ffffff" filter="url(#printTexture)" opacity=".42"/>
+  
+  <text x="110" y="122" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="950" letter-spacing="7" fill="#a87652">04 DELIVERY GUIDE</text>
+  <text x="110" y="205" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="950" fill="#16110f">What the Client Gets</text>
+  <text x="112" y="256" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="720" fill="#82746a">A practical logo package for online profiles, print, signage, and future edits.</text>
+  <g transform="translate(110 350)">
+    
+      <g transform="translate(0 0)">
+        <rect x="0" y="0" width="270" height="220" rx="30" fill="#ffffff" filter="url(#softShadow)"/>
+        <text x="36" y="104" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="950" fill="#16110f">AI</text>
+        <text x="38" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#82746a">Editable master file</text>
+      </g>
+      <g transform="translate(318 0)">
+        <rect x="0" y="0" width="270" height="220" rx="30" fill="#ffffff" filter="url(#softShadow)"/>
+        <text x="36" y="104" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="950" fill="#16110f">SVG</text>
+        <text x="38" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#82746a">Vector web source</text>
+      </g>
+      <g transform="translate(636 0)">
+        <rect x="0" y="0" width="270" height="220" rx="30" fill="#ffffff" filter="url(#softShadow)"/>
+        <text x="36" y="104" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="950" fill="#16110f">PNG</text>
+        <text x="38" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#82746a">Transparent exports</text>
+      </g>
+      <g transform="translate(954 0)">
+        <rect x="0" y="0" width="270" height="220" rx="30" fill="#ffffff" filter="url(#softShadow)"/>
+        <text x="36" y="104" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="950" fill="#16110f">JPG</text>
+        <text x="38" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#82746a">Preview images</text>
+      </g>
+      <g transform="translate(1272 0)">
+        <rect x="0" y="0" width="270" height="220" rx="30" fill="#ffffff" filter="url(#softShadow)"/>
+        <text x="36" y="104" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="950" fill="#16110f">PDF</text>
+        <text x="38" y="150" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="760" fill="#82746a">Print-ready handoff</text>
+      </g>
+  </g>
+  <g transform="translate(110 682)">
+    <rect x="0" y="0" width="760" height="330" rx="34" fill="#24140f" filter="url(#softShadow)"/>
+    <text x="50" y="70" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="950" letter-spacing="5" fill="#d8b78f">USAGE RULES</text>
+    <text x="50" y="136" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="850" fill="#fffaf2">Clear space / color / minimum size</text>
+    <text x="50" y="190" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#f5eee4" opacity=".62">Use the symbol for stamps, social avatars,</text>
+    <text x="50" y="224" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#f5eee4" opacity=".62">package labels, and simple signage.</text>
+  </g>
+  <g transform="translate(930 682)">
+    <rect x="0" y="0" width="760" height="330" rx="34" fill="#ffffff" filter="url(#softShadow)"/>
+    <text x="50" y="70" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="950" letter-spacing="5" fill="#a87652">COLOR SYSTEM</text>
+    <rect x="54" y="120" width="120" height="120" rx="28" fill="#24140f"/>
+    <rect x="204" y="120" width="120" height="120" rx="28" fill="#6f4631"/>
+    <rect x="354" y="120" width="120" height="120" rx="28" fill="#a87652"/>
+    <rect x="504" y="120" width="120" height="120" rx="28" fill="#fffaf2" stroke="#e8dacc" stroke-width="2"/>
+    <text x="54" y="284" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#82746a">Warm, crafted, quiet, and premium without looking heavy.</text>
+  </g>
+</svg>
