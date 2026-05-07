@@ -1,0 +1,77 @@
+import Link from "next/link";
+import { BarChart3, Bot, Inbox, LayoutDashboard, LogOut, Settings } from "lucide-react";
+import { requireAdminSession } from "@/lib/admin-auth";
+
+const navItems = [
+  { href: "/admin", label: "대시보드", icon: LayoutDashboard },
+  { href: "/admin/inbox", label: "인박스", icon: Inbox },
+  { href: "/admin/bot", label: "응답봇", icon: Bot },
+  { href: "/admin/kanban", label: "업무 보드", icon: BarChart3, disabled: true },
+  { href: "/admin/templates", label: "템플릿", icon: Settings, disabled: true },
+];
+
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  await requireAdminSession();
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-white/10 bg-card/80 lg:block">
+        <div className="flex h-full flex-col">
+          <div className="border-b border-white/10 px-6 py-5">
+            <p className="text-xs font-semibold uppercase text-primary">AIO-MAKE</p>
+            <h1 className="mt-1 text-lg font-semibold">통합 관리자</h1>
+          </div>
+          <nav className="flex-1 space-y-1 px-3 py-4">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              if (item.disabled) {
+                return (
+                  <span
+                    key={item.href}
+                    className="flex h-10 items-center gap-3 rounded-lg px-3 text-sm text-muted-foreground/50"
+                  >
+                    <Icon className="size-4" />
+                    {item.label}
+                    <span className="ml-auto text-[10px]">soon</span>
+                  </span>
+                );
+              }
+
+              return (
+                <Link key={item.href} href={item.href} className="flex h-10 items-center gap-3 rounded-lg px-3 text-sm text-muted-foreground transition hover:bg-white/5 hover:text-foreground">
+                  <Icon className="size-4" />
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <form action="/api/admin/logout" method="post" className="border-t border-white/10 p-3">
+            <button className="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-sm text-muted-foreground transition hover:bg-white/5 hover:text-foreground">
+              <LogOut className="size-4" />
+              로그아웃
+            </button>
+          </form>
+        </div>
+      </aside>
+
+      <div className="lg:pl-64">
+        <header className="sticky top-0 z-20 border-b border-white/10 bg-background/90 px-5 py-4 backdrop-blur lg:hidden">
+          <div className="flex items-center justify-between">
+            <Link href="/admin" className="text-sm font-semibold">
+              AIO 관리자
+            </Link>
+            <div className="flex items-center gap-2">
+              <Link href="/admin/inbox" className="rounded-lg border border-white/10 px-3 py-2 text-xs">
+                인박스
+              </Link>
+              <Link href="/admin/bot" className="rounded-lg border border-white/10 px-3 py-2 text-xs">
+                응답봇
+              </Link>
+            </div>
+          </div>
+        </header>
+        <main className="mx-auto min-h-screen w-full max-w-7xl px-5 py-8 lg:px-8">{children}</main>
+      </div>
+    </div>
+  );
+}

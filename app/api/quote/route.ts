@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createSupabaseServerClient } from "@/lib/supabase";
 import { createResendClient, getInquiryRecipient } from "@/lib/resend";
+import { notifyTelegram } from "@/lib/admin/telegram";
 
 type ApiResponse<T> = {
   success: boolean;
@@ -31,6 +32,16 @@ const quoteSchema = z.object({
   contact_method: z.enum(["email", "phone"]).optional().default("email"),
   locale: z.enum(["ko", "en"]),
 });
+
+const categoryMap: Record<z.infer<typeof quoteSchema>["category"], string> = {
+  website: "website",
+  "shopping-mall": "shop",
+  "logo-business-card": "logo",
+  "detail-page": "detail",
+  "ppt-design": "ppt",
+  "automation-app": "automation",
+  "video-content": "video",
+};
 
 async function sendQuoteEmail(payload: z.infer<typeof quoteSchema>, inquiryId?: string) {
   const resend = createResendClient();
@@ -74,31 +85,70 @@ export async function POST(request: Request) {
     const payload = parsed.data;
     const supabase = createSupabaseServerClient();
 
-    let { data, error } = await supabase
+    const { data: lead, error: leadError } = await supabase
+      .from("leads")
+      .insert({
+        channel: "website",
+        customer_name: payload.name,
+        email: payload.email,
+        phone: payload.phone || null,
+        source_meta: {
+          source: payload.source,
+          locale: payload.locale,
+          contact_method: payload.contact_method,
+          public_category: payload.category,
+          subtype: payload.subtype || null,
+        },
+      })
+      .select("id")
+      .single<{ id: string }>();
+
+    let { data, error } = leadError || !lead ? { data: null, error: leadError } : await supabase
       .from("quote_requests")
       .insert({
-        source: payload.source,
+        lead_id: lead.id,
+        channel: "website",
         raw_text: payload.description,
-        category: payload.category,
-        subtype: payload.subtype || null,
-        budget_estimate: payload.budget_range || null,
-        urgency: payload.rush ? "high" : payload.timeline,
-        draft_response: null,
+        category: categoryMap[payload.category],
+        customer_summary: `${payload.name} / ${payload.category}${payload.subtype ? ` / ${payload.subtype}` : ""}`,
+        deadline_text: payload.timeline || null,
+        urgency: payload.rush ? "urgent" : "normal",
         status: "new",
-        notes: JSON.stringify({
-          name: payload.name,
-          email: payload.email,
-          phone: payload.phone,
-          timeline: payload.timeline,
-          contact_method: payload.contact_method,
-          locale: payload.locale,
-        }),
       })
       .select("id")
       .single<{ id: string }>();
 
     if (error) {
-      console.error("[quote] quote_requests insert error:", error.message);
+      console.error("[quote] unified insert error:", error.message);
+      const legacyQuote = await supabase
+        .from("quote_requests")
+        .insert({
+          source: payload.source,
+          raw_text: payload.description,
+          category: payload.category,
+          subtype: payload.subtype || null,
+          budget_estimate: payload.budget_range || null,
+          urgency: payload.rush ? "high" : payload.timeline,
+          draft_response: null,
+          status: "new",
+          notes: JSON.stringify({
+            name: payload.name,
+            email: payload.email,
+            phone: payload.phone,
+            timeline: payload.timeline,
+            contact_method: payload.contact_method,
+            locale: payload.locale,
+          }),
+        })
+        .select("id")
+        .single<{ id: string }>();
+
+      data = legacyQuote.data;
+      error = legacyQuote.error;
+    }
+
+    if (error) {
+      console.error("[quote] legacy quote_requests insert error:", error.message);
       const fallback = await supabase
         .from("ada_inquiries")
         .insert({
@@ -143,6 +193,17 @@ export async function POST(request: Request) {
       const message = emailError instanceof Error ? emailError.message : "Unknown email error";
       console.error("[quote] email error:", message);
     }
+
+    await notifyTelegram(
+      [
+        "신규 AIO 견적 요청",
+        `이름: ${payload.name}`,
+        `서비스: ${payload.category}${payload.subtype ? ` / ${payload.subtype}` : ""}`,
+        `일정: ${payload.timeline || "-"}`,
+        `연락: ${payload.email}${payload.phone ? ` / ${payload.phone}` : ""}`,
+        `관리자: ${process.env.NEXT_PUBLIC_SITE_URL ?? "https://aio-make.com"}/admin/inbox`,
+      ].join("\n"),
+    );
 
     const successResponse: ApiResponse<{ quoteId: string }> = {
       success: true,
