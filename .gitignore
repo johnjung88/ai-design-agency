@@ -49,6 +49,7 @@ next-start-*.err
 
 # local reference repos
 .work/
+supabase/.temp/
 
 # typescript
 *.tsbuildinfo
