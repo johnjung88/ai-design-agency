@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
+import { PublicChatbot } from "@/components/chatbot/public-chatbot";
 
 export const dynamic = "force-dynamic";
 
@@ -50,6 +51,7 @@ export default async function LocaleLayout({
       <Header />
       <main>{children}</main>
       <Footer />
+      <PublicChatbot locale={locale} />
     </NextIntlClientProvider>
   );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Bot, Inbox, Send, Users } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, CalendarClock, WalletCards, Users } from "lucide-react";
 import { getDashboardMetrics } from "@/lib/admin/data";
 
 function formatWon(value: number): string {
@@ -10,9 +10,9 @@ export default async function AdminDashboardPage() {
   const { metrics, recentItems, error } = await getDashboardMetrics();
   const cards = [
     { label: "전체 리드", value: metrics.totalLeads.toLocaleString("ko-KR"), icon: Users },
-    { label: "신규 요청", value: metrics.newRequests.toLocaleString("ko-KR"), icon: Inbox },
-    { label: "발송 견적", value: metrics.sentQuotes.toLocaleString("ko-KR"), icon: Send },
-    { label: "누적 매출", value: formatWon(metrics.revenue), icon: Bot },
+    { label: "진행 계약", value: metrics.activeProjects.toLocaleString("ko-KR"), icon: BriefcaseBusiness },
+    { label: "7일 내 마감", value: metrics.dueSoon.toLocaleString("ko-KR"), icon: CalendarClock },
+    { label: "미수금", value: formatWon(metrics.unpaidAmount), icon: WalletCards },
   ];
 
   return (
@@ -21,10 +21,10 @@ export default async function AdminDashboardPage() {
         <div>
           <p className="text-xs font-medium uppercase text-primary">Today</p>
           <h2 className="mt-2 text-3xl font-semibold">AIO 의장님 대시보드</h2>
-          <p className="mt-2 text-sm text-muted-foreground">사이트 견적, 외부 플랫폼 응답, 매출 흐름을 한 화면에서 확인합니다.</p>
+          <p className="mt-2 text-sm text-muted-foreground">계약 일정, 입금/미수, 고객 DB, 신규 문의 흐름을 한 화면에서 확인합니다.</p>
         </div>
-        <Link href="/admin/bot" className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground">
-          응답 작성
+        <Link href="/admin/contracts" className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground">
+          계약 관리
           <ArrowRight className="size-4" />
         </Link>
       </div>
@@ -49,7 +49,7 @@ export default async function AdminDashboardPage() {
       <section className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="rounded-lg border border-white/10 bg-card">
           <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-            <h3 className="font-semibold">최근 인박스</h3>
+            <h3 className="font-semibold">최근 문의</h3>
             <Link href="/admin/inbox" className="text-sm text-primary">
               전체 보기
             </Link>
@@ -72,11 +72,20 @@ export default async function AdminDashboardPage() {
         </div>
 
         <div className="rounded-lg border border-white/10 bg-card p-5">
-          <h3 className="font-semibold">오늘 우선순위</h3>
+          <h3 className="font-semibold">관리 우선순위</h3>
           <div className="mt-5 space-y-3 text-sm">
-            <p className="rounded-lg bg-white/5 px-4 py-3">1. 신규 요청은 1시간 이내 응답</p>
-            <p className="rounded-lg bg-white/5 px-4 py-3">2. 외부 플랫폼 글은 `/admin/bot`에서 초안 생성 후 직접 발송</p>
-            <p className="rounded-lg bg-white/5 px-4 py-3">3. 발송 후 인박스 상태를 `sent`로 정리</p>
+            <Link href="/admin/contracts" className="flex items-center justify-between rounded-lg bg-white/5 px-4 py-3 transition hover:bg-white/10">
+              <span>계약 마감일과 납품 상태 점검</span>
+              <ArrowRight className="size-4 text-primary" />
+            </Link>
+            <Link href="/admin/contracts" className="flex items-center justify-between rounded-lg bg-white/5 px-4 py-3 transition hover:bg-white/10">
+              <span>입금액과 미수금 업데이트</span>
+              <ArrowRight className="size-4 text-primary" />
+            </Link>
+            <Link href="/admin/customers" className="flex items-center justify-between rounded-lg bg-white/5 px-4 py-3 transition hover:bg-white/10">
+              <span>고객 태그·메모 정리</span>
+              <ArrowRight className="size-4 text-primary" />
+            </Link>
           </div>
         </div>
       </section>

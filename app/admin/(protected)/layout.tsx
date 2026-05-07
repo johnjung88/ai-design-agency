@@ -1,13 +1,14 @@
 import Link from "next/link";
-import { BarChart3, Bot, Inbox, LayoutDashboard, LogOut, Settings } from "lucide-react";
+import { BarChart3, BriefcaseBusiness, Inbox, LayoutDashboard, LogOut, Settings, Users } from "lucide-react";
 import { requireAdminSession } from "@/lib/admin-auth";
 
 const navItems = [
   { href: "/admin", label: "대시보드", icon: LayoutDashboard },
-  { href: "/admin/inbox", label: "인박스", icon: Inbox },
-  { href: "/admin/bot", label: "응답봇", icon: Bot },
+  { href: "/admin/contracts", label: "계약 관리", icon: BriefcaseBusiness },
+  { href: "/admin/customers", label: "고객 DB", icon: Users },
+  { href: "/admin/inbox", label: "문의함", icon: Inbox },
   { href: "/admin/kanban", label: "업무 보드", icon: BarChart3, disabled: true },
-  { href: "/admin/templates", label: "템플릿", icon: Settings, disabled: true },
+  { href: "/admin/revenue", label: "매출 리포트", icon: Settings, disabled: true },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -62,10 +63,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             </Link>
             <div className="flex items-center gap-2">
               <Link href="/admin/inbox" className="rounded-lg border border-white/10 px-3 py-2 text-xs">
-                인박스
+                문의함
               </Link>
-              <Link href="/admin/bot" className="rounded-lg border border-white/10 px-3 py-2 text-xs">
-                응답봇
+              <Link href="/admin/contracts" className="rounded-lg border border-white/10 px-3 py-2 text-xs">
+                계약
               </Link>
             </div>
           </div>

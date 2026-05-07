@@ -28,6 +28,9 @@ export type DashboardMetrics = {
   sentQuotes: number;
   contracted: number;
   revenue: number;
+  activeProjects: number;
+  dueSoon: number;
+  unpaidAmount: number;
 };
 
 const EMPTY_METRICS: DashboardMetrics = {
@@ -36,6 +39,50 @@ const EMPTY_METRICS: DashboardMetrics = {
   sentQuotes: 0,
   contracted: 0,
   revenue: 0,
+  activeProjects: 0,
+  dueSoon: 0,
+  unpaidAmount: 0,
+};
+
+export type AdminContract = {
+  projectId: string;
+  invoiceId?: string;
+  leadId?: string;
+  customerName: string;
+  companyName?: string;
+  email?: string;
+  phone?: string;
+  channel: string;
+  category?: string;
+  productName: string;
+  contractedAmount: number;
+  paidAmount: number;
+  outstandingAmount: number;
+  paymentStatus: string;
+  projectStatus: string;
+  startDate?: string;
+  dueDate?: string;
+  completedDate?: string;
+  notes?: string;
+  createdAt: string;
+};
+
+export type AdminCustomer = {
+  leadId: string;
+  customerName: string;
+  companyName?: string;
+  email?: string;
+  phone?: string;
+  channel: string;
+  tags: string[];
+  notes?: string;
+  lastContactAt?: string;
+  createdAt: string;
+  quoteCount: number;
+  projectCount: number;
+  paidRevenue: number;
+  latestCategory?: string;
+  latestStatus?: string;
 };
 
 function getLeadField(lead: unknown, field: string): string | undefined {
@@ -103,15 +150,35 @@ export async function getDashboardMetrics(): Promise<{ metrics: DashboardMetrics
 
   try {
     const supabase = createSupabaseAdminClient();
-    const [leadsCount, newCount, sentCount, contractedCount, invoiceRows] = await Promise.all([
+    const today = new Date();
+    const soon = new Date(today);
+    soon.setDate(today.getDate() + 7);
+    const [leadsCount, newCount, sentCount, contractedCount, activeProjects, dueSoonProjects, invoiceRows] = await Promise.all([
       supabase.from("leads").select("id", { count: "exact", head: true }),
       supabase.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "new"),
       supabase.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "sent"),
       supabase.from("quote_requests").select("id", { count: "exact", head: true }).eq("status", "contracted"),
-      supabase.from("invoices").select("net_amount"),
+      supabase.from("projects").select("id", { count: "exact", head: true }).in("status", ["in_progress", "blocked", "review"]),
+      supabase
+        .from("projects")
+        .select("id", { count: "exact", head: true })
+        .in("status", ["in_progress", "blocked", "review"])
+        .lte("due_date", soon.toISOString().slice(0, 10)),
+      supabase.from("invoices").select("net_amount, paid_amount, outstanding_amount, paid_at, payment_status"),
     ]);
 
-    const revenue = ((invoiceRows.data ?? []) as Array<{ net_amount?: number }>).reduce((sum, row) => sum + (row.net_amount ?? 0), 0);
+    const invoices = (invoiceRows.data ?? []) as Array<{
+      net_amount?: number;
+      paid_amount?: number;
+      outstanding_amount?: number;
+      paid_at?: string | null;
+      payment_status?: string | null;
+    }>;
+    const revenue = invoices.reduce((sum, row) => sum + (row.paid_amount ?? (row.paid_at ? row.net_amount ?? 0 : 0)), 0);
+    const unpaidAmount = invoices.reduce(
+      (sum, row) => sum + (row.outstanding_amount ?? Math.max((row.net_amount ?? 0) - (row.paid_amount ?? (row.paid_at ? row.net_amount ?? 0 : 0)), 0)),
+      0,
+    );
     return {
       metrics: {
         totalLeads: leadsCount.count ?? 0,
@@ -119,6 +186,9 @@ export async function getDashboardMetrics(): Promise<{ metrics: DashboardMetrics
         sentQuotes: sentCount.count ?? 0,
         contracted: contractedCount.count ?? 0,
         revenue,
+        activeProjects: activeProjects.count ?? 0,
+        dueSoon: dueSoonProjects.count ?? 0,
+        unpaidAmount,
       },
       recentItems: items,
       error,
@@ -129,5 +199,114 @@ export async function getDashboardMetrics(): Promise<{ metrics: DashboardMetrics
       recentItems: items,
       error: metricsError instanceof Error ? metricsError.message : error,
     };
+  }
+}
+
+function toContract(row: Record<string, unknown>): AdminContract {
+  const lead = Array.isArray(row.leads) ? row.leads[0] : row.leads;
+  const invoices = Array.isArray(row.invoices) ? row.invoices : [];
+  const invoice = invoices[0] as Record<string, unknown> | undefined;
+  const amount = typeof row.contracted_amount === "number" ? row.contracted_amount : 0;
+  const netAmount = typeof invoice?.net_amount === "number" ? invoice.net_amount : amount;
+  const paidAmount =
+    typeof invoice?.paid_amount === "number"
+      ? invoice.paid_amount
+      : invoice?.paid_at
+        ? netAmount
+        : 0;
+
+  return {
+    projectId: String(row.id),
+    invoiceId: invoice?.id ? String(invoice.id) : undefined,
+    leadId: row.lead_id ? String(row.lead_id) : undefined,
+    customerName: getLeadField(lead, "customer_name") ?? "이름 미입력",
+    companyName: getLeadField(lead, "company_name"),
+    email: getLeadField(lead, "email"),
+    phone: getLeadField(lead, "phone"),
+    channel: String(row.channel ?? "other"),
+    category: row.category ? String(row.category) : undefined,
+    productName: String(row.product_name ?? "계약명 미입력"),
+    contractedAmount: amount,
+    paidAmount,
+    outstandingAmount:
+      typeof invoice?.outstanding_amount === "number" ? invoice.outstanding_amount : Math.max(netAmount - paidAmount, 0),
+    paymentStatus: String(invoice?.payment_status ?? (invoice?.paid_at ? "paid" : "unpaid")),
+    projectStatus: String(row.status ?? "in_progress"),
+    startDate: row.start_date ? String(row.start_date) : undefined,
+    dueDate: row.due_date ? String(row.due_date) : undefined,
+    completedDate: row.completed_date ? String(row.completed_date) : undefined,
+    notes: row.notes ? String(row.notes) : undefined,
+    createdAt: String(row.created_at ?? new Date().toISOString()),
+  };
+}
+
+export async function getContracts(limit = 100): Promise<{ contracts: AdminContract[]; error?: string }> {
+  if (!hasSupabaseAdminConfig()) {
+    return { contracts: [], error: "Supabase 관리자 환경변수가 없어 계약 데이터를 표시할 수 없습니다." };
+  }
+
+  try {
+    const supabase = createSupabaseAdminClient();
+    const { data, error } = await supabase
+      .from("projects")
+      .select(
+        "id, lead_id, channel, category, product_name, contracted_amount, start_date, due_date, completed_date, status, notes, created_at, leads(customer_name, company_name, email, phone), invoices(id, net_amount, paid_amount, outstanding_amount, payment_status, paid_at)",
+      )
+      .order("due_date", { ascending: true, nullsFirst: false })
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) return { contracts: [], error: error.message };
+    return { contracts: ((data ?? []) as Record<string, unknown>[]).map(toContract) };
+  } catch (error) {
+    return { contracts: [], error: error instanceof Error ? error.message : "계약 데이터를 불러오지 못했습니다." };
+  }
+}
+
+function toCustomer(row: Record<string, unknown>): AdminCustomer {
+  const quoteRequests = Array.isArray(row.quote_requests) ? (row.quote_requests as Record<string, unknown>[]) : [];
+  const projects = Array.isArray(row.projects) ? (row.projects as Record<string, unknown>[]) : [];
+  const invoices = Array.isArray(row.invoices) ? (row.invoices as Record<string, unknown>[]) : [];
+  const latestQuote = quoteRequests[0];
+
+  return {
+    leadId: String(row.id),
+    customerName: String(row.customer_name ?? "이름 미입력"),
+    companyName: row.company_name ? String(row.company_name) : undefined,
+    email: row.email ? String(row.email) : undefined,
+    phone: row.phone ? String(row.phone) : undefined,
+    channel: String(row.channel ?? "other"),
+    tags: Array.isArray(row.tags) ? row.tags.map(String) : [],
+    notes: row.notes ? String(row.notes) : undefined,
+    lastContactAt: row.last_contact_at ? String(row.last_contact_at) : undefined,
+    createdAt: String(row.created_at ?? new Date().toISOString()),
+    quoteCount: quoteRequests.length,
+    projectCount: projects.length,
+    paidRevenue: invoices.reduce((sum, invoice) => sum + (typeof invoice.paid_amount === "number" ? invoice.paid_amount : invoice.paid_at ? Number(invoice.net_amount ?? 0) : 0), 0),
+    latestCategory: latestQuote?.category ? String(latestQuote.category) : undefined,
+    latestStatus: latestQuote?.status ? String(latestQuote.status) : undefined,
+  };
+}
+
+export async function getCustomers(limit = 200): Promise<{ customers: AdminCustomer[]; error?: string }> {
+  if (!hasSupabaseAdminConfig()) {
+    return { customers: [], error: "Supabase 관리자 환경변수가 없어 고객 DB를 표시할 수 없습니다." };
+  }
+
+  try {
+    const supabase = createSupabaseAdminClient();
+    const { data, error } = await supabase
+      .from("leads")
+      .select(
+        "id, channel, customer_name, company_name, email, phone, tags, notes, last_contact_at, created_at, quote_requests(id, category, status, created_at), projects(id, status, contracted_amount), invoices(id, net_amount, paid_amount, paid_at)",
+      )
+      .order("last_contact_at", { ascending: false, nullsFirst: false })
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) return { customers: [], error: error.message };
+    return { customers: ((data ?? []) as Record<string, unknown>[]).map(toCustomer) };
+  } catch (error) {
+    return { customers: [], error: error instanceof Error ? error.message : "고객 DB를 불러오지 못했습니다." };
   }
 }
