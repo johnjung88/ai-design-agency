@@ -3,6 +3,13 @@ export async function notifyTelegram(text: string): Promise<void> {
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) return;
 
+  await sendTelegramMessage(chatId, text);
+}
+
+export async function sendTelegramMessage(chatId: string | number, text: string): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) return;
+
   try {
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",

@@ -46,6 +46,7 @@
 | --- | --- |
 | `TELEGRAM_BOT_TOKEN` | AIO 텔레그램 봇 토큰 |
 | `TELEGRAM_CHAT_ID` | `7668768088` |
+| `TELEGRAM_WEBHOOK_SECRET` | 텔레그램 웹훅 검증용 긴 랜덤 문자열 |
 | `RESEND_API_KEY` | Resend API 키 |
 | `RESEND_FROM_EMAIL` | 발신자 이메일 |
 | `CONTACT_TO_EMAIL` | `koreabencb@gmail.com` |
@@ -213,6 +214,56 @@ supabase/migrations/002_core_schema_completion.sql
 - 인박스 저장이 성공한다.
 - 사이트 견적 폼 제출 후 DB, 인박스, 이메일, 텔레그램이 연결된다.
 
+## 7-1. 텔레그램 계약 자동등록 검증
+
+### 웹훅 설정
+
+Vercel Production 환경변수에 아래 값이 있어야 한다.
+
+```text
+TELEGRAM_BOT_TOKEN
+TELEGRAM_CHAT_ID
+TELEGRAM_WEBHOOK_SECRET
+```
+
+배포 후 로컬 또는 Vercel 환경에서 아래 명령을 실행한다.
+
+```bash
+npm run telegram:set-webhook
+```
+
+### 계약 등록 메시지 예시
+
+```text
+계약확정
+고객: 홍길동
+채널: 숨고
+서비스: PPT
+계약명: 회사소개서 20P
+금액: 30만원
+입금: 10만원
+마감: 2026-05-15
+연락처: 010-0000-0000
+이메일: customer@example.com
+메모: 원본 자료 금요일 전달
+```
+
+### 입금 업데이트 메시지 예시
+
+```text
+입금
+프로젝트ID: 텔레그램 등록 완료 메시지에 표시된 ID
+입금: 30만원
+```
+
+### 합격 기준
+
+- 봇에게 계약 메시지를 보내면 `/admin/contracts`에 새 계약이 생성된다.
+- 계약금액, 입금액, 미수금, 마감일이 관리자 화면에 반영된다.
+- 봇이 `계약이 자동 등록되었습니다.` 메시지와 `프로젝트ID`를 답장한다.
+- 입금 업데이트 메시지를 보내면 해당 계약의 입금액과 미수금이 갱신된다.
+- `TELEGRAM_WEBHOOK_SECRET`이 맞지 않은 요청은 401로 거절된다.
+
 ## 8. 최종 운영 전 정리
 
 ### 테스트 데이터 처리
@@ -243,4 +294,3 @@ supabase/migrations/002_core_schema_completion.sql
 6. 숨고/크몽 등 외부 플랫폼에 직접 붙여넣어 발송.
 7. `/admin/bot` 또는 `/admin/inbox`에서 발송 완료 표시.
 8. 고객 답변 또는 계약 여부에 따라 인박스 상태 업데이트.
-
