@@ -1,0 +1,1197 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AIO / 웹 개발 — 5일 후, 결과물을 받습니다</title>
+<meta name="description" content="병원·법률·쇼핑몰까지. 업종별 전문 사이트를 5일 안에.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --bg: #0D1117; --bg-2: #161B22; --bg-3: #1C2128; --bg-4: #21262D;
+    --fg: #F0F6FC; --fg-2: rgba(240,246,252,0.65); --fg-3: rgba(240,246,252,0.42); --fg-faint: rgba(240,246,252,0.22);
+    --line: rgba(240,246,252,0.10); --line-2: rgba(240,246,252,0.18);
+    --mint: #4DD4AC; --mint-soft: rgba(77,212,172,0.10); --mint-glow: rgba(77,212,172,0.32);
+    --amber: #FFB347; --amber-soft: rgba(255,179,71,0.10);
+    --syntax-blue: #79C0FF; --syntax-purple: #D2A8FF; --syntax-string: #A5D6FF;
+    --comment: rgba(240,246,252,0.42);
+    --red: #FF7B72; --yellow: #E3B341; --green: #56D364;
+
+    --mono: 'JetBrains Mono', 'SFMono-Regular', monospace;
+    --body: 'Pretendard Variable', 'JetBrains Mono', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--bg); color: var(--fg); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; }
+  ::selection { background: var(--mint); color: var(--bg); }
+
+  /* GRID texture (very subtle) */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: linear-gradient(rgba(240,246,252,0.018) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(240,246,252,0.018) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  main, .titlebar, .tabbar, footer.statusbar { position: relative; z-index: 1; }
+
+  /* ============ TITLEBAR (window chrome) ============ */
+  .titlebar { position: sticky; top: 0; z-index: 100; background: var(--bg-2); border-bottom: 1px solid var(--line); padding: 10px 16px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; font-family: var(--mono); }
+  .traffic { display: inline-flex; gap: 8px; align-items: center; }
+  .traffic .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .traffic .dot.r { background: #FF5F57; }
+  .traffic .dot.y { background: #FEBC2E; }
+  .traffic .dot.g { background: #28C840; }
+  .filepath { font-family: var(--mono); font-size: 12px; color: var(--fg-2); text-align: center; letter-spacing: 0.02em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .filepath a { color: var(--mint); text-decoration: none; }
+  .filepath a:hover { text-decoration: underline; }
+  .filepath .sep { color: var(--fg-faint); margin: 0 6px; }
+  .filepath .here { color: var(--fg); }
+  .titlebar-r { display: flex; align-items: center; gap: 12px; font-family: var(--mono); }
+  .titlebar-r .pill { padding: 4px 10px; border: 1px solid var(--line-2); border-radius: 4px; font-size: 11px; color: var(--fg-2); display: inline-flex; align-items: center; gap: 7px; background: var(--bg-3); }
+  .titlebar-r .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); animation: pulse 2.4s ease-in-out infinite; box-shadow: 0 0 6px var(--mint-glow); }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(0.7);} }
+  @media (max-width: 600px) { .titlebar-r .pill { display: none; } }
+  .titlebar-r .btn-cta { padding: 6px 12px; background: var(--mint); color: var(--bg); border: none; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.02em; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+  .titlebar-r .btn-cta:hover { background: #3DBD96; box-shadow: 0 0 18px var(--mint-glow); }
+
+  /* ============ TABBAR (file tabs) ============ */
+  .tabbar { background: var(--bg); border-bottom: 1px solid var(--line); padding: 0 16px; display: flex; align-items: center; font-family: var(--mono); font-size: 12px; overflow-x: auto; scrollbar-width: none; }
+  .tabbar::-webkit-scrollbar { display: none; }
+  .tabbar a { color: var(--fg-3); text-decoration: none; padding: 10px 16px; display: inline-flex; align-items: center; gap: 8px; border-right: 1px solid var(--line); transition: all 0.2s; white-space: nowrap; position: relative; }
+  .tabbar a .ic { width: 12px; height: 12px; opacity: 0.7; }
+  .tabbar a:hover { color: var(--fg); background: var(--bg-2); }
+  .tabbar a.active { color: var(--fg); background: var(--bg-2); border-bottom: 2px solid var(--mint); margin-bottom: -1px; }
+  .tabbar a.active .ic { opacity: 1; color: var(--mint); }
+  .tabbar a .num { color: var(--mint); }
+
+  /* ============ COMMON ============ */
+  main { position: relative; z-index: 1; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 700px) { .container { padding: 0 16px; } }
+
+  .section-prompt { font-family: var(--mono); font-size: 12px; color: var(--mint); margin-bottom: 14px; display: inline-flex; align-items: center; gap: 8px; }
+  .section-prompt::before { content: '$'; color: var(--fg-3); }
+  .section-prompt .arg { color: var(--syntax-string); }
+  .section-prompt .flag { color: var(--amber); }
+
+  .comment { color: var(--comment); font-family: var(--mono); }
+  .comment::before { content: '// '; }
+
+  /* ============ HERO (centered) ============ */
+  section.hero { padding: 96px 24px 80px; max-width: 1280px; margin: 0 auto; text-align: center; }
+  @media (max-width: 600px) { section.hero { padding: 64px 16px 56px; } }
+
+  .hero-prompt { font-family: var(--mono); font-size: 12px; color: var(--fg-2); margin: 0 auto 36px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; }
+  .hero-prompt::before { content: '$'; color: var(--mint); font-weight: 600; margin-right: 4px; }
+  .hero-prompt .cmd { color: var(--fg); }
+  .hero-prompt .arg { color: var(--syntax-string); }
+  .hero-prompt .flag { color: var(--amber); }
+  .hero-prompt .cursor { display: inline-block; width: 8px; height: 13px; background: var(--mint); margin-left: 6px; animation: caretBlink 1s step-end infinite; vertical-align: middle; }
+  @keyframes caretBlink { 50% { opacity: 0; } }
+
+  .hero-h1 { font-family: var(--mono); font-size: clamp(44px, 7.2vw, 108px); font-weight: 700; letter-spacing: -0.028em; line-height: 0.98; margin: 0 auto 32px; max-width: 1200px; color: var(--fg); }
+  .hero-h1 .ln { display: block; overflow: hidden; }
+  .hero-h1 .ln-inner { display: block; }
+  .hero-h1 .light { color: var(--fg-3); font-weight: 500; }
+  .hero-h1 .accent { color: var(--mint); }
+  .hero-h1 .underline { position: relative; display: inline-block; }
+  .hero-h1 .underline::after { content: ''; position: absolute; bottom: 0.05em; left: 0; right: 0; height: 0.06em; background: var(--mint); transform: scaleX(0); transform-origin: left; animation: ulDraw 1.4s var(--ease-out) 1.4s forwards; box-shadow: 0 0 12px var(--mint-glow); }
+  @keyframes ulDraw { to { transform: scaleX(1); } }
+
+  .hero-sub { font-family: var(--body); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: var(--fg-2); max-width: 720px; margin: 0 auto 44px; font-weight: 400; letter-spacing: -0.005em; }
+  .hero-sub strong { color: var(--fg); font-weight: 600; }
+  .hero-sub code { font-family: var(--mono); font-size: 0.9em; background: var(--bg-3); border: 1px solid var(--line); padding: 2px 8px; border-radius: 4px; color: var(--mint); font-weight: 500; }
+
+  .hero-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 64px; }
+  .btn-primary { padding: 13px 24px; background: var(--mint); color: var(--bg); border: 1px solid var(--mint); font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: 0.01em; cursor: pointer; border-radius: 6px; transition: all 0.25s var(--ease-soft); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: #3DBD96; box-shadow: 0 8px 24px var(--mint-glow); transform: translateY(-2px); }
+  .btn-ghost { padding: 13px 24px; background: var(--bg-2); color: var(--fg); border: 1px solid var(--line-2); font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.01em; cursor: pointer; border-radius: 6px; transition: all 0.25s var(--ease-soft); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-ghost:hover { border-color: var(--mint); color: var(--mint); background: var(--bg-3); transform: translateY(-2px); }
+
+  /* Hero stats — terminal output */
+  .hero-stats { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 22px 28px; max-width: 720px; margin: 0 auto; font-family: var(--mono); font-size: 13px; text-align: left; }
+  .hero-stats-head { color: var(--comment); font-size: 11.5px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 8px; }
+  .hero-stats-head::before { content: '// '; }
+  .hero-stats-head .badge { margin-left: auto; padding: 2px 8px; background: var(--mint-soft); color: var(--mint); border-radius: 3px; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .hero-stats-row { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 7px 0; align-items: baseline; }
+  .hero-stats-row .key { color: var(--syntax-blue); }
+  .hero-stats-row .val { color: var(--fg); }
+  .hero-stats-row .val .num { color: var(--mint); font-weight: 700; }
+  .hero-stats-row .val .unit { color: var(--fg-3); }
+  .hero-stats-row .val .comment { color: var(--comment); margin-left: 8px; font-size: 12px; }
+  @media (max-width: 600px) { .hero-stats { padding: 18px 20px; } .hero-stats-row { grid-template-columns: 120px 1fr; gap: 12px; font-size: 12px; } .hero-stats-row .val .comment { display: none; } }
+
+  /* ============ DEVICE SECTION (live screens) ============ */
+  section.s-device { padding: 80px 24px; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-device { padding: 56px 16px; } }
+  .s-device .head { margin: 0 auto 56px; max-width: 760px; text-align: center; }
+  .s-device .head .section-prompt { justify-content: center; }
+  .s-device h2 { font-family: var(--mono); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.08; color: var(--fg); margin-bottom: 14px; }
+  .s-device h2 .accent { color: var(--mint); }
+  .s-device h2 .light { color: var(--fg-3); }
+  .s-device .sub { font-family: var(--body); font-size: 16.5px; color: var(--fg-2); line-height: 1.6; max-width: 640px; margin: 0 auto; }
+  .s-device .sub code { font-family: var(--mono); font-size: 0.9em; background: var(--bg-3); border: 1px solid var(--line); padding: 2px 8px; border-radius: 4px; color: var(--mint); font-weight: 500; }
+  .s-device .sub strong { color: var(--fg); font-weight: 600; }
+
+  .device-stage { position: relative; max-width: 1180px; margin: 0 auto; }
+  .mac { position: relative; width: 76%; max-width: 900px; margin: 0; }
+  .mac svg.mac-frame { width: 100%; height: auto; display: block; filter: drop-shadow(0 60px 100px rgba(0,0,0,0.6)); }
+  .mac .screen-area { position: absolute; top: 4.5%; left: 5.5%; width: 89%; height: 84%; background: var(--bg); border-radius: 1%; overflow: hidden; }
+  .iphone { position: absolute; bottom: -8%; right: 4%; width: 22%; max-width: 220px; transform: rotate(2.5deg); }
+  @media (max-width: 700px) { .iphone { width: 30%; right: 2%; bottom: 2%; } }
+  .iphone svg.iphone-frame { width: 100%; height: auto; display: block; filter: drop-shadow(0 35px 70px rgba(0,0,0,0.55)); }
+  .iphone .screen-area { position: absolute; top: 3.4%; left: 6.5%; width: 87%; height: 93.2%; background: var(--bg); border-radius: 11%; overflow: hidden; }
+  .device-row { display: flex; align-items: flex-end; gap: 0; position: relative; padding-bottom: 60px; }
+
+  .site-mock { position: absolute; inset: 0; animation: scrollUp 28s linear infinite; }
+  .iphone .site-mock { animation-duration: 22s; }
+  @keyframes scrollUp { 0%, 6% { transform: translateY(0); } 24%, 30% { transform: translateY(-100%); } 48%, 54% { transform: translateY(-200%); } 72%, 78% { transform: translateY(-300%); } 96%, 100% { transform: translateY(0); } }
+
+  .mp { width: 100%; height: 100%; background: var(--bg-2); position: relative; flex-shrink: 0; padding: 0; overflow: hidden; }
+  .mp-nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--line); background: rgba(13,17,23,0.7); backdrop-filter: blur(8px); position: relative; z-index: 5; }
+  .mp-logo { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--fg); display: inline-flex; align-items: center; gap: 4px; }
+  .mp-logo .dot { color: var(--mint); }
+  .mp-menu { display: flex; gap: 14px; font-family: var(--mono); font-size: 10px; color: var(--fg-2); }
+  .mp-menu span { transition: color 0.2s; }
+  .mp-cta { padding: 5px 11px; background: var(--mint); color: var(--bg); border-radius: 4px; font-family: var(--mono); font-size: 9.5px; font-weight: 700; }
+
+  /* Hero with real image area */
+  .mp-hero { padding: 28px 20px 24px; position: relative; }
+  .mp-hero-img { width: 100%; aspect-ratio: 16/9; border-radius: 6px; margin-bottom: 16px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .mp-hero-img.h-web { background: linear-gradient(135deg, #1a3a4a 0%, #2d5e6f 50%, #4dd4ac 100%); }
+  .mp-hero-img.h-shop { background: linear-gradient(135deg, #2a1f0a 0%, #6a4628 50%, #ffb347 100%); }
+  .mp-hero-img.h-port { background: linear-gradient(135deg, #001626 0%, #003a5c 50%, #4dd4ac 100%); }
+  .mp-hero-img.h-start { background: linear-gradient(135deg, #1a2018 0%, #4dd4ac 100%); }
+  .mp-hero-img::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 16px 16px; opacity: 0.5; }
+  .mp-hero-img .badge { position: absolute; top: 10px; left: 12px; padding: 3px 8px; background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); border-radius: 3px; font-family: var(--mono); font-size: 8px; color: rgba(255,255,255,0.85); letter-spacing: 0.16em; text-transform: uppercase; z-index: 2; }
+  .mp-hero-img .icon-mark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 38px; height: 38px; opacity: 0.85; }
+  .mp-hero-img .icon-mark svg { width: 100%; height: 100%; stroke: rgba(255,255,255,0.9); fill: none; stroke-width: 1.4; }
+
+  .mp-eyebrow { font-family: var(--mono); font-size: 8.5px; color: var(--mint); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 6px; }
+  .mp-eyebrow::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--mint); }
+  .mp-h1 { font-family: var(--mono); font-size: 22px; font-weight: 700; letter-spacing: -0.022em; line-height: 1.1; margin-bottom: 10px; color: var(--fg); }
+  .mp-h1 .ko-em { color: var(--mint); font-weight: 700; }
+  .mp-h1 .lt { color: var(--fg-3); font-weight: 500; }
+  .mp-lead { font-family: var(--body); font-size: 10.5px; color: var(--fg-2); line-height: 1.55; margin-bottom: 14px; max-width: 90%; font-weight: 400; }
+  .mp-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+  .mp-btn { padding: 6px 12px; border-radius: 4px; font-size: 9.5px; font-weight: 600; border: 1px solid var(--line-2); font-family: var(--mono); color: var(--fg); display: inline-flex; align-items: center; gap: 4px; }
+  .mp-btn.pri { background: var(--mint); color: var(--bg); border-color: var(--mint); }
+
+  .mp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(13,17,23,0.5); }
+  .mp-stat .num { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--mint); letter-spacing: -0.025em; line-height: 1; }
+  .mp-stat .lbl { font-family: var(--mono); font-size: 7.5px; color: var(--fg-3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .mp-section { padding: 20px; }
+  .mp-section h3 { font-family: var(--mono); font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--fg); display: flex; align-items: center; justify-content: space-between; }
+  .mp-section h3 .ko-em { color: var(--mint); font-weight: 700; }
+  .mp-section h3 .meta { font-family: var(--mono); font-size: 9px; color: var(--fg-3); font-weight: 500; }
+
+  .mp-port-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .mp-port { aspect-ratio: 4/3; border-radius: 4px; padding: 8px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .mp-port::before { content: ''; position: absolute; inset: 0; opacity: 0.85; }
+  .mp-port::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 12px 12px; }
+  .mp-port.p1::before { background: linear-gradient(135deg, #1a3326, #4dd4ac); }
+  .mp-port.p2::before { background: linear-gradient(135deg, #001626, #4a8aaf); }
+  .mp-port.p3::before { background: linear-gradient(135deg, #2a1f0a, #ffb347); }
+  .mp-port.p4::before { background: linear-gradient(135deg, #2a1014, #b04a3a); }
+  .mp-port .pmark { position: relative; z-index: 1; font-family: var(--mono); font-size: 8px; color: rgba(255,255,255,0.7); letter-spacing: 0.06em; }
+  .mp-port .pname { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: white; position: relative; z-index: 1; line-height: 1.1; }
+  .mp-port .ptag { font-family: var(--mono); font-size: 7px; color: rgba(255,255,255,0.7); position: relative; z-index: 1; margin-top: 2px; }
+  .mp-port .ptag.acc { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+  .mp-cta-box { padding: 24px 20px; background: linear-gradient(180deg, var(--bg-3), var(--bg-2)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .mp-cta-box::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 50%, rgba(77,212,172,0.12), transparent 60%); pointer-events: none; }
+  .mp-cta-box .h { font-family: var(--mono); font-size: 17px; font-weight: 700; line-height: 1.15; margin-bottom: 6px; color: var(--fg); position: relative; z-index: 1; }
+  .mp-cta-box .h .ko-em { color: var(--mint); }
+  .mp-cta-box .p { font-family: var(--body); font-size: 10.5px; color: var(--fg-2); margin-bottom: 12px; position: relative; z-index: 1; }
+  .mp-cta-box .mp-btn { position: relative; z-index: 1; }
+
+  .mp-foot { padding: 12px 20px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 8px; color: var(--fg-3); border-top: 1px solid var(--line); letter-spacing: 0.05em; background: rgba(13,17,23,0.5); }
+  .mp-foot .branch { color: var(--mint); display: inline-flex; align-items: center; gap: 4px; }
+  .mp-foot .branch::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--mint); }
+
+  /* Features grid (extra) */
+  .mp-features { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 16px 20px; }
+  .mp-feature { padding: 10px; background: var(--bg-3); border: 1px solid var(--line); border-radius: 4px; }
+  .mp-feature .ic { width: 16px; height: 16px; color: var(--mint); margin-bottom: 6px; }
+  .mp-feature .ic svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .mp-feature .nm { font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--fg); margin-bottom: 3px; }
+  .mp-feature .ds { font-family: var(--mono); font-size: 7.5px; color: var(--fg-3); line-height: 1.4; }
+
+  .iphone .mp-nav { padding: 36px 14px 12px; }
+  .iphone .mp-menu { display: none; }
+  .iphone .mp-burger { display: flex; flex-direction: column; gap: 2.5px; }
+  .iphone .mp-burger span { width: 12px; height: 1.5px; background: var(--fg-2); }
+  .iphone .mp-hero { padding: 18px 14px; }
+  .iphone .mp-h1 { font-size: 19px; }
+  .iphone .mp-lead { font-size: 9.5px; max-width: 100%; }
+  .iphone .mp-section { padding: 14px; }
+
+  /* ============ INDUSTRIES (8 verticals as code modules) ============ */
+  section.s-industries { padding: 80px 24px; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-industries { padding: 56px 16px; } }
+  .s-industries .head { margin: 0 auto 56px; max-width: 760px; text-align: center; }
+  .s-industries .head .section-prompt { justify-content: center; }
+  .s-industries h2 { font-family: var(--mono); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.08; color: var(--fg); margin-bottom: 14px; }
+  .s-industries h2 .accent { color: var(--mint); }
+  .s-industries .sub { font-family: var(--body); font-size: 16.5px; color: var(--fg-2); line-height: 1.6; max-width: 640px; margin: 0 auto; }
+  .s-industries .sub strong { color: var(--fg); font-weight: 600; }
+  .s-industries .sub code { font-family: var(--mono); font-size: 0.9em; background: var(--bg-3); border: 1px solid var(--line); padding: 2px 8px; border-radius: 4px; color: var(--mint); font-weight: 500; }
+
+  .ind-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 1000px) { .ind-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; } }
+  @media (max-width: 700px) { .ind-grid { grid-template-columns: 1fr 1fr; gap: 8px; } }
+
+  .ind-card { padding: 24px 22px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; transition: all 0.3s var(--ease-soft); position: relative; cursor: pointer; }
+  .ind-card:hover { border-color: var(--mint); background: var(--bg-3); transform: translateY(-2px); }
+  .ind-card .ind-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .ind-card .ind-head .ic { width: 32px; height: 32px; border-radius: 6px; background: var(--mint-soft); border: 1px solid rgba(77,212,172,0.2); display: grid; place-items: center; }
+  .ind-card .ind-head .ic svg { width: 16px; height: 16px; stroke: var(--mint); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ind-card .ind-head .ext { font-family: var(--mono); font-size: 9.5px; color: var(--fg-3); letter-spacing: 0.06em; }
+  .ind-card h3 { font-family: var(--mono); font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--fg); }
+  .ind-card h3 .syntax { color: var(--syntax-blue); }
+  .ind-card p { font-family: var(--body); font-size: 12.5px; color: var(--fg-2); line-height: 1.55; margin-bottom: 14px; }
+  .ind-card .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .ind-card .tags span { padding: 2px 7px; background: var(--bg); border: 1px solid var(--line); border-radius: 3px; font-family: var(--mono); font-size: 9.5px; color: var(--fg-3); }
+  @media (max-width: 600px) {
+    .ind-card { padding: 16px 14px; border-radius: 6px; }
+    .ind-card h3 { font-size: 13.5px; }
+    .ind-card p { font-size: 11px; line-height: 1.5; margin-bottom: 10px; }
+    .ind-card .ind-head .ic { width: 26px; height: 26px; }
+    .ind-card .ind-head .ic svg { width: 13px; height: 13px; }
+    .ind-card .tags span { font-size: 9px; padding: 1px 6px; }
+  }
+
+  /* ============ SERVICES (2 cards as code blocks) ============ */
+  section.s-services { padding: 80px 24px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-services { padding: 56px 16px; } }
+  .s-services .head { margin: 0 auto 48px; max-width: 760px; text-align: center; }
+  .s-services .head .section-prompt { justify-content: center; }
+  .s-services h2 { font-family: var(--mono); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.08; color: var(--fg); margin-bottom: 14px; }
+  .s-services h2 .accent { color: var(--mint); }
+  .s-services .sub { font-family: var(--body); font-size: 16.5px; color: var(--fg-2); line-height: 1.6; max-width: 640px; margin: 0 auto; }
+  .s-services .sub strong { color: var(--fg); font-weight: 600; }
+
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 700px) { .svc-grid { grid-template-columns: 1fr; gap: 10px; } }
+
+  .svc-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; transition: all 0.3s var(--ease-soft); }
+  .svc-card:hover { border-color: var(--mint); }
+  .svc-card .svc-bar { padding: 8px 16px; background: var(--bg-3); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+  .svc-card .svc-bar .dots { display: flex; gap: 5px; }
+  .svc-card .svc-bar .dots span { width: 9px; height: 9px; border-radius: 50%; }
+  .svc-card .svc-bar .dots span:nth-child(1) { background: #FF5F57; }
+  .svc-card .svc-bar .dots span:nth-child(2) { background: #FEBC2E; }
+  .svc-card .svc-bar .dots span:nth-child(3) { background: #28C840; }
+  .svc-card .svc-bar .filename { font-family: var(--mono); font-size: 11px; color: var(--fg-2); margin-left: 4px; }
+  .svc-card .svc-body { padding: 28px; }
+  .svc-card .num { font-family: var(--mono); font-size: 11px; color: var(--mint); margin-bottom: 14px; }
+  .svc-card .num::before { content: '// '; color: var(--comment); }
+  .svc-card h3 { font-family: var(--mono); font-size: 26px; font-weight: 600; line-height: 1.2; margin-bottom: 12px; color: var(--fg); }
+  .svc-card h3 .accent { color: var(--mint); }
+  .svc-card p { font-family: var(--body); font-size: 14px; line-height: 1.65; color: var(--fg-2); margin-bottom: 18px; }
+  .svc-card p strong { color: var(--fg); font-weight: 600; }
+  .svc-card ul { list-style: none; padding-top: 16px; border-top: 1px solid var(--line); }
+  .svc-card ul li { font-family: var(--mono); font-size: 12.5px; color: var(--fg-2); padding: 6px 0; }
+  .svc-card ul li::before { content: '✓ '; color: var(--mint); font-weight: 700; }
+  @media (max-width: 600px) {
+    .svc-card .svc-body { padding: 20px 18px; }
+    .svc-card h3 { font-size: 19px; }
+    .svc-card p { font-size: 13px; }
+    .svc-card ul li { font-size: 11px; }
+  }
+
+  /* ============ PACKAGE (pricing table) ============ */
+  section.s-package { padding: 80px 24px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-package { padding: 56px 16px; } }
+  .s-package .head { margin: 0 auto 36px; max-width: 600px; text-align: center; }
+  .s-package .head .section-prompt { justify-content: center; }
+  .s-package h2 { font-family: var(--mono); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.08; color: var(--fg); margin-bottom: 14px; }
+  .s-package h2 .accent { color: var(--mint); }
+  .s-package .sub { font-family: var(--body); font-size: 15.5px; color: var(--fg-2); line-height: 1.6; max-width: 540px; margin: 0 auto; }
+
+  .pkg-tabs-wrap { text-align: center; }
+
+  .pkg-tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; margin-bottom: 24px; }
+  .pkg-tab { padding: 8px 18px; border-radius: 4px; font-family: var(--mono); font-size: 12.5px; font-weight: 600; cursor: pointer; background: transparent; color: var(--fg-2); border: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .pkg-tab:hover { color: var(--fg); }
+  .pkg-tab.active { background: var(--mint); color: var(--bg); }
+  .pkg-tab .label { font-size: 10px; opacity: 0.7; }
+  .pkg-tab.active .label { opacity: 0.9; }
+  @media (max-width: 600px) { .pkg-tab { padding: 7px 14px; font-size: 12px; } .pkg-tab .label { display: none; } }
+
+  .package-table { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: none; }
+  .package-table.active { display: block; }
+  .pkg-row { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; }
+  .pkg-row + .pkg-row { border-top: 1px solid var(--line); }
+  .pkg-row.head { background: var(--bg-3); }
+  .pkg-row.head .col { padding: 18px 16px 16px; font-family: var(--mono); }
+  .pkg-row.head .col-name { font-size: 14px; font-weight: 600; color: var(--fg); }
+  .pkg-row.head .col-price { font-family: var(--mono); font-size: 22px; font-weight: 700; line-height: 1.1; margin-top: 4px; color: var(--mint); }
+  .pkg-row.head .col-price .from { font-size: 11px; color: var(--fg-3); margin-right: 4px; font-weight: 400; }
+  .pkg-row.head .col-days { font-size: 10.5px; color: var(--amber); margin-top: 4px; letter-spacing: 0.04em; }
+  .pkg-row.head .col-name.featured { color: var(--mint); position: relative; }
+  .pkg-row.head .col-name.featured::after { content: 'POPULAR'; display: inline-block; margin-left: 6px; padding: 2px 6px; background: var(--mint); color: var(--bg); font-size: 8px; font-weight: 700; border-radius: 3px; letter-spacing: 0.08em; vertical-align: middle; }
+  .pkg-row .col { padding: 11px 16px; }
+  .pkg-row .col.label { font-family: var(--mono); font-size: 11.5px; color: var(--fg-2); }
+  .pkg-row .col.label::before { content: '> '; color: var(--fg-3); }
+  .pkg-row .col.val { font-family: var(--mono); font-size: 12.5px; color: var(--fg); text-align: center; }
+  .pkg-row .col.val.dim { color: var(--fg-3); }
+  .pkg-row .col.val .check { color: var(--mint); font-weight: 700; }
+  .pkg-row .col.val .x { color: var(--fg-faint); }
+  .pkg-row.cta .col { padding: 14px 14px; }
+  .pkg-row.cta .col.label { font-size: 0; }
+  .pkg-row.cta button { width: 100%; padding: 9px; border-radius: 4px; font-family: var(--mono); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 1px solid var(--line-2); background: transparent; color: var(--fg); }
+  .pkg-row.cta button:hover { border-color: var(--mint); color: var(--mint); }
+  .pkg-row.cta button.featured { background: var(--mint); color: var(--bg); border-color: var(--mint); }
+  .pkg-row.cta button.featured:hover { background: #3DBD96; box-shadow: 0 0 18px var(--mint-glow); }
+
+  @media (max-width: 800px) {
+    .package-table { display: none; }
+    .pkg-mobile { display: none; gap: 8px; flex-direction: column; }
+    .pkg-mobile.active { display: flex; }
+    .pm-card { padding: 16px 14px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; position: relative; }
+    .pm-card.featured { border-color: var(--mint); }
+    .pm-card.featured::before { content: 'POPULAR'; position: absolute; top: -8px; right: 14px; padding: 2px 7px; background: var(--mint); color: var(--bg); font-family: var(--mono); font-size: 8.5px; font-weight: 700; border-radius: 3px; letter-spacing: 0.08em; }
+    .pm-row1 { display: flex; justify-content: space-between; align-items: end; margin-bottom: 4px; }
+    .pm-name { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--fg); }
+    .pm-name.acc { color: var(--mint); }
+    .pm-price { font-family: var(--mono); font-size: 22px; font-weight: 700; line-height: 1; color: var(--mint); }
+    .pm-price .from { font-size: 10.5px; color: var(--fg-3); margin-right: 3px; font-weight: 400; }
+    .pm-days { font-family: var(--mono); font-size: 10px; color: var(--amber); margin-bottom: 10px; }
+    .pm-list { list-style: none; margin: 10px 0 12px; }
+    .pm-list li { display: flex; justify-content: space-between; padding: 5px 0; font-size: 11.5px; border-top: 1px solid var(--line); }
+    .pm-list li:first-child { border-top: none; }
+    .pm-list li .l { color: var(--fg-2); font-family: var(--mono); font-size: 10px; }
+    .pm-list li .l::before { content: '> '; color: var(--fg-3); }
+    .pm-list li .v { color: var(--fg); font-weight: 500; font-family: var(--mono); }
+    .pm-list li .v.acc { color: var(--mint); }
+    .pm-card button { width: 100%; padding: 8px; border-radius: 4px; font-family: var(--mono); font-size: 11.5px; font-weight: 600; border: 1px solid var(--line-2); background: transparent; color: var(--fg); }
+    .pm-card.featured button { background: var(--mint); color: var(--bg); border-color: var(--mint); }
+  }
+  @media (min-width: 801px) { .pkg-mobile { display: none !important; } }
+
+  /* Add-ons */
+  .addons { margin-top: 18px; padding: 18px 22px; background: var(--bg-2); border: 1px dashed var(--line-2); border-radius: 8px; }
+  @media (max-width: 600px) { .addons { padding: 14px 14px; } }
+  .addons h4 { font-family: var(--mono); font-size: 11.5px; color: var(--fg-2); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .addons h4::before { content: '// add-ons'; color: var(--comment); }
+  .addons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  @media (max-width: 700px) { .addons-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .addons-grid { grid-template-columns: 1fr; } }
+  .addon { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; background: var(--bg); border-radius: 5px; border: 1px solid var(--line); }
+  .addon .l { font-family: var(--body); font-size: 12.5px; color: var(--fg); }
+  .addon .v { font-family: var(--mono); font-size: 11px; color: var(--mint); font-weight: 600; }
+
+  /* ============ PROCESS (git log timeline) ============ */
+  section.s-process { padding: 80px 24px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-process { padding: 56px 16px; } }
+  .s-process .head { margin: 0 auto 36px; max-width: 600px; text-align: center; }
+  .s-process .head .section-prompt { justify-content: center; }
+  .s-process h2 { font-family: var(--mono); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.08; color: var(--fg); margin-bottom: 14px; }
+  .s-process h2 .accent { color: var(--mint); }
+
+  .gitlog { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .gitlog .gl-header { padding: 10px 18px; background: var(--bg-3); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--fg-2); display: flex; justify-content: space-between; align-items: center; }
+  .gitlog .gl-header .branch { color: var(--mint); }
+  .gitlog .gl-header .commits { color: var(--fg-3); }
+  .gl-list { padding: 8px 0; }
+  .gl-row { padding: 14px 18px; display: grid; grid-template-columns: 18px 1fr; gap: 14px; align-items: start; position: relative; transition: background 0.2s; }
+  .gl-row:hover { background: var(--bg-3); }
+  .gl-row::before { content: ''; position: absolute; left: 26px; top: 32px; bottom: -14px; width: 1px; background: var(--line-2); }
+  .gl-row:last-child::before { display: none; }
+  .gl-bullet { width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--mint); margin-top: 4px; box-shadow: 0 0 8px var(--mint-glow); position: relative; z-index: 1; }
+  .gl-content { font-family: var(--mono); font-size: 13px; color: var(--fg); }
+  .gl-content .hash { color: var(--amber); margin-right: 12px; }
+  .gl-content .day { color: var(--mint); margin-right: 8px; }
+  .gl-content .name { color: var(--fg); font-weight: 600; }
+  .gl-content .time { float: right; color: var(--fg-3); font-size: 11px; }
+  .gl-content .desc { display: block; margin-top: 5px; color: var(--fg-2); font-size: 12px; line-height: 1.55; }
+  @media (max-width: 600px) {
+    .gl-row { padding: 12px 14px; }
+    .gl-content { font-size: 12px; }
+    .gl-content .time { display: none; }
+    .gl-content .desc { font-size: 11px; }
+  }
+
+  /* ============ RESOURCES (꿀팁 받기) ============ */
+  section.s-resources { padding: 80px 24px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-resources { padding: 56px 16px; } }
+  .s-resources .head { margin: 0 auto 40px; text-align: center; }
+  .s-resources .head .section-prompt { justify-content: center; }
+  .s-resources h2 { font-family: var(--mono); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.08; color: var(--fg); margin-bottom: 14px; }
+  .s-resources h2 .accent { color: var(--mint); }
+  .s-resources .sub { font-family: var(--body); font-size: 15.5px; color: var(--fg-2); line-height: 1.6; max-width: 560px; margin: 0 auto; }
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 980px; margin: 0 auto; }
+  @media (max-width: 700px) { .res-grid { grid-template-columns: 1fr; } }
+  .res-card { display: flex; gap: 18px; padding: 22px 22px 20px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; transition: all 0.2s; cursor: pointer; text-decoration: none; }
+  .res-card:hover { border-color: var(--mint); transform: translateY(-2px); background: var(--bg-3); }
+  .res-icon { position: relative; width: 48px; height: 60px; flex-shrink: 0; background: var(--bg-3); border: 1px solid var(--mint-soft); display: grid; place-items: center; font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--mint); letter-spacing: 0.04em; }
+  .res-icon::after { content: ''; position: absolute; top: -1px; right: -1px; border-style: solid; border-width: 0 12px 12px 0; border-color: transparent var(--bg) transparent transparent; }
+  .res-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+  .res-tag { font-family: var(--mono); font-size: 10.5px; color: var(--amber); letter-spacing: 0.16em; text-transform: uppercase; }
+  .res-card h3 { font-family: var(--body); font-size: 16px; font-weight: 600; color: var(--fg); letter-spacing: -0.012em; line-height: 1.35; }
+  .res-card .desc { font-family: var(--body); font-size: 13px; color: var(--fg-2); line-height: 1.55; }
+  .res-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-family: var(--mono); font-size: 12px; color: var(--mint); transition: gap 0.2s; }
+  .res-cta::before { content: '$'; color: var(--fg-3); }
+  .res-card:hover .res-cta { gap: 10px; }
+  .res-foot { margin-top: 28px; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--fg-3); }
+  .res-foot .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2); }
+  .res-foot .pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--mint); }
+
+  /* ============ FAQ ============ */
+  section.s-faq { padding: 80px 24px; max-width: 980px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-faq { padding: 56px 16px; } }
+  .s-faq .head { margin: 0 auto 40px; text-align: center; }
+  .s-faq .head .section-prompt { justify-content: center; }
+  .s-faq h2 { font-family: var(--mono); font-size: clamp(30px, 4.2vw, 52px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.08; color: var(--fg); margin-bottom: 14px; }
+  .s-faq h2 .accent { color: var(--mint); }
+  .s-faq .sub { font-family: var(--body); font-size: 15.5px; color: var(--fg-2); line-height: 1.6; max-width: 540px; margin: 0 auto; }
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+  .faq-item { background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; transition: border-color 0.2s; }
+  .faq-item[open] { border-color: var(--mint); }
+  .faq-item summary { padding: 16px 22px; font-family: var(--mono); font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px; list-style: none; color: var(--fg); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .q { display: flex; align-items: flex-start; gap: 14px; flex: 1; }
+  .faq-item summary .q-num { font-family: var(--mono); font-size: 11px; color: var(--mint); flex-shrink: 0; padding-top: 2px; }
+  .faq-item summary .arrow { font-family: var(--mono); font-size: 14px; color: var(--fg-3); transition: transform 0.3s; line-height: 1; }
+  .faq-item[open] summary .arrow { transform: rotate(45deg); color: var(--mint); }
+  .faq-item .a { padding: 0 22px 18px 50px; font-family: var(--body); font-size: 13.5px; color: var(--fg-2); line-height: 1.7; }
+  .faq-item .a strong { color: var(--fg); font-weight: 600; }
+  .faq-item .a code { font-family: var(--mono); font-size: 0.92em; background: var(--bg-3); border: 1px solid var(--line); padding: 1px 6px; border-radius: 3px; color: var(--mint); }
+  @media (max-width: 600px) {
+    .faq-item summary { padding: 14px 16px; font-size: 12.5px; gap: 10px; }
+    .faq-item summary .q { gap: 10px; }
+    .faq-item summary .q-num { font-size: 10px; }
+    .faq-item .a { padding: 0 16px 14px 38px; font-size: 12.5px; line-height: 1.65; }
+  }
+
+  /* ============ TEASER + CTA ============ */
+  section.s-portfolio-teaser { padding: 80px 24px 56px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-portfolio-teaser { padding: 56px 16px 36px; } }
+  .teaser-wrap { padding: 56px 40px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; position: relative; overflow: hidden; text-align: center; }
+  @media (max-width: 600px) { .teaser-wrap { padding: 36px 20px; } }
+  .teaser-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 100%, var(--mint-soft), transparent 70%); pointer-events: none; }
+  .teaser-wrap .cmd { font-family: var(--mono); font-size: 11.5px; color: var(--mint); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px; }
+  .teaser-wrap .cmd::before { content: '$'; color: var(--fg-3); }
+  .teaser-wrap h2 { font-family: var(--mono); font-size: clamp(26px, 3.4vw, 42px); font-weight: 700; letter-spacing: -0.022em; line-height: 1.1; margin-bottom: 14px; color: var(--fg); }
+  .teaser-wrap h2 .accent { color: var(--mint); }
+  .teaser-wrap p { font-family: var(--body); font-size: 15px; color: var(--fg-2); max-width: 520px; margin: 0 auto 28px; line-height: 1.6; }
+
+  section.s-cta { padding: 90px 24px 70px; max-width: 1180px; margin: 16px auto 0; border-top: 1px solid var(--line); text-align: center; }
+  @media (max-width: 600px) { section.s-cta { padding: 64px 16px 48px; } }
+  .s-cta h2 { font-family: var(--mono); font-size: clamp(34px, 5.4vw, 80px); font-weight: 700; letter-spacing: -0.03em; line-height: 0.96; margin-bottom: 22px; color: var(--fg); }
+  .s-cta h2 .accent { color: var(--mint); }
+  .s-cta h2 .light { color: var(--fg-3); }
+  .s-cta p { font-family: var(--mono); font-size: 13px; color: var(--fg-2); margin-bottom: 32px; }
+  .s-cta p::before { content: '// '; color: var(--comment); }
+  .s-cta .actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  /* ============ STATUSBAR (footer) ============ */
+  footer.statusbar { padding: 12px 16px; background: var(--bg-2); border-top: 1px solid var(--line); margin-top: 60px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; font-family: var(--mono); font-size: 11px; color: var(--fg-3); }
+  footer.statusbar .l { display: flex; align-items: center; gap: 14px; }
+  footer.statusbar .l .branch { color: var(--mint); display: inline-flex; align-items: center; gap: 5px; }
+  footer.statusbar .l .branch::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--mint); }
+  footer.statusbar .c { color: var(--fg-2); text-align: center; }
+  footer.statusbar .r { display: flex; align-items: center; gap: 14px; justify-content: end; }
+  footer.statusbar .r a { color: var(--fg-3); text-decoration: none; }
+  footer.statusbar .r a:hover { color: var(--mint); }
+  @media (max-width: 700px) { footer.statusbar { grid-template-columns: 1fr; gap: 6px; text-align: center; } footer.statusbar .l, footer.statusbar .r { justify-content: center; } }
+</style>
+</head>
+<body>
+
+<!-- TITLEBAR (window chrome) -->
+<div class="titlebar">
+  <div class="traffic">
+    <span class="dot r"></span>
+    <span class="dot y"></span>
+    <span class="dot g"></span>
+  </div>
+  <div class="filepath">
+    <a href="00b_main_v2_kpi_stacked.html">~/aio</a><span class="sep">/</span><span class="here">web-development</span><span class="sep">/</span><span class="here">index.tsx</span>
+  </div>
+  <div class="titlebar-r">
+    <span class="pill"><span class="dot"></span>응대 가능</span>
+    <button class="btn-cta">$ aio quote</button>
+  </div>
+</div>
+
+<!-- TABBAR (page tabs) -->
+<div class="tabbar">
+  <a href="01_web_dev_v2.html" class="active">
+    <svg class="ic" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75A.75.75 0 0 1 2.75 1h7.5a.75.75 0 0 1 .53.22l3.5 3.5c.141.14.22.331.22.53v9a.75.75 0 0 1-.75.75h-11a.75.75 0 0 1-.75-.75z"/></svg>
+    <span class="num">01</span> services.tsx
+  </a>
+  <a href="01_web_dev_portfolio.html">
+    <svg class="ic" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75A.75.75 0 0 1 2.75 1h7.5a.75.75 0 0 1 .53.22l3.5 3.5c.141.14.22.331.22.53v9a.75.75 0 0 1-.75.75h-11a.75.75 0 0 1-.75-.75z"/></svg>
+    <span class="num">02</span> portfolio.tsx
+  </a>
+  <a href="01_web_dev_resources.html">
+    <svg class="ic" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75A.75.75 0 0 1 2.75 1h7.5a.75.75 0 0 1 .53.22l3.5 3.5c.141.14.22.331.22.53v9a.75.75 0 0 1-.75.75h-11a.75.75 0 0 1-.75-.75z"/></svg>
+    <span class="num">03</span> resources.md
+  </a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-prompt"><span class="cmd">aio init</span> <span class="flag">--web</span> <span class="arg">"5d-delivery"</span><span class="cursor"></span></div>
+    <h1 class="hero-h1">
+      <span class="ln"><span class="ln-inner light">5일 후,</span></span>
+      <span class="ln"><span class="ln-inner"><span class="accent underline">결과물</span>을 받습니다</span></span>
+    </h1>
+    <p class="hero-sub">병원 · 법률 · 쇼핑몰까지. <strong>업종별 전문 사이트</strong>를 <code>운영 가능한 수준</code>으로.</p>
+
+    <div class="hero-actions">
+      <button class="btn-primary">$ 견적 시작 →</button>
+      <a href="01_web_dev_portfolio.html" class="btn-ghost">$ ls portfolio →</a>
+    </div>
+
+    <!-- Hero stats — terminal output -->
+    <div class="hero-stats">
+      <div class="hero-stats-head">aio.web · vital signs<span class="badge">live</span></div>
+      <div class="hero-stats-row"><span class="key">response_time</span><span class="val"><span class="num">1</span><span class="unit">h</span> <span class="comment">// 평균 23분</span></span></div>
+      <div class="hero-stats-row"><span class="key">delivery_avg</span><span class="val"><span class="num">5</span><span class="unit">d</span> <span class="comment">// 평균 4.6일</span></span></div>
+      <div class="hero-stats-row"><span class="key">portfolio_count</span><span class="val"><span class="num">42</span> <span class="comment">// 누적 작업</span></span></div>
+      <div class="hero-stats-row"><span class="key">client_rating</span><span class="val"><span class="num">4.9</span><span class="unit">/5</span> <span class="comment">// 의뢰인 평점</span></span></div>
+      <div class="hero-stats-row"><span class="key">warranty</span><span class="val"><span class="num">1</span><span class="unit">개월</span> <span class="comment">// 무상 A/S</span></span></div>
+    </div>
+  </section>
+
+  <!-- DEVICE -->
+  <section class="s-device">
+    <div class="head">
+      <div class="section-prompt">$ <span class="arg">cat live-sites.log</span> <span class="flag">--running</span></div>
+      <h2>지금 보이는 모든 사이트, <span class="accent">실제 운영 중</span>입니다</h2>
+      <p class="sub">데모가 아닙니다. <strong>실제 결과물</strong>을 먼저 보고 결정하세요.</p>
+    </div>
+
+    <div class="device-stage">
+      <div class="device-row">
+        <!-- MacBook SVG -->
+        <div class="mac">
+          <svg class="mac-frame" viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="mac-bezel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3a3d44"/>
+                <stop offset="50%" stop-color="#1f2229"/>
+                <stop offset="100%" stop-color="#14171c"/>
+              </linearGradient>
+              <linearGradient id="mac-base" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2a2d34"/>
+                <stop offset="100%" stop-color="#0f1116"/>
+              </linearGradient>
+              <linearGradient id="mac-side" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#0a0c10"/>
+                <stop offset="50%" stop-color="#2a2d34"/>
+                <stop offset="100%" stop-color="#0a0c10"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mac-bezel)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+            <rect x="55" y="30" width="890" height="540" rx="6" ry="6" fill="#000"/>
+            <rect x="468" y="0" width="64" height="14" rx="0" ry="0" fill="#0a0a0c"/>
+            <circle cx="500" cy="7" r="2.2" fill="#1a1a1f" stroke="rgba(255,255,255,0.15)" stroke-width="0.4"/>
+            <circle cx="510" cy="7" r="1" fill="#4DD4AC" opacity="0.7">
+              <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.4s" repeatCount="indefinite"/>
+            </circle>
+            <rect x="0" y="600" width="1000" height="6" fill="url(#mac-side)"/>
+            <path d="M 0 606 L 1000 606 L 988 654 L 12 654 Z" fill="url(#mac-base)"/>
+            <line x1="2" y1="608" x2="998" y2="608" stroke="rgba(255,255,255,0.10)" stroke-width="0.5"/>
+            <rect x="380" y="650" width="240" height="6" rx="0" fill="#050608"/>
+            <ellipse cx="500" cy="660" rx="350" ry="3" fill="rgba(0,0,0,0.4)"/>
+          </svg>
+          <div class="screen-area">
+            <div class="site-mock">
+              <!-- Page 1: Home -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span><span style="font-size:9px; color: var(--fg-3); margin-left:3px; letter-spacing:0.14em;">STUDIO</span></span><div class="mp-menu"><span>Services</span><span>Work</span><span>About</span><span>Journal</span></div><span class="mp-cta">견적</span></div>
+                <div class="mp-hero">
+                  <div class="mp-hero-img h-web">
+                    <span class="badge">Web · Live</span>
+                    <span class="icon-mark"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+                  </div>
+                  <div class="mp-eyebrow">Web · Live</div>
+                  <h1 class="mp-h1"><span class="lt">5일 후,</span><br/><span class="ko-em">결과물</span>을 받습니다</h1>
+                  <p class="mp-lead">병원·법률·쇼핑몰까지. 업종별 전문 사이트를 운영 가능한 수준으로.</p>
+                  <div class="mp-actions"><span class="mp-btn pri">견적 시작 →</span><span class="mp-btn">사례 보기</span></div>
+                </div>
+                <div class="mp-stats">
+                  <div class="mp-stat"><div class="num">42</div><div class="lbl">Projects</div></div>
+                  <div class="mp-stat"><div class="num">5d</div><div class="lbl">Delivery</div></div>
+                  <div class="mp-stat"><div class="num">4.9</div><div class="lbl">Rating</div></div>
+                </div>
+                <div class="mp-section">
+                  <h3>업종별 <span class="ko-em">전문</span><span class="meta">8 verticals</span></h3>
+                  <div class="mp-port-grid">
+                    <div class="mp-port p1"><span class="pmark">01</span><div><div class="pname">병원</div><div class="ptag">의원·치과</div></div></div>
+                    <div class="mp-port p2"><span class="pmark">02</span><div><div class="pname">법률·세무</div><div class="ptag">변호사</div></div></div>
+                    <div class="mp-port p3"><span class="pmark">03</span><div><div class="pname">쇼핑몰</div><div class="ptag">카페24</div></div></div>
+                  </div>
+                </div>
+                <div class="mp-foot"><span class="branch">main</span><span>aio-make.com</span></div>
+              </div>
+
+              <!-- Page 2: Work -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span><span style="font-size:9px; color: var(--fg-3); margin-left:3px; letter-spacing:0.14em;">STUDIO</span></span><div class="mp-menu"><span>Services</span><span>Work</span><span>About</span><span>Journal</span></div><span class="mp-cta">견적</span></div>
+                <div class="mp-hero">
+                  <div class="mp-hero-img h-port">
+                    <span class="badge">Portfolio · 42</span>
+                    <span class="icon-mark"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+                  </div>
+                  <div class="mp-eyebrow">Work · 2026</div>
+                  <h1 class="mp-h1"><span class="lt">결과를 보고</span><br/><span class="ko-em">맡기는</span> 외주</h1>
+                  <p class="mp-lead">실제 라이브 사이트와 KPI를 먼저 보여드립니다.</p>
+                </div>
+                <div class="mp-section" style="padding-top: 0;">
+                  <h3>HOT items <span class="meta">· 6/42</span></h3>
+                  <div class="mp-port-grid">
+                    <div class="mp-port p2"><span class="pmark">V-AIO</span><div><div class="pname">바이오 회사</div><div class="ptag acc">5d delivery</div></div></div>
+                    <div class="mp-port p1"><span class="pmark">한의원</span><div><div class="pname">자연한의원</div><div class="ptag">예약 +120%</div></div></div>
+                    <div class="mp-port p3"><span class="pmark">식품몰</span><div><div class="pname">셰프밀</div><div class="ptag acc">매출 +28%</div></div></div>
+                  </div>
+                  <div class="mp-port-grid" style="margin-top: 6px;">
+                    <div class="mp-port p4"><span class="pmark">법무사</span><div><div class="pname">서울법무</div><div class="ptag">상담 +85%</div></div></div>
+                    <div class="mp-port p1"><span class="pmark">밀키트</span><div><div class="pname">홈셰프</div><div class="ptag acc">+52%</div></div></div>
+                    <div class="mp-port p3"><span class="pmark">학원</span><div><div class="pname">아카데미</div><div class="ptag">등록 +44%</div></div></div>
+                  </div>
+                </div>
+                <div class="mp-cta-box">
+                  <h3 class="h">42개 작품 <span class="ko-em">전부</span></h3>
+                  <p class="p">카테고리 · 가격 · 일수 필터로 탐색</p>
+                  <span class="mp-btn pri">전체 보기 →</span>
+                </div>
+              </div>
+
+              <!-- Page 3: Process -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span><span style="font-size:9px; color: var(--fg-3); margin-left:3px; letter-spacing:0.14em;">STUDIO</span></span><div class="mp-menu"><span>Services</span><span>Work</span><span>About</span><span>Journal</span></div><span class="mp-cta">견적</span></div>
+                <div class="mp-hero" style="padding-top: 24px;">
+                  <div class="mp-hero-img h-start">
+                    <span class="badge">Process · 5 days</span>
+                    <span class="icon-mark"><svg viewBox="0 0 24 24"><path d="M2 12h6"/><path d="M22 12h-6"/><circle cx="12" cy="12" r="3"/></svg></span>
+                  </div>
+                  <div class="mp-eyebrow">5-day delivery</div>
+                  <h1 class="mp-h1">의뢰부터 납품까지<br/><span class="ko-em">5일</span></h1>
+                </div>
+                <div class="mp-features">
+                  <div class="mp-feature"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="nm">Day 01</div><div class="ds">상담 30분</div></div>
+                  <div class="mp-feature"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="nm">Day 02</div><div class="ds">견적·시안</div></div>
+                  <div class="mp-feature"><div class="ic"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="nm">Day 03–04</div><div class="ds">개발</div></div>
+                </div>
+                <div class="mp-cta-box">
+                  <h3 class="h">지금 <span class="ko-em">시작</span></h3>
+                  <p class="p">1시간 답변 · 24시간 견적</p>
+                  <span class="mp-btn pri">견적 시작 →</span>
+                </div>
+              </div>
+
+              <!-- Page 4: Why AIO -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span><span style="font-size:9px; color: var(--fg-3); margin-left:3px; letter-spacing:0.14em;">STUDIO</span></span><div class="mp-menu"><span>Services</span><span>Work</span><span>About</span><span>Journal</span></div><span class="mp-cta">견적</span></div>
+                <div class="mp-hero">
+                  <div class="mp-hero-img h-shop">
+                    <span class="badge">Why AIO · 4 Pillars</span>
+                    <span class="icon-mark"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                  </div>
+                  <div class="mp-eyebrow">Why AIO</div>
+                  <h1 class="mp-h1"><span class="lt">속도, 응대,</span><br/>완성도, <span class="ko-em">유지보수</span></h1>
+                  <p class="mp-lead">의뢰 전 가장 궁금한 4가지에 대한 답.</p>
+                </div>
+                <div class="mp-features">
+                  <div class="mp-feature"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="nm">1h 응답</div><div class="ds">평균 23분</div></div>
+                  <div class="mp-feature"><div class="ic"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="nm">5d 납품</div><div class="ds">평균 4.6일</div></div>
+                  <div class="mp-feature"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="nm">1개월 A/S</div><div class="ds">텔레그램 24/7</div></div>
+                </div>
+                <div class="mp-foot"><span class="branch">main</span><span>aio-make.com</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone SVG -->
+        <div class="iphone">
+          <svg class="iphone-frame" viewBox="0 0 220 460" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ip-frame" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#3a3d44"/>
+                <stop offset="40%" stop-color="#1f2229"/>
+                <stop offset="100%" stop-color="#0e1014"/>
+              </linearGradient>
+              <linearGradient id="ip-side" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#0a0c10"/>
+                <stop offset="50%" stop-color="#2a2d34"/>
+                <stop offset="100%" stop-color="#0a0c10"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="220" height="460" rx="50" ry="50" fill="url(#ip-frame)"/>
+            <rect x="2" y="2" width="216" height="456" rx="48" ry="48" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+            <rect x="14" y="14" width="192" height="432" rx="40" ry="40" fill="#000"/>
+            <rect x="92" y="22" width="36" height="3" rx="1.5" fill="#070708"/>
+            <rect x="68" y="32" width="84" height="22" rx="11" fill="#000" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+            <circle cx="138" cy="43" r="3.5" fill="#1a1f2e"/>
+            <circle cx="138" cy="43" r="2" fill="#0a0a10"/>
+            <circle cx="84" cy="43" r="1.6" fill="#0a0a0a"/>
+            <rect x="-2" y="80" width="3" height="20" rx="1.5" fill="url(#ip-side)"/>
+            <rect x="-2" y="108" width="3" height="36" rx="1.5" fill="url(#ip-side)"/>
+            <rect x="-2" y="152" width="3" height="36" rx="1.5" fill="url(#ip-side)"/>
+            <rect x="219" y="120" width="3" height="56" rx="1.5" fill="url(#ip-side)"/>
+          </svg>
+          <div class="screen-area">
+            <div class="site-mock">
+              <!-- iPhone Page 1: Home -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span></span><div class="mp-burger"><span></span><span></span><span></span></div></div>
+                <div class="mp-hero">
+                  <div class="mp-hero-img h-web" style="aspect-ratio: 4/3;">
+                    <span class="badge">Web · Live</span>
+                    <span class="icon-mark"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+                  </div>
+                  <div class="mp-eyebrow">2026</div>
+                  <h1 class="mp-h1" style="font-size: 19px;"><span class="lt">5일 후,</span><br/><span class="ko-em">결과물</span>을</h1>
+                  <p class="mp-lead">5일 안에 손에 쥐어드립니다</p>
+                  <div class="mp-actions"><span class="mp-btn pri">견적 →</span></div>
+                </div>
+              </div>
+              <!-- iPhone Page 2: Industries -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span></span><div class="mp-burger"><span></span><span></span><span></span></div></div>
+                <div class="mp-section" style="padding-top: 14px;">
+                  <h3>업종 <span class="ko-em">· 7 vert</span></h3>
+                  <div class="mp-port-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="mp-port p2" style="aspect-ratio: 4/5;"><span class="pmark">01</span><div><div class="pname">병원</div><div class="ptag">의원·치과</div></div></div>
+                    <div class="mp-port p1" style="aspect-ratio: 4/5;"><span class="pmark">02</span><div><div class="pname">법률</div><div class="ptag">변호사</div></div></div>
+                    <div class="mp-port p4" style="aspect-ratio: 4/5;"><span class="pmark">03</span><div><div class="pname">교육</div><div class="ptag">학원</div></div></div>
+                    <div class="mp-port p3" style="aspect-ratio: 4/5;"><span class="pmark">04</span><div><div class="pname">쇼핑</div><div class="ptag">카페24</div></div></div>
+                  </div>
+                </div>
+              </div>
+              <!-- iPhone Page 3: Portfolio CTA -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span></span><div class="mp-burger"><span></span><span></span><span></span></div></div>
+                <div class="mp-hero" style="padding-top: 18px;">
+                  <div class="mp-hero-img h-port" style="aspect-ratio: 4/3;">
+                    <span class="badge">Portfolio</span>
+                    <span class="icon-mark"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+                  </div>
+                </div>
+                <div class="mp-cta-box" style="margin-top: 0;">
+                  <h3 class="h">42개 작품 <span class="ko-em">전부</span></h3>
+                  <p class="p">카테고리 · 가격 · 일수 필터</p>
+                  <span class="mp-btn pri" style="padding: 7px 14px;">전체 보기 →</span>
+                </div>
+              </div>
+              <!-- iPhone Page 4: Start -->
+              <div class="mp">
+                <div class="mp-nav"><span class="mp-logo">AIO<span class="dot">.</span></span><div class="mp-burger"><span></span><span></span><span></span></div></div>
+                <div class="mp-hero" style="padding: 30px 14px;">
+                  <div class="mp-eyebrow">Get started</div>
+                  <h1 class="mp-h1" style="font-size: 18px;">지금 <span class="ko-em">시작</span></h1>
+                  <p class="mp-lead">1시간 답변 · 24시간 견적</p>
+                  <div class="mp-actions"><span class="mp-btn pri" style="width: 100%; text-align: center; justify-content: center;">$ aio quote →</span></div>
+                </div>
+                <div class="mp-foot"><span class="branch">main</span><span>aio-make.com</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="s-industries" id="industries">
+    <div class="head">
+      <div class="section-prompt">$ <span class="arg">aio modules</span> <span class="flag">--by-industry</span></div>
+      <h2>업종마다 <span class="accent">다른 답</span>이 있습니다</h2>
+      <p class="sub">병원엔 <code>예약</code>, 법률엔 <code>상담폼</code>, 쇼핑몰엔 <code>결제</code>. <strong>업종별 핵심 기능</strong>을 미리 설계해 시작합니다.</p>
+    </div>
+
+    <div class="ind-grid">
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M19 11h-4V7a3 3 0 0 0-6 0v4H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2z"/><circle cx="12" cy="16" r="2"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>병원 · 의료</h3>
+        <p>의원·한의원·치과·성형외과. 예약·진료 안내·블로그.</p>
+        <div class="tags"><span>예약</span><span>진료시간</span><span>의료광고법</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>법률 · 세무</h3>
+        <p>변호사·법무사·세무사·노무사·회계사. 상담·약도.</p>
+        <div class="tags"><span>상담</span><span>업무분야</span><span>전문가</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>교육 · 학원</h3>
+        <p>학원·과외·온라인 강의. 강사·시간표·수강 신청.</p>
+        <div class="tags"><span>강사</span><span>시간표</span><span>수강 신청</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>쇼핑몰 · D2C</h3>
+        <p>카페24·자사몰. 메인·상세·결제·배송 흐름.</p>
+        <div class="tags"><span>카페24</span><span>Stripe</span><span>모바일 우선</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3v4zM3 19a2 2 0 0 0 2 2h1v-6H3v4z"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>F&B · 카페</h3>
+        <p>음식점·카페·베이커리. 메뉴·매장·주문·인스타.</p>
+        <div class="tags"><span>메뉴</span><span>매장</span><span>주문</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>뷰티 · 미용</h3>
+        <p>미용실·네일샵·피부관리. 시술·예약·후기·인스타.</p>
+        <div class="tags"><span>예약</span><span>시술 메뉴</span><span>후기</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>부동산</h3>
+        <p>중개·분양·임대. 매물·상세·지도·문의.</p>
+        <div class="tags"><span>매물</span><span>지도</span><span>문의</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span class="ext">.tsx</span></div>
+        <h3>일반 · 기타</h3>
+        <p>스타트업·자영업·NGO. 분야 무관 일반 사이트.</p>
+        <div class="tags"><span>맞춤 기획</span><span>1:1 상담</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="s-services" id="services">
+    <div class="head">
+      <div class="section-prompt">$ <span class="arg">aio build</span> <span class="flag">--types</span></div>
+      <h2>2가지 형태,<br/><span class="accent">끝까지 책임</span>집니다</h2>
+      <p class="sub">단순 페이지가 아니라 <strong>운영·확장·유지보수</strong>까지 한 팀이 맡습니다.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">website.tsx</span>
+        </div>
+        <div class="svc-body">
+          <div class="num">01 · web</div>
+          <h3>웹사이트</h3>
+          <p>랜딩페이지·기업 사이트·전문 업종 사이트. <strong>SEO·접근성·성능</strong>을 모두 갖춘 수준까지.</p>
+          <ul>
+            <li>Next.js 15 + React 19</li>
+            <li>한·영 다국어 기본</li>
+            <li>Vercel Edge 자동 배포</li>
+            <li>업종별 핵심 기능 사전 설계</li>
+          </ul>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">shopping.tsx</span>
+        </div>
+        <div class="svc-body">
+          <div class="num">02 · shop</div>
+          <h3>쇼핑몰</h3>
+          <p>카페24 메인부터 자사몰까지. 한 화면 안에 <strong>상품성과 구매 동선</strong>이 자연스럽게 보이도록.</p>
+          <ul>
+            <li>카페24 메인 디자인</li>
+            <li>자사몰 (Next.js + Stripe)</li>
+            <li>모바일 우선 구성</li>
+            <li>결제·배송 흐름 검증</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGE -->
+  <section class="s-package" id="package">
+    <div class="head">
+      <div class="section-prompt">$ <span class="arg">aio pricing</span> <span class="flag">--web</span> <span class="flag">--shop</span></div>
+      <h2>패키지 · <span class="accent">투명한 견적</span></h2>
+      <p class="sub">웹사이트와 쇼핑몰은 구축 체계가 다릅니다.</p>
+    </div>
+
+    <div class="pkg-tabs-wrap">
+      <div class="pkg-tabs" role="tablist">
+        <button class="pkg-tab active" data-tab="web" role="tab">웹사이트 <span class="label">9.9만~</span></button>
+        <button class="pkg-tab" data-tab="shop" role="tab">쇼핑몰 <span class="label">14.9만~</span></button>
+      </div>
+    </div>
+
+    <!-- WEBSITE table -->
+    <div class="package-table active" data-pane="web">
+      <div class="pkg-row head">
+        <div class="col"></div>
+        <div class="col"><div class="col-name">Light</div><div class="col-price"><span class="from">₩</span>9.9만~</div><div class="col-days">▸ 1 day</div></div>
+        <div class="col"><div class="col-name featured">Standard</div><div class="col-price"><span class="from">₩</span>19.9만~</div><div class="col-days">▸ 2–3 days</div></div>
+        <div class="col"><div class="col-name">Premium</div><div class="col-price"><span class="from">₩</span>34.9만~</div><div class="col-days">▸ 3–5 days</div></div>
+      </div>
+      <div class="pkg-row"><div class="col label">page_count</div><div class="col val">1p (랜딩)</div><div class="col val"><strong>3p</strong></div><div class="col val">5p</div></div>
+      <div class="pkg-row"><div class="col label">composition</div><div class="col val">회사소개·문의 1p</div><div class="col val"><strong>메인·소개·문의</strong></div><div class="col val">메인·소개·서비스·포트폴리오·문의</div></div>
+      <div class="pkg-row"><div class="col label">responsive</div><div class="col val"><span class="check">✓</span></div><div class="col val"><span class="check">✓</span></div><div class="col val"><span class="check">✓</span></div></div>
+      <div class="pkg-row"><div class="col label">seo_setup</div><div class="col val"><span class="x">—</span></div><div class="col val"><span class="check">✓</span></div><div class="col val"><span class="check">✓</span></div></div>
+      <div class="pkg-row"><div class="col label">revisions</div><div class="col val">1회</div><div class="col val"><strong>2회</strong></div><div class="col val">3회</div></div>
+      <div class="pkg-row"><div class="col label">free_warranty</div><div class="col val">30일</div><div class="col val"><strong>30일</strong></div><div class="col val">60일</div></div>
+      <div class="pkg-row cta"><div class="col label"></div><div class="col"><button>선택</button></div><div class="col"><button class="featured">선택</button></div><div class="col"><button>선택</button></div></div>
+    </div>
+
+    <!-- WEBSITE mobile cards -->
+    <div class="pkg-mobile active" data-pane="web">
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Light</div><div class="pm-price"><span class="from">₩</span>9.9만~</div></div>
+        <div class="pm-days">▸ 1 day</div>
+        <ul class="pm-list">
+          <li><span class="l">page_count</span><span class="v">1p (랜딩)</span></li>
+          <li><span class="l">responsive</span><span class="v acc">✓</span></li>
+          <li><span class="l">revisions</span><span class="v">1회</span></li>
+          <li><span class="l">warranty</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card featured">
+        <div class="pm-row1"><div class="pm-name acc">Standard</div><div class="pm-price"><span class="from">₩</span>19.9만~</div></div>
+        <div class="pm-days">▸ 2–3 days</div>
+        <ul class="pm-list">
+          <li><span class="l">page_count</span><span class="v">3p</span></li>
+          <li><span class="l">seo_setup</span><span class="v acc">✓</span></li>
+          <li><span class="l">revisions</span><span class="v">2회</span></li>
+          <li><span class="l">warranty</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Premium</div><div class="pm-price"><span class="from">₩</span>34.9만~</div></div>
+        <div class="pm-days">▸ 3–5 days</div>
+        <ul class="pm-list">
+          <li><span class="l">page_count</span><span class="v">5p</span></li>
+          <li><span class="l">seo_setup</span><span class="v acc">✓</span></li>
+          <li><span class="l">revisions</span><span class="v">3회</span></li>
+          <li><span class="l">warranty</span><span class="v">60일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+    </div>
+
+    <!-- SHOPPING table -->
+    <div class="package-table" data-pane="shop">
+      <div class="pkg-row head">
+        <div class="col"></div>
+        <div class="col"><div class="col-name">Light</div><div class="col-price"><span class="from">₩</span>14.9만~</div><div class="col-days">▸ 2 days</div></div>
+        <div class="col"><div class="col-name featured">Standard</div><div class="col-price"><span class="from">₩</span>24.9만~</div><div class="col-days">▸ 3–5 days</div></div>
+        <div class="col"><div class="col-name">Premium</div><div class="col-price"><span class="from">₩</span>39.9만~</div><div class="col-days">▸ 5 days</div></div>
+      </div>
+      <div class="pkg-row"><div class="col label">main_layout</div><div class="col val">기본</div><div class="col val"><strong>판매형 개선</strong></div><div class="col val">브랜드형</div></div>
+      <div class="pkg-row"><div class="col label">products</div><div class="col val">3개</div><div class="col val"><strong>5개</strong></div><div class="col val">10개</div></div>
+      <div class="pkg-row"><div class="col label">category_banner</div><div class="col val">기본 정리</div><div class="col val"><span class="check">정리 + 문구</span></div><div class="col val"><span class="check">풀 정리</span></div></div>
+      <div class="pkg-row"><div class="col label">product_detail</div><div class="col val"><span class="x">—</span></div><div class="col val"><span class="x">—</span></div><div class="col val"><span class="check">✓</span></div></div>
+      <div class="pkg-row"><div class="col label">responsive</div><div class="col val"><span class="check">✓</span></div><div class="col val"><span class="check">✓</span></div><div class="col val"><span class="check">✓</span></div></div>
+      <div class="pkg-row"><div class="col label">revisions</div><div class="col val">1회</div><div class="col val"><strong>2회</strong></div><div class="col val">3회</div></div>
+      <div class="pkg-row"><div class="col label">free_warranty</div><div class="col val">30일</div><div class="col val"><strong>30일</strong></div><div class="col val">60일</div></div>
+      <div class="pkg-row cta"><div class="col label"></div><div class="col"><button>선택</button></div><div class="col"><button class="featured">선택</button></div><div class="col"><button>선택</button></div></div>
+    </div>
+
+    <!-- SHOPPING mobile cards -->
+    <div class="pkg-mobile" data-pane="shop">
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Light</div><div class="pm-price"><span class="from">₩</span>14.9만~</div></div>
+        <div class="pm-days">▸ 2 days</div>
+        <ul class="pm-list">
+          <li><span class="l">main_layout</span><span class="v">기본</span></li>
+          <li><span class="l">products</span><span class="v">3개</span></li>
+          <li><span class="l">revisions</span><span class="v">1회</span></li>
+          <li><span class="l">warranty</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card featured">
+        <div class="pm-row1"><div class="pm-name acc">Standard</div><div class="pm-price"><span class="from">₩</span>24.9만~</div></div>
+        <div class="pm-days">▸ 3–5 days</div>
+        <ul class="pm-list">
+          <li><span class="l">main_layout</span><span class="v acc">판매형 개선</span></li>
+          <li><span class="l">products</span><span class="v">5개</span></li>
+          <li><span class="l">revisions</span><span class="v">2회</span></li>
+          <li><span class="l">warranty</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Premium</div><div class="pm-price"><span class="from">₩</span>39.9만~</div></div>
+        <div class="pm-days">▸ 5 days</div>
+        <ul class="pm-list">
+          <li><span class="l">main_layout</span><span class="v acc">브랜드형</span></li>
+          <li><span class="l">products</span><span class="v">10개</span></li>
+          <li><span class="l">product_detail</span><span class="v acc">✓ 기본</span></li>
+          <li><span class="l">warranty</span><span class="v">60일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="addons">
+      <h4></h4>
+      <div class="addons-grid">
+        <div class="addon"><span class="l">추가 페이지 1p</span><span class="v">+5만</span></div>
+        <div class="addon"><span class="l">원고 정리·카피 강화</span><span class="v">+3만~</span></div>
+        <div class="addon"><span class="l">긴급 작업 (24h)</span><span class="v">+3만</span></div>
+        <div class="addon"><span class="l">상품 추가 등록</span><span class="v">+1만/개</span></div>
+        <div class="addon"><span class="l">배너 추가 제작</span><span class="v">+2만/개</span></div>
+        <div class="addon"><span class="l">도메인·호스팅</span><span class="v">별도</span></div>
+        <div class="addon"><span class="l">예약·결제 기능</span><span class="v">별도 견적</span></div>
+        <div class="addon"><span class="l">유지보수 월 패키지</span><span class="v">월 9.9만</span></div>
+        <div class="addon"><span class="l">사진·영상 촬영</span><span class="v">별도 견적</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS — git log style -->
+  <section class="s-process">
+    <div class="head">
+      <div class="section-prompt">$ <span class="arg">git log</span> <span class="flag">--graph --since="5d"</span></div>
+      <h2>의뢰부터 납품까지 <span class="accent">5일</span></h2>
+    </div>
+    <div class="gitlog">
+      <div class="gl-header">
+        <span><span class="branch">main</span> · 5d-delivery.timeline</span>
+        <span class="commits">4 commits · ↑ ahead</span>
+      </div>
+      <div class="gl-list">
+        <div class="gl-row">
+          <div class="gl-bullet"></div>
+          <div class="gl-content"><span class="hash">a1b2c3d</span><span class="day">DAY 01</span><span class="name">consultation</span><span class="time">— 무료</span><span class="desc">30분 화상 · 요구사항·예산·일정 정리</span></div>
+        </div>
+        <div class="gl-row">
+          <div class="gl-bullet"></div>
+          <div class="gl-content"><span class="hash">e4f5a67</span><span class="day">DAY 02</span><span class="name">quote + wireframe</span><span class="time">— estimate</span><span class="desc">투명한 견적서 + 기획안 · 1회 무료 수정</span></div>
+        </div>
+        <div class="gl-row">
+          <div class="gl-bullet"></div>
+          <div class="gl-content"><span class="hash">b8c9d12</span><span class="day">DAY 03–04</span><span class="name">development</span><span class="time">— build</span><span class="desc">매일 진행 화면 공유 · 실시간 피드백</span></div>
+        </div>
+        <div class="gl-row">
+          <div class="gl-bullet"></div>
+          <div class="gl-content"><span class="hash">f7e8b34</span><span class="day">DAY 05</span><span class="name">deliver + warranty</span><span class="time">— ship 🚀</span><span class="desc">운영 가이드 + 1개월 무상 A/S</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="s-faq" id="faq">
+    <div class="head">
+      <div class="section-prompt">$ <span class="arg">aio faq</span> <span class="flag">--all</span></div>
+      <h2>자주 묻는 <span class="accent">질문</span></h2>
+      <p class="sub">결정 전에 가장 많이 받는 8가지.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span class="q"><span class="q-num">Q.01</span><span>병원·법률 사무소처럼 전문 업종 사이트도 가능한가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, 가능합니다.</strong> 의료광고법·표시광고법 등 업종별 가이드라인을 인지하고 작업합니다. 의원·한의원·치과·변호사·세무사·법무사·노무사 등 <code>20개+ 전문 업종</code> 사이트 경험이 있습니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.02</span><span>5일 납품이 정말 가능한가요? 퀄리티가 떨어지지 않나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">대부분의 의뢰는 5일 안에 끝납니다. 비결은 <strong>업종별 검증된 패턴</strong>을 기반으로 시작하기 때문입니다. 의뢰인 만족도 <code>4.9/5</code>를 유지하고 있습니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.03</span><span>웹사이트와 쇼핑몰 견적은 왜 따로 나뉘나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">구축 체계가 다릅니다. <strong>웹사이트</strong>는 페이지 수와 다국어·CMS 위주로 결정되고, <strong>쇼핑몰</strong>은 결제·배송·회원 시스템 같은 기능 단위로 결정됩니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.04</span><span>결제 시스템이나 예약 시스템도 만들 수 있나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">결제는 <strong>Stripe·카카오페이·토스</strong>, 예약은 <strong>구글 캘린더 연동·자체 예약 시스템</strong> 모두 가능합니다. 추가 옵션으로 견적이 산출됩니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.05</span><span>호스팅·도메인은 별도인가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">호스팅·도메인은 별도입니다. 구입·연동까지 도와드립니다 (<code>.com</code> 약 1.5만/년).</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.06</span><span>코드 소스도 받을 수 있나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, 전체 소스코드를 GitHub로 인계해드립니다.</strong> 운영 가이드 영상도 함께 제공하므로 인수인계가 쉽습니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.07</span><span>1개월 무상 A/S는 어떤 범위까지인가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">납품 후 <code>30일간</code> 발생하는 <strong>버그 수정·반응형 미세 조정·콘텐츠 교체</strong>는 무료입니다. 신규 기능 추가나 디자인 전면 수정은 별도 견적입니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.08</span><span>지방에서도 작업 가능한가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">전국 어디든 가능합니다. 모든 작업은 <strong>화상·메신저</strong>로 진행되어 의뢰인이 서울에 계시지 않아도 됩니다. 텔레그램으로 24/7 즉시 응대 가능합니다.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO TEASER -->
+  <section class="s-portfolio-teaser">
+    <div class="teaser-wrap">
+      <div class="cmd"><span class="arg">aio open portfolio --view</span></div>
+      <h2>이미 42개. <span class="accent">결과를 보고</span> 결정하세요.</h2>
+      <p>실제 운영 중인 사이트들. 한 작품 한 작품이 다음 의뢰의 답입니다.</p>
+      <a href="01_web_dev_portfolio.html" class="btn-primary">$ portfolio.tsx →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="s-cta">
+    <h2><span class="light">$ start</span> <span class="accent">your_project</span></h2>
+    <p>1시간 답변 · 24시간 견적 · 5일 결과물</p>
+    <div class="actions"><button class="btn-primary">$ 견적 시작 →</button><button class="btn-ghost">$ aio-bot 상담</button></div>
+  </section>
+
+</main>
+
+<!-- STATUSBAR (footer) -->
+<footer class="statusbar">
+  <div class="l">
+    <span class="branch">main</span>
+    <span>aio-make.com</span>
+    <span>· 01/services.tsx</span>
+  </div>
+  <div class="c">© 2026 AIO Studio · 각 분야 전문가가 직접</div>
+  <div class="r">
+    <a href="00b_main_v2_kpi_stacked.html">← Studio</a>
+    <a href="01_web_dev_portfolio.html">portfolio →</a>
+  </div>
+</footer>
+
+<script>
+  if (window.gsap && gsap.registerPlugin && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  // Tab switching
+  document.querySelectorAll('.pkg-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const pane = tab.dataset.tab;
+      document.querySelectorAll('.pkg-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.package-table, .pkg-mobile').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll(`[data-pane="${pane}"]`).forEach(p => p.classList.add('active'));
+    });
+  });
+
+  // Animations
+  const tl = gsap.timeline();
+  tl.from('.hero-prompt', { opacity: 0, y: 12, duration: 0.7, ease: 'power3.out' })
+    .from('.hero-h1 .ln-inner', { yPercent: 110, duration: 1.0, ease: 'expo.out', stagger: 0.12 }, '-=0.3')
+    .from('.hero-sub', { opacity: 0, y: 16, duration: 0.7, ease: 'power3.out' }, '-=0.4')
+    .from('.hero-actions', { opacity: 0, y: 12, duration: 0.6 }, '-=0.4')
+    .from('.hero-stats', { opacity: 0, y: 16, duration: 0.7 }, '-=0.3');
+
+  gsap.from('.mac', { opacity: 0, y: 60, duration: 1.0, scrollTrigger: { trigger: '.s-device', start: 'top 75%' } });
+  gsap.from('.iphone', { opacity: 0, y: 80, x: 40, duration: 1.2, delay: 0.2, scrollTrigger: { trigger: '.s-device', start: 'top 75%' } });
+  gsap.from('.ind-card', { opacity: 0, y: 24, duration: 0.6, stagger: 0.05, scrollTrigger: { trigger: '.ind-grid', start: 'top 82%' } });
+  gsap.from('.svc-card', { opacity: 0, y: 30, duration: 0.7, stagger: 0.1, scrollTrigger: { trigger: '.svc-grid', start: 'top 80%' } });
+  gsap.from('.pkg-tab', { opacity: 0, y: 12, duration: 0.5, stagger: 0.08, scrollTrigger: { trigger: '.pkg-tabs', start: 'top 88%' } });
+  gsap.from('.addon', { opacity: 0, y: 12, duration: 0.4, stagger: 0.04, scrollTrigger: { trigger: '.addons', start: 'top 88%' } });
+  gsap.from('.gl-row', { opacity: 0, x: -16, duration: 0.6, stagger: 0.1, scrollTrigger: { trigger: '.gitlog', start: 'top 85%' } });
+  gsap.from('.faq-item', { opacity: 0, y: 14, duration: 0.5, stagger: 0.06, scrollTrigger: { trigger: '.faq-list', start: 'top 82%' } });
+  gsap.from('.teaser-wrap', { opacity: 0, y: 30, duration: 0.9, scrollTrigger: { trigger: '.s-portfolio-teaser', start: 'top 82%' } });
+</script>
+</body>
+</html>

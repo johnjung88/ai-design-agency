@@ -120,9 +120,15 @@ const testimonials = [
   },
 ];
 
-export function TestimonialsSection() {
+interface Props {
+  limit?: number;
+  mixed?: boolean;
+}
+
+export function TestimonialsSection({ limit = 7 }: Props) {
   const t = useTranslations("testimonials");
   const locale = useLocale() as "ko" | "en";
+  const visible = testimonials.slice(0, limit);
 
   return (
     <section id="testimonials" className="py-24 lg:py-32">
@@ -150,7 +156,7 @@ export function TestimonialsSection() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-3">
-          {testimonials.map((item, index) => (
+          {visible.map((item, index) => (
             <article
               key={item.service.ko}
               className="flex h-full flex-col overflow-hidden rounded-lg border border-white/8 bg-card"

@@ -1,115 +1,191 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
-import { GuaranteeBadge } from "@/components/ui/guarantee-badge";
-import { BrandLogo } from "@/components/ui/brand-logo";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+import { metaCategoriesData, servicesData, type MetaCategory } from "@/lib/services-data";
+import { ICON_MAP } from "@/lib/category-icons";
+import { CategoryCardLink } from "./category-card-link";
 
-export function HeroSection() {
-  const t = useTranslations("hero");
-  const locale = useLocale();
+// ── 카테고리 카드 (인포그래픽 스타일) ──────────────────────────────
+
+function CategoryHeroCard({ cat, locale }: { cat: MetaCategory; locale: string }) {
+  const Icon = ICON_MAP[cat.icon] ?? ICON_MAP["Globe"];
+  const lang = locale === "ko" ? "ko" : "en";
+
+  const subLabels = cat.subcategories.map((id) => {
+    const svc = servicesData.find((s) => s.id === id);
+    return svc?.title[lang] ?? id;
+  });
+
+  const firstSvc = servicesData.find((s) => s.id === cat.subcategories[0]);
+  const startPrice = firstSvc?.pricing[0]?.eventPrice;
+
+  const inner = (
+    <div
+      className={`group relative flex h-full min-h-[200px] flex-col rounded-2xl border p-5 transition-all duration-200 sm:p-7 ${
+        cat.comingSoon
+          ? "cursor-not-allowed border-white/5 bg-white/[0.015]"
+          : "cursor-pointer border-white/10 bg-[#111111] hover:border-primary/40 hover:bg-[#161616]"
+      }`}
+    >
+      {/* 상단: 아이콘 + 가격 뱃지 */}
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <div
+          className={`flex size-14 shrink-0 items-center justify-center rounded-xl border sm:size-16 ${
+            cat.comingSoon
+              ? "border-white/5 bg-white/5 opacity-25"
+              : "border-primary/20 bg-primary/10 text-primary"
+          }`}
+        >
+          <Icon className="size-6 sm:size-7" />
+        </div>
+
+        {cat.comingSoon ? (
+          <span className="rounded-full border border-white/8 bg-white/5 px-3 py-1 text-xs font-medium text-white/25">
+            {lang === "ko" ? "준비 중" : "Coming Soon"}
+          </span>
+        ) : startPrice ? (
+          <span className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+            {lang === "ko" ? `시작가 ${startPrice}` : `From ${startPrice}`}
+          </span>
+        ) : null}
+      </div>
+
+      {/* 카테고리 명 */}
+      <h3
+        className={`mb-3 text-xl font-bold sm:text-2xl ${
+          cat.comingSoon ? "text-white/20" : "text-foreground"
+        }`}
+      >
+        {cat.title[lang]}
+      </h3>
+
+      {/* 설명 */}
+      <p className={`mb-4 text-xs leading-5 sm:text-sm sm:leading-6 ${
+        cat.comingSoon ? "text-white/15" : "text-muted-foreground"
+      }`}>
+        {cat.description[lang]}
+      </p>
+
+      {/* 세부 서비스 태그 */}
+      <div className="mb-4 flex flex-wrap gap-1.5">
+        {subLabels.map((label) => (
+          <span
+            key={label}
+            className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${
+              cat.comingSoon
+                ? "bg-white/5 text-white/15"
+                : "bg-white/[0.06] text-muted-foreground"
+            }`}
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+
+      {/* 하단 CTA */}
+      <div className="mt-auto">
+        {cat.comingSoon ? (
+          <span className="text-xs text-white/20">
+            {lang === "ko" ? "오픈 예정" : "Opening soon"}
+          </span>
+        ) : (
+          <div className="flex items-center gap-2 text-sm font-semibold text-primary">
+            <span>{lang === "ko" ? "서비스 보기" : "View service"}</span>
+            <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  if (cat.comingSoon) return inner;
+  return (
+    <CategoryCardLink
+      href={`/${locale}/services/${cat.id}`}
+      category={cat.id}
+      className="flex"
+    >
+      {inner}
+    </CategoryCardLink>
+  );
+}
+
+// ── 메인 히어로 ────────────────────────────────────────────────────
+
+interface Props {
+  locale: string;
+}
+
+export async function HeroSection({ locale }: Props) {
+  const t = await getTranslations({ locale, namespace: "hero" });
+  const lang = locale === "ko" ? "ko" : "en";
   const base = `/${locale}`;
-  const isKo = locale === "ko";
-  const proofTiles = [
-    { value: isKo ? "5일" : "5D", label: isKo ? "최대 결과물 보장" : "max delivery promise" },
-    { value: "7", label: isKo ? "판매 카테고리" : "service categories" },
-    { value: isKo ? "가격" : "Price", label: isKo ? "공개 단가표 운영" : "transparent pricing" },
-    { value: isKo ? "14일" : "14D", label: isKo ? "기본 A/S 기간" : "basic support window" },
-  ];
+  const marqueeText = t("marquee");
 
   return (
-    <section className="relative flex min-h-[590px] flex-col justify-between overflow-hidden md:min-h-[630px] lg:min-h-screen">
-      <div className="pt-24" />
+    <section className="relative overflow-hidden pb-0 pt-20 sm:pt-24">
+      {/* 미묘한 라임 배경 글로우 */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_40%_at_50%_0%,rgba(163,230,53,0.07),transparent)]" />
 
-      <div className="mx-auto w-full max-w-[1400px] flex-1 px-6 lg:px-12">
-        <div className="grid min-h-[410px] items-center gap-10 py-6 lg:grid-cols-[1.05fr_0.95fr] lg:min-h-[560px] lg:py-12">
+      <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-12">
 
-          <div>
-            <div className="mb-8 flex flex-wrap items-center gap-4">
-              <span className="h-px w-10 bg-primary" />
-              <span className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-                {t("label")}
-              </span>
-              <GuaranteeBadge label={t("promiseBadge")} />
-            </div>
-
-            <div className="w-full">
-              <h1 className="block w-full max-w-4xl text-4xl font-bold leading-tight text-foreground sm:text-5xl md:text-5xl lg:text-7xl xl:text-8xl">
-                {t("headline")}
-              </h1>
-              <p className="mt-4 block max-w-3xl text-2xl font-bold leading-tight text-foreground/50 sm:text-3xl md:text-3xl lg:text-5xl xl:text-6xl">
-                {t("subheadline")}
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mt-10">
-                <Link
-                  href={`${base}/quote`}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-80"
-                >
-                  {t("ctaSecondary")}
-                  <ArrowUpRight className="size-4" />
-                </Link>
-                <Link
-                  href={`${base}/portfolio`}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/12 px-6 text-sm font-semibold text-foreground transition-colors hover:border-white/25 hover:bg-white/5"
-                >
-                  {t("ctaPrimary")}
-                </Link>
-            </div>
+        {/* ── 헤드라인 영역 ── */}
+        <div className="mb-8 text-center sm:mb-10 lg:mb-12">
+          {/* 라벨 뱃지 */}
+          <div className="mb-4 flex justify-center sm:mb-5">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
+              <span className="size-1.5 animate-pulse rounded-full bg-primary" />
+              {t("label")}
+            </span>
           </div>
 
-          <div className="relative hidden min-h-[460px] items-center justify-center lg:flex">
-            <div className="absolute inset-8 rounded-full bg-cyan-400/10 blur-3xl" />
-            <div className="relative w-full max-w-[470px] overflow-hidden rounded-2xl border border-white/10 bg-[#0d1114] p-8 shadow-2xl">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(6,182,212,0.18),transparent_32%),linear-gradient(135deg,rgba(163,230,53,0.10),transparent_38%)]" />
-              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
+          {/* 메인 헤드라인 */}
+          <h1 className="mx-auto max-w-3xl text-3xl font-bold leading-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+            {t("headline")}
+          </h1>
 
-              <div className="relative flex min-h-[360px] flex-col justify-between">
-                <div className="inline-flex w-fit rounded-2xl border border-white/10 bg-black/30 px-5 py-4 shadow-inner">
-                  <BrandLogo variant="hero" />
-                </div>
+          {/* 서비스 선택 서브 카피 */}
+          <p className="mt-3 text-sm text-muted-foreground sm:mt-4 sm:text-base lg:text-lg">
+            {lang === "ko"
+              ? "어떤 서비스가 필요하신가요? 카테고리를 선택해 포트폴리오와 가격을 확인하세요."
+              : "What service do you need? Select a category to see portfolio samples and pricing."}
+          </p>
+        </div>
 
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-                    {isKo ? "AIO 제작 시스템" : "AIO Agency System"}
-                  </p>
-                  <p className="mt-3 max-w-sm text-3xl font-bold leading-tight text-foreground">
-                    {isKo
-                      ? "의뢰 전 결과 화면과 납품 범위를 먼저 확인하세요"
-                      : "Review result screens and deliverables before hiring"}
-                  </p>
-                </div>
+        {/* ── 4 카테고리 카드 (인포그래픽 선택 UI) ── */}
+        <div id="services" className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+          {metaCategoriesData.map((cat) => (
+            <CategoryHeroCard key={cat.id} cat={cat} locale={locale} />
+          ))}
+        </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  {proofTiles.map((tile) => (
-                    <div key={tile.label} className="rounded-xl border border-white/8 bg-white/[0.04] p-4">
-                      <p className="text-2xl font-black text-primary">{tile.value}</p>
-                      <p className="mt-1 text-xs leading-5 text-muted-foreground">{tile.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* ── CTA 버튼 ── */}
+        <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:justify-center">
+          <Link
+            href={`${base}/quote`}
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-80 sm:w-auto"
+          >
+            {t("ctaSecondary")}
+            <ArrowUpRight className="size-4" />
+          </Link>
+          <Link
+            href={`${base}/portfolio`}
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/12 px-7 text-sm font-semibold text-foreground transition-colors hover:border-white/25 hover:bg-white/5 sm:w-auto"
+          >
+            {t("ctaPrimary")}
+          </Link>
         </div>
       </div>
 
-      {/* 마퀴 배너 */}
-      <div className="w-full overflow-hidden border-t border-white/8 py-4">
-        <motion.div
-          className="flex whitespace-nowrap text-sm font-medium uppercase tracking-[0.1em] text-muted-foreground"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-        >
+      {/* ── 마퀴 스트립 ── */}
+      <div className="mt-12 w-full overflow-hidden border-t border-white/8 py-3">
+        <div className="animate-marquee flex whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground sm:text-xs">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="mr-10">
-              {t("marquee")}
+              {marqueeText}
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

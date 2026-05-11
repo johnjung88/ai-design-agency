@@ -3,6 +3,7 @@ import { z } from "zod";
 import { createSupabaseServerClient } from "@/lib/supabase";
 import { createResendClient, getInquiryRecipient } from "@/lib/resend";
 import { notifyTelegram } from "@/lib/admin/telegram";
+import { markSessionConverted } from "@/lib/analytics/server";
 
 type ApiResponse<T> = {
   success: boolean;
@@ -11,6 +12,7 @@ type ApiResponse<T> = {
 };
 
 const quoteSchema = z.object({
+  sessionUid: z.string().max(200).optional(),
   name: z.string().trim().min(1).max(100),
   email: z.string().trim().email().max(255),
   phone: z.string().trim().max(30).optional().default(""),
@@ -185,6 +187,10 @@ export async function POST(request: Request) {
     if (!data) {
       const errorResponse: ApiResponse<null> = { success: false, error: "Quote was not saved" };
       return NextResponse.json(errorResponse, { status: 500 });
+    }
+
+    if (payload.sessionUid) {
+      markSessionConverted(payload.sessionUid, data.id).catch(() => {});
     }
 
     try {

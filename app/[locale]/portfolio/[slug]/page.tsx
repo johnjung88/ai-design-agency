@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, ArrowLeft, CheckCircle2, FileText, Clock3, Monitor, Smartphone, Download } from "lucide-react";
 import type { Metadata } from "next";
-import { formatProjectDuration, getPortfolioProjectBySlug, getPortfolioGroup, portfolioProjects } from "@/lib/portfolio-data";
+import { formatProjectDuration, getPortfolioGroup, portfolioProjects } from "@/lib/portfolio-data";
+import { getPortfolioBySlug } from "@/lib/portfolio";
 import { TypeBadge } from "@/components/ui/type-badge";
 import { GuaranteeBadge } from "@/components/ui/guarantee-badge";
 import type { ServiceCategory } from "@/lib/services-data";
@@ -21,7 +22,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const project = getPortfolioProjectBySlug(slug);
+  const project = await getPortfolioBySlug(slug);
   if (!project) return {};
   return { title: project.title[locale as "ko" | "en"] };
 }
@@ -34,7 +35,7 @@ export default async function ProjectPage({
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: "common" });
 
-  const project = getPortfolioProjectBySlug(slug);
+  const project = await getPortfolioBySlug(slug);
   if (!project) notFound();
 
   const l = locale as "ko" | "en";

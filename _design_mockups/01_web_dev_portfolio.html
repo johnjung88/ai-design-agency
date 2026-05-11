@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AIO / 웹 개발 — Portfolio 42</title>
+<meta name="description" content="실제 운영 중인 42개의 웹사이트·쇼핑몰.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --bg: #0D1117; --bg-2: #161B22; --bg-3: #1C2128; --bg-4: #21262D;
+    --fg: #F0F6FC; --fg-2: rgba(240,246,252,0.65); --fg-3: rgba(240,246,252,0.42); --fg-faint: rgba(240,246,252,0.22);
+    --line: rgba(240,246,252,0.10); --line-2: rgba(240,246,252,0.18);
+    --mint: #4DD4AC; --mint-soft: rgba(77,212,172,0.10); --mint-glow: rgba(77,212,172,0.32);
+    --amber: #FFB347; --amber-soft: rgba(255,179,71,0.10);
+    --syntax-blue: #79C0FF; --syntax-purple: #D2A8FF; --syntax-string: #A5D6FF;
+    --comment: rgba(240,246,252,0.42);
+    --red: #FF7B72; --yellow: #E3B341; --green: #56D364;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', monospace;
+    --body: 'Pretendard Variable', 'JetBrains Mono', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--bg); color: var(--fg); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; }
+  ::selection { background: var(--mint); color: var(--bg); }
+
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: linear-gradient(rgba(240,246,252,0.018) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(240,246,252,0.018) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  main, .titlebar, .tabbar, footer.statusbar { position: relative; z-index: 1; }
+
+  /* TITLEBAR */
+  .titlebar { position: sticky; top: 0; z-index: 100; background: var(--bg-2); border-bottom: 1px solid var(--line); padding: 10px 16px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; font-family: var(--mono); }
+  .traffic { display: inline-flex; gap: 8px; align-items: center; }
+  .traffic .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .traffic .dot.r { background: #FF5F57; }
+  .traffic .dot.y { background: #FEBC2E; }
+  .traffic .dot.g { background: #28C840; }
+  .filepath { font-family: var(--mono); font-size: 12px; color: var(--fg-2); text-align: center; letter-spacing: 0.02em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .filepath a { color: var(--mint); text-decoration: none; }
+  .filepath a:hover { text-decoration: underline; }
+  .filepath .sep { color: var(--fg-faint); margin: 0 6px; }
+  .filepath .here { color: var(--fg); }
+  .titlebar-r { display: flex; align-items: center; gap: 12px; }
+  .titlebar-r .pill { padding: 4px 10px; border: 1px solid var(--line-2); border-radius: 4px; font-size: 11px; color: var(--fg-2); display: inline-flex; align-items: center; gap: 7px; background: var(--bg-3); }
+  .titlebar-r .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); animation: pulse 2.4s ease-in-out infinite; box-shadow: 0 0 6px var(--mint-glow); }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(0.7);} }
+  @media (max-width: 600px) { .titlebar-r .pill { display: none; } }
+  .titlebar-r .btn-cta { padding: 6px 12px; background: var(--mint); color: var(--bg); border: none; font-family: var(--mono); font-size: 11px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+  .titlebar-r .btn-cta:hover { background: #3DBD96; box-shadow: 0 0 18px var(--mint-glow); }
+
+  /* TABBAR */
+  .tabbar { background: var(--bg); border-bottom: 1px solid var(--line); padding: 0 16px; display: flex; align-items: center; font-family: var(--mono); font-size: 12px; overflow-x: auto; scrollbar-width: none; }
+  .tabbar::-webkit-scrollbar { display: none; }
+  .tabbar a { color: var(--fg-3); text-decoration: none; padding: 10px 16px; display: inline-flex; align-items: center; gap: 8px; border-right: 1px solid var(--line); transition: all 0.2s; white-space: nowrap; }
+  .tabbar a .ic { width: 12px; height: 12px; opacity: 0.7; }
+  .tabbar a:hover { color: var(--fg); background: var(--bg-2); }
+  .tabbar a.active { color: var(--fg); background: var(--bg-2); border-bottom: 2px solid var(--mint); margin-bottom: -1px; }
+  .tabbar a.active .ic { opacity: 1; color: var(--mint); }
+  .tabbar a .num { color: var(--mint); }
+
+  main { position: relative; z-index: 1; }
+
+  /* HERO compact */
+  section.hero { padding: 80px 24px 40px; max-width: 1280px; margin: 0 auto; text-align: center; }
+  @media (max-width: 600px) { section.hero { padding: 56px 16px 28px; } }
+  .hero-prompt { font-family: var(--mono); font-size: 12px; color: var(--fg-2); margin: 0 auto 28px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; }
+  .hero-prompt::before { content: '$'; color: var(--mint); font-weight: 600; margin-right: 4px; }
+  .hero-prompt .cmd { color: var(--fg); }
+  .hero-prompt .arg { color: var(--syntax-string); }
+  .hero-prompt .flag { color: var(--amber); }
+  .hero-h1 { font-family: var(--mono); font-size: clamp(36px, 5.4vw, 76px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.0; margin: 0 auto 24px; max-width: 1000px; color: var(--fg); }
+  .hero-h1 .accent { color: var(--mint); }
+  .hero-h1 .light { color: var(--fg-3); }
+  .hero-sub { font-family: var(--body); font-size: 16px; line-height: 1.6; color: var(--fg-2); max-width: 620px; margin: 0 auto 36px; }
+  .hero-sub strong { color: var(--fg); font-weight: 600; }
+  .hero-sub code { font-family: var(--mono); font-size: 0.9em; background: var(--bg-3); border: 1px solid var(--line); padding: 2px 8px; border-radius: 4px; color: var(--mint); font-weight: 500; }
+
+  /* FILTER */
+  .filter-bar { display: inline-flex; gap: 6px; flex-wrap: wrap; margin: 0 auto 32px; padding: 6px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; justify-content: center; }
+  .fb { padding: 8px 14px; border-radius: 5px; border: 1px solid transparent; background: transparent; color: var(--fg-2); font-family: var(--mono); font-size: 12px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+  .fb:hover { color: var(--fg); background: var(--bg-3); }
+  .fb.active { background: var(--mint); color: var(--bg); font-weight: 700; }
+  .fb .cnt { opacity: 0.55; font-size: 10px; }
+  .fb.active .cnt { opacity: 0.85; }
+
+  /* GRID */
+  section.s-gallery { padding: 24px 24px 80px; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 600px) { section.s-gallery { padding: 20px 16px 56px; } }
+  .pg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .pg-grid { grid-template-columns: 1fr; gap: 14px; } }
+
+  .pg-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; cursor: pointer; transition: all 0.3s var(--ease-soft); position: relative; }
+  .pg-card:hover { transform: translateY(-3px); border-color: var(--mint); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+
+  /* card window chrome bar */
+  .pg-bar { padding: 8px 14px; background: var(--bg-3); border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+  .pg-bar .dots { display: flex; gap: 5px; }
+  .pg-bar .dots span { width: 9px; height: 9px; border-radius: 50%; }
+  .pg-bar .dots span:nth-child(1) { background: #FF5F57; }
+  .pg-bar .dots span:nth-child(2) { background: #FEBC2E; }
+  .pg-bar .dots span:nth-child(3) { background: #28C840; }
+  .pg-bar .filename { font-family: var(--mono); font-size: 11px; color: var(--fg-2); margin-left: 4px; flex: 1; }
+  .pg-bar .filename .ext { color: var(--mint); }
+  .pg-bar .live { padding: 2px 8px; background: var(--mint-soft); border: 1px solid rgba(77,212,172,0.25); color: var(--mint); border-radius: 3px; font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; }
+  .pg-bar .live::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--mint); animation: pulse 2.4s ease-in-out infinite; }
+
+  /* visual area */
+  .pg-vis { aspect-ratio: 16/9; position: relative; overflow: hidden; }
+  .pg-vis::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 16px 16px; opacity: 0.5; pointer-events: none; }
+  .pg-vis .badge { position: absolute; top: 14px; left: 14px; padding: 4px 10px; background: rgba(13,17,23,0.7); backdrop-filter: blur(6px); border: 1px solid rgba(240,246,252,0.16); border-radius: 4px; font-family: var(--mono); font-size: 10px; color: var(--fg); letter-spacing: 0.12em; text-transform: uppercase; z-index: 2; }
+  .pg-vis .stack { position: absolute; top: 14px; right: 14px; padding: 4px 10px; background: rgba(13,17,23,0.7); backdrop-filter: blur(6px); border: 1px solid rgba(240,246,252,0.16); border-radius: 4px; font-family: var(--mono); font-size: 10px; color: var(--mint); letter-spacing: 0.06em; z-index: 2; }
+  .pg-vis .pname { position: absolute; bottom: 18px; left: 18px; right: 18px; font-family: var(--mono); font-size: 22px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: white; z-index: 2; }
+
+  /* per-category gradient backgrounds */
+  .pg-vis.t-medical { background: linear-gradient(135deg, #1a3a4a 0%, #2d5e6f 50%, #4dd4ac 100%); }
+  .pg-vis.t-legal { background: linear-gradient(135deg, #2a2818 0%, #5a4a28 50%, #b89148 100%); }
+  .pg-vis.t-shop { background: linear-gradient(135deg, #2a1f0a 0%, #6a4628 50%, #ffb347 100%); }
+  .pg-vis.t-edu { background: linear-gradient(135deg, #1a2640 0%, #4a6fa5 50%, #79c0ff 100%); }
+  .pg-vis.t-fnb { background: linear-gradient(135deg, #2a1010 0%, #6f2818 50%, #c8472d 100%); }
+  .pg-vis.t-beauty { background: linear-gradient(135deg, #2a1530 0%, #6a3858 50%, #d2a8ff 100%); }
+  .pg-vis.t-realty { background: linear-gradient(135deg, #1a2018 0%, #3a4a3a 50%, #56d364 100%); }
+  .pg-vis.t-other { background: linear-gradient(135deg, #1a1c20 0%, #4a4d54 50%, #8a8f9a 100%); }
+
+  /* card body */
+  .pg-body { padding: 18px 20px 20px; }
+  .pg-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-family: var(--mono); font-size: 10.5px; }
+  .pg-meta .cat { color: var(--mint); letter-spacing: 0.08em; text-transform: uppercase; }
+  .pg-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--fg-faint); }
+  .pg-meta .ch { color: var(--fg-2); }
+  .pg-tt { font-family: var(--mono); font-size: 16px; font-weight: 600; line-height: 1.35; margin-bottom: 14px; color: var(--fg); }
+  .pg-tt .comment { color: var(--comment); font-weight: 400; }
+  .pg-stats { display: flex; gap: 16px; padding-top: 12px; border-top: 1px solid var(--line); font-family: var(--mono); }
+  .pg-stat .v { font-size: 16px; font-weight: 700; color: var(--mint); letter-spacing: -0.02em; line-height: 1; }
+  .pg-stat .l { font-size: 9.5px; color: var(--fg-3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* CTA */
+  section.s-cta { padding: 60px 24px 56px; max-width: 1180px; margin: 0 auto; text-align: center; border-top: 1px solid var(--line); }
+  @media (max-width: 600px) { section.s-cta { padding: 44px 16px 36px; } }
+  .s-cta h2 { font-family: var(--mono); font-size: clamp(28px, 4vw, 56px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 16px; color: var(--fg); }
+  .s-cta h2 .accent { color: var(--mint); }
+  .s-cta h2 .light { color: var(--fg-3); }
+  .s-cta p { font-family: var(--mono); font-size: 13px; color: var(--fg-2); margin-bottom: 26px; }
+  .s-cta p::before { content: '// '; color: var(--comment); }
+  .s-cta .actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary { padding: 13px 24px; background: var(--mint); color: var(--bg); border: 1px solid var(--mint); font-family: var(--mono); font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 6px; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: #3DBD96; box-shadow: 0 8px 24px var(--mint-glow); transform: translateY(-2px); }
+  .btn-ghost { padding: 13px 24px; background: var(--bg-2); color: var(--fg); border: 1px solid var(--line-2); font-family: var(--mono); font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 6px; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-ghost:hover { border-color: var(--mint); color: var(--mint); }
+
+  /* STATUSBAR */
+  footer.statusbar { padding: 12px 16px; background: var(--bg-2); border-top: 1px solid var(--line); margin-top: 60px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; font-family: var(--mono); font-size: 11px; color: var(--fg-3); }
+  footer.statusbar .l { display: flex; align-items: center; gap: 14px; }
+  footer.statusbar .l .branch { color: var(--mint); display: inline-flex; align-items: center; gap: 5px; }
+  footer.statusbar .l .branch::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--mint); }
+  footer.statusbar .c { color: var(--fg-2); text-align: center; }
+  footer.statusbar .r { display: flex; align-items: center; gap: 14px; justify-content: end; }
+  footer.statusbar .r a { color: var(--fg-3); text-decoration: none; }
+  footer.statusbar .r a:hover { color: var(--mint); }
+  @media (max-width: 700px) { footer.statusbar { grid-template-columns: 1fr; gap: 6px; text-align: center; } footer.statusbar .l, footer.statusbar .r { justify-content: center; } }
+
+  .pg-card.hide { display: none; }
+</style>
+</head>
+<body>
+
+<div class="titlebar">
+  <div class="traffic">
+    <span class="dot r"></span>
+    <span class="dot y"></span>
+    <span class="dot g"></span>
+  </div>
+  <div class="filepath">
+    <a href="00b_main_v2_kpi_stacked.html">~/aio</a><span class="sep">/</span><a href="01_web_dev_v2.html">web-development</a><span class="sep">/</span><span class="here">portfolio.tsx</span>
+  </div>
+  <div class="titlebar-r">
+    <span class="pill"><span class="dot"></span>42 projects</span>
+    <button class="btn-cta">$ aio quote</button>
+  </div>
+</div>
+
+<div class="tabbar">
+  <a href="01_web_dev_v2.html">
+    <svg class="ic" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75A.75.75 0 0 1 2.75 1h7.5a.75.75 0 0 1 .53.22l3.5 3.5c.141.14.22.331.22.53v9a.75.75 0 0 1-.75.75h-11a.75.75 0 0 1-.75-.75z"/></svg>
+    <span class="num">01</span> services.tsx
+  </a>
+  <a href="01_web_dev_portfolio.html" class="active">
+    <svg class="ic" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75A.75.75 0 0 1 2.75 1h7.5a.75.75 0 0 1 .53.22l3.5 3.5c.141.14.22.331.22.53v9a.75.75 0 0 1-.75.75h-11a.75.75 0 0 1-.75-.75z"/></svg>
+    <span class="num">02</span> portfolio.tsx
+  </a>
+  <a href="01_web_dev_resources.html">
+    <svg class="ic" viewBox="0 0 16 16" fill="currentColor"><path d="M2 1.75A.75.75 0 0 1 2.75 1h7.5a.75.75 0 0 1 .53.22l3.5 3.5c.141.14.22.331.22.53v9a.75.75 0 0 1-.75.75h-11a.75.75 0 0 1-.75-.75z"/></svg>
+    <span class="num">03</span> resources.md
+  </a>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="hero-prompt"><span class="cmd">aio open portfolio</span> <span class="flag">--all</span> <span class="arg">"42 projects"</span></div>
+    <h1 class="hero-h1">실제 운영 중인 <span class="accent">42</span><span class="light">개</span></h1>
+    <p class="hero-sub">데모가 아닙니다. <strong>매출이 일어나고 있는 사이트</strong>만 모았습니다 <code>업종별 필터</code>로 비슷한 사례를 찾아보세요</p>
+
+    <div class="filter-bar">
+      <button class="fb active" data-cat="all">전체 <span class="cnt">42</span></button>
+      <button class="fb" data-cat="medical">병원 <span class="cnt">8</span></button>
+      <button class="fb" data-cat="legal">법률·세무 <span class="cnt">6</span></button>
+      <button class="fb" data-cat="shop">쇼핑몰 <span class="cnt">9</span></button>
+      <button class="fb" data-cat="edu">교육 <span class="cnt">5</span></button>
+      <button class="fb" data-cat="fnb">F&amp;B <span class="cnt">4</span></button>
+      <button class="fb" data-cat="beauty">뷰티 <span class="cnt">4</span></button>
+      <button class="fb" data-cat="realty">부동산 <span class="cnt">3</span></button>
+      <button class="fb" data-cat="other">일반 <span class="cnt">3</span></button>
+    </div>
+  </section>
+
+  <section class="s-gallery">
+    <div class="pg-grid">
+
+      <article class="pg-card" data-cat="medical">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">jaeheon-clinic<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-medical">
+          <span class="badge">Medical</span>
+          <span class="stack">Next.js · Supabase</span>
+          <span class="pname">자연 한의원<br/>예약 시스템</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">medical</span><span class="dot"></span><span class="ch">의원·한의원</span></div>
+          <div class="pg-tt">자연한의원 — 예약·진료시간·블로그 통합 <span class="comment">// 의료광고법 검수</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+120%</div><div class="l">예약</div></div><div class="pg-stat"><div class="v">5d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">5p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="legal">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">seoul-legal<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-legal">
+          <span class="badge">Legal</span>
+          <span class="stack">Next.js · Vercel</span>
+          <span class="pname">서울법무사사무소<br/>상담 폼 + 업무 분야</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">legal</span><span class="dot"></span><span class="ch">법무사</span></div>
+          <div class="pg-tt">서울법무 — 업무분야 8 + 상담 자동화 <span class="comment">// 표시광고법 가이드</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+85%</div><div class="l">상담</div></div><div class="pg-stat"><div class="v">4d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">5p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="shop">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">chefmeal-d2c<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-shop">
+          <span class="badge">Shopping</span>
+          <span class="stack">Cafe24 · 모바일</span>
+          <span class="pname">셰프밀 식품몰<br/>카페24 메인 리뉴얼</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">shopping</span><span class="dot"></span><span class="ch">식품몰</span></div>
+          <div class="pg-tt">셰프밀 — 메인·배너·동선 정리 <span class="comment">// 카페24 스킨</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+28%</div><div class="l">매출</div></div><div class="pg-stat"><div class="v">5d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">10p</div><div class="l">상품</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="edu">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">academy-valley<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-edu">
+          <span class="badge">Education</span>
+          <span class="stack">Next.js · Stripe</span>
+          <span class="pname">아카데미밸리<br/>온라인 강의 등록</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">education</span><span class="dot"></span><span class="ch">학원·강의</span></div>
+          <div class="pg-tt">아카데미밸리 — 강사·시간표·결제 <span class="comment">// Stripe + 카카오</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+44%</div><div class="l">등록</div></div><div class="pg-stat"><div class="v">5d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">5p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="shop">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">homechef-mealkit<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-shop">
+          <span class="badge">Mealkit</span>
+          <span class="stack">자사몰 · Stripe</span>
+          <span class="pname">홈셰프 밀키트<br/>자사 D2C 몰</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">shopping</span><span class="dot"></span><span class="ch">자사몰</span></div>
+          <div class="pg-tt">홈셰프 — 정기배송·결제 흐름 <span class="comment">// Next.js + Stripe</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+52%</div><div class="l">전환</div></div><div class="pg-stat"><div class="v">7d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">×1.2</div><div class="l">매출</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="fnb">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">cafe-moru<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-fnb">
+          <span class="badge">F&B</span>
+          <span class="stack">Next.js · Vercel</span>
+          <span class="pname">모루커피<br/>매장 + 메뉴 사이트</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">f&b</span><span class="dot"></span><span class="ch">카피</span></div>
+          <div class="pg-tt">모루커피 — 메뉴·매장·인스타 연결 <span class="comment">// 1p 랜딩</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+38%</div><div class="l">방문</div></div><div class="pg-stat"><div class="v">3d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">1p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="beauty">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">veila-nail<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-beauty">
+          <span class="badge">Beauty</span>
+          <span class="stack">Next.js · 예약</span>
+          <span class="pname">베일라 네일<br/>예약 + 시술 메뉴</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">beauty</span><span class="dot"></span><span class="ch">네일·미용</span></div>
+          <div class="pg-tt">베일라 네일 — 시술·예약·후기 <span class="comment">// 구글 캘린더 연동</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+95%</div><div class="l">예약</div></div><div class="pg-stat"><div class="v">4d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">5p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="medical">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">smile-dental<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-medical">
+          <span class="badge">Dental</span>
+          <span class="stack">Next.js · 의료</span>
+          <span class="pname">스마일치과<br/>치료·예약·블로그</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">medical</span><span class="dot"></span><span class="ch">치과</span></div>
+          <div class="pg-tt">스마일치과 — 진료시간·예약·콘텐츠 <span class="comment">// 의료광고법</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+72%</div><div class="l">예약</div></div><div class="pg-stat"><div class="v">5d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">5p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="realty">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">vista-realty<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-realty">
+          <span class="badge">Realty</span>
+          <span class="stack">Next.js · Maps</span>
+          <span class="pname">비스타 부동산<br/>매물 + 지도 + 문의</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">realty</span><span class="dot"></span><span class="ch">중개·분양</span></div>
+          <div class="pg-tt">비스타 — 매물 리스트·지도 클러스터 <span class="comment">// Naver Maps</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+62%</div><div class="l">문의</div></div><div class="pg-stat"><div class="v">5d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">5p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="legal">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">tax-pro<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-legal">
+          <span class="badge">Tax</span>
+          <span class="stack">Next.js · 상담</span>
+          <span class="pname">택스프로 세무사<br/>업무·전문가·약도</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">legal</span><span class="dot"></span><span class="ch">세무사</span></div>
+          <div class="pg-tt">택스프로 — 세무 상담 자동화 <span class="comment">// 표시광고법</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+58%</div><div class="l">상담</div></div><div class="pg-stat"><div class="v">3d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">3p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="shop">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">vaio-bio<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-other">
+          <span class="badge">B2B SaaS</span>
+          <span class="stack">Next.js · TypeScript</span>
+          <span class="pname">V-AIO 바이오<br/>제품 소개 + 문의</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">b2b</span><span class="dot"></span><span class="ch">바이오 회사</span></div>
+          <div class="pg-tt">V-AIO — 영문/국문 + 제품 소개 <span class="comment">// 한·영 동시</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">+108%</div><div class="l">문의</div></div><div class="pg-stat"><div class="v">5d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">5p</div><div class="l">한·영</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="other">
+        <div class="pg-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="filename">indie-startup<span class="ext">.tsx</span></span>
+          <span class="live">live</span>
+        </div>
+        <div class="pg-vis t-other">
+          <span class="badge">Startup</span>
+          <span class="stack">Next.js · Vercel</span>
+          <span class="pname">인디 스타트업<br/>1p 랜딩 + Waitlist</span>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">general</span><span class="dot"></span><span class="ch">스타트업</span></div>
+          <div class="pg-tt">Indie — 1p 랜딩 + Waitlist 자동화 <span class="comment">// Resend + Supabase</span></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">×2.4</div><div class="l">대기열</div></div><div class="pg-stat"><div class="v">2d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">1p</div><div class="l">페이지</div></div></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="s-cta">
+    <h2><span class="light">$ deploy</span> <span class="accent">your_project</span></h2>
+    <p>1시간 답변 · 24시간 견적 · 5일 결과물</p>
+    <div class="actions">
+      <button class="btn-primary">$ 견적 시작 →</button>
+      <a href="01_web_dev_v2.html" class="btn-ghost">← services.tsx</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="statusbar">
+  <div class="l">
+    <span class="branch">main</span>
+    <span>aio-make.com</span>
+    <span>· 02/portfolio.tsx</span>
+  </div>
+  <div class="c">© 2026 AIO Studio · 42 projects · live</div>
+  <div class="r">
+    <a href="00b_main_v2_kpi_stacked.html">← Studio</a>
+    <a href="01_web_dev_v2.html">services →</a>
+  </div>
+</footer>
+
+<script>
+  if (window.gsap && gsap.registerPlugin && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.fb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      document.querySelectorAll('.pg-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) card.classList.remove('hide');
+        else card.classList.add('hide');
+      });
+    });
+  });
+
+  gsap.from('.pg-card', { opacity: 0, y: 24, duration: 0.6, stagger: 0.05, scrollTrigger: { trigger: '.pg-grid', start: 'top 88%' } });
+</script>
+</body>
+</html>

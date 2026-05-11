@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AIO / 상세페이지 — 스크롤 한 번에, 결제 버튼까지</title>
+<meta name="description" content="뷰티·식품·패션·리빙까지. 커머스 상세페이지를 5일 안에.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --cream: #FAF5EE;
+    --cream-2: #F4ECD9;
+    --cream-3: #ECE0C4;
+    --ink: #2A2418;
+    --ink-2: rgba(42,36,24,0.65);
+    --ink-3: rgba(42,36,24,0.42);
+    --ink-faint: rgba(42,36,24,0.22);
+    --line: rgba(42,36,24,0.14);
+    --line-2: rgba(42,36,24,0.22);
+
+    --rose: #D9526E;
+    --rose-soft: rgba(217,82,110,0.10);
+    --olive: #7B8E3F;
+    --mustard: #D4A53B;
+    --terra: #C56849;
+
+    --display: 'Fraunces', 'Pretendard Variable', serif;
+    --sans: 'Plus Jakarta Sans', 'Pretendard Variable', sans-serif;
+    --body: 'Pretendard Variable', 'Plus Jakarta Sans', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--cream); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; text-align: center; }
+  ::selection { background: var(--rose); color: var(--cream); }
+
+  /* ============ NAV ============ */
+  nav.top { position: sticky; top: 0; z-index: 100; background: rgba(250,245,238,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: 14px 32px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+  @media (max-width: 800px) { nav.top { padding: 12px 20px; grid-template-columns: 1fr auto; } }
+  .nav-l { font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.18em; text-transform: uppercase; text-align: left; display: flex; align-items: center; gap: 12px; }
+  .nav-l .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose); animation: dotPulse 2.4s ease-in-out infinite; }
+  @keyframes dotPulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.3; transform:scale(0.7);} }
+  @media (max-width: 800px) { .nav-l { display: none; } }
+  .nav-c { font-family: var(--display); font-size: 20px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: -0.005em; }
+  .nav-c em { font-style: italic; color: var(--rose); }
+  .nav-c .sub { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-3); margin-left: 6px; }
+  .nav-r { display: flex; justify-content: end; align-items: center; gap: 12px; }
+  .nav-r a.txt { color: var(--ink); text-decoration: none; font-family: var(--sans); font-size: 12.5px; font-weight: 500; transition: color 0.2s; }
+  .nav-r a.txt:hover { color: var(--rose); }
+  .nav-r a.btn { color: var(--cream); background: var(--ink); text-decoration: none; padding: 8px 18px; font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: -0.005em; border-radius: 100px; transition: all 0.2s; }
+  .nav-r a.btn:hover { background: var(--rose); }
+
+  /* ============ PAGE TABS ============ */
+  .page-tabs { background: var(--cream-2); border-bottom: 1px solid var(--line); padding: 8px 24px; display: flex; gap: 6px; justify-content: center; font-family: var(--sans); font-size: 12.5px; overflow-x: auto; scrollbar-width: none; }
+  .page-tabs::-webkit-scrollbar { display: none; }
+  .page-tabs a { color: var(--ink-2); text-decoration: none; padding: 8px 18px; border-radius: 100px; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-weight: 500; }
+  .page-tabs a:hover { color: var(--ink); background: var(--cream); }
+  .page-tabs a.active { color: var(--cream); background: var(--ink); font-weight: 600; }
+  .page-tabs a .num { opacity: 0.55; font-size: 10.5px; font-family: var(--mono); }
+  .page-tabs a.active .num { opacity: 0.85; color: var(--rose); }
+
+  main { position: relative; z-index: 1; }
+
+  /* ============ HERO ============ */
+  section.hero { padding: 100px 24px 70px; max-width: 1280px; margin: 0 auto; position: relative; }
+  @media (max-width: 700px) { section.hero { padding: 64px 20px 48px; } }
+  .hero-eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--rose); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 28px; display: inline-flex; align-items: center; gap: 14px; }
+  .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 32px; height: 1px; background: var(--rose); }
+  @media (max-width: 700px) { .hero-eyebrow { font-size: 10px; margin-bottom: 22px; } .hero-eyebrow::before, .hero-eyebrow::after { width: 22px; } }
+
+  .hero-h1 { font-family: var(--display); font-size: clamp(48px, 8vw, 132px); font-weight: 500; letter-spacing: -0.03em; line-height: 0.96; margin: 0 auto 32px; max-width: 1100px; color: var(--ink); }
+  .hero-h1 em { font-family: var(--display); font-style: italic; color: var(--rose); font-weight: 500; }
+  .hero-h1 .light { color: var(--ink-3); font-weight: 400; }
+  @media (max-width: 700px) { .hero-h1 { font-size: clamp(40px, 11vw, 72px); margin-bottom: 24px; } }
+
+  .hero-sub { font-family: var(--body); font-size: clamp(17px, 1.4vw, 21px); line-height: 1.55; color: var(--ink-2); max-width: 640px; margin: 0 auto 44px; font-weight: 400; }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  .hero-sub em { font-family: var(--display); font-style: italic; color: var(--rose); font-weight: 500; }
+  @media (max-width: 700px) { .hero-sub { font-size: 16px; margin-bottom: 32px; } }
+
+  .hero-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 56px; }
+
+  /* Hero featured image — magazine cover style */
+  .hero-cover { width: 100%; max-width: 1100px; margin: 0 auto 0; aspect-ratio: 3/2; position: relative; overflow: hidden; border-radius: 4px; box-shadow: 0 30px 80px rgba(42,36,24,0.18); background: linear-gradient(135deg, #F5C2C7 0%, #D9526E 50%, #8E2F45 100%); }
+  .hero-cover::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 56px 56px; opacity: 0.4; pointer-events: none; }
+  /* Decorative shapes simulating product photo */
+  .hero-cover::before { content: ''; position: absolute; top: 22%; left: 50%; transform: translateX(-50%); width: 24%; height: 56%; background: radial-gradient(ellipse at 30% 30%, #FCEAEC 0%, #F8B0BC 40%, #6F2838 90%); border-radius: 30% 50% 30% 50% / 50% 30% 50% 30%; box-shadow: inset -10px -20px 50px rgba(80,30,40,0.32), 0 30px 60px rgba(80,30,40,0.4); }
+  .hero-cover .cap-tl { position: absolute; top: 28px; left: 32px; font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.65); letter-spacing: 0.24em; text-transform: uppercase; z-index: 2; }
+  .hero-cover .cap-tr { position: absolute; top: 28px; right: 32px; font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.65); letter-spacing: 0.24em; text-transform: uppercase; z-index: 2; }
+  .hero-cover .cap-bl { position: absolute; bottom: 28px; left: 32px; z-index: 2; }
+  .hero-cover .cap-bl .h { font-family: var(--display); font-size: clamp(20px, 2.4vw, 32px); font-weight: 500; color: white; line-height: 1.05; letter-spacing: -0.012em; }
+  .hero-cover .cap-bl .h em { font-style: italic; color: #FCEAEC; }
+  .hero-cover .cap-bl .s { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.7); letter-spacing: 0.18em; margin-top: 6px; text-transform: uppercase; }
+  .hero-cover .cap-br { position: absolute; bottom: 28px; right: 32px; padding: 6px 14px; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); border-radius: 100px; font-family: var(--mono); font-size: 10.5px; color: white; letter-spacing: 0.16em; text-transform: uppercase; z-index: 2; }
+  @media (max-width: 700px) { .hero-cover { aspect-ratio: 4/3; } .hero-cover .cap-tl, .hero-cover .cap-tr, .hero-cover .cap-bl, .hero-cover .cap-br { font-size: 8.5px; padding: 4px 10px; } .hero-cover .cap-tl { top: 16px; left: 16px; } .hero-cover .cap-tr { top: 16px; right: 16px; } .hero-cover .cap-bl { bottom: 16px; left: 16px; } .hero-cover .cap-br { bottom: 16px; right: 16px; } .hero-cover .cap-bl .h { font-size: 18px; } }
+
+  /* ============ TRUST ============ */
+  .trust-strip { padding: 32px 36px; max-width: 1480px; margin: 0 auto; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 24px; background: var(--cream-2); }
+  @media (max-width: 600px) { .trust-strip { padding: 22px 20px; gap: 16px; } }
+  .trust-item { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); letter-spacing: 0.04em; }
+  .trust-item svg { width: 16px; height: 16px; stroke: var(--rose); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .trust-item .num { font-family: var(--display); color: var(--ink); font-weight: 600; font-size: 18px; letter-spacing: -0.02em; margin-right: 4px; }
+  .trust-item .num em { font-style: italic; color: var(--rose); }
+
+  /* ============ PRODUCT GALLERY (3 strips) ============ */
+  section.s-gallery { padding: 110px 24px; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-gallery { padding: 80px 20px; } }
+  .s-gallery .head { margin: 0 auto 64px; max-width: 720px; }
+  .s-gallery .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--rose); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; }
+  .s-gallery .eyebrow::before, .s-gallery .eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--rose); }
+  .s-gallery h2 { font-family: var(--display); font-size: clamp(36px, 5vw, 72px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 18px; color: var(--ink); }
+  .s-gallery h2 em { font-style: italic; color: var(--rose); font-weight: 500; }
+  .s-gallery .sub { font-family: var(--body); font-size: 17px; color: var(--ink-2); line-height: 1.55; max-width: 520px; margin: 0 auto; }
+  .s-gallery .sub strong { color: var(--ink); font-weight: 600; }
+
+  .gallery-row { display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 24px; align-items: start; max-width: 1120px; margin: 0 auto; }
+  @media (max-width: 1000px) { .gallery-row { grid-template-columns: 1fr 1fr; max-width: 700px; } .gallery-row .strip-3 { display: none; } }
+  @media (max-width: 600px) { .gallery-row { grid-template-columns: 1fr; max-width: 360px; } .gallery-row .strip-1 { display: none; } }
+
+  .strip { aspect-ratio: 9/16; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 70px rgba(42,36,24,0.18); position: relative; background: var(--cream); }
+  .strip-2 { z-index: 2; }
+  .strip-content { position: absolute; top: 0; left: 0; width: 100%; animation: stripScroll 26s linear infinite; }
+  .strip-1 .strip-content { animation-duration: 24s; animation-delay: -6s; }
+  .strip-3 .strip-content { animation-duration: 22s; animation-delay: -12s; }
+  @keyframes stripScroll {
+    0%, 6% { transform: translateY(0); }
+    25%, 31% { transform: translateY(-25%); }
+    50%, 56% { transform: translateY(-50%); }
+    75%, 81% { transform: translateY(-75%); }
+    95%, 100% { transform: translateY(0); }
+  }
+
+  .pb { width: 100%; aspect-ratio: 9/16; flex-shrink: 0; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+
+  /* BEAUTY strip */
+  .pb-beauty-1 { background: linear-gradient(170deg, #F5C2C7 0%, #E8889A 50%, #C5475F 100%); padding: 22px 18px; justify-content: space-between; }
+  .pb-beauty-1::before { content: ''; position: absolute; inset: 30% 25% 22% 30%; background: radial-gradient(ellipse at 30% 30%, rgba(252,234,236,0.7), rgba(217,82,110,0.4)); border-radius: 30% 50% 30% 50% / 50% 30% 50% 30%; box-shadow: inset -10px -20px 40px rgba(110,40,55,0.3); }
+  .pb-top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; }
+  .pb-brand { font-family: var(--display); font-size: 13px; font-weight: 600; color: rgba(80,40,40,0.85); letter-spacing: 0.05em; }
+  .pb-menu-d { display: flex; flex-direction: column; gap: 3px; }
+  .pb-menu-d span { width: 14px; height: 1.5px; background: rgba(80,40,40,0.6); }
+  .pb-bottom { position: relative; z-index: 2; }
+  .pb-tag { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; color: rgba(80,40,40,0.7); text-transform: uppercase; margin-bottom: 8px; }
+  .pb-h { font-family: var(--display); font-size: 22px; font-weight: 500; color: #3a1a18; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 4px; font-style: italic; }
+  .pb-h .em { color: #C5475F; font-weight: 600; }
+  .pb-sub { font-family: var(--body); font-size: 11px; color: rgba(58,26,24,0.72); }
+  .pb-pricerow { display: flex; align-items: baseline; gap: 6px; margin-top: 10px; }
+  .pb-was { font-family: var(--mono); font-size: 11px; color: rgba(58,26,24,0.45); text-decoration: line-through; }
+  .pb-now { font-family: var(--display); font-size: 22px; font-weight: 600; color: #3a1a18; letter-spacing: -0.025em; }
+  .pb-disc { font-family: var(--mono); font-size: 9.5px; color: white; padding: 2px 6px; background: var(--rose); border-radius: 100px; font-weight: 700; }
+
+  .pb-beauty-2 { background: #FAEAEC; padding: 22px 18px; gap: 14px; }
+  .pb-eyebrow-2 { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; color: #8a3a3a; text-transform: uppercase; }
+  .pb-h2 { font-family: var(--display); font-size: 18px; font-weight: 500; color: #3a1a18; line-height: 1.22; letter-spacing: -0.02em; font-style: italic; }
+  .pb-h2 .em { color: var(--rose); }
+  .pb-checklist { list-style: none; }
+  .pb-checklist li { font-family: var(--body); font-size: 11.5px; color: rgba(58,26,24,0.72); padding: 6px 0 6px 18px; position: relative; line-height: 1.5; border-bottom: 1px dashed rgba(58,26,24,0.15); }
+  .pb-checklist li::before { content: '✓'; position: absolute; left: 0; top: 6px; color: var(--rose); font-weight: 700; }
+
+  .pb-ba { padding: 14px 18px; background: #FAEAEC; }
+  .pb-ba-frame { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-radius: 8px; overflow: hidden; }
+  .pb-ba-half { aspect-ratio: 4/5; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .pb-ba-half.before { background: linear-gradient(160deg, #c98e8a 0%, #6F2838 100%); }
+  .pb-ba-half.after { background: linear-gradient(160deg, #FCEAEC 0%, #F8B0BC 100%); }
+  .pb-ba-half .lbl { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.16em; color: rgba(255,255,255,0.6); text-transform: uppercase; }
+  .pb-ba-half.after .lbl { color: rgba(58,26,24,0.7); }
+  .pb-ba-half .pct { font-family: var(--display); font-size: 22px; font-weight: 600; color: white; line-height: 1; letter-spacing: -0.025em; font-style: italic; }
+  .pb-ba-half.after .pct { color: var(--rose); }
+  .pb-ba-half .pct .lab { font-family: var(--body); font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.7); display: block; margin-top: 4px; letter-spacing: 0; font-style: normal; }
+  .pb-ba-half.after .pct .lab { color: rgba(58,26,24,0.6); }
+
+  .pb-rev { padding: 12px; background: rgba(255,255,255,0.6); border-radius: 12px; backdrop-filter: blur(4px); }
+  .pb-rev .stars { color: var(--mustard); font-size: 10px; margin-bottom: 5px; letter-spacing: 0.04em; }
+  .pb-rev .qt { font-family: var(--display); font-size: 11px; color: #3a1a18; line-height: 1.5; margin-bottom: 6px; font-weight: 500; font-style: italic; }
+  .pb-rev .who { display: flex; align-items: center; gap: 6px; }
+  .pb-rev .who .av { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, var(--rose), #6F2838); }
+  .pb-rev .who .nm { font-family: var(--mono); font-size: 9px; color: rgba(58,26,24,0.65); letter-spacing: 0.03em; }
+
+  .pb-beauty-3 { background: linear-gradient(180deg, #FAEAEC 0%, #F5C2C7 100%); padding: 22px 18px; gap: 10px; }
+
+  .pb-beauty-4 { background: linear-gradient(170deg, #3a1a18 0%, #1a0a08 100%); padding: 26px 18px; justify-content: center; align-items: center; text-align: center; gap: 14px; }
+  .pb-end-tag { font-family: var(--mono); font-size: 9px; color: var(--rose); letter-spacing: 0.18em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--rose); border-radius: 100px; }
+  .pb-end-h { font-family: var(--display); font-size: 22px; font-weight: 500; color: #FAEAEC; line-height: 1.15; font-style: italic; }
+  .pb-end-h .em { color: var(--rose); font-weight: 600; }
+  .pb-end-cta { padding: 11px 22px; background: var(--rose); color: white; border-radius: 100px; font-family: var(--sans); font-size: 12px; font-weight: 600; }
+
+  /* FOOD strip (center, prominent) */
+  .pb-food-1 { background: linear-gradient(170deg, #D4A574 0%, #A87445 50%, #5e3a1c 100%); padding: 26px 22px; justify-content: space-between; }
+  .pb-food-1::before { content: ''; position: absolute; top: 25%; left: 18%; right: 18%; bottom: 28%; background: radial-gradient(ellipse at 35% 30%, #fcecc8 0%, #d4a574 40%, #6a4628 90%); border-radius: 50%; box-shadow: inset -15px -20px 50px rgba(60,30,10,0.5), 0 30px 60px rgba(40,20,10,0.5); }
+  .pb-food-1 .pb-bottom .pb-h { color: #fcecc8; }
+  .pb-food-1 .pb-bottom .pb-h .em { color: #FFE0A0; }
+  .pb-food-1 .pb-bottom .pb-sub { color: rgba(252,236,200,0.78); }
+  .pb-food-1 .pb-bottom .pb-tag { color: rgba(252,236,200,0.7); }
+  .pb-food-1 .pb-bottom .pb-now { color: #fcecc8; }
+  .pb-food-1 .pb-bottom .pb-was { color: rgba(252,236,200,0.4); }
+  .pb-food-1 .pb-bottom .pb-disc { background: var(--mustard); color: #2a1f08; }
+  .pb-food-1 .pb-top .pb-brand { color: rgba(252,236,200,0.85); }
+  .pb-food-1 .pb-top .pb-menu-d span { background: rgba(252,236,200,0.65); }
+
+  .pb-food-2 { background: #fcecc8; padding: 26px 22px; gap: 14px; }
+  .pb-food-2 .pb-eyebrow-2 { color: var(--olive); }
+  .pb-food-2 .pb-h2 { color: #3a2008; font-size: 19px; }
+  .pb-food-2 .pb-h2 .em { color: var(--terra); }
+  .pb-food-2-checks { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+  .pb-food-2-checks li { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(255,255,255,0.55); border-radius: 10px; font-family: var(--body); font-size: 12px; color: #3a2008; font-weight: 500; }
+  .pb-food-2-checks li::before { content: '✓'; width: 18px; height: 18px; display: grid; place-items: center; background: var(--terra); color: white; border-radius: 50%; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+
+  .pb-food-3 { background: linear-gradient(180deg, #fcecc8 0%, #f5d8a0 100%); padding: 22px; gap: 12px; }
+  .pb-food-3-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .pb-food-3-kpi .kp { padding: 14px 10px; background: rgba(255,255,255,0.7); border-radius: 12px; text-align: center; }
+  .pb-food-3-kpi .kp .n { font-family: var(--display); font-size: 22px; font-weight: 600; color: var(--terra); letter-spacing: -0.025em; line-height: 1; font-style: italic; }
+  .pb-food-3-kpi .kp .l { font-family: var(--mono); font-size: 8px; color: rgba(58,32,8,0.65); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .pb-food-3-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pb-food-3-img { aspect-ratio: 1; border-radius: 10px; position: relative; overflow: hidden; }
+  .pb-food-3-img.f1 { background: radial-gradient(ellipse at 50% 50%, #fcecc8 0%, #d4a574 50%, #6a4628 100%); }
+  .pb-food-3-img.f2 { background: radial-gradient(ellipse at 50% 50%, #a8c8a0 0%, #6a8a5a 50%, #2a4a1c 100%); }
+  .pb-food-3-img .lbl { position: absolute; bottom: 8px; left: 10px; font-family: var(--mono); font-size: 8.5px; color: rgba(255,255,255,0.85); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .pb-food-4 { background: linear-gradient(170deg, #2a1808 0%, #5a3818 100%); padding: 22px; gap: 10px; }
+  .pb-food-4 .pb-eyebrow-2 { color: var(--mustard); }
+  .pb-food-4 .pb-h2 { color: #fcecc8; font-size: 16px; }
+  .pb-food-4 .pb-h2 .em { color: var(--mustard); }
+  .pb-food-4 .pb-rev { background: rgba(252,236,200,0.1); }
+  .pb-food-4 .pb-rev .qt { color: #fcecc8; }
+  .pb-food-4 .pb-rev .who .nm { color: rgba(252,236,200,0.65); }
+  .pb-food-4 .pb-rev .who .av { background: linear-gradient(135deg, #d4a574, #6a4628); }
+  .pb-food-4-cta { margin-top: auto; padding: 12px 16px; background: var(--mustard); color: #2a1808; border-radius: 100px; font-family: var(--sans); font-size: 12.5px; font-weight: 700; text-align: center; }
+
+  /* FASHION strip */
+  .pb-fash-1 { background: linear-gradient(170deg, #D6DCD0 0%, #A8B8A4 50%, #6a8068 100%); padding: 22px 18px; justify-content: space-between; }
+  .pb-fash-1::before { content: ''; position: absolute; top: 22%; left: 24%; right: 24%; bottom: 22%; background: linear-gradient(160deg, #f0f0e8 0%, #b0b6a8 30%, #6a7868 60%, #2a3828 100%); clip-path: polygon(45% 0%, 55% 0%, 70% 18%, 85% 35%, 95% 55%, 88% 100%, 12% 100%, 5% 55%, 15% 35%, 30% 18%); box-shadow: 0 30px 60px rgba(40,50,40,0.4); }
+  .pb-fash-1 .pb-bottom .pb-h { color: #1a2018; }
+  .pb-fash-1 .pb-bottom .pb-h .em { color: var(--olive); }
+  .pb-fash-1 .pb-bottom .pb-sub { color: rgba(26,32,24,0.72); }
+  .pb-fash-1 .pb-bottom .pb-tag { color: rgba(26,32,24,0.65); }
+  .pb-fash-1 .pb-bottom .pb-now { color: #1a2018; }
+  .pb-fash-1 .pb-bottom .pb-disc { background: var(--olive); color: white; }
+  .pb-fash-1 .pb-top .pb-brand { color: rgba(26,32,24,0.85); }
+  .pb-fash-1 .pb-top .pb-menu-d span { background: rgba(26,32,24,0.65); }
+
+  .pb-fash-2 { background: #ECEDE4; padding: 22px 18px; gap: 14px; }
+  .pb-fash-2 .pb-eyebrow-2 { color: #4a5a48; }
+  .pb-fash-2 .pb-h2 { color: #1a2018; }
+  .pb-fash-2 .pb-h2 .em { color: var(--olive); }
+  .pb-fash-2-look { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pb-fash-2-cell { aspect-ratio: 3/4; border-radius: 10px; position: relative; overflow: hidden; }
+  .pb-fash-2-cell.l1 { background: linear-gradient(160deg, #d6dcd0, #6a8068); }
+  .pb-fash-2-cell.l1::before { content: ''; position: absolute; top: 18%; left: 30%; right: 30%; bottom: 18%; background: linear-gradient(160deg, #f0f0e8, #1a2018); clip-path: polygon(40% 0%, 60% 0%, 75% 22%, 85% 50%, 80% 100%, 20% 100%, 15% 50%, 25% 22%); }
+  .pb-fash-2-cell.l2 { background: linear-gradient(160deg, #c8b8a4, #6a5a48); }
+  .pb-fash-2-cell.l2::before { content: ''; position: absolute; top: 18%; left: 30%; right: 30%; bottom: 18%; background: linear-gradient(160deg, #f0e8d8, #2a1f18); clip-path: polygon(40% 0%, 60% 0%, 75% 22%, 85% 50%, 80% 100%, 20% 100%, 15% 50%, 25% 22%); }
+  .pb-fash-2-cell .lbl { position: absolute; bottom: 8px; left: 10px; font-family: var(--mono); font-size: 8.5px; color: rgba(255,255,255,0.85); letter-spacing: 0.08em; text-transform: uppercase; z-index: 1; }
+  .pb-fash-size { display: flex; gap: 6px; flex-wrap: wrap; padding-top: 8px; border-top: 1px solid rgba(26,32,24,0.12); }
+  .pb-fash-size span { padding: 4px 10px; background: white; color: #1a2018; font-family: var(--mono); font-size: 10px; font-weight: 600; border-radius: 100px; letter-spacing: 0.04em; }
+  .pb-fash-size span.sel { background: var(--olive); color: white; }
+
+  .pb-fash-3 { background: linear-gradient(180deg, #ECEDE4 0%, #D6DCD0 100%); padding: 22px 18px; gap: 12px; }
+  .pb-fash-3 .pb-rev { background: rgba(255,255,255,0.7); }
+  .pb-fash-3 .pb-rev .qt { color: #1a2018; }
+  .pb-fash-3 .pb-rev .who .av { background: linear-gradient(135deg, #d6dcd0, var(--olive)); }
+
+  .pb-fash-4 { background: linear-gradient(170deg, #1a2018 0%, #0a100a 100%); padding: 26px 18px; justify-content: center; align-items: center; text-align: center; gap: 12px; }
+  .pb-fash-4 .pb-end-tag { color: #a8c8a4; border-color: rgba(168,200,164,0.5); }
+  .pb-fash-4 .pb-end-h { color: #ECEDE4; }
+  .pb-fash-4 .pb-end-h .em { color: #a8c8a4; }
+  .pb-fash-4 .pb-end-cta { background: var(--olive); }
+
+  /* ============ FORMULA — 5 conditions ============ */
+  section.s-formula { padding: 100px 24px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-formula { padding: 70px 20px; } }
+  .s-formula .head { margin: 0 auto 60px; max-width: 720px; }
+  .s-formula .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--rose); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; }
+  .s-formula .eyebrow::before, .s-formula .eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--rose); }
+  .s-formula h2 { font-family: var(--display); font-size: clamp(36px, 5vw, 72px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 18px; }
+  .s-formula h2 em { font-style: italic; color: var(--rose); }
+  .s-formula .sub { font-family: var(--body); font-size: 17px; color: var(--ink-2); line-height: 1.55; max-width: 560px; margin: 0 auto; }
+
+  .formula-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 1000px) { .formula-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+  @media (max-width: 600px) { .formula-grid { grid-template-columns: 1fr; gap: 8px; } }
+  .fc { padding: 28px 22px; background: var(--cream-2); border: 1px solid var(--line); border-radius: 12px; transition: all 0.4s var(--ease-soft); cursor: default; }
+  .fc:hover { transform: translateY(-3px); border-color: var(--rose); background: var(--cream-3); }
+  .fc .fnum { width: 32px; height: 32px; border-radius: 50%; background: var(--rose); color: white; display: grid; place-items: center; font-family: var(--display); font-size: 14px; font-weight: 600; margin: 0 auto 18px; font-style: italic; }
+  .fc h3 { font-family: var(--display); font-size: 18px; font-weight: 600; letter-spacing: -0.012em; margin-bottom: 8px; color: var(--ink); font-style: italic; }
+  .fc p { font-family: var(--body); font-size: 13.5px; color: var(--ink-2); line-height: 1.55; margin-bottom: 14px; }
+  .fc .ftag { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.14em; text-transform: uppercase; padding-top: 12px; border-top: 1px solid var(--line); }
+  @media (max-width: 600px) {
+    .fc { padding: 16px 16px; display: flex; align-items: center; gap: 14px; text-align: left; }
+    .fc .fnum { margin: 0; flex-shrink: 0; }
+    .fc h3 { font-size: 15px; margin-bottom: 0; flex-shrink: 0; min-width: 50px; }
+    .fc p { font-size: 12px; margin-bottom: 0; flex: 1; line-height: 1.45; }
+    .fc .ftag { display: none; }
+  }
+
+  /* ============ INDUSTRIES (8 commerce cards) ============ */
+  section.s-industries { padding: 100px 24px; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-industries { padding: 70px 20px; } }
+  .s-industries .head { margin: 0 auto 56px; max-width: 760px; }
+  .s-industries .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--rose); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; }
+  .s-industries .eyebrow::before, .s-industries .eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--rose); }
+  .s-industries h2 { font-family: var(--display); font-size: clamp(36px, 5vw, 72px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 18px; }
+  .s-industries h2 em { font-style: italic; color: var(--rose); }
+  .s-industries .sub { font-family: var(--body); font-size: 17px; color: var(--ink-2); line-height: 1.55; max-width: 600px; margin: 0 auto; }
+  .s-industries .sub strong { color: var(--ink); font-weight: 600; }
+
+  .ind-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 1000px) { .ind-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; } }
+  @media (max-width: 700px) { .ind-grid { grid-template-columns: 1fr 1fr; gap: 10px; } }
+  .ind-card { background: var(--cream-2); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: all 0.4s var(--ease-soft); cursor: pointer; text-align: left; }
+  .ind-card:hover { transform: translateY(-3px); border-color: var(--rose); box-shadow: 0 16px 40px rgba(42,36,24,0.10); }
+  .ind-card .ind-img { aspect-ratio: 4/3; position: relative; overflow: hidden; }
+  .ind-card .ind-img::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 14px 14px; opacity: 0.4; }
+  .ind-card .ind-img.beauty { background: linear-gradient(135deg, #F5C2C7 0%, #E8889A 50%, #C5475F 100%); }
+  .ind-card .ind-img.food { background: linear-gradient(135deg, #fcecc8 0%, #d4a574 50%, #6a4628 100%); }
+  .ind-card .ind-img.health { background: linear-gradient(135deg, #d4e8d0 0%, #7B8E3F 100%); }
+  .ind-card .ind-img.fashion { background: linear-gradient(135deg, #D6DCD0 0%, #A8B8A4 50%, #6a8068 100%); }
+  .ind-card .ind-img.living { background: linear-gradient(135deg, #ece0c4 0%, #8E7548 100%); }
+  .ind-card .ind-img.kids { background: linear-gradient(135deg, #FFE0A0 0%, #FFB347 50%, #C56849 100%); }
+  .ind-card .ind-img.tech { background: linear-gradient(135deg, #d0d8e0 0%, #6a7888 100%); }
+  .ind-card .ind-img.edu { background: linear-gradient(135deg, #e0c8d8 0%, #B07B98 100%); }
+  .ind-card .ind-img .ic { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 32px; height: 32px; opacity: 0.8; }
+  .ind-card .ind-img .ic svg { width: 100%; height: 100%; stroke: white; fill: none; stroke-width: 1.5; }
+  .ind-card .ind-img .num { position: absolute; top: 12px; left: 14px; font-family: var(--mono); font-size: 9.5px; color: rgba(255,255,255,0.7); letter-spacing: 0.18em; }
+
+  .ind-body { padding: 18px 18px 20px; }
+  .ind-body h3 { font-family: var(--display); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .ind-body p { font-family: var(--body); font-size: 12.5px; color: var(--ink-2); line-height: 1.55; margin-bottom: 14px; }
+  .ind-body .tags { display: flex; gap: 4px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid var(--line); }
+  .ind-body .tags span { padding: 2px 8px; border-radius: 100px; background: var(--cream); font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); letter-spacing: 0.04em; }
+  @media (max-width: 600px) {
+    .ind-body { padding: 14px 14px 16px; }
+    .ind-body h3 { font-size: 14.5px; }
+    .ind-body p { font-size: 11.5px; }
+    .ind-body .tags span { font-size: 9px; padding: 1px 7px; }
+  }
+
+  /* ============ PACKAGE ============ */
+  section.s-package { padding: 100px 24px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-package { padding: 70px 20px; } }
+  .s-package .head { margin: 0 auto 36px; max-width: 600px; }
+  .s-package .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--rose); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; }
+  .s-package .eyebrow::before, .s-package .eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--rose); }
+  .s-package h2 { font-family: var(--display); font-size: clamp(34px, 4.4vw, 60px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 14px; }
+  .s-package h2 em { font-style: italic; color: var(--rose); }
+  .s-package .sub { font-family: var(--body); font-size: 15.5px; color: var(--ink-2); line-height: 1.55; max-width: 540px; margin: 0 auto; }
+
+  .package-table { background: var(--cream-2); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .pkg-row { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; }
+  .pkg-row + .pkg-row { border-top: 1px solid var(--line); }
+  .pkg-row.head { background: var(--cream-3); }
+  .pkg-row.head .col { padding: 18px 16px 16px; }
+  .pkg-row.head .col-name { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--ink); }
+  .pkg-row.head .col-price { font-family: var(--display); font-size: 24px; font-weight: 600; line-height: 1.1; margin-top: 4px; color: var(--ink); font-style: italic; }
+  .pkg-row.head .col-price .from { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-right: 4px; font-weight: 400; font-style: normal; }
+  .pkg-row.head .col-days { font-family: var(--mono); font-size: 10.5px; color: var(--rose); margin-top: 4px; letter-spacing: 0.04em; font-weight: 600; }
+  .pkg-row.head .col-name.featured { color: var(--rose); }
+  .pkg-row.head .col-name.featured::after { content: 'POPULAR'; display: inline-block; margin-left: 6px; padding: 2px 8px; background: var(--rose); color: white; font-family: var(--mono); font-size: 8.5px; font-weight: 700; border-radius: 100px; letter-spacing: 0.12em; vertical-align: middle; }
+  .pkg-row .col { padding: 13px 16px; }
+  .pkg-row .col.label { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: 0.04em; }
+  .pkg-row .col.val { font-family: var(--body); font-size: 13px; color: var(--ink); text-align: center; }
+  .pkg-row .col.val .check { color: var(--rose); font-weight: 700; }
+  .pkg-row .col.val .x { color: var(--ink-faint); }
+  .pkg-row.cta .col { padding: 14px; }
+  .pkg-row.cta .col.label { font-size: 0; }
+  .pkg-row.cta button { width: 100%; padding: 11px; border-radius: 100px; font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.25s; border: 1px solid var(--line-2); background: transparent; color: var(--ink); }
+  .pkg-row.cta button:hover { border-color: var(--rose); color: var(--rose); }
+  .pkg-row.cta button.featured { background: var(--rose); color: white; border-color: var(--rose); }
+  .pkg-row.cta button.featured:hover { background: #B83C5C; box-shadow: 0 8px 20px rgba(217,82,110,0.3); }
+
+  @media (max-width: 800px) {
+    .package-table { display: none; }
+    .pkg-mobile { display: flex; gap: 10px; flex-direction: column; }
+    .pm-card { padding: 18px 16px; background: var(--cream-2); border: 1px solid var(--line); border-radius: 12px; position: relative; }
+    .pm-card.featured { border-color: var(--rose); }
+    .pm-card.featured::before { content: 'POPULAR'; position: absolute; top: -8px; right: 14px; padding: 3px 9px; background: var(--rose); color: white; font-family: var(--mono); font-size: 8.5px; font-weight: 700; border-radius: 100px; letter-spacing: 0.12em; }
+    .pm-row1 { display: flex; justify-content: space-between; align-items: end; margin-bottom: 4px; }
+    .pm-name { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--ink); }
+    .pm-name.acc { color: var(--rose); }
+    .pm-price { font-family: var(--display); font-size: 24px; font-weight: 600; line-height: 1; color: var(--ink); font-style: italic; }
+    .pm-price .from { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); margin-right: 3px; font-weight: 400; font-style: normal; }
+    .pm-days { font-family: var(--mono); font-size: 10px; color: var(--rose); font-weight: 600; margin-bottom: 12px; }
+    .pm-list { list-style: none; margin: 12px 0 14px; }
+    .pm-list li { display: flex; justify-content: space-between; padding: 5px 0; font-size: 12px; border-top: 1px solid var(--line); }
+    .pm-list li:first-child { border-top: 0; }
+    .pm-list li .l { color: var(--ink-2); font-family: var(--mono); font-size: 10.5px; }
+    .pm-list li .v { color: var(--ink); font-weight: 500; font-family: var(--body); }
+    .pm-list li .v.acc { color: var(--rose); font-weight: 600; }
+    .pm-card button { width: 100%; padding: 10px; border-radius: 100px; font-family: var(--sans); font-size: 12px; font-weight: 600; border: 1px solid var(--line-2); background: transparent; color: var(--ink); }
+    .pm-card.featured button { background: var(--rose); color: white; border-color: var(--rose); }
+  }
+  @media (min-width: 801px) { .pkg-mobile { display: none; } }
+
+  .addons { margin-top: 18px; padding: 22px 24px; background: var(--cream-2); border: 1px dashed var(--line-2); border-radius: 12px; }
+  @media (max-width: 600px) { .addons { padding: 16px; } }
+  .addons h4 { font-family: var(--mono); font-size: 11px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 14px; }
+  .addons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @media (max-width: 700px) { .addons-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .addons-grid { grid-template-columns: 1fr; } }
+  .addon { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--cream); border-radius: 8px; border: 1px solid var(--line); }
+  .addon .l { font-family: var(--body); font-size: 12.5px; color: var(--ink); }
+  .addon .v { font-family: var(--mono); font-size: 11px; color: var(--rose); font-weight: 600; }
+
+  /* ============ PROCESS ============ */
+  section.s-process { padding: 80px 24px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-process { padding: 56px 20px; } }
+  .s-process .head { margin: 0 auto 36px; max-width: 600px; }
+  .s-process h2 { font-family: var(--display); font-size: clamp(32px, 4.2vw, 56px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; }
+  .s-process h2 em { font-style: italic; color: var(--rose); }
+  .process { padding: 36px 32px; background: var(--cream-2); border: 1px solid var(--line); border-radius: 14px; }
+  @media (max-width: 600px) { .process { padding: 26px 20px; } }
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+  @media (max-width: 700px) { .timeline { grid-template-columns: 1fr 1fr; gap: 18px; } }
+  .timeline::before { content: ''; position: absolute; top: 7px; left: 4px; right: 4px; height: 1px; background: linear-gradient(90deg, var(--rose), transparent); }
+  .step { padding-top: 22px; position: relative; text-align: left; }
+  .step::before { content: ''; position: absolute; top: 1px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--cream-2); border: 2px solid var(--rose); }
+  .step .day { font-family: var(--mono); font-size: 10.5px; color: var(--rose); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; }
+  .step .name { font-family: var(--display); font-size: 18px; font-weight: 600; margin-bottom: 5px; letter-spacing: -0.01em; color: var(--ink); }
+  .step .desc { font-family: var(--body); font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
+
+  /* ============ RESOURCES (꿀팁 받기) ============ */
+  section.s-resources { padding: 80px 24px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-resources { padding: 56px 20px; } }
+  .s-resources .head { margin: 0 auto 40px; }
+  .s-resources .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); margin-bottom: 14px; }
+  .s-resources h2 { font-family: var(--display); font-size: clamp(32px, 4.2vw, 56px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 14px; color: var(--ink); }
+  .s-resources h2 em { font-style: italic; color: var(--rose); }
+  .s-resources .sub { font-family: var(--body); font-size: 15px; color: var(--ink-2); line-height: 1.6; max-width: 580px; margin: 0 auto; }
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 1020px; margin: 0 auto; text-align: left; }
+  @media (max-width: 720px) { .res-grid { grid-template-columns: 1fr; gap: 14px; } }
+  .res-card { display: grid; grid-template-columns: 92px 1fr; gap: 22px; padding: 26px; background: var(--cream); border: 1px solid var(--line); border-radius: 12px; transition: all 0.3s ease; text-decoration: none; color: var(--ink); position: relative; overflow: hidden; }
+  .res-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 0%, var(--rose-soft) 100%); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+  .res-card:hover { border-color: var(--rose); transform: translateY(-3px); box-shadow: 0 24px 40px -24px rgba(217,82,110,0.25); }
+  .res-card:hover::before { opacity: 1; }
+  .res-cover { position: relative; aspect-ratio: 3/4; background: var(--cream-2); border: 1px solid var(--cream-3); display: flex; flex-direction: column; justify-content: space-between; padding: 12px 10px; overflow: hidden; }
+  .res-cover .vol { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); }
+  .res-cover .num { font-family: var(--display); font-style: italic; font-size: 30px; font-weight: 500; color: var(--ink); line-height: 1; }
+  .res-cover .seal { font-family: var(--mono); font-size: 8px; letter-spacing: 0.18em; color: var(--ink-3); text-align: right; }
+  .res-cover::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: 38px; height: 1px; background: var(--ink-faint); }
+  .res-body { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+  .res-tag { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: 0.18em; text-transform: uppercase; }
+  .res-card h3 { font-family: var(--display); font-size: 22px; font-weight: 500; letter-spacing: -0.018em; line-height: 1.2; color: var(--ink); }
+  .res-card h3 em { font-style: italic; color: var(--rose); font-weight: 500; }
+  .res-card .desc { font-family: var(--body); font-size: 13.5px; color: var(--ink-2); line-height: 1.6; }
+  .res-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; font-family: var(--body); font-size: 13px; font-weight: 600; color: var(--rose); transition: gap 0.2s; }
+  .res-cta::after { content: '↓'; font-family: var(--display); font-style: italic; font-size: 14px; }
+  .res-card:hover .res-cta { gap: 12px; }
+  .res-foot { margin-top: 32px; text-align: center; font-family: var(--body); font-size: 13px; color: var(--ink-3); }
+  .res-foot em { font-family: var(--display); font-style: italic; color: var(--rose); }
+
+  /* ============ FAQ ============ */
+  section.s-faq { padding: 80px 24px; max-width: 980px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-faq { padding: 56px 20px; } }
+  .s-faq .head { margin: 0 auto 36px; }
+  .s-faq h2 { font-family: var(--display); font-size: clamp(32px, 4.2vw, 56px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 14px; }
+  .s-faq h2 em { font-style: italic; color: var(--rose); }
+  .s-faq .sub { font-family: var(--body); font-size: 15px; color: var(--ink-2); line-height: 1.55; }
+  .faq-list { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+  .faq-item { background: var(--cream-2); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color 0.3s; }
+  .faq-item[open] { border-color: var(--rose); }
+  .faq-item summary { padding: 18px 22px; font-family: var(--display); font-size: 16px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px; list-style: none; color: var(--ink); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .q { display: flex; align-items: flex-start; gap: 14px; flex: 1; }
+  .faq-item summary .q-num { font-family: var(--mono); font-size: 11px; color: var(--rose); flex-shrink: 0; padding-top: 2px; letter-spacing: 0.04em; }
+  .faq-item summary .arrow { font-family: var(--display); font-size: 20px; color: var(--ink-3); transition: transform 0.3s; line-height: 1; }
+  .faq-item[open] summary .arrow { transform: rotate(45deg); color: var(--rose); }
+  .faq-item .a { padding: 0 22px 20px 50px; font-family: var(--body); font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+  .faq-item .a strong { color: var(--ink); font-weight: 600; }
+  .faq-item .a em { font-family: var(--display); font-style: italic; color: var(--rose); font-weight: 500; }
+
+  /* ============ TEASER + CTA ============ */
+  section.s-teaser { padding: 80px 24px 56px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-teaser { padding: 56px 20px 40px; } }
+  .teaser-wrap { padding: 56px 48px; background: linear-gradient(135deg, #F5C2C7 0%, #FAEAEC 100%); border-radius: 14px; text-align: center; position: relative; overflow: hidden; }
+  @media (max-width: 700px) { .teaser-wrap { padding: 36px 24px; } }
+  .teaser-wrap .label { font-family: var(--mono); font-size: 11.5px; color: var(--rose); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; }
+  .teaser-wrap h2 { font-family: var(--display); font-size: clamp(28px, 3.8vw, 50px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 14px; color: var(--ink); }
+  .teaser-wrap h2 em { font-style: italic; color: var(--rose); }
+  .teaser-wrap p { font-family: var(--body); font-size: 15px; color: var(--ink-2); max-width: 460px; margin: 0 auto 28px; line-height: 1.6; }
+
+  section.s-cta { padding: 90px 24px 70px; max-width: 1180px; margin: 16px auto 0; border-top: 1px solid var(--line); }
+  @media (max-width: 700px) { section.s-cta { padding: 64px 20px 48px; } }
+  .s-cta h2 { font-family: var(--display); font-size: clamp(36px, 5.6vw, 88px); font-weight: 500; letter-spacing: -0.03em; line-height: 0.96; margin-bottom: 20px; color: var(--ink); }
+  .s-cta h2 em { font-style: italic; color: var(--rose); }
+  .s-cta h2 .light { color: var(--ink-3); }
+  .s-cta p { font-family: var(--body); font-size: 15px; color: var(--ink-2); margin-bottom: 32px; }
+  .s-cta .actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  .btn-primary { padding: 14px 26px; background: var(--rose); color: white; border: 1px solid var(--rose); font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 100px; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: #B83C5C; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(217,82,110,0.3); }
+  .btn-ghost { padding: 14px 26px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 100px; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); transform: translateY(-2px); }
+
+  /* ============ FOOTER ============ */
+  footer { padding: 50px 32px 28px; max-width: 1280px; margin: 0 auto; border-top: 1px solid var(--line); }
+  @media (max-width: 700px) { footer { padding: 36px 20px 24px; } }
+  .ft-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; }
+  .ft-row a { color: var(--ink-3); text-decoration: none; }
+  .ft-row a:hover { color: var(--rose); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-l">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span>Vol 02 · Detail Page</span>
+  </div>
+  <a class="nav-c" href="00b_main_v2_kpi_stacked.html">AIO <em>commerce</em><span class="sub">STUDIO</span></a>
+  <div class="nav-r">
+    <a class="txt" href="#package">Package</a>
+    <a class="txt" href="#industries">Industries</a>
+    <a class="btn" href="#">견적 문의</a>
+  </div>
+</nav>
+
+<div class="page-tabs">
+  <a href="02_detail_page_v2.html" class="active"><span class="num">01</span> 서비스 · 가격</a>
+  <a href="02_detail_page_portfolio.html"><span class="num">02</span> 포트폴리오</a>
+  <a href="02_detail_page_resources.html"><span class="num">03</span> 꿀팁받기</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Volume 02 — Commerce Detail</div>
+    <h1 class="hero-h1"><span class="light">스크롤 한 번에,</span><br/><em>결제 버튼</em>까지</h1>
+    <p class="hero-sub">뷰티 · 식품 · 패션 · 리빙까지<br/><strong>후킹 5초, 결제 30초</strong>를 위한 <em>커머스 상세페이지</em></p>
+    <div class="hero-actions">
+      <a href="#package" class="btn-primary">견적 시작 →</a>
+      <a href="02_detail_page_portfolio.html" class="btn-ghost">89개 포트폴리오 →</a>
+    </div>
+
+    <!-- Hero cover image -->
+    <div class="hero-cover">
+      <span class="cap-tl">— Vol 02 · Issue 2026</span>
+      <span class="cap-tr">Detail · Live</span>
+      <div class="cap-bl">
+        <div class="h"><em>Hooking 5s,</em><br/>Decision 30s</div>
+        <div class="s">— commerce magazine</div>
+      </div>
+      <span class="cap-br">89 pages</span>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <div class="trust-strip">
+    <div class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><span class="num">1<em>h</em></span>응답</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span><span class="num">89</span>건 작업</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span><span class="num">4.9</span>의뢰인 평점</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><span class="num">1</span>개월 무상 A/S</span></div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="s-gallery">
+    <div class="head">
+      <div class="eyebrow">Live · Now scrolling</div>
+      <h2>지금 스크롤되는 페이지<br/>모두 <em>실제 운영 중</em></h2>
+      <p class="sub">데모가 아닙니다 <strong>주문이 일어난 페이지</strong>를 그대로 모았습니다</p>
+    </div>
+
+    <div class="gallery-row">
+      <!-- BEAUTY strip -->
+      <div class="strip strip-1">
+        <div class="strip-content">
+          <div class="pb pb-beauty-1">
+            <div class="pb-top"><span class="pb-brand">L'AURA</span><div class="pb-menu-d"><span></span><span></span><span></span></div></div>
+            <div class="pb-bottom">
+              <div class="pb-tag">— skin · hydration</div>
+              <div class="pb-h">바르는 순간,<br/><span class="em">3초 흡수</span></div>
+              <div class="pb-sub">속건성 세럼 · 1만 명 검증</div>
+              <div class="pb-pricerow"><span class="pb-was">39,000</span><span class="pb-now">19,900</span><span class="pb-disc">-49%</span></div>
+            </div>
+          </div>
+          <div class="pb pb-beauty-2">
+            <div class="pb-eyebrow-2">— before / after · 4 weeks</div>
+            <div class="pb-h2">눈으로 보이는<br/><span class="em">피부 변화</span></div>
+            <div class="pb-ba">
+              <div class="pb-ba-frame">
+                <div class="pb-ba-half before"><div class="lbl">BEFORE</div><div class="pct">42%<span class="lab">건조함 호소</span></div></div>
+                <div class="pb-ba-half after"><div class="lbl">AFTER · 4W</div><div class="pct">93%<span class="lab">개선 응답</span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="pb pb-beauty-3">
+            <div class="pb-eyebrow-2">— reviews · 1,247</div>
+            <div class="pb-rev"><div class="stars">★★★★★</div><div class="qt">"3주째 사용 중. 화장 들뜸이 사라졌어요."</div><div class="who"><div class="av"></div><div class="nm">J.S · 30대</div></div></div>
+            <div class="pb-rev"><div class="stars">★★★★★</div><div class="qt">"끈적임 없이 흡수. 기대 이상."</div><div class="who"><div class="av"></div><div class="nm">K.M · 20대</div></div></div>
+          </div>
+          <div class="pb pb-beauty-4">
+            <span class="pb-end-tag">LAST CHANCE</span>
+            <div class="pb-end-h">오늘 마감,<br/><span class="em">49% 할인</span></div>
+            <span class="pb-end-cta">지금 구매 →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOD strip (center) -->
+      <div class="strip strip-2">
+        <div class="strip-content">
+          <div class="pb pb-food-1">
+            <div class="pb-top"><span class="pb-brand">SHELF&nbsp;9</span><div class="pb-menu-d"><span></span><span></span><span></span></div></div>
+            <div class="pb-bottom">
+              <div class="pb-tag">— mealkit · chef</div>
+              <div class="pb-h">10분 만에,<br/><span class="em">셰프의 한 그릇</span></div>
+              <div class="pb-sub">미슐랭 출신 셰프 레시피 · 매주 신메뉴</div>
+              <div class="pb-pricerow"><span class="pb-was">19,900</span><span class="pb-now">9,900</span><span class="pb-disc">-50%</span></div>
+            </div>
+          </div>
+          <div class="pb pb-food-2">
+            <div class="pb-eyebrow-2">— why us · 12k buyers</div>
+            <div class="pb-h2">왜 12,000명이<br/><span class="em">계속 찾을까</span></div>
+            <ul class="pb-food-2-checks">
+              <li>국내산 식재료 100%</li>
+              <li>방부제 · MSG 무첨가</li>
+              <li>매일 새벽 출고 · 신선</li>
+              <li>10분이면 식탁 위</li>
+            </ul>
+          </div>
+          <div class="pb pb-food-3">
+            <div class="pb-food-3-kpi">
+              <div class="kp"><div class="n">10<span style="font-size:60%">분</span></div><div class="l">조리</div></div>
+              <div class="kp"><div class="n">4.9</div><div class="l">평점</div></div>
+              <div class="kp"><div class="n">12k</div><div class="l">구매자</div></div>
+            </div>
+            <div class="pb-food-3-imgs">
+              <div class="pb-food-3-img f1"><span class="lbl">PASTA</span></div>
+              <div class="pb-food-3-img f2"><span class="lbl">SALAD</span></div>
+            </div>
+          </div>
+          <div class="pb pb-food-4">
+            <div class="pb-eyebrow-2">— reviews · 2,341</div>
+            <div class="pb-h2">실제 후기,<br/><span class="em">생생한 변화</span></div>
+            <div class="pb-rev"><div class="stars">★★★★★</div><div class="qt">"자취생 인생템. 매주 정기배송 중."</div><div class="who"><div class="av"></div><div class="nm">P.J · 20대 직장인</div></div></div>
+            <div class="pb-food-4-cta">9,900원 · 지금 구매 →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASHION strip -->
+      <div class="strip strip-3">
+        <div class="strip-content">
+          <div class="pb pb-fash-1">
+            <div class="pb-top"><span class="pb-brand">QUIET 6</span><div class="pb-menu-d"><span></span><span></span><span></span></div></div>
+            <div class="pb-bottom">
+              <div class="pb-tag">— linen · summer</div>
+              <div class="pb-h">가벼운 한 벌,<br/><span class="em">여름의 정의</span></div>
+              <div class="pb-sub">100% 리넨 · 오버사이즈 핏</div>
+              <div class="pb-pricerow"><span class="pb-now">89,000</span><span class="pb-disc">신상</span></div>
+            </div>
+          </div>
+          <div class="pb pb-fash-2">
+            <div class="pb-eyebrow-2">— lookbook</div>
+            <div class="pb-h2">데일리부터<br/><span class="em">캐주얼까지</span></div>
+            <div class="pb-fash-2-look">
+              <div class="pb-fash-2-cell l1"><span class="lbl">DAILY · S</span></div>
+              <div class="pb-fash-2-cell l2"><span class="lbl">CASUAL · M</span></div>
+            </div>
+            <div class="pb-fash-size"><span>XS</span><span class="sel">S</span><span>M</span><span>L</span><span>XL</span></div>
+          </div>
+          <div class="pb pb-fash-3">
+            <div class="pb-eyebrow-2">— reviews · 412</div>
+            <div class="pb-rev"><div class="stars">★★★★★</div><div class="qt">"핏감이 자연스러워요. 재구매 의사 100%."</div><div class="who"><div class="av"></div><div class="nm">S.H · 30대</div></div></div>
+            <div class="pb-rev"><div class="stars">★★★★★</div><div class="qt">"여름에 진짜 시원해요. 색감도 고급스럽고."</div><div class="who"><div class="av"></div><div class="nm">L.J · 20대</div></div></div>
+          </div>
+          <div class="pb pb-fash-4">
+            <span class="pb-end-tag">SUMMER · 2026</span>
+            <div class="pb-end-h">정장 같은,<br/><span class="em">홈웨어</span></div>
+            <span class="pb-end-cta">컬렉션 보기 →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULA -->
+  <section class="s-formula" id="formula">
+    <div class="head">
+      <div class="eyebrow">Conversion Formula</div>
+      <h2>잘 팔리는 상세페이지엔<br/><em>5가지 공식</em>이 있습니다</h2>
+      <p class="sub">감각이 아니라 구조입니다 5개 블록을 빠짐없이 설계해 작업합니다</p>
+    </div>
+    <div class="formula-grid">
+      <div class="fc"><div class="fnum">1</div><h3>후킹</h3><p>5초 안에 시선을 잡는 첫 화면</p><div class="ftag">HEADLINE</div></div>
+      <div class="fc"><div class="fnum">2</div><h3>문제</h3><p>고객의 고민을 그대로 꺼내 공감대</p><div class="ftag">EMPATHY</div></div>
+      <div class="fc"><div class="fnum">3</div><h3>해결</h3><p>제품이 답이 되는 이유를 시각으로</p><div class="ftag">FEATURE</div></div>
+      <div class="fc"><div class="fnum">4</div><h3>증거</h3><p>후기·임상·수치로 의심을 지운다</p><div class="ftag">PROOF</div></div>
+      <div class="fc"><div class="fnum">5</div><h3>결제</h3><p>혜택·기한·보증으로 즉시 결정</p><div class="ftag">CTA</div></div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="s-industries" id="industries">
+    <div class="head">
+      <div class="eyebrow">Industries · 8 commerce verticals</div>
+      <h2>업종마다 <em>결제 동선</em>이 다릅니다</h2>
+      <p class="sub">뷰티는 비포·애프터, 식품은 신선도, 패션은 룩북<br/><strong>업종별 후킹 패턴</strong>을 미리 설계해서 시작합니다</p>
+    </div>
+
+    <div class="ind-grid">
+      <div class="ind-card">
+        <div class="ind-img beauty"><span class="num">01</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></div>
+        <div class="ind-body">
+          <h3>뷰티 · 코스메틱</h3>
+          <p>화장품·기능성·뷰티 디바이스 비포·애프터·임상·인플루언서</p>
+          <div class="tags"><span>비포·애프터</span><span>임상</span><span>인플루언서</span></div>
+        </div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-img food"><span class="num">02</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3v4zM3 19a2 2 0 0 0 2 2h1v-6H3v4z"/></svg></span></div>
+        <div class="ind-body">
+          <h3>식품 · F&amp;B</h3>
+          <p>밀키트·건강식·음료·간편식 신선도·재구매·맛 검증</p>
+          <div class="tags"><span>밀키트</span><span>신선도</span><span>레시피</span></div>
+        </div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-img health"><span class="num">03</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span></div>
+        <div class="ind-body">
+          <h3>건강 · 영양제</h3>
+          <p>영양제·운동기구·헬스케어 임상·전문가·복용 가이드</p>
+          <div class="tags"><span>임상</span><span>전문가</span><span>복용법</span></div>
+        </div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-img fashion"><span class="num">04</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></span></div>
+        <div class="ind-body">
+          <h3>패션 · 잡화</h3>
+          <p>의류·가방·액세서리·신발 룩북·코디·소재·사이즈</p>
+          <div class="tags"><span>룩북</span><span>코디</span><span>소재</span></div>
+        </div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-img living"><span class="num">05</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span></div>
+        <div class="ind-body">
+          <h3>리빙 · 홈데코</h3>
+          <p>가구·홈인테리어·생활잡화 공간 무드·소재·실측</p>
+          <div class="tags"><span>공간 무드</span><span>실측</span><span>설치</span></div>
+        </div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-img kids"><span class="num">06</span><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 12h6M12 9v6"/></svg></span></div>
+        <div class="ind-body">
+          <h3>키즈 · 유아</h3>
+          <p>장난감·교구·유아용품 안전성·연령별·부모 후기</p>
+          <div class="tags"><span>안전성</span><span>연령별</span><span>부모 후기</span></div>
+        </div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-img tech"><span class="num">07</span><span class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span></div>
+        <div class="ind-body">
+          <h3>가전 · 디지털</h3>
+          <p>소형가전·전자제품·디지털 기기 스펙·시연·비교 차트</p>
+          <div class="tags"><span>스펙</span><span>시연</span><span>비교</span></div>
+        </div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-img edu"><span class="num">08</span><span class="ic"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span></div>
+        <div class="ind-body">
+          <h3>교육 · 강의</h3>
+          <p>온라인 강의·자격증·교육 프로그램 강사·커리큘럼·후기</p>
+          <div class="tags"><span>강사</span><span>커리큘럼</span><span>후기</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGE -->
+  <section class="s-package" id="package">
+    <div class="head">
+      <div class="eyebrow">Package · 투명한 견적</div>
+      <h2>3가지 등급,<br/><em>외부 마켓·자사몰</em> 동일 가격</h2>
+      <p class="sub">스마트스토어부터 카페24·자사몰까지. 작업 강도와 일수만 다릅니다.</p>
+    </div>
+
+    <div class="package-table">
+      <div class="pkg-row head">
+        <div class="col"></div>
+        <div class="col"><div class="col-name">Light</div><div class="col-price"><span class="from">₩</span>4.9만~</div><div class="col-days">▸ 1 day</div></div>
+        <div class="col"><div class="col-name featured">Standard</div><div class="col-price"><span class="from">₩</span>7.9만~</div><div class="col-days">▸ 1–2 days</div></div>
+        <div class="col"><div class="col-name">Premium</div><div class="col-price"><span class="from">₩</span>12.9만~</div><div class="col-days">▸ 2–3 days</div></div>
+      </div>
+      <div class="pkg-row"><div class="col label">구성 방식</div><div class="col val">자료 정리</div><div class="col val">기획형 5–7섹션</div><div class="col val">전환형 10+ 섹션</div></div>
+      <div class="pkg-row"><div class="col label">카피라이팅</div><div class="col val">기존 활용</div><div class="col val"><span class="check">✓ 문구 정리</span></div><div class="col val"><span class="check">✓ 구매 설득 흐름</span></div></div>
+      <div class="pkg-row"><div class="col label">신뢰 요소</div><div class="col val"><span class="x">—</span></div><div class="col val"><span class="x">—</span></div><div class="col val"><span class="check">✓ 후기·비포·임상</span></div></div>
+      <div class="pkg-row"><div class="col label">모바일 최적화</div><div class="col val"><span class="check">✓</span></div><div class="col val"><span class="check">✓</span></div><div class="col val"><span class="check">✓</span></div></div>
+      <div class="pkg-row"><div class="col label">수정 횟수</div><div class="col val">1회</div><div class="col val">2회</div><div class="col val">2회</div></div>
+      <div class="pkg-row"><div class="col label">납품 형식</div><div class="col val">PNG / JPG</div><div class="col val">PNG / JPG</div><div class="col val">PNG / JPG + HTML</div></div>
+      <div class="pkg-row"><div class="col label">무상 A/S</div><div class="col val">30일</div><div class="col val">30일</div><div class="col val">60일</div></div>
+      <div class="pkg-row cta"><div class="col label"></div><div class="col"><button>선택</button></div><div class="col"><button class="featured">선택</button></div><div class="col"><button>선택</button></div></div>
+    </div>
+
+    <div class="pkg-mobile">
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Light</div><div class="pm-price"><span class="from">₩</span>4.9만~</div></div>
+        <div class="pm-days">▸ 1 day</div>
+        <ul class="pm-list">
+          <li><span class="l">구성</span><span class="v">자료 정리</span></li>
+          <li><span class="l">모바일</span><span class="v acc">✓</span></li>
+          <li><span class="l">수정</span><span class="v">1회</span></li>
+          <li><span class="l">A/S</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card featured">
+        <div class="pm-row1"><div class="pm-name acc">Standard</div><div class="pm-price"><span class="from">₩</span>7.9만~</div></div>
+        <div class="pm-days">▸ 1–2 days</div>
+        <ul class="pm-list">
+          <li><span class="l">구성</span><span class="v acc">기획형</span></li>
+          <li><span class="l">섹션</span><span class="v">5–7</span></li>
+          <li><span class="l">수정</span><span class="v">2회</span></li>
+          <li><span class="l">A/S</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Premium</div><div class="pm-price"><span class="from">₩</span>12.9만~</div></div>
+        <div class="pm-days">▸ 2–3 days</div>
+        <ul class="pm-list">
+          <li><span class="l">구성</span><span class="v acc">전환형</span></li>
+          <li><span class="l">섹션</span><span class="v">10+</span></li>
+          <li><span class="l">신뢰 요소</span><span class="v acc">✓</span></li>
+          <li><span class="l">A/S</span><span class="v">60일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+    </div>
+
+    <div class="addons">
+      <h4>— 공통 추가 옵션</h4>
+      <div class="addons-grid">
+        <div class="addon"><span class="l">이미지 길이 추가</span><span class="v">섹션당 +1만</span></div>
+        <div class="addon"><span class="l">제품·경쟁사 리서치</span><span class="v">+3만</span></div>
+        <div class="addon"><span class="l">원고 부재</span><span class="v">+3만~</span></div>
+        <div class="addon"><span class="l">누끼·보정 대량</span><span class="v">별도</span></div>
+        <div class="addon"><span class="l">긴급 (24h)</span><span class="v">+3만</span></div>
+        <div class="addon"><span class="l">스마트스토어 HTML</span><span class="v">+3만</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="s-process">
+    <div class="head">
+      <h2>의뢰부터 납품까지 <em>5일</em></h2>
+    </div>
+    <div class="process">
+      <div class="timeline">
+        <div class="step"><div class="day">DAY 01 · 무료</div><div class="name">상담</div><div class="desc">제품·USP·타겟 정리 30분 화상</div></div>
+        <div class="step"><div class="day">DAY 02</div><div class="name">와이어 + 카피</div><div class="desc">섹션 구조 + 후킹 카피 1차 시안</div></div>
+        <div class="step"><div class="day">DAY 03–04</div><div class="name">디자인</div><div class="desc">비주얼·이펙트·상세 컷 작업</div></div>
+        <div class="step"><div class="day">DAY 05</div><div class="name">납품 + A/S</div><div class="desc">운영 가이드 + 1개월 무상 A/S</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="s-faq" id="faq">
+    <div class="head">
+      <h2>자주 묻는 <em>질문</em></h2>
+      <p class="sub">결정 전에 가장 많이 받는 8가지</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span class="q"><span class="q-num">Q.01</span><span>스마트스토어용과 자사몰용 상세페이지가 다른가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, 스타일과 길이가 다릅니다.</strong> 외부 마켓(스마트스토어·쿠팡)은 <em>긴 스크롤·풍부한 비주얼</em>로 전환을 끌어올리고, 자사몰(카페24·D2C)은 브랜드 톤에 맞춰 <em>절제된 편집숍 스타일</em>로 작업합니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.02</span><span>카피라이팅도 같이 해주시나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, Standard 이상은 풀 카피라이팅 포함입니다.</strong> 후킹 헤드라인·문제 카피·CTA 문구까지 디자인과 함께 설계합니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.03</span><span>5일 안에 정말 가능한가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">대부분의 상세페이지는 5일 안에 끝납니다. <strong>업종별 검증된 후킹 패턴</strong>을 기반으로 시작하기 때문입니다. 의뢰인 만족도 <em>4.9/5</em>를 유지하고 있습니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.04</span><span>이미지나 영상 소스는 직접 준비해야 하나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">제품 사진은 의뢰인이 준비해주시는 것이 기본입니다. <strong>합성·리터칭·일러스트</strong>는 옵션으로 제공합니다. 영상 촬영이 필요하면 별도 견적입니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.05</span><span>스마트스토어·카페24 업로드까지 도와주시나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">옵션으로 가능합니다 (+3만). 스마트스토어 HTML 변환·카페24 위젯 등록까지 처리합니다 <strong>모바일에서 깨지지 않도록</strong> 픽셀 단위로 점검합니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.06</span><span>완성된 결과물 파일 형태는 무엇인가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>JPG·PNG 컷 이미지 + HTML 코드</strong>를 함께 드립니다. 스마트스토어·쿠팡·자사몰 어디든 업로드 가능합니다. Figma 원본도 함께 인계 가능.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.07</span><span>1개월 무상 A/S는 어떤 범위까지인가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">납품 후 <em>30일간</em> 발생하는 <strong>오타 수정·이미지 미세 조정·짧은 카피 교체</strong>는 무료입니다. 신규 섹션 추가나 디자인 전면 수정은 별도 견적입니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.08</span><span>전환율을 끌어올리는 비결이 있나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">정답은 없지만 <strong>업종별 검증된 패턴</strong>이 있습니다. 뷰티는 비포·애프터, 식품은 신선도·재구매, 패션은 룩북. <em>5가지 공식</em>(후킹·문제·해결·증거·결제)을 빠짐없이 구현하는 것이 핵심입니다.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- TEASER -->
+  <section class="s-teaser">
+    <div class="teaser-wrap">
+      <div class="label">— next page · portfolio</div>
+      <h2>이미 89개. <em>결과</em>를 보고 결정하세요</h2>
+      <p>실제 운영 중인 페이지들. 한 작품 한 작품이 다음 의뢰의 답입니다.</p>
+      <a href="02_detail_page_portfolio.html" class="btn-primary">포트폴리오 전체 →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="s-cta">
+    <h2><span class="light">launch</span><br/><em>your_page</em></h2>
+    <p>1시간 답변 · 24시간 견적 · 5일 결과물</p>
+    <div class="actions">
+      <a href="#" class="btn-primary">견적 시작 →</a>
+      <a href="#" class="btn-ghost">aio-bot 상담</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ft-row">
+    <span>© 2026 AIO Studio · Volume 02 · Detail Page</span>
+    <span><a href="00b_main_v2_kpi_stacked.html">← Studio</a> &nbsp; <a href="02_detail_page_portfolio.html">portfolio →</a></span>
+  </div>
+</footer>
+
+<script>
+  if (window.gsap && gsap.registerPlugin && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.hero-eyebrow', { opacity: 0, y: 12, duration: 0.7, ease: 'power3.out' });
+  gsap.from('.hero-h1', { opacity: 0, y: 24, duration: 1.0, delay: 0.2, ease: 'expo.out' });
+  gsap.from('.hero-sub', { opacity: 0, y: 16, duration: 0.8, delay: 0.5, ease: 'power3.out' });
+  gsap.from('.hero-actions', { opacity: 0, y: 12, duration: 0.7, delay: 0.7 });
+  gsap.from('.hero-cover', { opacity: 0, y: 40, scale: 0.98, duration: 1.0, delay: 0.5, ease: 'expo.out' });
+
+  gsap.from('.trust-item', { opacity: 0, y: 12, duration: 0.6, stagger: 0.08, scrollTrigger: { trigger: '.trust-strip', start: 'top 92%' } });
+  gsap.from('.strip', { opacity: 0, y: 60, duration: 1.0, stagger: 0.12, scrollTrigger: { trigger: '.s-gallery', start: 'top 75%' } });
+  gsap.from('.fc', { opacity: 0, y: 24, duration: 0.6, stagger: 0.08, scrollTrigger: { trigger: '.formula-grid', start: 'top 85%' } });
+  gsap.from('.ind-card', { opacity: 0, y: 24, duration: 0.6, stagger: 0.06, scrollTrigger: { trigger: '.ind-grid', start: 'top 82%' } });
+  gsap.from('.pkg-row', { opacity: 0, y: 12, duration: 0.5, stagger: 0.04, scrollTrigger: { trigger: '.package-table', start: 'top 85%' } });
+  gsap.from('.step', { opacity: 0, y: 16, duration: 0.6, stagger: 0.1, scrollTrigger: { trigger: '.process', start: 'top 85%' } });
+  gsap.from('.faq-item', { opacity: 0, y: 14, duration: 0.5, stagger: 0.06, scrollTrigger: { trigger: '.faq-list', start: 'top 82%' } });
+  gsap.from('.teaser-wrap', { opacity: 0, y: 30, duration: 0.9, scrollTrigger: { trigger: '.s-teaser', start: 'top 82%' } });
+</script>
+</body>
+</html>

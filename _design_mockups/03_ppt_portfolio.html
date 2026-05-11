@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AIO / PPT — Portfolio 156</title>
+<meta name="description" content="실제 발표가 일어난 156개의 슬라이드 덱.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --paper-2: #F8F9FA;
+    --paper-3: #ECEEF1;
+    --paper-deep: #DCE0E5;
+    --ink: #0E1A2B;
+    --ink-2: rgba(14,26,43,0.62);
+    --ink-3: rgba(14,26,43,0.40);
+    --ink-faint: rgba(14,26,43,0.22);
+    --line: rgba(14,26,43,0.10);
+    --line-2: rgba(14,26,43,0.18);
+
+    --navy: #1B3B5F;
+    --navy-2: #2C5380;
+    --navy-soft: rgba(27,59,95,0.08);
+    --gold: #C9A961;
+    --gold-soft: #F0E8D0;
+
+    --sans: 'Inter', 'Pretendard Variable', sans-serif;
+    --serif: 'Cormorant Garamond', 'Pretendard Variable', serif;
+    --body: 'Pretendard Variable', 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; text-align: center; }
+  ::selection { background: var(--navy); color: var(--paper); }
+
+  /* NAV */
+  nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom: 2px solid var(--ink); padding: 16px 32px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+  @media (max-width: 800px) { nav.top { padding: 12px 20px; grid-template-columns: 1fr auto; } }
+  .nav-l { font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.18em; text-transform: uppercase; text-align: left; display: flex; align-items: center; gap: 12px; }
+  .nav-l .ix { color: var(--gold); font-weight: 600; }
+  @media (max-width: 800px) { .nav-l { display: none; } }
+  .nav-c { font-family: var(--sans); font-size: 18px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.012em; }
+  .nav-c em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .nav-c .sub { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-3); margin-left: 8px; font-weight: 400; }
+  .nav-r { display: flex; justify-content: end; align-items: center; gap: 14px; }
+  .nav-r a.txt { color: var(--ink); text-decoration: none; font-family: var(--sans); font-size: 12.5px; font-weight: 500; transition: color 0.2s; letter-spacing: -0.005em; }
+  .nav-r a.txt:hover { color: var(--navy); }
+  .nav-r a.btn { color: var(--paper); background: var(--ink); text-decoration: none; padding: 9px 18px; font-family: var(--sans); font-size: 12.5px; font-weight: 600; transition: all 0.2s; }
+  .nav-r a.btn:hover { background: var(--navy); }
+
+  /* PAGE TABS */
+  .page-tabs { background: var(--paper); border-bottom: 1px solid var(--line); padding: 0 24px; display: flex; gap: 0; justify-content: center; font-family: var(--sans); font-size: 12.5px; overflow-x: auto; scrollbar-width: none; }
+  .page-tabs::-webkit-scrollbar { display: none; }
+  .page-tabs a { color: var(--ink-2); text-decoration: none; padding: 14px 22px; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-weight: 500; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .page-tabs a:hover { color: var(--ink); }
+  .page-tabs a.active { color: var(--ink); font-weight: 600; border-bottom-color: var(--navy); }
+  .page-tabs a .num { opacity: 0.55; font-size: 10.5px; font-family: var(--mono); }
+  .page-tabs a.active .num { opacity: 1; color: var(--navy); }
+
+  main { position: relative; z-index: 1; }
+
+  /* HERO compact */
+  section.hero { padding: 80px 24px 32px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 700px) { section.hero { padding: 56px 20px 24px; } }
+  .hero-eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--navy); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 14px; font-weight: 500; }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+  .hero-h1 { font-family: var(--sans); font-size: clamp(40px, 6.4vw, 96px); font-weight: 700; letter-spacing: -0.032em; line-height: 0.98; margin: 0 auto 22px; max-width: 1100px; color: var(--ink); }
+  .hero-h1 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .hero-h1 .light { color: var(--ink-3); font-weight: 600; }
+  .hero-sub { font-family: var(--body); font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 640px; margin: 0 auto 36px; }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  .hero-sub em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+
+  /* FILTER */
+  .filter-bar { display: inline-flex; gap: 0; flex-wrap: wrap; margin: 0 auto 32px; border: 1px solid var(--ink); justify-content: center; }
+  .fb { padding: 10px 18px; border: 0; border-right: 1px solid var(--line-2); background: transparent; color: var(--ink-2); font-family: var(--sans); font-size: 12.5px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+  .fb:last-child { border-right: 0; }
+  .fb:hover { color: var(--ink); background: var(--paper-2); }
+  .fb.active { background: var(--ink); color: white; font-weight: 600; }
+  .fb .cnt { opacity: 0.55; font-size: 10px; font-family: var(--mono); }
+  .fb.active .cnt { opacity: 0.85; color: var(--gold); }
+  @media (max-width: 700px) { .filter-bar { display: flex; flex-wrap: wrap; border: 0; gap: 4px; } .fb { border: 1px solid var(--line-2); padding: 7px 12px; font-size: 11.5px; } .fb.active { border-color: var(--ink); } }
+
+  /* GRID */
+  section.s-gallery { padding: 24px 24px 80px; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-gallery { padding: 20px 20px 56px; } }
+  .pg-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  @media (max-width: 1100px) { .pg-grid { grid-template-columns: 1fr 1fr; gap: 20px; } }
+  @media (max-width: 700px) { .pg-grid { grid-template-columns: 1fr; gap: 16px; } }
+
+  .pg-card { background: var(--paper); border: 1px solid var(--line-2); overflow: hidden; cursor: pointer; transition: all 0.4s var(--ease-soft); position: relative; text-align: left; }
+  .pg-card:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(14,26,43,0.12); }
+
+  /* slide visual area (16:9) */
+  .pg-vis { aspect-ratio: 16/9; position: relative; overflow: hidden; padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; }
+  .pg-vis::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.5; pointer-events: none; }
+
+  .pg-vis .pv-top { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+  .pg-vis .pv-mark { font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: -0.005em; }
+  .pg-vis .pv-page { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; }
+  .pg-vis .pv-mid { position: relative; z-index: 2; }
+  .pg-vis .pv-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 10px; padding-left: 18px; position: relative; font-weight: 500; }
+  .pg-vis .pv-eyebrow::before { content: ''; position: absolute; left: 0; top: 50%; width: 12px; height: 1px; background: var(--gold); }
+  .pg-vis .pv-h { font-family: var(--sans); font-size: 22px; font-weight: 600; letter-spacing: -0.022em; line-height: 1.08; }
+  .pg-vis .pv-h em { font-family: var(--serif); font-style: italic; font-weight: 500; }
+  .pg-vis .pv-bot { display: flex; justify-content: space-between; align-items: end; position: relative; z-index: 2; }
+  .pg-vis .pv-meta { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; }
+
+  /* deck type styles */
+  /* IR (dark navy + gold) */
+  .pg-vis.ir { background: linear-gradient(135deg, #1B3B5F 0%, #0E1A2B 60%, #050A14 100%); }
+  .pg-vis.ir .pv-mark { color: white; }
+  .pg-vis.ir .pv-page { color: rgba(255,255,255,0.4); }
+  .pg-vis.ir .pv-eyebrow { color: var(--gold); }
+  .pg-vis.ir .pv-h { color: white; }
+  .pg-vis.ir .pv-h em { color: var(--gold); }
+  .pg-vis.ir .pv-meta { color: rgba(255,255,255,0.45); }
+
+  /* Corporate (cream paper) */
+  .pg-vis.corp { background: linear-gradient(135deg, #F8F4ED 0%, #ECE0C4 100%); }
+  .pg-vis.corp .pv-mark { color: #1A1408; }
+  .pg-vis.corp .pv-page { color: rgba(42,36,24,0.5); }
+  .pg-vis.corp .pv-eyebrow { color: #6A5238; }
+  .pg-vis.corp .pv-eyebrow::before { background: #6A5238; }
+  .pg-vis.corp .pv-h { color: #1A1408; }
+  .pg-vis.corp .pv-h em { color: #8A6A3A; }
+  .pg-vis.corp .pv-meta { color: rgba(42,36,24,0.5); }
+
+  /* Consulting (white) */
+  .pg-vis.cons { background: white; }
+  .pg-vis.cons .pv-mark { color: var(--ink); }
+  .pg-vis.cons .pv-page { color: var(--ink-3); }
+  .pg-vis.cons .pv-eyebrow { color: var(--navy); }
+  .pg-vis.cons .pv-h { color: var(--ink); }
+  .pg-vis.cons .pv-h em { color: var(--navy); }
+  .pg-vis.cons .pv-meta { color: var(--ink-3); }
+
+  /* Pitch (vivid dark with gold glow) */
+  .pg-vis.pitch { background: linear-gradient(135deg, #050A14 0%, #1B3B5F 50%, #050A14 100%); align-items: center; justify-content: center; text-align: center; }
+  .pg-vis.pitch::before { content: ''; position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; transform: translate(-50%, -50%); background: radial-gradient(ellipse 30% 50% at 50% 50%, rgba(201,169,97,0.22), transparent 60%); }
+  .pg-vis.pitch .pv-top, .pg-vis.pitch .pv-bot { display: none; }
+  .pg-vis.pitch .pv-mid { position: relative; z-index: 2; }
+  .pg-vis.pitch .pv-pn { font-family: var(--sans); font-size: 56px; font-weight: 800; color: var(--gold); letter-spacing: -0.035em; line-height: 1; text-shadow: 0 0 40px rgba(201,169,97,0.4); margin-bottom: 8px; }
+  .pg-vis.pitch .pv-pl { font-family: var(--body); font-size: 11px; color: rgba(255,255,255,0.85); line-height: 1.45; max-width: 240px; margin: 0 auto; }
+
+  /* Education (academic blue) */
+  .pg-vis.edu { background: linear-gradient(135deg, #1B3B5F 0%, #0E2240 100%); }
+  .pg-vis.edu .pv-mark { color: white; }
+  .pg-vis.edu .pv-page { color: rgba(255,255,255,0.4); }
+  .pg-vis.edu .pv-eyebrow { color: #A8C8E0; }
+  .pg-vis.edu .pv-eyebrow::before { background: #A8C8E0; }
+  .pg-vis.edu .pv-h { color: white; }
+  .pg-vis.edu .pv-h em { color: #A8C8E0; }
+  .pg-vis.edu .pv-meta { color: rgba(255,255,255,0.45); }
+
+  /* RFP (gov, formal) */
+  .pg-vis.rfp { background: linear-gradient(135deg, #F8F6F0 0%, #ECE5D2 100%); }
+  .pg-vis.rfp .pv-mark { color: #1A1408; }
+  .pg-vis.rfp .pv-page { color: rgba(42,36,24,0.5); }
+  .pg-vis.rfp .pv-eyebrow { color: #5A4A28; }
+  .pg-vis.rfp .pv-eyebrow::before { background: #5A4A28; }
+  .pg-vis.rfp .pv-h { color: #1A1408; }
+  .pg-vis.rfp .pv-h em { color: #B8862A; }
+  .pg-vis.rfp .pv-meta { color: rgba(42,36,24,0.5); }
+
+  /* Branding (warm dark) */
+  .pg-vis.brand { background: linear-gradient(135deg, #2A1A0A 0%, #1A0E04 100%); }
+  .pg-vis.brand .pv-mark { color: white; }
+  .pg-vis.brand .pv-page { color: rgba(255,255,255,0.4); }
+  .pg-vis.brand .pv-eyebrow { color: #FFB37C; }
+  .pg-vis.brand .pv-eyebrow::before { background: #FFB37C; }
+  .pg-vis.brand .pv-h { color: #FCECC8; }
+  .pg-vis.brand .pv-h em { color: #FFB37C; }
+  .pg-vis.brand .pv-meta { color: rgba(252,236,200,0.45); }
+
+  /* Conf (academic green-dark) */
+  .pg-vis.conf { background: linear-gradient(135deg, #1A2018 0%, #0A100A 100%); }
+  .pg-vis.conf .pv-mark { color: white; }
+  .pg-vis.conf .pv-page { color: rgba(255,255,255,0.4); }
+  .pg-vis.conf .pv-eyebrow { color: #A8C8A4; }
+  .pg-vis.conf .pv-eyebrow::before { background: #A8C8A4; }
+  .pg-vis.conf .pv-h { color: #ECEDE4; }
+  .pg-vis.conf .pv-h em { color: #A8C8A4; }
+  .pg-vis.conf .pv-meta { color: rgba(255,255,255,0.45); }
+
+  /* card body (description) */
+  .pg-body { padding: 18px 22px 22px; border-top: 1px solid var(--line); }
+  .pg-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-family: var(--mono); font-size: 10.5px; }
+  .pg-meta .cat { color: var(--navy); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+  .pg-meta .sep { color: var(--ink-faint); }
+  .pg-meta .ch { color: var(--ink-2); }
+  .pg-tt { font-family: var(--sans); font-size: 15px; font-weight: 600; line-height: 1.4; letter-spacing: -0.012em; margin-bottom: 14px; color: var(--ink); }
+  .pg-tt em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .pg-stats { display: flex; gap: 22px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .pg-stat .v { font-family: var(--sans); font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.025em; line-height: 1; }
+  .pg-stat .l { font-family: var(--mono); font-size: 9px; color: var(--ink-3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* CTA */
+  section.s-cta { padding: 80px 24px 64px; max-width: 1180px; margin: 0 auto; text-align: center; border-top: 1px solid var(--ink); }
+  @media (max-width: 700px) { section.s-cta { padding: 56px 20px 48px; } }
+  .s-cta h2 { font-family: var(--sans); font-size: clamp(32px, 4.8vw, 72px); font-weight: 700; letter-spacing: -0.03em; line-height: 0.98; margin-bottom: 20px; color: var(--ink); }
+  .s-cta h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-cta h2 .light { color: var(--ink-3); }
+  .s-cta p { font-family: var(--body); font-size: 15px; color: var(--ink-2); margin-bottom: 30px; }
+  .s-cta .actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  .btn-primary { padding: 14px 28px; background: var(--ink); color: white; border: 1px solid var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; letter-spacing: -0.005em; }
+  .btn-primary:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-2px); }
+  .btn-ghost { padding: 14px 28px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; letter-spacing: -0.005em; }
+  .btn-ghost:hover { background: var(--ink); color: white; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { padding: 50px 32px 28px; max-width: 1280px; margin: 0 auto; border-top: 2px solid var(--ink); }
+  @media (max-width: 700px) { footer { padding: 36px 20px 24px; } }
+  .ft-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ft-row a { color: var(--ink-3); text-decoration: none; transition: color 0.2s; }
+  .ft-row a:hover { color: var(--navy); }
+
+  .pg-card.hide { display: none; }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-l">
+    <span class="ix">VOL · 03</span>
+    <span>Portfolio · 156 decks</span>
+  </div>
+  <a class="nav-c" href="00b_main_v2_kpi_stacked.html">AIO <em>presentation</em><span class="sub">STUDIO</span></a>
+  <div class="nav-r">
+    <a class="txt" href="03_ppt_v2.html">← services</a>
+    <a class="btn" href="#">견적 문의</a>
+  </div>
+</nav>
+
+<div class="page-tabs">
+  <a href="03_ppt_v2.html"><span class="num">01</span> 서비스 · 가격</a>
+  <a href="03_ppt_portfolio.html" class="active"><span class="num">02</span> 포트폴리오</a>
+  <a href="03_ppt_resources.html"><span class="num">03</span> 꿀팁받기</a>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="hero-eyebrow">Portfolio · 156 decks</div>
+    <h1 class="hero-h1">실제 발표가 일어난<br/><em>156개</em>의 덱</h1>
+    <p class="hero-sub">투자 라운드 · 이사회 · 학회 · 강의에서 사용된 슬라이드만 모았습니다 <em>발표 종류별</em> 필터로 비슷한 사례를 찾아보세요</p>
+
+    <div class="filter-bar">
+      <button class="fb active" data-cat="all">전체 <span class="cnt">156</span></button>
+      <button class="fb" data-cat="ir">IR 덱 <span class="cnt">38</span></button>
+      <button class="fb" data-cat="proposal">사업 제안 <span class="cnt">29</span></button>
+      <button class="fb" data-cat="corp">회사 소개 <span class="cnt">22</span></button>
+      <button class="fb" data-cat="cons">컨설팅 <span class="cnt">18</span></button>
+      <button class="fb" data-cat="rfp">정부 RFP <span class="cnt">14</span></button>
+      <button class="fb" data-cat="conf">학회 <span class="cnt">12</span></button>
+      <button class="fb" data-cat="edu">교육 <span class="cnt">15</span></button>
+      <button class="fb" data-cat="brand">브랜딩 <span class="cnt">8</span></button>
+    </div>
+  </section>
+
+  <section class="s-gallery">
+    <div class="pg-grid">
+
+      <article class="pg-card" data-cat="ir">
+        <div class="pg-vis ir">
+          <div class="pv-top"><span class="pv-mark">■ ARC AI</span><span class="pv-page">001 / 028</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">Series A · 2026.Q2</div>
+            <div class="pv-h">한 줄로 정의한<br/>새로운 <em>AI 인프라</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">Pitch · Confidential</span><span class="pv-meta">arc-ai.io</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">IR 덱</span><span class="sep">·</span><span class="ch">시리즈 A</span></div>
+          <div class="pg-tt">ARC AI — Series A 28페이지 풀 덱 <em>$2M</em> 시드 통과</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">28p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">5d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">유치</div><div class="l">결과</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="corp">
+        <div class="pg-vis corp">
+          <div class="pv-top"><span class="pv-mark">NORTH&nbsp;CO.</span><span class="pv-page">2026 · 01</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">CORPORATE OVERVIEW</div>
+            <div class="pv-h">신뢰가 쌓이는<br/><em>시간의 산업</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">EST · 1998 — 2026</span><span class="pv-meta">Brand Book</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">회사 소개</span><span class="sep">·</span><span class="ch">제조업</span></div>
+          <div class="pg-tt">NORTH CO. — <em>28년 헤리티지</em> brochure</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">40p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">7d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">한·영</div><div class="l">언어</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="cons">
+        <div class="pg-vis cons">
+          <div class="pv-top"><span class="pv-mark">FRAMEWORK & PARTNERS</span><span class="pv-page">2026 · MAR</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">STRATEGIC REVIEW</div>
+            <div class="pv-h">시장 진입<br/><em>3가지 시나리오</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">Confidential · Internal</span><span class="pv-meta">F&P · 03</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">컨설팅</span><span class="sep">·</span><span class="ch">전략 보고서</span></div>
+          <div class="pg-tt">FRAMEWORK & PARTNERS — <em>진입 전략</em> 리뷰</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">52p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">7d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">MECE</div><div class="l">구조</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="ir">
+        <div class="pg-vis pitch">
+          <div class="pv-mid">
+            <div class="pv-pn">73%</div>
+            <div class="pv-pl">발표 직후 핵심 메시지를 잊는 의사결정자의 비율</div>
+          </div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">IR 덱</span><span class="sep">·</span><span class="ch">1분 피치</span></div>
+          <div class="pg-tt">VEILA — Demo Day <em>1분 피치</em> 덱 (우승)</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">10p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">2d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">우승</div><div class="l">결과</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="proposal">
+        <div class="pg-vis rfp">
+          <div class="pv-top"><span class="pv-mark">SaaS Co.</span><span class="pv-page">2026 · Q2</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">B2B SOLUTION PROPOSAL</div>
+            <div class="pv-h">엔터프라이즈에<br/><em>3배 생산성</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">Confidential</span><span class="pv-meta">25 / 25</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">사업 제안</span><span class="sep">·</span><span class="ch">B2B SaaS</span></div>
+          <div class="pg-tt">SaaS Co — <em>대기업 영업</em> 제안서 (계약)</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">25p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">4d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">계약</div><div class="l">결과</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="conf">
+        <div class="pg-vis conf">
+          <div class="pv-top"><span class="pv-mark">DataCon 2026</span><span class="pv-page">KEYNOTE</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">CONFERENCE KEYNOTE</div>
+            <div class="pv-h">데이터 시대,<br/><em>새로운 윤리</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">Seoul · 2026</span><span class="pv-meta">35 slides</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">학회</span><span class="sep">·</span><span class="ch">키노트</span></div>
+          <div class="pg-tt">DataCon 2026 — <em>메인 키노트</em> 영문 덱</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">35p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">6d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">영문</div><div class="l">언어</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="rfp">
+        <div class="pg-vis rfp">
+          <div class="pv-top"><span class="pv-mark">N-AI Project</span><span class="pv-page">RFP · 60p</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">Government R&D · 2026</div>
+            <div class="pv-h">국가 AI 인프라<br/><em>3년 로드맵</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">정부 R&D 입찰</span><span class="pv-meta">선정</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">정부 RFP</span><span class="sep">·</span><span class="ch">R&D 과제</span></div>
+          <div class="pg-tt">N-AI 프로젝트 — <em>정부 R&D</em> 입찰 제안 (선정)</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">60p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">10d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">선정</div><div class="l">결과</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="edu">
+        <div class="pg-vis edu">
+          <div class="pv-top"><span class="pv-mark">DATA SCHOOL</span><span class="pv-page">WEEK 01</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">Online Course · Week 1</div>
+            <div class="pv-h">데이터 분석,<br/><em>8주 완성</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">8주 커리큘럼</span><span class="pv-meta">160p</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">교육</span><span class="sep">·</span><span class="ch">온라인 강의</span></div>
+          <div class="pg-tt">DATA SCHOOL — 8주차 강의 슬라이드 <em>풀</em></div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">160p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">14d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">PDF</div><div class="l">동시</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="brand">
+        <div class="pg-vis brand">
+          <div class="pv-top"><span class="pv-mark">QUIET 6</span><span class="pv-page">2026 · 01</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">BRAND BOOK 2026</div>
+            <div class="pv-h">한 사람의<br/><em>목소리</em>로</div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">Brand Guide</span><span class="pv-meta">48 / 48</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">브랜딩</span><span class="sep">·</span><span class="ch">브랜드 가이드</span></div>
+          <div class="pg-tt">QUIET 6 — <em>브랜드 시스템</em> 가이드북</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">48p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">7d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">한·영</div><div class="l">언어</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="ir">
+        <div class="pg-vis ir">
+          <div class="pv-top"><span class="pv-mark">■ NUE</span><span class="pv-page">001 / 032</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">Series B · 2027</div>
+            <div class="pv-h">$ 30M ARR<br/><em>3년의 그림</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">Pitch · Confidential</span><span class="pv-meta">nue.io</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">IR 덱</span><span class="sep">·</span><span class="ch">시리즈 B</span></div>
+          <div class="pg-tt">NUE — <em>시리즈 B</em> 메인 덱 (영문)</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">32p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">6d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">영문</div><div class="l">언어</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="cons">
+        <div class="pg-vis cons">
+          <div class="pv-top"><span class="pv-mark">F & P</span><span class="pv-page">M&A · DD</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">M&A DUE DILIGENCE</div>
+            <div class="pv-h">인수 후<br/><em>3가지 결론</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">Confidential · Internal</span><span class="pv-meta">75 / 75</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">컨설팅</span><span class="sep">·</span><span class="ch">M&A 보고서</span></div>
+          <div class="pg-tt">F&P — <em>실사 보고서</em> 풀 패키지</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">75p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">10d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">기밀</div><div class="l">유형</div></div></div>
+        </div>
+      </article>
+
+      <article class="pg-card" data-cat="proposal">
+        <div class="pg-vis corp">
+          <div class="pv-top"><span class="pv-mark">NORTH × KAIST</span><span class="pv-page">MOU · 22p</span></div>
+          <div class="pv-mid">
+            <div class="pv-eyebrow">STRATEGIC PARTNERSHIP</div>
+            <div class="pv-h">함께 만드는<br/><em>다음 10년</em></div>
+          </div>
+          <div class="pv-bot"><span class="pv-meta">산학 MOU</span><span class="pv-meta">체결</span></div>
+        </div>
+        <div class="pg-body">
+          <div class="pg-meta"><span class="cat">사업 제안</span><span class="sep">·</span><span class="ch">파트너십</span></div>
+          <div class="pg-tt">NORTH × KAIST — <em>산학 MOU</em> 제안서 (체결)</div>
+          <div class="pg-stats"><div class="pg-stat"><div class="v">22p</div><div class="l">슬라이드</div></div><div class="pg-stat"><div class="v">4d</div><div class="l">납품</div></div><div class="pg-stat"><div class="v">체결</div><div class="l">결과</div></div></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="s-cta">
+    <h2><span class="light">deliver</span><br/><em>your_deck</em></h2>
+    <p>1시간 답변 · 24시간 견적 · 5일 결과물</p>
+    <div class="actions">
+      <a href="#" class="btn-primary">견적 시작 →</a>
+      <a href="03_ppt_v2.html" class="btn-ghost">← services</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ft-row">
+    <span>© 2026 AIO Studio · Volume 03 · Portfolio · 156 decks</span>
+    <span><a href="00b_main_v2_kpi_stacked.html">← Studio</a> &nbsp; <a href="03_ppt_v2.html">services →</a></span>
+  </div>
+</footer>
+
+<script>
+  if (window.gsap && gsap.registerPlugin && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.fb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fb').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      document.querySelectorAll('.pg-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) card.classList.remove('hide');
+        else card.classList.add('hide');
+      });
+    });
+  });
+
+  gsap.from('.pg-card', { opacity: 0, y: 24, duration: 0.6, stagger: 0.05, scrollTrigger: { trigger: '.pg-grid', start: 'top 88%' } });
+</script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import { getProjectsByPortfolioGroup, portfolioGroups } from "@/lib/portfolio-data";
-import type { PortfolioGroup } from "@/lib/portfolio-data";
+import { portfolioGroups, getProjectsByCategory } from "@/lib/portfolio";
+import type { PortfolioGroup } from "@/lib/portfolio";
 import { PortfolioCard } from "@/components/ui/portfolio-card";
 
 const VALID_CATEGORIES = portfolioGroups
@@ -47,7 +47,7 @@ export default async function CategoryPortfolioPage({
   }
 
   const group = category as PortfolioGroup;
-  const projects = getProjectsByPortfolioGroup(group);
+  const projects = await getProjectsByCategory(group);
   const label = categoryLabels[group][locale as "ko" | "en"];
 
   return (

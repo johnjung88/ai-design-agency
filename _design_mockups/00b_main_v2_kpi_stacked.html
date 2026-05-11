@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AIO Studio — 각 분야의 전문가가 만든다</title>
+<meta name="description" content="결과를 먼저 보고 맡기는 외주. 1시간 응대 · 5일 납품 · 1개월 무상 A/S">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Marcellus&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --paper: #F5F0E8;
+    --paper-2: #EDE6D7;
+    --paper-deep: #D9CDB1;
+    --ink: #1A1614;
+    --ink-2: rgba(26,22,20,0.65);
+    --ink-3: rgba(26,22,20,0.42);
+    --ink-faint: rgba(26,22,20,0.24);
+    --line: rgba(26,22,20,0.14);
+    --line-2: rgba(26,22,20,0.22);
+    --red: #C8472D;
+    --red-soft: rgba(200,71,45,0.10);
+
+    --serif: 'Cormorant Garamond', 'Pretendard Variable', serif;
+    --display: 'Marcellus', 'Cormorant Garamond', serif;
+    --body: 'Pretendard Variable', 'Cormorant Garamond', serif;
+    --mono: 'JetBrains Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; text-align: center; }
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  /* PAPER TEXTURE — very subtle */
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply; opacity: 0.32;
+  }
+  main, nav.masthead, footer.colophon { position: relative; z-index: 1; }
+
+  /* ============ MASTHEAD ============ */
+  nav.masthead { position: sticky; top: 0; z-index: 100; background: rgba(245,240,232,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--ink); padding: 14px 36px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+  @media (max-width: 800px) { nav.masthead { padding: 12px 20px; grid-template-columns: 1fr auto; } }
+  .mh-left { font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.16em; text-transform: uppercase; display: flex; align-items: center; gap: 14px; text-align: left; }
+  .mh-left .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: dotPulse 2.4s ease-in-out infinite; }
+  @keyframes dotPulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.3; transform:scale(0.7);} }
+  @media (max-width: 800px) { .mh-left { display: none; } }
+  .mh-logo { font-family: var(--display); font-size: 20px; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; display: inline-flex; align-items: center; gap: 6px; }
+  .mh-logo .dot { color: var(--red); }
+  .mh-logo .sub { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-2); margin-left: 4px; font-family: var(--mono); }
+  .mh-right { display: flex; justify-content: end; align-items: center; gap: 14px; }
+  .mh-right a.txt { color: var(--ink); text-decoration: none; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; }
+  .mh-right a.txt:hover { color: var(--ink-2); }
+  .mh-right a.btn { color: var(--paper); background: var(--ink); text-decoration: none; padding: 8px 16px; font-family: var(--body); font-size: 12px; font-weight: 500; letter-spacing: -0.01em; border: 1px solid var(--ink); transition: all 0.2s; }
+  .mh-right a.btn:hover { background: var(--red); border-color: var(--red); }
+
+  /* ORNAMENTS */
+  @keyframes ornSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* SECTION CONTAINERS — all centered */
+  main { position: relative; }
+
+  /* ============ COVER ============ */
+  section.cover { padding: 80px 36px 100px; max-width: 1500px; margin: 0 auto; position: relative; }
+  @media (max-width: 800px) { section.cover { padding: 56px 24px 72px; } }
+
+  .cover-meta { padding-bottom: 18px; border-bottom: 1px solid var(--ink); margin-bottom: 64px; font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.28em; text-transform: uppercase; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 18px; justify-content: center; }
+  .cover-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); }
+  .cover-meta .center { font-family: var(--display); letter-spacing: 0.4em; color: var(--ink); }
+  @media (max-width: 700px) { .cover-meta { font-size: 9.5px; gap: 12px; padding-bottom: 14px; margin-bottom: 40px; } }
+
+  .cover-orn { width: 64px; height: 64px; margin: 0 auto 36px; color: var(--red); animation: ornSpin 32s linear infinite; }
+  @media (max-width: 700px) { .cover-orn { width: 48px; height: 48px; margin-bottom: 24px; } }
+  .cover-orn svg { width: 100%; height: 100%; }
+
+  .cover-eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 32px; display: inline-flex; align-items: center; gap: 16px; }
+  .cover-eyebrow::before, .cover-eyebrow::after { content: ''; width: 32px; height: 1px; background: var(--ink-3); }
+  @media (max-width: 700px) { .cover-eyebrow { font-size: 10px; margin-bottom: 24px; } .cover-eyebrow::before, .cover-eyebrow::after { width: 22px; } }
+
+  .cover-title { font-family: var(--display); font-size: clamp(56px, 11vw, 168px); font-weight: 400; line-height: 0.96; letter-spacing: -0.012em; color: var(--ink); margin: 0 auto 36px; max-width: 1300px; position: relative; }
+  .cover-title .ln { display: block; overflow: hidden; }
+  .cover-title .ln-inner { display: block; }
+  .cover-title em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--red); font-weight: 500; letter-spacing: -0.02em; }
+  .cover-title .light { color: var(--ink-3); font-weight: 400; }
+  @media (max-width: 700px) { .cover-title { font-size: clamp(44px, 12vw, 80px); margin-bottom: 24px; } }
+
+  .cover-watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--display); font-size: clamp(280px, 45vw, 720px); color: var(--ink); opacity: 0.04; line-height: 0.8; pointer-events: none; z-index: -1; user-select: none; font-style: italic; }
+  @media (max-width: 700px) { .cover-watermark { font-size: clamp(240px, 80vw, 400px); } }
+
+  .cover-lede { font-family: var(--serif); font-size: clamp(19px, 1.7vw, 25px); line-height: 1.6; color: var(--ink-2); max-width: 760px; margin: 0 auto 56px; font-weight: 400; }
+  .cover-lede strong { color: var(--ink); font-weight: 500; }
+  .cover-lede em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+  @media (max-width: 700px) { .cover-lede { font-size: 17px; margin-bottom: 36px; } }
+
+  /* ============ HERO FEATURED GRAPH ============ */
+  .cover-hero-img { width: 100%; max-width: 1100px; margin: 0 auto 72px; aspect-ratio: 21/9; border-radius: 4px; position: relative; overflow: hidden; box-shadow: 0 30px 80px rgba(26,22,20,0.22), 0 0 0 1px var(--line); background: radial-gradient(ellipse 80% 90% at 50% 60%, #3A2818 0%, #1F1610 60%, #100A06 100%); }
+  .cover-hero-img::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(245,240,232,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,240,232,0.04) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.45; pointer-events: none; }
+
+  /* Top label + live badge */
+  .hi-label-top { position: absolute; top: 28px; left: 36px; right: 36px; display: flex; justify-content: space-between; align-items: center; z-index: 3; }
+  .hi-eyebrow { font-family: var(--mono); font-size: 11px; color: rgba(245,240,232,0.6); letter-spacing: 0.24em; text-transform: uppercase; }
+  .hi-live { padding: 4px 12px; background: var(--red); color: var(--paper); font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 7px; border-radius: 2px; }
+  .hi-live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--paper); animation: dotPulse 2.4s ease-in-out infinite; }
+
+  /* Big curve graph */
+  .hi-curve { position: absolute; left: 0; right: 0; top: 70px; bottom: 110px; }
+  .hi-curve svg { width: 100%; height: 100%; display: block; }
+  #hiLine { fill: none; stroke: #E8B89A; stroke-width: 2.4; stroke-dasharray: 2400; stroke-dashoffset: 2400; }
+  #hiLine.in-view { animation: hiCurveDraw 3s var(--ease-out) forwards; }
+  @keyframes hiCurveDraw { to { stroke-dashoffset: 0; } }
+  #hiArea { opacity: 0; transition: opacity 1.2s 2s; }
+  #hiArea.in-view { opacity: 1; }
+  .hi-pulse { transform-origin: center; transform-box: fill-box; animation: pulseRing 2.4s ease-out infinite; }
+
+  /* Bottom stats overlay */
+  .hi-stats { position: absolute; bottom: 28px; left: 36px; right: 36px; display: flex; justify-content: space-between; align-items: end; z-index: 3; gap: 20px; }
+  .hi-stat { text-align: left; }
+  .hi-stat:last-child { text-align: right; }
+  .hi-stat-num { font-family: var(--display); font-size: clamp(40px, 4.8vw, 72px); color: var(--paper); line-height: 0.95; letter-spacing: -0.02em; font-weight: 400; }
+  .hi-stat-num em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #E8B89A; font-weight: 500; }
+  .hi-stat-cap { font-family: var(--mono); font-size: 10px; color: rgba(245,240,232,0.55); letter-spacing: 0.22em; text-transform: uppercase; margin-top: 8px; }
+
+  @media (max-width: 700px) {
+    .cover-hero-img { aspect-ratio: 4/3; margin-bottom: 48px; }
+    .hi-label-top { top: 18px; left: 20px; right: 20px; }
+    .hi-eyebrow { font-size: 9.5px; }
+    .hi-live { font-size: 8px; padding: 3px 9px; }
+    .hi-curve { top: 56px; bottom: 90px; }
+    .hi-stats { left: 20px; right: 20px; bottom: 22px; gap: 14px; }
+    .hi-stat-num { font-size: 32px; }
+    .hi-stat-cap { font-size: 8.5px; margin-top: 5px; }
+  }
+
+  /* VITAL STATISTICS — centered all */
+  .vital { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  @media (max-width: 900px) { .vital { grid-template-columns: 1fr; } .vital > div { border-right: 0 !important; border-bottom: 1px solid var(--line-2); } .vital > div:last-child { border-bottom: 0; } }
+
+  .vital-graph { padding: 32px 28px; border-right: 1px solid var(--line-2); display: flex; flex-direction: column; gap: 20px; align-items: center; }
+  .vital-graph .gh-label { font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); letter-spacing: 0.22em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; }
+  .vital-graph .gh-label::after { content: 'live'; padding: 2px 8px; background: var(--red); color: var(--paper); border-radius: 2px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.16em; }
+  .vital-graph .curve-svg { width: 100%; max-width: 360px; height: 140px; }
+  .vital-graph .curve-line { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 1500; stroke-dashoffset: 1500; }
+  .vital-graph .curve-line.in-view { animation: curveDraw 2.5s var(--ease-out) forwards; }
+  @keyframes curveDraw { to { stroke-dashoffset: 0; } }
+  .vital-graph .curve-area { fill: var(--red-soft); opacity: 0; transition: opacity 1s 1.5s; }
+  .vital-graph .curve-area.in-view { opacity: 1; }
+  .vital-graph .axis-line { stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }
+  .vital-graph .axis-month { fill: var(--ink-faint); font-family: var(--mono); font-size: 9.5px; }
+  .vital-graph .axis-month.now { fill: var(--red); }
+  .vital-graph .now-marker { fill: var(--red); }
+  .vital-graph .now-pulse { fill: var(--red); opacity: 0.32; transform-origin: center; transform-box: fill-box; animation: pulseRing 2.4s ease-out infinite; }
+  @keyframes pulseRing { 0%{transform:scale(0.8); opacity:0.4;} 100%{transform:scale(2.5); opacity:0;} }
+
+  .vital-stat { padding: 32px 28px; border-right: 1px solid var(--line-2); display: flex; flex-direction: column; justify-content: space-between; gap: 16px; align-items: center; }
+  .vital-stat:last-child { border-right: 0; }
+  .vital-stat .vs-label { font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); letter-spacing: 0.22em; text-transform: uppercase; }
+  .vital-stat .vs-num { font-family: var(--display); font-size: clamp(56px, 6vw, 92px); line-height: 0.92; letter-spacing: -0.025em; color: var(--ink); font-weight: 400; }
+  .vital-stat .vs-num em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+  .vital-stat .vs-cap { font-family: var(--serif); font-size: 14px; color: var(--ink-2); line-height: 1.55; max-width: 280px; }
+  .vital-stat .vs-cap strong { color: var(--ink); font-weight: 500; }
+
+  /* ============ HEADLINE BANNER ============ */
+  section.banner { background: var(--ink); color: var(--paper); padding: 16px 0; overflow: hidden; }
+  .banner-track { display: inline-flex; gap: 56px; white-space: nowrap; animation: bannerScroll 42s linear infinite; padding-left: 56px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+  .banner-track span { display: inline-flex; align-items: center; gap: 32px; }
+  .banner-track .star { color: var(--red); display: inline-block; font-family: var(--display); font-size: 14px; }
+  .banner-track .em { color: var(--paper-2); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 14px; text-transform: none; letter-spacing: 0.02em; }
+  @keyframes bannerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ============ EDITOR'S NOTE — 2x2 grid ============ */
+  section.editors { padding: 120px 36px; max-width: 1200px; margin: 0 auto; position: relative; }
+  @media (max-width: 800px) { section.editors { padding: 80px 24px; } }
+  .ed-eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 14px; }
+  .ed-eyebrow::before, .ed-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--ink-3); }
+  .ed-h2 { font-family: var(--display); font-size: clamp(48px, 6vw, 96px); line-height: 1.0; letter-spacing: -0.014em; color: var(--ink); font-weight: 400; margin: 0 auto 28px; max-width: 1100px; }
+  .ed-h2 em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+  .ed-lede { font-family: var(--serif); font-size: 19px; line-height: 1.6; color: var(--ink-2); font-weight: 400; max-width: 600px; margin: 0 auto 80px; }
+  .ed-lede strong { color: var(--ink); font-weight: 500; }
+  @media (max-width: 800px) { .ed-lede { margin-bottom: 56px; font-size: 17px; } }
+
+  /* 항상 2x2 grid (모바일에서도 2열) */
+  .ed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--ink); max-width: 880px; margin: 0 auto; }
+  .ed-card { padding: 40px 28px; border-right: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); transition: background 0.4s; cursor: default; display: flex; flex-direction: column; align-items: center; }
+  .ed-card:nth-child(2n) { border-right: 0; }
+  .ed-card:nth-child(n+3) { border-bottom: 0; }
+  @media (max-width: 540px) {
+    .ed-card { padding: 22px 12px; }
+    .ed-card .ed-illust { width: 48px; height: 48px; margin-bottom: 12px; }
+    .ed-card .ed-illust .icon { inset: 12px; }
+    .ed-card .ed-illust .number { width: 18px; height: 18px; font-size: 9.5px; top: -3px; right: -3px; }
+    .ed-num-label { font-size: 9px; margin-bottom: 8px; letter-spacing: 0.18em; }
+    .ed-card h3 { font-size: 19px; margin-bottom: 8px; }
+    .ed-card p { font-size: 12.5px; margin-bottom: 12px; line-height: 1.5; }
+    .ed-metric { font-size: 9px; padding-top: 10px; letter-spacing: 0.14em; }
+  }
+  .ed-card:hover { background: var(--paper-2); }
+  .ed-card .ed-illust { width: 64px; height: 64px; margin-bottom: 18px; position: relative; }
+  .ed-card .ed-illust .ring { position: absolute; inset: 0; border: 1px solid var(--ink); border-radius: 50%; transition: transform 0.5s var(--ease-soft); }
+  .ed-card:hover .ed-illust .ring { transform: rotate(15deg) scale(1.05); }
+  .ed-card .ed-illust .icon { position: absolute; inset: 16px; color: var(--ink); }
+  .ed-card .ed-illust .icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ed-card .ed-illust .number { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: var(--display); font-size: 11px; display: grid; place-items: center; line-height: 1; padding-top: 1px; }
+  .ed-num-label { font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 12px; }
+  .ed-card h3 { font-family: var(--display); font-size: 26px; line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); font-weight: 400; margin-bottom: 12px; }
+  .ed-card h3 em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+  .ed-card p { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--ink-2); font-weight: 400; margin-bottom: 18px; max-width: 280px; }
+  .ed-card p strong { color: var(--ink); font-weight: 500; }
+  .ed-metric { font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); letter-spacing: 0.18em; text-transform: uppercase; padding-top: 14px; border-top: 1px solid var(--line); display: inline-flex; align-items: center; gap: 8px; }
+  .ed-metric::before { content: '→'; }
+
+  /* ============ INDEX / CATEGORIES — clean magazine list ============ */
+  section.toc { padding: 120px 36px; max-width: 1200px; margin: 0 auto; position: relative; }
+  @media (max-width: 800px) { section.toc { padding: 80px 24px; } }
+  .toc-h2 { font-family: var(--display); font-size: clamp(48px, 6vw, 96px); line-height: 1.0; letter-spacing: -0.014em; color: var(--ink); font-weight: 400; margin: 0 auto 28px; max-width: 1100px; }
+  .toc-h2 em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+  .toc-lede { font-family: var(--serif); font-size: 19px; line-height: 1.6; color: var(--ink-2); max-width: 600px; margin: 0 auto 64px; }
+  .toc-lede strong { color: var(--ink); font-weight: 500; }
+  @media (max-width: 800px) { .toc-lede { margin-bottom: 40px; font-size: 17px; } }
+
+  .toc-list { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .toc-row { display: grid; grid-template-columns: 60px 1fr 60px; gap: 32px; align-items: center; padding: 28px 32px; border-bottom: 1px solid var(--line-2); transition: all 0.4s var(--ease-soft); cursor: pointer; text-decoration: none; color: var(--ink); }
+  .toc-row:last-child { border-bottom: 0; }
+  @media (max-width: 700px) { .toc-row { grid-template-columns: 36px 1fr 36px; gap: 18px; padding: 22px 18px; } }
+  .toc-row:hover { background: var(--paper-2); }
+  .toc-row.soon { color: var(--ink-3); cursor: default; }
+  .toc-row.soon:hover { background: transparent; }
+
+  .toc-num { font-family: var(--mono); font-size: 13px; color: var(--ink-2); letter-spacing: 0.06em; text-align: left; }
+  .toc-row.soon .toc-num { color: var(--ink-faint); }
+
+  .toc-content { text-align: center; }
+  .toc-name { font-family: var(--display); font-size: clamp(26px, 3.2vw, 40px); line-height: 1; letter-spacing: -0.01em; font-weight: 400; display: inline-flex; align-items: baseline; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .toc-name em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink-2); font-weight: 500; font-size: 0.55em; letter-spacing: 0; }
+  .toc-row.soon .toc-name { color: var(--ink-3); }
+  .toc-row.soon .toc-name em { color: var(--ink-faint); }
+  .toc-tagline { font-family: var(--serif); font-size: 15px; line-height: 1.45; color: var(--ink-2); font-style: italic; font-weight: 400; margin-top: 8px; }
+  .toc-row.soon .toc-tagline { color: var(--ink-faint); }
+  .toc-meta { font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 12px; display: inline-flex; gap: 16px; align-items: center; }
+  .toc-meta .price { font-family: var(--display); font-size: 16px; color: var(--ink); letter-spacing: 0; text-transform: none; }
+  .toc-meta .sep { color: var(--ink-faint); }
+  .toc-row.soon .toc-meta { color: var(--ink-faint); }
+
+  .toc-arrow { font-family: var(--display); font-size: 26px; color: var(--ink-2); line-height: 1; transition: transform 0.4s var(--ease-soft), color 0.4s; text-align: right; }
+  .toc-row:hover .toc-arrow { transform: translateX(8px); color: var(--ink); }
+  .toc-row.soon .toc-arrow { color: var(--ink-faint); }
+
+  /* ============ VOICES ============ */
+  section.voices { padding: 120px 36px; max-width: 1200px; margin: 0 auto; position: relative; }
+  @media (max-width: 800px) { section.voices { padding: 80px 24px; } }
+  .vc-eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 24px; display: inline-flex; align-items: center; gap: 14px; }
+  .vc-eyebrow::before, .vc-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--ink-3); }
+  .vc-h2 { font-family: var(--display); font-size: clamp(48px, 6vw, 96px); line-height: 1.0; letter-spacing: -0.014em; color: var(--ink); font-weight: 400; margin: 0 auto 56px; }
+  .vc-h2 em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+
+  .vc-stage { position: relative; min-height: 360px; max-width: 880px; margin: 0 auto; padding: 60px 0; }
+  .vc-slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.6s var(--ease-out); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
+  .vc-slide.active { opacity: 1; pointer-events: auto; }
+  .vc-quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 132px; color: var(--ink-faint); line-height: 0.6; font-weight: 400; user-select: none; }
+  @media (max-width: 700px) { .vc-quote-mark { font-size: 96px; } }
+  .vc-quote { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 38px); line-height: 1.45; letter-spacing: -0.01em; font-weight: 400; color: var(--ink); max-width: 720px; margin: 0 auto; }
+  .vc-quote em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+  .vc-attr { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .vc-attr .vc-name { font-family: var(--display); font-size: 18px; color: var(--ink); letter-spacing: 0; }
+  .vc-attr .vc-divider { width: 1px; height: 18px; background: var(--line-2); }
+  .vc-attr .vc-role { font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.14em; text-transform: uppercase; }
+  .vc-attr .vc-stat { font-family: var(--display); font-size: 22px; color: var(--ink); letter-spacing: -0.01em; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+  .vc-attr .vc-stat-cap { font-family: var(--mono); font-size: 10.5px; color: var(--ink-2); letter-spacing: 0.14em; text-transform: uppercase; }
+
+  .vc-nav { display: inline-flex; gap: 10px; margin-top: 32px; align-items: center; padding: 12px 18px; border: 1px solid var(--line-2); border-radius: 100px; background: var(--paper-2); }
+  .vc-dot { width: 22px; height: 1.5px; background: var(--ink-faint); border: 0; cursor: pointer; padding: 0; transition: all 0.3s; }
+  .vc-dot.active { background: var(--ink); }
+  .vc-counter { margin-left: 12px; padding-left: 14px; border-left: 1px solid var(--line-2); font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.16em; }
+
+  /* ============ EDITORIAL NOTE ============ */
+  section.note { padding: 140px 36px; max-width: 1500px; margin: 0 auto; border-top: 1px solid var(--ink); position: relative; }
+  @media (max-width: 800px) { section.note { padding: 96px 24px; } }
+  .note-meta { padding-bottom: 18px; border-bottom: 1px solid var(--line-2); margin-bottom: 60px; font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.28em; text-transform: uppercase; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 18px; justify-content: center; }
+  .note-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); }
+  .note-meta .center { font-family: var(--display); letter-spacing: 0.4em; text-transform: uppercase; color: var(--ink); }
+  @media (max-width: 700px) { .note-meta { font-size: 9.5px; gap: 12px; } }
+
+  .note-orn { width: 56px; height: 56px; margin: 0 auto 36px; color: var(--red); animation: ornSpin 28s linear infinite reverse; }
+  .note-orn svg { width: 100%; height: 100%; }
+
+  .note-h { font-family: var(--display); font-size: clamp(48px, 8vw, 144px); line-height: 0.96; letter-spacing: -0.018em; color: var(--ink); font-weight: 400; margin: 0 auto 48px; max-width: 1200px; }
+  .note-h em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--red); font-weight: 500; }
+  .note-h .light { color: var(--ink-3); }
+  .note-body { max-width: 720px; margin: 0 auto; }
+  .note-body p { font-family: var(--serif); font-size: 19px; line-height: 1.7; color: var(--ink-2); font-weight: 400; margin-bottom: 18px; }
+  .note-body p strong { color: var(--ink); font-weight: 500; }
+  .note-body p em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ink); font-weight: 500; }
+  .note-cta { margin-top: 64px; display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary { padding: 16px 32px; background: var(--ink); color: var(--paper); font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: -0.01em; text-decoration: none; border: 1px solid var(--ink); transition: all 0.25s; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+  .btn-primary:hover { background: var(--red); border-color: var(--red); transform: translateY(-2px); }
+  .btn-ghost { padding: 16px 32px; background: transparent; color: var(--ink); font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: -0.01em; text-decoration: none; border: 1px solid var(--ink); transition: all 0.25s; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+
+  /* ============ COLOPHON ============ */
+  footer.colophon { padding: 80px 36px 40px; max-width: 1500px; margin: 0 auto; border-top: 1px solid var(--ink); }
+  @media (max-width: 800px) { footer.colophon { padding: 56px 24px 32px; } }
+  .col-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; text-align: left; }
+  @media (max-width: 800px) { .col-grid { grid-template-columns: 1fr 1fr; gap: 32px; text-align: center; } }
+  @media (max-width: 500px) { .col-grid { grid-template-columns: 1fr; } }
+  .col-mast { font-family: var(--display); font-size: 32px; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 14px; display: inline-flex; align-items: center; gap: 6px; }
+  .col-mast .dot { color: var(--red); }
+  .col-tag { font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--ink-2); font-style: italic; max-width: 360px; }
+  .col-block h4 { font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+  .col-block ul { list-style: none; }
+  .col-block li { font-family: var(--body); font-size: 14px; color: var(--ink); padding: 5px 0; }
+  .col-block a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+  .col-block a:hover { color: var(--ink-2); text-decoration: underline; text-underline-offset: 4px; }
+  .col-bottom { padding-top: 28px; border-top: 1px solid var(--line-2); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<nav class="masthead">
+  <div class="mh-left">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span>Vol 2026 · No 5 · May</span>
+  </div>
+  <a class="mh-logo" href="00b_main_v2_kpi_stacked.html"><span>AIO</span><span class="dot">.</span><span class="sub">STUDIO</span></a>
+  <div class="mh-right">
+    <a class="txt" href="#toc">Index</a>
+    <a class="txt" href="#editors">About</a>
+    <a class="btn" href="#">견적 문의</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover-meta">
+      <span>Issue 2026 · May</span>
+      <span class="dot"></span>
+      <span class="center">A&nbsp;·&nbsp;I&nbsp;·&nbsp;O &nbsp;&nbsp; S T U D I O</span>
+      <span class="dot"></span>
+      <span>est 2024 · Korea</span>
+    </div>
+
+    <div class="cover-watermark" aria-hidden="true">A</div>
+
+    <div class="cover-orn" aria-hidden="true">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="currentColor">
+          <path d="M50 0 L54 46 L100 50 L54 54 L50 100 L46 54 L0 50 L46 46 Z" opacity="0.85"/>
+          <circle cx="50" cy="50" r="3"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="cover-eyebrow">Volume One — The Studio</div>
+
+    <h1 class="cover-title">
+      <span class="ln"><span class="ln-inner light">각 분야의</span></span>
+      <span class="ln"><span class="ln-inner"><em>전문가</em>가 만든다</span></span>
+    </h1>
+
+    <p class="cover-lede">
+      AIO는 <strong>분야별 전문가가 모여 협업하는</strong> 외주 스튜디오입니다<br/>
+      웹 · 상세페이지 · PPT — 각자 다른 손이, 같은 약속으로 만듭니다<br/>
+      <em>1시간 응답, 5일 납품, 1개월 무상 A/S</em>
+    </p>
+
+    <!-- Hero featured graph -->
+    <div class="cover-hero-img">
+      <!-- Top: eyebrow + live badge -->
+      <div class="hi-label-top">
+        <span class="hi-eyebrow">— Vital Sign · 누적 작업 16개월</span>
+        <span class="hi-live">Live</span>
+      </div>
+
+      <!-- Big curve graph -->
+      <div class="hi-curve">
+        <svg viewBox="0 0 1200 400" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="hi-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(232,184,154,0.5)"/>
+              <stop offset="100%" stop-color="rgba(232,184,154,0)"/>
+            </linearGradient>
+          </defs>
+          <!-- Grid lines -->
+          <line x1="0" y1="80" x2="1200" y2="80" stroke="rgba(245,240,232,0.08)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="160" x2="1200" y2="160" stroke="rgba(245,240,232,0.08)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="240" x2="1200" y2="240" stroke="rgba(245,240,232,0.08)" stroke-dasharray="2 5"/>
+          <line x1="0" y1="320" x2="1200" y2="320" stroke="rgba(245,240,232,0.08)" stroke-dasharray="2 5"/>
+          <!-- Curve area (gradient fill) -->
+          <path id="hiArea" d="M 0 360 C 100 340, 200 310, 350 270 C 500 220, 650 160, 850 100 C 1000 50, 1100 25, 1200 12 L 1200 400 L 0 400 Z" fill="url(#hi-grad)"/>
+          <!-- Curve line -->
+          <path id="hiLine" d="M 0 360 C 100 340, 200 310, 350 270 C 500 220, 650 160, 850 100 C 1000 50, 1100 25, 1200 12"/>
+          <!-- Now marker pulse -->
+          <circle cx="1196" cy="14" r="14" fill="#C8472D" opacity="0.32" class="hi-pulse"/>
+          <circle cx="1196" cy="14" r="6" fill="#C8472D"/>
+          <!-- Month labels -->
+          <text x="14" y="392" fill="rgba(245,240,232,0.45)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">JAN 25</text>
+          <text x="425" y="392" fill="rgba(245,240,232,0.45)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">SEP 25</text>
+          <text x="855" y="392" fill="rgba(245,240,232,0.45)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">JAN 26</text>
+          <text x="1085" y="392" fill="#E8B89A" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">MAY 26 ●</text>
+        </svg>
+      </div>
+
+      <!-- Bottom stats overlay -->
+      <div class="hi-stats">
+        <div class="hi-stat">
+          <div class="hi-stat-num"><em>142</em></div>
+          <div class="hi-stat-cap">의뢰 고객</div>
+        </div>
+        <div class="hi-stat">
+          <div class="hi-stat-num">98%</div>
+          <div class="hi-stat-cap">재의뢰율</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vital statistics -->
+    <div class="vital">
+      <div class="vital-graph">
+        <div class="gh-label">— 누적 작업 16개월</div>
+        <svg class="curve-svg" viewBox="0 0 600 140" preserveAspectRatio="none">
+          <line class="axis-line" x1="0" y1="30" x2="600" y2="30"/>
+          <line class="axis-line" x1="0" y1="70" x2="600" y2="70"/>
+          <line class="axis-line" x1="0" y1="110" x2="600" y2="110"/>
+          <path class="curve-area" id="cArea" d="M 0 124 C 60 116, 120 108, 200 92 C 280 72, 340 52, 420 30 C 480 14, 540 8, 600 4 L 600 140 L 0 140 Z"/>
+          <path class="curve-line" id="cLine" d="M 0 124 C 60 116, 120 108, 200 92 C 280 72, 340 52, 420 30 C 480 14, 540 8, 600 4"/>
+          <circle class="now-pulse" cx="600" cy="4" r="6"/>
+          <circle class="now-marker" cx="600" cy="4" r="4"/>
+        </svg>
+      </div>
+
+      <div class="vital-stat">
+        <span class="vs-label">— 의뢰 고객</span>
+        <div class="vs-num" id="clientsNum">0</div>
+        <div class="vs-cap">첫 의뢰 142명 중 <strong>139명이 다시 돌아왔습니다</strong></div>
+      </div>
+
+      <div class="vital-stat">
+        <span class="vs-label">— 응답 · 납품 평균</span>
+        <div class="vs-num"><em>1h</em> · 5d</div>
+        <div class="vs-cap">평균 응답 23분, 평균 납기 4.6일</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEADLINE BANNER -->
+  <section class="banner" aria-hidden="true">
+    <div class="banner-track">
+      <span>결과를 먼저 <span class="em">보고</span> 맡기는 외주 <span class="star">✦</span> 1시간 응답 <span class="star">✦</span> 5일 납품 <span class="star">✦</span> 1개월 무상 A/S <span class="star">✦</span> 의뢰인 평점 <span class="em">4.9</span> <span class="star">✦</span> 각 분야 전문가가 직접 <span class="star">✦</span></span>
+      <span>결과를 먼저 <span class="em">보고</span> 맡기는 외주 <span class="star">✦</span> 1시간 응답 <span class="star">✦</span> 5일 납품 <span class="star">✦</span> 1개월 무상 A/S <span class="star">✦</span> 의뢰인 평점 <span class="em">4.9</span> <span class="star">✦</span> 각 분야 전문가가 직접 <span class="star">✦</span></span>
+    </div>
+  </section>
+
+  <!-- EDITOR'S NOTE — 2x2 grid -->
+  <section class="editors" id="editors">
+    <div class="ed-eyebrow">Editor's Note · 04 Pillars</div>
+    <h2 class="ed-h2">의뢰 전 가장<br/>궁금한 <em>네 가지</em></h2>
+    <p class="ed-lede">속도 · 결과물 · 완성도 · 유지보수<br/>외주 결정의 네 축에서, <strong>평균 이상의 답</strong>을 드립니다</p>
+
+    <div class="ed-grid">
+      <div class="ed-card">
+        <div class="ed-illust">
+          <div class="ring"></div>
+          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="number">1</div>
+        </div>
+        <div class="ed-num-label">No 01 · Speed</div>
+        <h3>빠른 <em>응대</em></h3>
+        <p><strong>1시간</strong> 안에 답하고, 24시간 안에 견적을 보냅니다 의뢰인이 다음 일을 바로 시작할 수 있도록</p>
+        <span class="ed-metric">평균 응답 23분</span>
+      </div>
+
+      <div class="ed-card">
+        <div class="ed-illust">
+          <div class="ring"></div>
+          <div class="icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="number">2</div>
+        </div>
+        <div class="ed-num-label">No 02 · Output</div>
+        <h3>빠른 <em>결과물</em></h3>
+        <p><strong>5일</strong> 안에 손에 쥐어드리고, 매일 진행 상황을 공유합니다 받기까지의 기다림을 줄입니다</p>
+        <span class="ed-metric">평균 납기 4.6일</span>
+      </div>
+
+      <div class="ed-card">
+        <div class="ed-illust">
+          <div class="ring"></div>
+          <div class="icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="number">3</div>
+        </div>
+        <div class="ed-num-label">No 03 · Quality</div>
+        <h3>높은 <em>완성도</em></h3>
+        <p>운영 중인 사이트가 곧 우리의 <strong>결과물</strong>입니다 데모가 아닌 실제 결과를 보고 결정하세요</p>
+        <span class="ed-metric">만족도 4.9 / 5</span>
+      </div>
+
+      <div class="ed-card">
+        <div class="ed-illust">
+          <div class="ring"></div>
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="number">4</div>
+        </div>
+        <div class="ed-num-label">No 04 · Care</div>
+        <h3>꾸준한 <em>유지보수</em></h3>
+        <p><strong>1개월</strong> 무상 A/S 텔레그램으로 언제든 납품이 끝이 아니라, 운영의 시작입니다</p>
+        <span class="ed-metric">재의뢰율 98%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDEX / DISCIPLINES -->
+  <section class="toc" id="toc">
+    <div class="ed-eyebrow">Index · 07 Disciplines</div>
+    <h2 class="toc-h2">일곱 분야의<br/><em>전문가들</em></h2>
+    <p class="toc-lede">지금 의뢰 가능한 <strong>3분야</strong>와 곧 합류할 <strong>4분야</strong><br/>각 분야 페이지에서 그 분야 전문가가 직접 인사드립니다</p>
+
+    <div class="toc-list">
+      <a class="toc-row" href="01_web_dev_v2.html">
+        <span class="toc-num">01</span>
+        <div class="toc-content">
+          <div class="toc-name">웹 개발 <em>web development</em></div>
+          <div class="toc-tagline">5일이면 운영 가능한 사이트로</div>
+          <div class="toc-meta"><span class="price">₩9.9만~</span><span class="sep">·</span><span>1–5 days</span></div>
+        </div>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row" href="02_detail_page_v2.html">
+        <span class="toc-num">02</span>
+        <div class="toc-content">
+          <div class="toc-name">상세페이지 <em>detail page</em></div>
+          <div class="toc-tagline">스크롤 한 번에, 결제 버튼까지</div>
+          <div class="toc-meta"><span class="price">₩4.9만~</span><span class="sep">·</span><span>1–3 days</span></div>
+        </div>
+        <span class="toc-arrow">→</span>
+      </a>
+      <a class="toc-row" href="03_ppt_v2.html">
+        <span class="toc-num">03</span>
+        <div class="toc-content">
+          <div class="toc-name">PPT 디자인 <em>presentation</em></div>
+          <div class="toc-tagline">한 장이 결정짓는 발표</div>
+          <div class="toc-meta"><span class="price">₩4만~</span><span class="sep">·</span><span>1–3 days</span></div>
+        </div>
+        <span class="toc-arrow">→</span>
+      </a>
+      <div class="toc-row soon">
+        <span class="toc-num">04</span>
+        <div class="toc-content">
+          <div class="toc-name">자동화 <em>automation</em></div>
+          <div class="toc-tagline">반복 업무는 코드에게 맡기는 일</div>
+          <div class="toc-meta"><span>Coming soon</span></div>
+        </div>
+        <span class="toc-arrow">·</span>
+      </div>
+      <div class="toc-row soon">
+        <span class="toc-num">05</span>
+        <div class="toc-content">
+          <div class="toc-name">앱 개발 <em>app development</em></div>
+          <div class="toc-tagline">손 안에 들어가는 서비스로</div>
+          <div class="toc-meta"><span>Coming soon</span></div>
+        </div>
+        <span class="toc-arrow">·</span>
+      </div>
+      <div class="toc-row soon">
+        <span class="toc-num">06</span>
+        <div class="toc-content">
+          <div class="toc-name">영상 <em>video</em></div>
+          <div class="toc-tagline">스크롤을 멈추는 한 컷</div>
+          <div class="toc-meta"><span>Coming soon</span></div>
+        </div>
+        <span class="toc-arrow">·</span>
+      </div>
+      <div class="toc-row soon">
+        <span class="toc-num">07</span>
+        <div class="toc-content">
+          <div class="toc-name">마케팅 <em>marketing</em></div>
+          <div class="toc-tagline">고객을 부르는 한 줄</div>
+          <div class="toc-meta"><span>Coming soon</span></div>
+        </div>
+        <span class="toc-arrow">·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section class="voices">
+    <div class="vc-eyebrow">Voices from the Field</div>
+    <h2 class="vc-h2">의뢰인의 <em>편지</em></h2>
+
+    <div class="vc-stage" id="vcStage">
+      <div class="vc-slide active">
+        <div class="vc-quote-mark">&ldquo;</div>
+        <p class="vc-quote">빠른 제작이라 <em>퀄리티가 걱정됐지만</em>, 첫 화면 카피와 버튼 위치까지 영업에 바로 쓸 수 있게 잡아주셨어요</p>
+        <div class="vc-attr"><span class="vc-name">김 대표</span><span class="vc-divider"></span><span class="vc-role">교육 컨설팅 · 랜딩 3일</span><span class="vc-divider"></span><span class="vc-stat">+42%</span><span class="vc-stat-cap">문의 전환</span></div>
+      </div>
+      <div class="vc-slide">
+        <div class="vc-quote-mark">&ldquo;</div>
+        <p class="vc-quote">기존 쇼핑몰을 다시 만든 게 아니라, <em>첫 화면·배너·동선</em>을 같이 정리해주셨어요</p>
+        <div class="vc-attr"><span class="vc-name">박 사장</span><span class="vc-divider"></span><span class="vc-role">식품몰 · 카페24 메인 5일</span><span class="vc-divider"></span><span class="vc-stat">+28%</span><span class="vc-stat-cap">매출</span></div>
+      </div>
+      <div class="vc-slide">
+        <div class="vc-quote-mark">&ldquo;</div>
+        <p class="vc-quote">시드 라운드 IR Deck <em>5일 만에</em> 임원진이 만족할 수준의 결과를 받았습니다</p>
+        <div class="vc-attr"><span class="vc-name">이 대표</span><span class="vc-divider"></span><span class="vc-role">스타트업 · IR Deck 5일</span><span class="vc-divider"></span><span class="vc-stat">$2M</span><span class="vc-stat-cap">시드 통과</span></div>
+      </div>
+      <div class="vc-slide">
+        <div class="vc-quote-mark">&ldquo;</div>
+        <p class="vc-quote">단순히 예쁜 게 아니라 <em>실제 구매 결정</em>에 영향을 미치는 흐름으로 짜여 있습니다</p>
+        <div class="vc-attr"><span class="vc-name">정 마케터</span><span class="vc-divider"></span><span class="vc-role">뷰티 브랜드 · 상세 2일</span><span class="vc-divider"></span><span class="vc-stat">+52%</span><span class="vc-stat-cap">전환율</span></div>
+      </div>
+      <div class="vc-slide">
+        <div class="vc-quote-mark">&ldquo;</div>
+        <p class="vc-quote">자사몰을 7일 안에 운영 가능 수준으로 <em>결제·배송·알림</em>까지 검증된 상태로</p>
+        <div class="vc-attr"><span class="vc-name">최 대표</span><span class="vc-divider"></span><span class="vc-role">피트니스 · 자사몰 7일</span><span class="vc-divider"></span><span class="vc-stat">×1.2</span><span class="vc-stat-cap">월 매출</span></div>
+      </div>
+    </div>
+
+    <div class="vc-nav" id="vcNav">
+      <button class="vc-dot active" data-i="0" aria-label="1"></button>
+      <button class="vc-dot" data-i="1" aria-label="2"></button>
+      <button class="vc-dot" data-i="2" aria-label="3"></button>
+      <button class="vc-dot" data-i="3" aria-label="4"></button>
+      <button class="vc-dot" data-i="4" aria-label="5"></button>
+      <span class="vc-counter" id="vcCounter">01 / 05</span>
+    </div>
+  </section>
+
+  <!-- EDITORIAL NOTE -->
+  <section class="note">
+    <div class="note-meta">
+      <span>Editorial · Founder's note</span>
+      <span class="dot"></span>
+      <span class="center">A&nbsp;·&nbsp;I&nbsp;·&nbsp;O &nbsp;&nbsp; S T U D I O</span>
+      <span class="dot"></span>
+      <span>May 2026</span>
+    </div>
+
+    <div class="note-orn" aria-hidden="true">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="currentColor">
+          <path d="M50 0 L54 46 L100 50 L54 54 L50 100 L46 54 L0 50 L46 46 Z" opacity="0.85"/>
+          <circle cx="50" cy="50" r="3"/>
+        </g>
+      </svg>
+    </div>
+
+    <h2 class="note-h"><span class="light">결과를 보고</span><br/><em>맡기는</em> 외주</h2>
+
+    <div class="note-body">
+      <p>AIO는 <strong>각 분야 전문가</strong>가 직접 손을 대는 외주 스튜디오입니다 의뢰가 들어오면, 그 분야의 전문가가 처음부터 끝까지 책임집니다</p>
+      <p>매주 새 작품이 더해지고, 그게 다음 의뢰인의 결정을 돕습니다 결과물을 먼저 보고, 가격을 확인하고, <em>그 다음에 맡기세요</em></p>
+    </div>
+
+    <div class="note-cta">
+      <a href="#" class="btn-primary">견적 문의 →</a>
+      <a href="#toc" class="btn-ghost">분야별 전문가 보기</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <div class="col-grid">
+    <div>
+      <div class="col-mast">AIO<span class="dot">.</span></div>
+      <p class="col-tag">결과를 보고 맡기는 외주 제작<br/>각 분야 전문가가 직접 만드는 스튜디오</p>
+    </div>
+    <div class="col-block">
+      <h4>Disciplines</h4>
+      <ul>
+        <li><a href="01_web_dev_v2.html">웹 개발</a></li>
+        <li><a href="02_detail_page_v2.html">상세페이지</a></li>
+        <li><a href="03_ppt_v2.html">PPT 디자인</a></li>
+      </ul>
+    </div>
+    <div class="col-block">
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="#editors">About</a></li>
+        <li><a href="#toc">Index</a></li>
+        <li><a href="#">Portfolio</a></li>
+      </ul>
+    </div>
+    <div class="col-block">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:koreabencb@gmail.com">koreabencb@gmail.com</a></li>
+        <li><a href="https://aio-make.com">aio-make.com</a></li>
+        <li><a href="#">견적 문의</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-bottom">
+    <span>© 2026 AIO Studio · 사업자번호 682-01-02748</span>
+    <span>경기도 김포시 대곶면 흥신로67</span>
+  </div>
+</footer>
+
+<script>
+  if (window.gsap && gsap.registerPlugin && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  // Cover entry
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.from('.cover-orn', { opacity: 0, scale: 0.6, rotate: -180, duration: 1.2, ease: 'expo.out' })
+    .from('.cover-eyebrow', { opacity: 0, y: 14, duration: 0.7 }, '-=0.6')
+    .from('.cover-title .ln-inner', { yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: 0.12 }, '-=0.4')
+    .from('.cover-watermark', { opacity: 0, scale: 0.96, duration: 1.6, ease: 'power2.out' }, '-=1.2')
+    .from('.cover-lede', { opacity: 0, y: 16, duration: 0.8 }, '-=0.6')
+    .from('.cover-hero-img', { opacity: 0, y: 40, scale: 0.98, duration: 1.0, ease: 'expo.out' }, '-=0.5')
+    .from('.vital > div', { opacity: 0, y: 24, duration: 0.7, stagger: 0.1 }, '-=0.5');
+
+  // Hero featured graph reveal
+  ScrollTrigger.create({
+    trigger: '.cover-hero-img',
+    start: 'top 90%',
+    onEnter: () => {
+      const hl = document.getElementById('hiLine'); const ha = document.getElementById('hiArea');
+      if (hl) hl.classList.add('in-view');
+      if (ha) ha.classList.add('in-view');
+    }
+  });
+  // Vital small graph reveal
+  ScrollTrigger.create({
+    trigger: '.vital-graph',
+    start: 'top 85%',
+    onEnter: () => {
+      const cl = document.getElementById('cLine'); const ca = document.getElementById('cArea');
+      if (cl) cl.classList.add('in-view');
+      if (ca) ca.classList.add('in-view');
+    }
+  });
+
+  // Editor cards
+  gsap.from('.ed-card', { opacity: 0, y: 40, duration: 0.8, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.ed-grid', start: 'top 80%' } });
+  gsap.from('.ed-h2, .ed-lede', { opacity: 0, y: 20, duration: 0.7, stagger: 0.1, scrollTrigger: { trigger: '.editors', start: 'top 85%' } });
+
+  // TOC rows
+  gsap.from('.toc-row', { opacity: 0, y: 16, duration: 0.6, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.toc-list', start: 'top 85%' } });
+  gsap.from('.toc-h2, .toc-lede', { opacity: 0, y: 20, duration: 0.7, stagger: 0.1, scrollTrigger: { trigger: '.toc', start: 'top 85%' } });
+
+  // Voices
+  gsap.from('.vc-h2', { opacity: 0, y: 20, duration: 0.7, scrollTrigger: { trigger: '.voices', start: 'top 85%' } });
+
+  // Manifesto
+  gsap.from('.note-orn', { opacity: 0, scale: 0.6, rotate: 180, duration: 1.0, ease: 'expo.out', scrollTrigger: { trigger: '.note', start: 'top 80%' } });
+  gsap.from('.note-h, .note-body p, .note-cta', { opacity: 0, y: 30, duration: 0.9, stagger: 0.15, ease: 'power3.out', scrollTrigger: { trigger: '.note', start: 'top 75%' } });
+
+  // Voices carousel
+  (function () {
+    const slides = document.querySelectorAll('.vc-slide');
+    const dots = document.querySelectorAll('.vc-dot');
+    const counter = document.getElementById('vcCounter');
+    let i = 0; const total = slides.length;
+    function show(n) {
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === n));
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === n));
+      counter.textContent = String(n + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    }
+    dots.forEach(d => d.addEventListener('click', () => { i = parseInt(d.dataset.i); show(i); }));
+    setInterval(() => { i = (i + 1) % total; show(i); }, 5500);
+  })();
+
+  // Live count
+  (function () {
+    const el = document.getElementById('clientsNum');
+    if (!el) return;
+    const target = 142; const dur = 2200;
+    let started = false;
+    function run() {
+      const start = performance.now();
+      function tick(t) {
+        const p = Math.min(1, (t - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    ScrollTrigger.create({ trigger: el, start: 'top 90%', onEnter: () => { if (!started) { started = true; run(); } } });
+  })();
+</script>
+</body>
+</html>

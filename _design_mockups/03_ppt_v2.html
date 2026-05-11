@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AIO / PPT — 한 장이 결정짓는 발표</title>
+<meta name="description" content="IR 덱·사업 제안서·컨설팅 보고서까지. 5일 안에.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --paper-2: #F8F9FA;
+    --paper-3: #ECEEF1;
+    --paper-deep: #DCE0E5;
+    --ink: #0E1A2B;
+    --ink-2: rgba(14,26,43,0.62);
+    --ink-3: rgba(14,26,43,0.40);
+    --ink-faint: rgba(14,26,43,0.22);
+    --line: rgba(14,26,43,0.10);
+    --line-2: rgba(14,26,43,0.18);
+
+    --navy: #1B3B5F;
+    --navy-2: #2C5380;
+    --navy-soft: rgba(27,59,95,0.08);
+    --gold: #C9A961;
+    --gold-soft: #F0E8D0;
+
+    --sans: 'Inter', 'Pretendard Variable', sans-serif;
+    --serif: 'Cormorant Garamond', 'Pretendard Variable', serif;
+    --body: 'Pretendard Variable', 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; text-align: center; }
+  ::selection { background: var(--navy); color: var(--paper); }
+
+  /* ============ NAV ============ */
+  nav.top { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom: 2px solid var(--ink); padding: 16px 32px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
+  @media (max-width: 800px) { nav.top { padding: 12px 20px; grid-template-columns: 1fr auto; } }
+  .nav-l { font-family: var(--mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.18em; text-transform: uppercase; text-align: left; display: flex; align-items: center; gap: 12px; }
+  .nav-l .ix { color: var(--gold); font-weight: 600; }
+  @media (max-width: 800px) { .nav-l { display: none; } }
+  .nav-c { font-family: var(--sans); font-size: 18px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.012em; }
+  .nav-c em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .nav-c .sub { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-3); margin-left: 8px; font-weight: 400; }
+  .nav-r { display: flex; justify-content: end; align-items: center; gap: 14px; }
+  .nav-r a.txt { color: var(--ink); text-decoration: none; font-family: var(--sans); font-size: 12.5px; font-weight: 500; transition: color 0.2s; letter-spacing: -0.005em; }
+  .nav-r a.txt:hover { color: var(--navy); }
+  .nav-r a.btn { color: var(--paper); background: var(--ink); text-decoration: none; padding: 9px 18px; font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: -0.005em; border-radius: 0; transition: all 0.2s; }
+  .nav-r a.btn:hover { background: var(--navy); }
+
+  /* ============ PAGE TABS ============ */
+  .page-tabs { background: var(--paper); border-bottom: 1px solid var(--line); padding: 0 24px; display: flex; gap: 0; justify-content: center; font-family: var(--sans); font-size: 12.5px; overflow-x: auto; scrollbar-width: none; }
+  .page-tabs::-webkit-scrollbar { display: none; }
+  .page-tabs a { color: var(--ink-2); text-decoration: none; padding: 14px 22px; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-weight: 500; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .page-tabs a:hover { color: var(--ink); }
+  .page-tabs a.active { color: var(--ink); font-weight: 600; border-bottom-color: var(--navy); }
+  .page-tabs a .num { opacity: 0.55; font-size: 10.5px; font-family: var(--mono); }
+  .page-tabs a.active .num { opacity: 1; color: var(--navy); }
+
+  main { position: relative; z-index: 1; }
+
+  /* ============ HERO ============ */
+  section.hero { padding: 96px 24px 80px; max-width: 1280px; margin: 0 auto; position: relative; }
+  @media (max-width: 700px) { section.hero { padding: 64px 20px 56px; } }
+  .hero-eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--navy); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 28px; display: inline-flex; align-items: center; gap: 14px; font-weight: 500; }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+
+  .hero-h1 { font-family: var(--sans); font-size: clamp(48px, 7.4vw, 124px); font-weight: 700; letter-spacing: -0.035em; line-height: 0.96; margin: 0 auto 32px; max-width: 1100px; color: var(--ink); }
+  .hero-h1 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .hero-h1 .light { color: var(--ink-3); font-weight: 600; }
+  @media (max-width: 700px) { .hero-h1 { font-size: clamp(40px, 11vw, 72px); margin-bottom: 24px; } }
+
+  .hero-sub { font-family: var(--body); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: var(--ink-2); max-width: 660px; margin: 0 auto 44px; font-weight: 400; }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  .hero-sub em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+
+  .hero-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 64px; }
+
+  /* Hero featured slide */
+  .hero-slide { width: 100%; max-width: 1120px; margin: 0 auto; aspect-ratio: 16/9; background: var(--ink); border-radius: 4px; position: relative; overflow: hidden; box-shadow: 0 30px 80px rgba(14,26,43,0.32); }
+  .hero-slide::before { content: ''; position: absolute; inset: 0; background:
+    linear-gradient(135deg, rgba(27,59,95,0.5) 0%, rgba(14,26,43,0) 50%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(201,169,97,0.18), transparent 65%);
+  }
+  .hero-slide::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 56px 56px; opacity: 0.5; }
+  .hs-tl { position: absolute; top: 32px; left: 36px; font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.55); letter-spacing: 0.22em; text-transform: uppercase; z-index: 2; display: inline-flex; align-items: center; gap: 8px; }
+  .hs-tl::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+  .hs-tr { position: absolute; top: 32px; right: 36px; font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.4); letter-spacing: 0.22em; text-transform: uppercase; z-index: 2; }
+  .hs-mid { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 0 56px; text-align: left; z-index: 2; }
+  .hs-mid .pre { font-family: var(--mono); font-size: 10.5px; color: var(--gold); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 20px; }
+  .hs-mid .h { font-family: var(--sans); font-size: clamp(32px, 4.8vw, 64px); font-weight: 600; color: white; line-height: 1.05; letter-spacing: -0.025em; max-width: 720px; }
+  .hs-mid .h em { font-family: var(--serif); font-style: italic; color: var(--gold); font-weight: 500; }
+  .hs-bl { position: absolute; bottom: 32px; left: 36px; font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.45); letter-spacing: 0.16em; z-index: 2; }
+  .hs-br { position: absolute; bottom: 32px; right: 36px; padding: 6px 14px; background: var(--gold); color: var(--ink); border-radius: 0; font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; z-index: 2; }
+  @media (max-width: 700px) { .hs-mid { padding: 0 24px; } .hs-mid .h { font-size: 24px; } .hs-tl, .hs-tr, .hs-bl, .hs-br { font-size: 8.5px; padding: 4px 10px; } .hs-tl { top: 18px; left: 20px; } .hs-tr { top: 18px; right: 20px; } .hs-bl { bottom: 18px; left: 20px; } .hs-br { bottom: 18px; right: 20px; } }
+
+  /* ============ TRUST ============ */
+  .trust-strip { padding: 28px 36px; max-width: 1480px; margin: 0 auto; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  @media (max-width: 700px) { .trust-strip { grid-template-columns: 1fr 1fr; padding: 20px 24px; } }
+  .trust-item { padding: 0 16px; border-right: 1px solid var(--line-2); display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .trust-item:last-child { border-right: 0; }
+  @media (max-width: 700px) { .trust-item:nth-child(2) { border-right: 0; } .trust-item:nth-child(-n+2) { border-bottom: 1px solid var(--line-2); padding-bottom: 16px; margin-bottom: 16px; } }
+  .trust-item .num { font-family: var(--sans); color: var(--ink); font-weight: 700; font-size: 28px; letter-spacing: -0.03em; line-height: 1; }
+  .trust-item .num em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .trust-item .lbl { font-family: var(--mono); font-size: 10px; color: var(--ink-2); letter-spacing: 0.2em; text-transform: uppercase; }
+
+  /* ============ SLIDE REEL ============ */
+  section.s-reel { padding: 96px 0 80px; }
+  @media (max-width: 700px) { section.s-reel { padding: 64px 0 56px; } }
+  .s-reel .head { margin: 0 auto 56px; max-width: 760px; padding: 0 24px; }
+  .s-reel .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--navy); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; font-weight: 500; }
+  .s-reel .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+  .s-reel h2 { font-family: var(--sans); font-size: clamp(34px, 4.8vw, 68px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.0; margin-bottom: 18px; color: var(--ink); }
+  .s-reel h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-reel .sub { font-family: var(--body); font-size: 16.5px; color: var(--ink-2); line-height: 1.6; max-width: 560px; margin: 0 auto; }
+  .s-reel .sub strong { color: var(--ink); font-weight: 600; }
+
+  .reel-mask { position: relative; overflow: hidden; padding: 8px 0 28px; mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent); }
+  .reel-track { display: flex; gap: 24px; padding: 0 36px; animation: reelScroll 60s linear infinite; width: max-content; }
+  .reel-mask:hover .reel-track { animation-play-state: paused; }
+  @keyframes reelScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Slide cards (16:9) */
+  .sl { flex-shrink: 0; width: 480px; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; box-shadow: 0 24px 60px rgba(14,26,43,0.16), 0 0 0 1px var(--line); position: relative; cursor: pointer; transition: transform 0.4s var(--ease-soft); }
+  .sl:hover { transform: translateY(-4px); box-shadow: 0 32px 70px rgba(14,26,43,0.24), 0 0 0 1px var(--navy); }
+  @media (max-width: 600px) { .sl { width: 320px; } }
+
+  /* Slide design tokens */
+  .sl-top { display: flex; justify-content: space-between; align-items: start; }
+  .sl-mark { font-family: var(--sans); font-size: 11px; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
+  .sl-mark.dark { color: white; }
+  .sl-page { font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); letter-spacing: 0.18em; }
+  .sl-page.dark { color: rgba(255,255,255,0.4); }
+  .sl-eyebrow { font-family: var(--mono); font-size: 9.5px; color: var(--navy); letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 14px; padding-left: 22px; position: relative; font-weight: 500; }
+  .sl-eyebrow::before { content: ''; position: absolute; left: 0; top: 50%; width: 14px; height: 1px; background: var(--gold); }
+  .sl-eyebrow.dark { color: var(--gold); }
+  .sl-eyebrow.gold { color: var(--gold); }
+  .sl-h { font-family: var(--sans); font-size: 32px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; color: var(--ink); }
+  .sl-h em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .sl-h.dark { color: white; }
+  .sl-h.dark em { color: var(--gold); }
+  .sl-foot { display: flex; justify-content: space-between; align-items: end; }
+  .sl-meta { font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); letter-spacing: 0.16em; text-transform: uppercase; }
+  .sl-meta.dark { color: rgba(255,255,255,0.4); }
+
+  /* IR Cover (dark) */
+  .sl-ir-cover { background: linear-gradient(135deg, #1B3B5F 0%, #0E1A2B 60%, #050A14 100%); padding: 28px 32px; display: flex; flex-direction: column; justify-content: space-between; }
+  .sl-ir-cover::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.7; pointer-events: none; }
+  .sl-ir-cover > * { position: relative; z-index: 2; }
+
+  /* IR KPI (dark) */
+  .sl-ir-kpi { background: linear-gradient(180deg, #0E1A2B 0%, #050A14 100%); padding: 22px 28px; display: grid; grid-template-rows: auto 1fr; gap: 14px; }
+  .sl-ir-kpi .sl-h { font-size: 18px; font-weight: 600; color: white; }
+  .sl-ir-kpi .sl-h em { color: var(--gold); }
+  .sl-ir-kpi .kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
+  .sl-ir-kpi .kp { padding: 12px 10px; background: rgba(201,169,97,0.06); border: 1px solid rgba(201,169,97,0.18); border-radius: 2px; }
+  .sl-ir-kpi .kp .n { font-family: var(--sans); font-size: 22px; font-weight: 700; color: var(--gold); letter-spacing: -0.025em; line-height: 1; }
+  .sl-ir-kpi .kp .l { font-family: var(--mono); font-size: 7.5px; color: rgba(255,255,255,0.5); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .sl-ir-kpi .kp .d { font-family: var(--mono); font-size: 7.5px; color: var(--gold); margin-top: 5px; }
+
+  /* IR Chart (dark) */
+  .sl-ir-chart { background: linear-gradient(180deg, #0E1A2B 0%, #050A14 100%); padding: 22px 28px; display: grid; grid-template-rows: auto 1fr; gap: 14px; }
+  .sl-ir-chart .sl-h { font-size: 18px; font-weight: 600; color: white; }
+  .chart-bars { display: flex; align-items: end; gap: 12px; height: 100%; padding: 6px 0 22px; position: relative; }
+  .chart-bars::after { content: ''; position: absolute; bottom: 16px; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.12); }
+  .chart-bars .bar { flex: 1; background: linear-gradient(180deg, var(--gold) 0%, rgba(201,169,97,0.4) 100%); border-radius: 0; position: relative; }
+  .chart-bars .bar.b1 { height: 28%; opacity: 0.4; }
+  .chart-bars .bar.b2 { height: 42%; opacity: 0.55; }
+  .chart-bars .bar.b3 { height: 58%; opacity: 0.7; }
+  .chart-bars .bar.b4 { height: 74%; opacity: 0.85; }
+  .chart-bars .bar.b5 { height: 90%; }
+  .chart-bars .bar .lab { position: absolute; bottom: -16px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 8px; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+  .chart-bars .bar .v { position: absolute; top: -16px; left: 0; right: 0; text-align: center; font-family: var(--sans); font-size: 11px; font-weight: 700; color: var(--gold); }
+
+  /* Corporate Cover (cream) */
+  .sl-corp-cover { background: linear-gradient(135deg, #F8F4ED 0%, #ECE0C4 100%); padding: 32px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+  .sl-corp-cover .sl-h { color: #1A1408; font-weight: 500; font-size: 36px; }
+  .sl-corp-cover .sl-h em { font-family: var(--serif); font-style: italic; color: #8A6A3A; font-weight: 500; }
+  .sl-corp-cover .sl-eyebrow { color: #6A5238; }
+  .sl-corp-cover .sl-eyebrow::before { background: #6A5238; }
+
+  /* Corporate 3-pillar (cream) */
+  .sl-corp-3 { background: #F8F4ED; padding: 22px 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; }
+  .sl-corp-3 .sl-h { color: #1A1408; font-size: 18px; font-weight: 600; }
+  .sl-corp-3 .pillar-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .sl-corp-3 .pi { padding: 14px 12px; background: white; border-top: 2px solid #8A6A3A; }
+  .sl-corp-3 .pi .pn { font-family: var(--mono); font-size: 9px; color: #8A6A3A; letter-spacing: 0.16em; margin-bottom: 6px; }
+  .sl-corp-3 .pi .pt { font-family: var(--sans); font-size: 13px; font-weight: 600; color: #1A1408; line-height: 1.2; margin-bottom: 4px; }
+  .sl-corp-3 .pi .pd { font-family: var(--body); font-size: 9.5px; color: rgba(42,36,24,0.65); line-height: 1.4; }
+
+  /* Consulting (white McKinsey-style) */
+  .sl-cons-title { background: white; padding: 32px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+  .sl-cons-title .sl-h { color: var(--ink); font-weight: 600; font-size: 32px; letter-spacing: -0.025em; }
+  .sl-cons-title .sl-h em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+
+  .sl-cons-mece { background: white; padding: 22px 28px; display: grid; grid-template-rows: auto 1fr; gap: 10px; }
+  .sl-cons-mece .sl-h { color: var(--ink); font-size: 16px; font-weight: 600; }
+  .sl-cons-mece .mece { display: flex; flex-direction: column; gap: 6px; }
+  .sl-cons-mece .row { display: grid; grid-template-columns: 24px 1fr; gap: 12px; padding: 8px 10px; border-left: 2px solid var(--navy); background: var(--paper-2); }
+  .sl-cons-mece .row .n { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1; }
+  .sl-cons-mece .row .t { font-family: var(--body); font-size: 11px; color: var(--ink); line-height: 1.4; font-weight: 500; }
+  .sl-cons-mece .row .t em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 600; }
+
+  /* Pitch slide (vivid dark with gold glow) */
+  .sl-pitch { background: linear-gradient(135deg, #050A14 0%, #1B3B5F 50%, #050A14 100%); padding: 28px 32px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 14px; position: relative; overflow: hidden; }
+  .sl-pitch::before { content: ''; position: absolute; top: 50%; left: 50%; width: 200%; height: 200%; transform: translate(-50%, -50%); background: radial-gradient(ellipse 30% 50% at 50% 50%, rgba(201,169,97,0.22), transparent 60%); }
+  .sl-pitch .pe { position: relative; z-index: 2; font-family: var(--mono); font-size: 9.5px; color: var(--gold); letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; }
+  .sl-pitch .pn { position: relative; z-index: 2; font-family: var(--sans); font-size: 64px; font-weight: 800; color: var(--gold); letter-spacing: -0.04em; line-height: 1; text-shadow: 0 0 40px rgba(201,169,97,0.4); }
+  .sl-pitch .pl { position: relative; z-index: 2; font-family: var(--body); font-size: 14px; color: rgba(255,255,255,0.85); letter-spacing: -0.012em; max-width: 320px; line-height: 1.45; }
+  .sl-pitch .pl strong { color: white; font-weight: 600; }
+
+  /* Roadmap */
+  .sl-roadmap { background: linear-gradient(180deg, #0E1A2B 0%, #050A14 100%); padding: 22px 28px; display: grid; grid-template-rows: auto 1fr; gap: 18px; }
+  .sl-roadmap .sl-h { color: white; font-size: 18px; font-weight: 600; }
+  .sl-roadmap .sl-h em { color: var(--gold); }
+  .roadmap-line { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; position: relative; padding-top: 14px; }
+  .roadmap-line::before { content: ''; position: absolute; top: 4px; left: 4px; right: 4px; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(201,169,97,0.2)); }
+  .roadmap-line .ph { padding-top: 14px; position: relative; }
+  .roadmap-line .ph::before { content: ''; position: absolute; top: -4px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: #050A14; border: 1.5px solid var(--gold); }
+  .roadmap-line .ph .y { font-family: var(--mono); font-size: 9px; color: var(--gold); letter-spacing: 0.12em; margin-bottom: 4px; font-weight: 500; }
+  .roadmap-line .ph .nm { font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: white; margin-bottom: 2px; }
+  .roadmap-line .ph .ds { font-family: var(--body); font-size: 9px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+
+  /* Quote slide */
+  .sl-quote { background: linear-gradient(135deg, #F8F4ED 0%, #F0E8D0 100%); padding: 28px 36px; display: flex; flex-direction: column; justify-content: center; gap: 12px; position: relative; }
+  .sl-quote::before { content: '\201C'; position: absolute; top: 6px; left: 24px; font-family: var(--serif); font-size: 96px; color: rgba(201,169,97,0.4); line-height: 1; font-weight: 700; }
+  .sl-quote .qt { position: relative; z-index: 2; font-family: var(--serif); font-size: 18px; font-weight: 500; color: #1A1408; line-height: 1.45; letter-spacing: -0.012em; font-style: italic; }
+  .sl-quote .qt strong { font-style: normal; color: #8A6A3A; font-weight: 600; }
+  .sl-quote .who { position: relative; z-index: 2; font-family: var(--mono); font-size: 10.5px; color: rgba(42,36,24,0.65); letter-spacing: 0.08em; }
+
+  /* ============ AUDIT (Before/After) ============ */
+  section.s-audit { padding: 96px 24px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-audit { padding: 64px 20px; } }
+  .s-audit .head { margin: 0 auto 56px; max-width: 760px; }
+  .s-audit .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--navy); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; font-weight: 500; }
+  .s-audit .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+  .s-audit h2 { font-family: var(--sans); font-size: clamp(32px, 4.6vw, 64px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.02; margin-bottom: 18px; color: var(--ink); }
+  .s-audit h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-audit .sub { font-family: var(--body); font-size: 16px; color: var(--ink-2); line-height: 1.6; max-width: 560px; margin: 0 auto; }
+
+  .audit-frame { display: grid; grid-template-columns: 1fr 64px 1fr; gap: 28px; align-items: start; padding: 36px; background: var(--paper-2); border: 1px solid var(--line); position: relative; }
+  @media (max-width: 800px) { .audit-frame { grid-template-columns: 1fr; gap: 0; padding: 24px; } }
+  .audit-arrow { width: 56px; height: 56px; background: var(--navy); color: var(--gold); display: grid; place-items: center; font-family: var(--sans); font-size: 22px; font-weight: 700; align-self: center; justify-self: center; flex-shrink: 0; }
+  @media (max-width: 800px) {
+    .audit-arrow { width: 44px; height: 44px; font-size: 18px; margin: 24px auto; transform: rotate(90deg); }
+  }
+  .audit-side { position: relative; min-width: 0; }
+  @media (max-width: 800px) { .audit-side { width: 100%; } }
+  .audit-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+  .audit-tag .d { width: 8px; height: 8px; border-radius: 50%; }
+  .audit-side.before .audit-tag { color: rgba(14,26,43,0.55); }
+  .audit-side.before .audit-tag .d { background: #B0B0B0; }
+  .audit-side.after .audit-tag { color: var(--navy); }
+  .audit-side.after .audit-tag .d { background: var(--gold); }
+  .audit-slide { aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; box-shadow: 0 16px 40px rgba(14,26,43,0.15); }
+  .audit-comment { font-family: var(--body); font-size: 13px; color: var(--ink-2); margin-top: 16px; line-height: 1.6; text-align: left; }
+  .audit-comment strong { color: var(--ink); font-weight: 600; }
+
+  /* Before slide style — bullet text overload */
+  .ad-before { background: white; padding: 18px 22px; }
+  .ad-before .at { font-family: var(--sans); font-size: 13px; font-weight: 700; color: #2A2A2A; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #E0E0E0; }
+  .ad-before ul { list-style: none; }
+  .ad-before ul li { font-family: var(--body); font-size: 8.5px; color: #2A2A2A; padding: 2px 0 2px 14px; position: relative; line-height: 1.5; }
+  .ad-before ul li::before { content: '•'; position: absolute; left: 4px; color: #2A2A2A; }
+  .ad-before .ftr { display: flex; justify-content: space-between; margin-top: 8px; font-family: var(--mono); font-size: 7px; color: #888; }
+
+  /* After slide style — clean clear */
+  .ad-after { background: white; padding: 20px 24px; display: grid; grid-template-rows: auto 1fr auto; gap: 12px; }
+  .ad-after .ah-eyebrow { font-family: var(--mono); font-size: 8.5px; color: var(--navy); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+  .ad-after .ah-title { font-family: var(--sans); font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.15; letter-spacing: -0.02em; }
+  .ad-after .ah-title em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .ad-after .ah-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; align-self: center; }
+  .ad-after .ah-stat { padding: 10px 12px; background: var(--paper-2); border-left: 2px solid var(--navy); }
+  .ad-after .ah-stat .n { font-family: var(--sans); font-size: 22px; font-weight: 700; color: var(--navy); letter-spacing: -0.025em; line-height: 1; }
+  .ad-after .ah-stat .l { font-family: var(--mono); font-size: 7px; color: var(--ink-3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .ad-after .ah-foot { font-family: var(--mono); font-size: 7px; color: #888; display: flex; justify-content: space-between; }
+
+  /* ============ INDUSTRIES ============ */
+  section.s-industries { padding: 96px 24px; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-industries { padding: 64px 20px; } }
+  .s-industries .head { margin: 0 auto 56px; max-width: 760px; }
+  .s-industries .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--navy); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; font-weight: 500; }
+  .s-industries .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+  .s-industries h2 { font-family: var(--sans); font-size: clamp(34px, 4.8vw, 68px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.0; margin-bottom: 18px; color: var(--ink); }
+  .s-industries h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-industries .sub { font-family: var(--body); font-size: 16.5px; color: var(--ink-2); line-height: 1.6; max-width: 600px; margin: 0 auto; }
+  .s-industries .sub strong { color: var(--ink); font-weight: 600; }
+
+  /* Industries: 2 columns × 4 rows always (better mobile readability) */
+  .ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); max-width: 980px; margin: 0 auto; }
+  .ind-card { padding: 28px 24px; background: var(--paper); transition: all 0.3s var(--ease-soft); cursor: pointer; text-align: left; }
+  .ind-card:hover { background: var(--paper-2); }
+  .ind-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .ind-head .ic { width: 32px; height: 32px; color: var(--navy); }
+  .ind-head .ic svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .ind-head .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.18em; }
+  .ind-card h3 { font-family: var(--sans); font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.012em; }
+  .ind-card p { font-family: var(--body); font-size: 13px; color: var(--ink-2); line-height: 1.55; margin-bottom: 14px; }
+  .ind-card .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ind-card .tags span { padding: 3px 9px; background: var(--paper-3); font-family: var(--mono); font-size: 9.5px; color: var(--ink-2); letter-spacing: 0.04em; }
+
+  /* ============ PACKAGE ============ */
+  section.s-package { padding: 96px 24px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-package { padding: 64px 20px; } }
+  .s-package .head { margin: 0 auto 36px; max-width: 600px; }
+  .s-package .eyebrow { font-family: var(--mono); font-size: 11.5px; color: var(--navy); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 22px; display: inline-flex; align-items: center; gap: 14px; font-weight: 500; }
+  .s-package .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+  .s-package h2 { font-family: var(--sans); font-size: clamp(32px, 4.4vw, 60px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.05; margin-bottom: 14px; color: var(--ink); }
+  .s-package h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-package .sub { font-family: var(--body); font-size: 15.5px; color: var(--ink-2); line-height: 1.55; max-width: 540px; margin: 0 auto; }
+
+  .package-table { background: var(--paper); border: 1px solid var(--ink); overflow: hidden; }
+  .pkg-row { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; }
+  .pkg-row + .pkg-row { border-top: 1px solid var(--line); }
+  .pkg-row.head { background: var(--ink); color: white; }
+  .pkg-row.head .col { padding: 22px 18px 18px; text-align: left; }
+  .pkg-row.head .col-name { font-family: var(--sans); font-size: 15px; font-weight: 600; letter-spacing: -0.012em; }
+  .pkg-row.head .col-price { font-family: var(--sans); font-size: 28px; font-weight: 700; line-height: 1.1; margin-top: 6px; color: var(--gold); letter-spacing: -0.025em; }
+  .pkg-row.head .col-price .from { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.55); margin-right: 4px; font-weight: 400; }
+  .pkg-row.head .col-days { font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.55); margin-top: 6px; letter-spacing: 0.04em; }
+  .pkg-row.head .col-name.featured { color: var(--gold); }
+  .pkg-row.head .col-name.featured::after { content: 'POPULAR'; display: inline-block; margin-left: 8px; padding: 2px 8px; background: var(--gold); color: var(--ink); font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; vertical-align: middle; }
+  .pkg-row .col { padding: 14px 18px; }
+  .pkg-row .col.label { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); letter-spacing: 0.04em; text-align: left; }
+  .pkg-row .col.val { font-family: var(--body); font-size: 13px; color: var(--ink); text-align: center; }
+  .pkg-row .col.val .check { color: var(--navy); font-weight: 700; }
+  .pkg-row .col.val .x { color: var(--ink-faint); }
+  .pkg-row.cta .col { padding: 16px; }
+  .pkg-row.cta .col.label { font-size: 0; }
+  .pkg-row.cta button { width: 100%; padding: 11px; font-family: var(--sans); font-size: 12.5px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 1px solid var(--ink); background: transparent; color: var(--ink); letter-spacing: -0.005em; border-radius: 0; }
+  .pkg-row.cta button:hover { background: var(--ink); color: white; }
+  .pkg-row.cta button.featured { background: var(--ink); color: white; border-color: var(--ink); }
+  .pkg-row.cta button.featured:hover { background: var(--navy); border-color: var(--navy); }
+
+  @media (max-width: 800px) {
+    .package-table { display: none; }
+    .pkg-mobile { display: flex; gap: 12px; flex-direction: column; }
+    .pm-card { padding: 20px 18px; background: var(--paper); border: 1px solid var(--line-2); position: relative; }
+    .pm-card.featured { border: 2px solid var(--ink); background: var(--paper-2); }
+    .pm-card.featured::before { content: 'POPULAR'; position: absolute; top: -12px; left: 18px; padding: 3px 10px; background: var(--ink); color: var(--gold); font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; }
+    .pm-row1 { display: flex; justify-content: space-between; align-items: end; margin-bottom: 4px; }
+    .pm-name { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink); }
+    .pm-price { font-family: var(--sans); font-size: 26px; font-weight: 700; line-height: 1; color: var(--navy); letter-spacing: -0.025em; }
+    .pm-price .from { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); margin-right: 3px; font-weight: 400; }
+    .pm-days { font-family: var(--mono); font-size: 10px; color: var(--ink-2); margin-bottom: 12px; letter-spacing: 0.06em; }
+    .pm-list { list-style: none; margin: 12px 0 14px; }
+    .pm-list li { display: flex; justify-content: space-between; padding: 6px 0; font-size: 12.5px; border-top: 1px solid var(--line); }
+    .pm-list li:first-child { border-top: 0; }
+    .pm-list li .l { color: var(--ink-2); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; }
+    .pm-list li .v { color: var(--ink); font-weight: 500; font-family: var(--body); }
+    .pm-list li .v.acc { color: var(--navy); font-weight: 600; }
+    .pm-card button { width: 100%; padding: 11px; font-family: var(--sans); font-size: 12px; font-weight: 600; border: 1px solid var(--ink); background: transparent; color: var(--ink); }
+    .pm-card.featured button { background: var(--ink); color: white; }
+  }
+  @media (min-width: 801px) { .pkg-mobile { display: none; } }
+
+  .addons { margin-top: 18px; padding: 24px 28px; background: var(--paper-2); border: 1px solid var(--line); }
+  @media (max-width: 600px) { .addons { padding: 18px; } }
+  .addons h4 { font-family: var(--mono); font-size: 11px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.22em; margin-bottom: 14px; font-weight: 500; }
+  .addons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @media (max-width: 700px) { .addons-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .addons-grid { grid-template-columns: 1fr; } }
+  .addon { display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; background: var(--paper); border: 1px solid var(--line); }
+  .addon .l { font-family: var(--body); font-size: 12.5px; color: var(--ink); }
+  .addon .v { font-family: var(--mono); font-size: 11px; color: var(--navy); font-weight: 600; }
+
+  /* ============ PROCESS ============ */
+  section.s-process { padding: 80px 24px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-process { padding: 56px 20px; } }
+  .s-process .head { margin: 0 auto 36px; max-width: 600px; }
+  .s-process h2 { font-family: var(--sans); font-size: clamp(30px, 4.2vw, 56px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.05; }
+  .s-process h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .process { padding: 36px 32px; background: var(--paper-2); border: 1px solid var(--line); }
+  @media (max-width: 600px) { .process { padding: 26px 20px; } }
+  .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; position: relative; }
+  @media (max-width: 700px) { .timeline { grid-template-columns: 1fr 1fr; gap: 20px; } }
+  .timeline::before { content: ''; position: absolute; top: 7px; left: 4px; right: 4px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+  .step { padding-top: 22px; position: relative; text-align: left; }
+  .step::before { content: ''; position: absolute; top: 1px; left: 0; width: 11px; height: 11px; background: var(--paper-2); border: 2px solid var(--gold); }
+  .step .day { font-family: var(--mono); font-size: 10.5px; color: var(--navy); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; }
+  .step .name { font-family: var(--sans); font-size: 17px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.012em; color: var(--ink); }
+  .step .desc { font-family: var(--body); font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
+
+  /* ============ RESOURCES (꿀팁 받기) ============ */
+  section.s-resources { padding: 80px 24px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-resources { padding: 56px 20px; } }
+  .s-resources .head { margin: 0 auto 44px; }
+  .s-resources .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; }
+  .s-resources .kicker .ix { color: var(--gold); font-weight: 600; }
+  .s-resources h2 { font-family: var(--sans); font-size: clamp(30px, 4.2vw, 56px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.05; margin-bottom: 14px; color: var(--ink); }
+  .s-resources h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-resources .sub { font-family: var(--body); font-size: 15px; color: var(--ink-2); line-height: 1.6; max-width: 620px; margin: 0 auto; }
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 1080px; margin: 0 auto; border-top: 2px solid var(--ink); border-left: 1px solid var(--line); text-align: left; }
+  @media (max-width: 720px) { .res-grid { grid-template-columns: 1fr; } }
+  .res-card { padding: 28px 28px 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--paper); transition: all 0.3s ease; text-decoration: none; color: var(--ink); position: relative; display: flex; flex-direction: column; gap: 14px; }
+  .res-card:hover { background: var(--paper-2); }
+  .res-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 0; background: var(--gold); transition: height 0.3s; }
+  .res-card:hover::before { height: 3px; }
+  .res-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding-bottom: 14px; border-bottom: 1px dashed var(--line-2); }
+  .res-head .vol { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); }
+  .res-head .vol .num { color: var(--navy); font-weight: 700; }
+  .res-head .stamp { width: 44px; height: 44px; border: 1.5px solid var(--gold); border-radius: 50%; display: grid; place-items: center; font-family: var(--serif); font-style: italic; font-size: 18px; font-weight: 500; color: var(--gold); transform: rotate(-8deg); flex-shrink: 0; }
+  .res-tag { font-family: var(--mono); font-size: 10.5px; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+  .res-card h3 { font-family: var(--sans); font-size: 21px; font-weight: 700; letter-spacing: -0.022em; line-height: 1.25; color: var(--ink); }
+  .res-card h3 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .res-card .desc { font-family: var(--body); font-size: 13.5px; color: var(--ink-2); line-height: 1.65; flex: 1; }
+  .res-meta { display: flex; align-items: center; gap: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); letter-spacing: 0.12em; text-transform: uppercase; }
+  .res-meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-faint); }
+  .res-cta { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; background: var(--ink); color: var(--paper); font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: -0.005em; text-decoration: none; align-self: flex-start; transition: all 0.2s; }
+  .res-cta::after { content: '→'; font-size: 14px; transition: transform 0.2s; }
+  .res-card:hover .res-cta { background: var(--navy); }
+  .res-card:hover .res-cta::after { transform: translateX(4px); }
+  .res-foot { margin-top: 36px; text-align: center; font-family: var(--body); font-size: 13px; color: var(--ink-3); }
+  .res-foot em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+
+  /* ============ FAQ ============ */
+  section.s-faq { padding: 80px 24px; max-width: 980px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-faq { padding: 56px 20px; } }
+  .s-faq .head { margin: 0 auto 36px; }
+  .s-faq h2 { font-family: var(--sans); font-size: clamp(30px, 4.2vw, 56px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.05; margin-bottom: 14px; }
+  .s-faq h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-faq .sub { font-family: var(--body); font-size: 15px; color: var(--ink-2); line-height: 1.55; }
+  .faq-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); text-align: left; }
+  .faq-item { border-bottom: 1px solid var(--line); transition: background 0.3s; }
+  .faq-item:last-child { border-bottom: 0; }
+  .faq-item[open] { background: var(--paper-2); }
+  .faq-item summary { padding: 22px 24px; font-family: var(--sans); font-size: 16px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px; list-style: none; color: var(--ink); letter-spacing: -0.012em; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .q { display: flex; align-items: flex-start; gap: 16px; flex: 1; }
+  .faq-item summary .q-num { font-family: var(--mono); font-size: 11px; color: var(--navy); flex-shrink: 0; padding-top: 2px; letter-spacing: 0.06em; font-weight: 600; }
+  .faq-item summary .arrow { font-family: var(--sans); font-size: 18px; color: var(--ink-3); transition: transform 0.3s; line-height: 1; font-weight: 600; }
+  .faq-item[open] summary .arrow { transform: rotate(45deg); color: var(--navy); }
+  .faq-item .a { padding: 0 24px 22px 56px; font-family: var(--body); font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+  .faq-item .a strong { color: var(--ink); font-weight: 600; }
+  .faq-item .a em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+
+  /* ============ TEASER + CTA ============ */
+  section.s-teaser { padding: 80px 24px 56px; max-width: 1180px; margin: 0 auto; }
+  @media (max-width: 700px) { section.s-teaser { padding: 56px 20px 40px; } }
+  .teaser-wrap { padding: 56px 48px; background: var(--ink); color: white; position: relative; overflow: hidden; text-align: center; }
+  @media (max-width: 700px) { .teaser-wrap { padding: 40px 24px; } }
+  .teaser-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(201,169,97,0.15), transparent 70%); }
+  .teaser-wrap .label { font-family: var(--mono); font-size: 11.5px; color: var(--gold); letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 16px; position: relative; z-index: 2; font-weight: 500; }
+  .teaser-wrap h2 { font-family: var(--sans); font-size: clamp(28px, 3.8vw, 50px); font-weight: 700; letter-spacing: -0.028em; line-height: 1.0; margin-bottom: 14px; color: white; position: relative; z-index: 2; }
+  .teaser-wrap h2 em { font-family: var(--serif); font-style: italic; color: var(--gold); font-weight: 500; }
+  .teaser-wrap p { font-family: var(--body); font-size: 15px; color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 28px; line-height: 1.6; position: relative; z-index: 2; }
+  .teaser-wrap .btn-gold { padding: 14px 28px; background: var(--gold); color: var(--ink); border: 1px solid var(--gold); font-family: var(--sans); font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; position: relative; z-index: 2; }
+  .teaser-wrap .btn-gold:hover { background: white; border-color: white; transform: translateY(-2px); }
+
+  section.s-cta { padding: 96px 24px 70px; max-width: 1180px; margin: 16px auto 0; border-top: 1px solid var(--ink); }
+  @media (max-width: 700px) { section.s-cta { padding: 64px 20px 48px; } }
+  .s-cta h2 { font-family: var(--sans); font-size: clamp(36px, 5.6vw, 92px); font-weight: 700; letter-spacing: -0.034em; line-height: 0.96; margin-bottom: 22px; color: var(--ink); }
+  .s-cta h2 em { font-family: var(--serif); font-style: italic; color: var(--navy); font-weight: 500; }
+  .s-cta h2 .light { color: var(--ink-3); }
+  .s-cta p { font-family: var(--body); font-size: 15px; color: var(--ink-2); margin-bottom: 32px; }
+  .s-cta .actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  .btn-primary { padding: 14px 28px; background: var(--ink); color: white; border: 1px solid var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; letter-spacing: -0.005em; }
+  .btn-primary:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-2px); }
+  .btn-ghost { padding: 14px 28px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; letter-spacing: -0.005em; }
+  .btn-ghost:hover { background: var(--ink); color: white; transform: translateY(-2px); }
+
+  /* ============ FOOTER ============ */
+  footer { padding: 50px 32px 28px; max-width: 1280px; margin: 0 auto; border-top: 2px solid var(--ink); }
+  @media (max-width: 700px) { footer { padding: 36px 20px 24px; } }
+  .ft-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; }
+  .ft-row a { color: var(--ink-3); text-decoration: none; transition: color 0.2s; }
+  .ft-row a:hover { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-l">
+    <span class="ix">VOL · 03</span>
+    <span>PPT Design — 2026.05</span>
+  </div>
+  <a class="nav-c" href="00b_main_v2_kpi_stacked.html">AIO <em>presentation</em><span class="sub">STUDIO</span></a>
+  <div class="nav-r">
+    <a class="txt" href="#package">Package</a>
+    <a class="txt" href="#audit">Audit</a>
+    <a class="btn" href="#">견적 문의</a>
+  </div>
+</nav>
+
+<div class="page-tabs">
+  <a href="03_ppt_v2.html" class="active"><span class="num">01</span> 서비스 · 가격</a>
+  <a href="03_ppt_portfolio.html"><span class="num">02</span> 포트폴리오</a>
+  <a href="03_ppt_resources.html"><span class="num">03</span> 꿀팁받기</a>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Volume 03 — Strategic Presentation</div>
+    <h1 class="hero-h1"><span class="light">한 장이 결정짓는,</span><br/><em>발표</em>입니다</h1>
+    <p class="hero-sub">IR 덱 · 사업 제안서 · 컨설팅 보고서까지<br/>10분의 발표를 <strong>10년의 인상</strong>으로 만드는 <em>슬라이드</em></p>
+
+    <div class="hero-actions">
+      <a href="#package" class="btn-primary">견적 시작 →</a>
+      <a href="03_ppt_portfolio.html" class="btn-ghost">156개 포트폴리오 →</a>
+    </div>
+
+    <!-- Hero featured slide (cover) -->
+    <div class="hero-slide">
+      <span class="hs-tl">Issue 2026 · Q2</span>
+      <span class="hs-tr">CONFIDENTIAL · DRAFT</span>
+      <div class="hs-mid">
+        <div class="pre">— Series A · Pitch Deck</div>
+        <div class="h">한 줄로 정의한<br/>새로운 <em>AI 인프라</em>.</div>
+      </div>
+      <span class="hs-bl">— ARC AI · Founder's Letter</span>
+      <span class="hs-br">001 / 028</span>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <div class="trust-strip">
+    <div class="trust-item"><span class="num">1<em>h</em></span><span class="lbl">평균 응답</span></div>
+    <div class="trust-item"><span class="num">156</span><span class="lbl">건 작업</span></div>
+    <div class="trust-item"><span class="num">4<em>.9</em></span><span class="lbl">의뢰인 평점</span></div>
+    <div class="trust-item"><span class="num">1<em>m</em></span><span class="lbl">무상 A/S</span></div>
+  </div>
+
+  <!-- SLIDE REEL -->
+  <section class="s-reel">
+    <div class="head">
+      <div class="eyebrow">Live · Strategic Slides</div>
+      <h2>지금 발표되는 슬라이드<br/>모두 <em>실제 운영 중</em></h2>
+      <p class="sub">IR 라운드 · 이사회 · 학회 <strong>한 장이 의사결정</strong>이 된 슬라이드들을 모았습니다</p>
+    </div>
+
+    <div class="reel-mask">
+      <div class="reel-track">
+        <!-- Slide 1: IR Cover -->
+        <div class="sl sl-ir-cover">
+          <div class="sl-top"><span class="sl-mark dark">■ ARC AI</span><span class="sl-page dark">001 / 028</span></div>
+          <div>
+            <div class="sl-eyebrow gold">Series A · 2026.Q2</div>
+            <div class="sl-h dark">한 줄로 정의한<br/>새로운 <em>AI 인프라</em></div>
+          </div>
+          <div class="sl-foot"><span class="sl-meta dark">Pitch · Confidential</span><span class="sl-meta dark">arc-ai.io</span></div>
+        </div>
+
+        <!-- Slide 2: KPI -->
+        <div class="sl sl-ir-kpi">
+          <div class="sl-top"><span class="sl-mark dark">■ ARC AI</span><span class="sl-page dark">004 / 028</span></div>
+          <div style="display:grid; grid-template-rows: auto 1fr; gap: 12px;">
+            <div>
+              <div class="sl-eyebrow gold">— financial summary</div>
+              <div class="sl-h">3년 만에, <em>+412%</em></div>
+            </div>
+            <div class="kpi-grid">
+              <div class="kp"><div class="n">$ 12M</div><div class="l">ARR</div><div class="d">+182% YoY</div></div>
+              <div class="kp"><div class="n">340</div><div class="l">CUSTOMERS</div><div class="d">+95% YoY</div></div>
+              <div class="kp"><div class="n">98%</div><div class="l">RETENTION</div><div class="d">net dollar</div></div>
+              <div class="kp"><div class="n">3.2×</div><div class="l">PAYBACK</div><div class="d">months</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Chart -->
+        <div class="sl sl-ir-chart">
+          <div class="sl-top"><span class="sl-mark dark">■ ARC AI</span><span class="sl-page dark">009 / 028</span></div>
+          <div style="display:grid; grid-template-rows: auto 1fr; gap: 12px; height: 100%;">
+            <div>
+              <div class="sl-eyebrow gold">— quarterly arr</div>
+              <div class="sl-h">분기마다 <em>새 기록</em></div>
+            </div>
+            <div class="chart-bars">
+              <div class="bar b1"><span class="lab">Q1</span></div>
+              <div class="bar b2"><span class="lab">Q2</span></div>
+              <div class="bar b3"><span class="lab">Q3</span></div>
+              <div class="bar b4"><span class="lab">Q4</span></div>
+              <div class="bar b5"><span class="v">12M</span><span class="lab">Q1·26</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Corp Cover -->
+        <div class="sl sl-corp-cover">
+          <div class="sl-top"><span class="sl-mark">NORTH&nbsp;CO.</span><span class="sl-page">2026 · 01</span></div>
+          <div>
+            <div class="sl-eyebrow">CORPORATE OVERVIEW</div>
+            <div class="sl-h">신뢰가 쌓이는<br/><em>시간의 산업</em></div>
+          </div>
+          <div class="sl-foot"><span class="sl-meta">EST · 1998 — 2026</span><span class="sl-meta">Brand Book</span></div>
+        </div>
+
+        <!-- Slide 5: Corp 3 pillar -->
+        <div class="sl sl-corp-3">
+          <div class="sl-top"><span class="sl-mark">NORTH CO.</span><span class="sl-page">012 / 040</span></div>
+          <div style="display:grid; grid-template-rows: auto 1fr; gap: 12px;">
+            <div>
+              <div class="sl-eyebrow">— our pillars</div>
+              <div class="sl-h">3가지 <em>약속</em></div>
+            </div>
+            <div class="pillar-grid">
+              <div class="pi"><div class="pn">01</div><div class="pt">기술 우선</div><div class="pd">엔지니어가 의사결정의 중심</div></div>
+              <div class="pi"><div class="pn">02</div><div class="pt">고객 중심</div><div class="pd">매주 고객 목소리를 직접</div></div>
+              <div class="pi"><div class="pn">03</div><div class="pt">장기 사고</div><div class="pd">분기가 아닌 10년을 본다</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 6: Consulting Title -->
+        <div class="sl sl-cons-title">
+          <div class="sl-top"><span class="sl-mark">FRAMEWORK & PARTNERS</span><span class="sl-page">2026 · MAR</span></div>
+          <div>
+            <div class="sl-eyebrow">STRATEGIC REVIEW</div>
+            <div class="sl-h">시장 진입 <em>3가지 시나리오</em></div>
+          </div>
+          <div class="sl-foot"><span class="sl-meta">Confidential · Internal</span><span class="sl-meta">F&P · 03</span></div>
+        </div>
+
+        <!-- Slide 7: Consulting MECE -->
+        <div class="sl sl-cons-mece">
+          <div class="sl-top"><span class="sl-mark">FRAMEWORK & PARTNERS</span><span class="sl-page">PAGE 14</span></div>
+          <div style="display:grid; grid-template-rows: auto 1fr; gap: 10px;">
+            <div>
+              <div class="sl-eyebrow">— so what</div>
+              <div class="sl-h">3가지 <em>핵심 결론</em></div>
+            </div>
+            <div class="mece">
+              <div class="row"><div class="n">1</div><div class="t">시장은 <em>2027년 변곡점</em>을 맞습니다</div></div>
+              <div class="row"><div class="n">2</div><div class="t">최적 진입 시점은 <em>올해 4분기</em>입니다</div></div>
+              <div class="row"><div class="n">3</div><div class="t">초기 점유율 <em>12% 이상</em>이 손익분기</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 8: Pitch big number -->
+        <div class="sl sl-pitch">
+          <div class="pe">— problem</div>
+          <div class="pn">73%</div>
+          <div class="pl">의사결정자가 발표 직후<br/><strong>핵심 메시지를 잊습니다</strong></div>
+        </div>
+
+        <!-- Slide 9: Roadmap -->
+        <div class="sl sl-roadmap">
+          <div class="sl-top"><span class="sl-mark dark">ARC AI</span><span class="sl-page dark">021 / 028</span></div>
+          <div style="display:grid; grid-template-rows: auto 1fr; gap: 14px;">
+            <div>
+              <div class="sl-eyebrow gold">— roadmap</div>
+              <div class="sl-h">3년의 <em>그림</em></div>
+            </div>
+            <div class="roadmap-line">
+              <div class="ph"><div class="y">2026 Q2</div><div class="nm">시드 고객</div><div class="ds">파일럿 50개사</div></div>
+              <div class="ph"><div class="y">2026 Q4</div><div class="nm">제품 확장</div><div class="ds">엔터프라이즈 GA</div></div>
+              <div class="ph"><div class="y">2027 Q3</div><div class="nm">해외 진출</div><div class="ds">APAC 4개국</div></div>
+              <div class="ph"><div class="y">2028 +</div><div class="nm">시리즈 B</div><div class="ds">$ 30M ARR</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 10: Quote -->
+        <div class="sl sl-quote">
+          <div class="qt">"AIO가 만든 한 장이<br/><strong>투자자의 의사결정</strong>을 바꿨습니다."</div>
+          <div class="who">— L.S, Founder · Series A 유치</div>
+        </div>
+
+        <!-- Duplicate set for infinite loop -->
+        <div class="sl sl-ir-cover">
+          <div class="sl-top"><span class="sl-mark dark">■ ARC AI</span><span class="sl-page dark">001 / 028</span></div>
+          <div>
+            <div class="sl-eyebrow gold">Series A · 2026.Q2</div>
+            <div class="sl-h dark">한 줄로 정의한<br/>새로운 <em>AI 인프라</em></div>
+          </div>
+          <div class="sl-foot"><span class="sl-meta dark">Pitch · Confidential</span><span class="sl-meta dark">arc-ai.io</span></div>
+        </div>
+        <div class="sl sl-ir-kpi">
+          <div class="sl-top"><span class="sl-mark dark">■ ARC AI</span><span class="sl-page dark">004 / 028</span></div>
+          <div style="display:grid; grid-template-rows: auto 1fr; gap: 12px;">
+            <div>
+              <div class="sl-eyebrow gold">— financial summary</div>
+              <div class="sl-h">3년 만에, <em>+412%</em></div>
+            </div>
+            <div class="kpi-grid">
+              <div class="kp"><div class="n">$ 12M</div><div class="l">ARR</div><div class="d">+182% YoY</div></div>
+              <div class="kp"><div class="n">340</div><div class="l">CUSTOMERS</div><div class="d">+95% YoY</div></div>
+              <div class="kp"><div class="n">98%</div><div class="l">RETENTION</div><div class="d">net dollar</div></div>
+              <div class="kp"><div class="n">3.2×</div><div class="l">PAYBACK</div><div class="d">months</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="sl sl-corp-cover">
+          <div class="sl-top"><span class="sl-mark">NORTH&nbsp;CO.</span><span class="sl-page">2026 · 01</span></div>
+          <div>
+            <div class="sl-eyebrow">CORPORATE OVERVIEW</div>
+            <div class="sl-h">신뢰가 쌓이는<br/><em>시간의 산업</em></div>
+          </div>
+          <div class="sl-foot"><span class="sl-meta">EST · 1998 — 2026</span><span class="sl-meta">Brand Book</span></div>
+        </div>
+        <div class="sl sl-pitch">
+          <div class="pe">— problem</div>
+          <div class="pn">73%</div>
+          <div class="pl">의사결정자가 발표 직후<br/><strong>핵심 메시지를 잊습니다</strong></div>
+        </div>
+        <div class="sl sl-quote">
+          <div class="qt">"AIO가 만든 한 장이<br/><strong>투자자의 의사결정</strong>을 바꿨습니다."</div>
+          <div class="who">— L.S, Founder · Series A 유치</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIT (Before/After) -->
+  <section class="s-audit" id="audit">
+    <div class="head">
+      <div class="eyebrow">Slide Audit · Before / After</div>
+      <h2>한 장의 슬라이드,<br/><em>변신</em>합니다</h2>
+      <p class="sub">불릿 가득한 보고용 슬라이드를 의사결정용 슬라이드로</p>
+    </div>
+    <div class="audit-frame">
+      <div class="audit-side before">
+        <div class="audit-tag"><span class="d"></span>BEFORE · 보고용</div>
+        <div class="audit-slide ad-before">
+          <div class="at">2026년 1분기 영업 실적 보고</div>
+          <ul>
+            <li>매출액은 전년 동기 대비 약 18.2% 증가하여 분기 최고 실적을 기록함</li>
+            <li>신규 고객 유치는 직전 분기 대비 25% 확대되었으며 특히 엔터프라이즈 고객층에서 높은 성장세를 보임</li>
+            <li>구독 갱신율은 96.4%로 업계 평균을 상회하는 수준을 유지하고 있으며 NPS도 양호함</li>
+            <li>지역별로는 수도권이 전체의 64%를 차지하였으나 비수도권 비중이 점진적으로 확대되는 추세</li>
+            <li>다음 분기 우선 추진 과제로는 채널 다각화, 가격 정책 재검토, B2B 강화 등이 도출됨</li>
+          </ul>
+          <div class="ftr"><span>NORTH CO. · 2026 Q1</span><span>p. 14</span></div>
+        </div>
+        <div class="audit-comment">읽지 않으면 알 수 없는 슬라이드 <strong>발표자의 입에 의존</strong>하고, 청자는 글을 따라 읽느라 듣지 않습니다</div>
+      </div>
+      <div class="audit-arrow">→</div>
+      <div class="audit-side after">
+        <div class="audit-tag"><span class="d"></span>AFTER · 의사결정용</div>
+        <div class="audit-slide ad-after">
+          <div class="ah-eyebrow">— Q1 2026 · So what</div>
+          <div class="ah-title"><em>3가지</em>가 분기를 만들었습니다</div>
+          <div class="ah-stats">
+            <div class="ah-stat"><div class="n">+18%</div><div class="l">매출 YoY</div></div>
+            <div class="ah-stat"><div class="n">+25%</div><div class="l">신규 고객</div></div>
+            <div class="ah-stat"><div class="n">96%</div><div class="l">갱신율</div></div>
+          </div>
+          <div class="ah-foot"><span>NORTH CO. · 2026 Q1</span><span>14 / 32</span></div>
+        </div>
+        <div class="audit-comment">한 줄의 결론, 세 개의 숫자 <strong>발표 직후에도 기억에 남는</strong> 슬라이드</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="s-industries" id="industries">
+    <div class="head">
+      <div class="eyebrow">Industries · 8 Verticals</div>
+      <h2>발표마다 <em>목표</em>가 다릅니다</h2>
+      <p class="sub">투자 유치는 신뢰, 사업 제안은 설득, 학회는 권위<br/><strong>발표 종류별 슬라이드 문법</strong>을 미리 알고 시작합니다</p>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span class="num">01</span></div>
+        <h3>IR · 투자 덱</h3>
+        <p>시드 · 시리즈 A/B/C · 엑싯 IR 투자자가 멈춰 보는 한 장</p>
+        <div class="tags"><span>시리즈 ABC</span><span>VC 어필</span><span>엑싯</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg></span><span class="num">02</span></div>
+        <h3>사업 제안서</h3>
+        <p>B2B 영업 · 파트너십 · MOU 결재선을 넘는 제안서</p>
+        <div class="tags"><span>B2B 영업</span><span>RFP</span><span>MOU</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="num">03</span></div>
+        <h3>회사 소개서</h3>
+        <p>기업 brochure · 연혁 · 비전 한 권으로 보는 회사</p>
+        <div class="tags"><span>비전</span><span>연혁</span><span>BI 적용</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M9 9h6v6H9z"/></svg></span><span class="num">04</span></div>
+        <h3>컨설팅 보고서</h3>
+        <p>전략 · 운영 · 진단 보고서 맥킨지 · BCG 톤의 슬라이드</p>
+        <div class="tags"><span>So what</span><span>MECE</span><span>피라미드</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="num">05</span></div>
+        <h3>정부 사업 RFP</h3>
+        <p>정부 과제 · 입찰 · R&amp;D 제안서 평가 기준에 정밀하게</p>
+        <div class="tags"><span>정부 과제</span><span>R&amp;D</span><span>평가표</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><span class="num">06</span></div>
+        <h3>학회 · 컨퍼런스</h3>
+        <p>논문 발표 · 키노트 · 세션 권위가 묻어나는 슬라이드</p>
+        <div class="tags"><span>키노트</span><span>논문</span><span>영문</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><path d="M2 3h20v14H2z"/><path d="M8 21h8M12 17v4"/></svg></span><span class="num">07</span></div>
+        <h3>교육 · 강의</h3>
+        <p>온라인 강의 · 기업 교육 · 세미나 듣고 따라 읽기 좋은 흐름</p>
+        <div class="tags"><span>강의</span><span>교육</span><span>가이드</span></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-head"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span><span class="num">08</span></div>
+        <h3>브랜딩 · 캠페인</h3>
+        <p>브랜드 가이드 · 캠페인 덱 · 미디어 키트 톤이 살아있는 덱</p>
+        <div class="tags"><span>브랜드</span><span>캠페인</span><span>미디어</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGE -->
+  <section class="s-package" id="package">
+    <div class="head">
+      <div class="eyebrow">Pricing · 투명한 견적</div>
+      <h2>3가지 등급,<br/><em>발표 형태</em>와 무관하게 동일</h2>
+      <p class="sub">슬라이드 수와 도식화 깊이에 따라 결정됩니다</p>
+    </div>
+
+    <div class="package-table">
+      <div class="pkg-row head">
+        <div class="col"></div>
+        <div class="col"><div class="col-name">Light</div><div class="col-price"><span class="from">₩</span>4만~</div><div class="col-days">▸ 1 day</div></div>
+        <div class="col"><div class="col-name featured">Standard</div><div class="col-price"><span class="from">₩</span>8만~</div><div class="col-days">▸ 1–2 days</div></div>
+        <div class="col"><div class="col-name">Premium</div><div class="col-price"><span class="from">₩</span>12만~</div><div class="col-days">▸ 2–3 days</div></div>
+      </div>
+      <div class="pkg-row"><div class="col label">슬라이드 수</div><div class="col val">1–9p</div><div class="col val">10–20p</div><div class="col val">21–30p</div></div>
+      <div class="pkg-row"><div class="col label">도식화 · 레이아웃</div><div class="col val">기본 정리</div><div class="col val"><span class="check">✓ 정리</span></div><div class="col val"><span class="check">✓ 정리</span></div></div>
+      <div class="pkg-row"><div class="col label">기획 흐름 설계</div><div class="col val"><span class="x">—</span></div><div class="col val">기본</div><div class="col val"><span class="check">✓ 풀</span></div></div>
+      <div class="pkg-row"><div class="col label">수정 횟수</div><div class="col val">1회</div><div class="col val">2회</div><div class="col val">2회</div></div>
+      <div class="pkg-row"><div class="col label">납품 형식</div><div class="col val">.pptx + PDF</div><div class="col val">.pptx + PDF</div><div class="col val">.pptx + PDF</div></div>
+      <div class="pkg-row"><div class="col label">무상 A/S</div><div class="col val">30일</div><div class="col val">30일</div><div class="col val">60일</div></div>
+      <div class="pkg-row cta"><div class="col label"></div><div class="col"><button>선택</button></div><div class="col"><button class="featured">선택</button></div><div class="col"><button>선택</button></div></div>
+    </div>
+
+    <div class="pkg-mobile">
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Light</div><div class="pm-price"><span class="from">₩</span>4만~</div></div>
+        <div class="pm-days">▸ 1 day</div>
+        <ul class="pm-list">
+          <li><span class="l">슬라이드</span><span class="v">1–9p</span></li>
+          <li><span class="l">도식화</span><span class="v">기본</span></li>
+          <li><span class="l">수정</span><span class="v">1회</span></li>
+          <li><span class="l">A/S</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card featured">
+        <div class="pm-row1"><div class="pm-name">Standard</div><div class="pm-price"><span class="from">₩</span>8만~</div></div>
+        <div class="pm-days">▸ 1–2 days</div>
+        <ul class="pm-list">
+          <li><span class="l">슬라이드</span><span class="v">10–20p</span></li>
+          <li><span class="l">도식화</span><span class="v acc">✓ 정리</span></li>
+          <li><span class="l">수정</span><span class="v">2회</span></li>
+          <li><span class="l">A/S</span><span class="v">30일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+      <div class="pm-card">
+        <div class="pm-row1"><div class="pm-name">Premium</div><div class="pm-price"><span class="from">₩</span>12만~</div></div>
+        <div class="pm-days">▸ 2–3 days</div>
+        <ul class="pm-list">
+          <li><span class="l">슬라이드</span><span class="v">21–30p</span></li>
+          <li><span class="l">기획 흐름</span><span class="v acc">✓ 풀</span></li>
+          <li><span class="l">수정</span><span class="v">2회</span></li>
+          <li><span class="l">A/S</span><span class="v">60일</span></li>
+        </ul>
+        <button>선택</button>
+      </div>
+    </div>
+
+    <div class="addons">
+      <h4>— 공통 추가 옵션</h4>
+      <div class="addons-grid">
+        <div class="addon"><span class="l">슬라이드 추가 1장</span><span class="v">+5천~</span></div>
+        <div class="addon"><span class="l">도식화 · 인포그래픽</span><span class="v">별도 견적</span></div>
+        <div class="addon"><span class="l">영문 번역 · 디자인</span><span class="v">별도 견적</span></div>
+        <div class="addon"><span class="l">회사 BI 가이드 적용</span><span class="v">별도 견적</span></div>
+        <div class="addon"><span class="l">긴급 제작 (24h)</span><span class="v">+3만</span></div>
+        <div class="addon"><span class="l">애니메이션 효과</span><span class="v">별도 견적</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="s-process">
+    <div class="head">
+      <h2>의뢰부터 납품까지 <em>5일</em></h2>
+    </div>
+    <div class="process">
+      <div class="timeline">
+        <div class="step"><div class="day">DAY 01 · 무료</div><div class="name">상담</div><div class="desc">자료 정리·발표 목적·청자 분석 30분 화상</div></div>
+        <div class="step"><div class="day">DAY 02</div><div class="name">스토리보드</div><div class="desc">슬라이드 흐름 + 메시지 응축 1차 시안</div></div>
+        <div class="step"><div class="day">DAY 03–04</div><div class="name">디자인</div><div class="desc">비주얼·인포그래픽·차트 작업</div></div>
+        <div class="step"><div class="day">DAY 05</div><div class="name">납품 + A/S</div><div class="desc">.pptx 원본 + 1개월 무상 A/S</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="s-faq" id="faq">
+    <div class="head">
+      <h2>자주 묻는 <em>질문</em></h2>
+      <p class="sub">결정 전에 가장 많이 받는 8가지</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span class="q"><span class="q-num">Q.01</span><span>텍스트 자료(워드·한글)만 있어도 만들어주시나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, 가장 많은 의뢰 형태입니다.</strong> 워드·한글·노션·구글닥에 정리된 텍스트를 받아 <em>메시지를 응축</em>한 뒤 슬라이드로 변환합니다. 자료가 없어도 30분 인터뷰로 시작 가능합니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.02</span><span>회사 BI(컬러·로고·폰트)에 맞춰주시나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, Standard 이상은 BI 적용 포함</strong>입니다. 가이드 문서가 있으면 그대로 적용하고, 없으면 로고와 컬러 1~2가지를 받아 슬라이드 시스템에 자연스럽게 녹입니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.03</span><span>영문 슬라이드도 가능한가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">가능합니다 <strong>영문 번역과 디자인은 별도 옵션</strong>으로 견적 드립니다 기존 한글 슬라이드를 받아 비즈니스 영문 톤으로 자연스럽게 다듬어 작업합니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.04</span><span>인포그래픽·차트는 직접 디자인하시나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">네, 모두 <strong>커스텀 디자인</strong>입니다 무료 템플릿이나 클립아트는 사용하지 않습니다. 차트는 데이터를 받아 가독성·메시지·브랜드 톤에 맞게 새로 그립니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.05</span><span>발표용 PPT와 보고서용 PPT는 톤이 다른가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, 완전히 다릅니다.</strong> 발표용은 <em>한 장 한 메시지</em>로 응축하고 시각 위주로, 보고서용은 텍스트 밀도를 높이고 후속 참고가 가능하도록 설계합니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.06</span><span>5일 안에 정말 가능한가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">대부분의 의뢰가 5일 안에 끝납니다 비결은 <strong>발표 종류별 검증된 슬라이드 문법</strong>으로 시작하기 때문입니다 의뢰인 만족도 <em>4.9 / 5</em>를 유지하고 있습니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.07</span><span>1개월 무상 A/S는 어떤 범위까지인가요?</span></span><span class="arrow">+</span></summary>
+        <div class="a">납품 후 <em>30일간</em> 발생하는 <strong>오타 수정·숫자 업데이트·페이지 추가 1~2장·미세 디자인 조정</strong>은 무료입니다 신규 챕터 추가나 디자인 전면 수정은 별도 견적입니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q"><span class="q-num">Q.08</span><span>.pptx 원본 파일도 받을 수 있나요?</span></span><span class="arrow">+</span></summary>
+        <div class="a"><strong>네, 모든 패키지에 .pptx + PDF</strong>가 기본 포함됩니다 의뢰인이 직접 수정·확장할 수 있도록 마스터 슬라이드와 폰트·컬러 시스템을 정리해 인계합니다.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- TEASER -->
+  <section class="s-teaser">
+    <div class="teaser-wrap">
+      <div class="label">— next page · portfolio</div>
+      <h2>이미 156개. <em>결과</em>를 보고 결정하세요</h2>
+      <p>실제 발표가 일어난 슬라이드들 한 작품 한 작품이 다음 의뢰의 답입니다</p>
+      <a href="03_ppt_portfolio.html" class="btn-gold">포트폴리오 전체 →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="s-cta">
+    <h2><span class="light">deliver</span><br/><em>your_deck</em></h2>
+    <p>1시간 답변 · 24시간 견적 · 5일 결과물</p>
+    <div class="actions">
+      <a href="#" class="btn-primary">견적 시작 →</a>
+      <a href="#" class="btn-ghost">aio-bot 상담</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ft-row">
+    <span>© 2026 AIO Studio · Volume 03 · PPT</span>
+    <span><a href="00b_main_v2_kpi_stacked.html">← Studio</a> &nbsp; <a href="03_ppt_portfolio.html">portfolio →</a></span>
+  </div>
+</footer>
+
+<script>
+  if (window.gsap && gsap.registerPlugin && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.hero-eyebrow', { opacity: 0, y: 12, duration: 0.7, ease: 'power3.out' });
+  gsap.from('.hero-h1', { opacity: 0, y: 24, duration: 1.0, delay: 0.2, ease: 'expo.out' });
+  gsap.from('.hero-sub', { opacity: 0, y: 16, duration: 0.8, delay: 0.5, ease: 'power3.out' });
+  gsap.from('.hero-actions', { opacity: 0, y: 12, duration: 0.7, delay: 0.7 });
+  gsap.from('.hero-slide', { opacity: 0, y: 40, scale: 0.98, duration: 1.0, delay: 0.5, ease: 'expo.out' });
+
+  gsap.from('.trust-item', { opacity: 0, y: 12, duration: 0.6, stagger: 0.08, scrollTrigger: { trigger: '.trust-strip', start: 'top 92%' } });
+  gsap.from('.audit-side', { opacity: 0, y: 30, duration: 0.8, stagger: 0.15, scrollTrigger: { trigger: '.audit-frame', start: 'top 80%' } });
+  gsap.from('.ind-card', { opacity: 0, y: 24, duration: 0.6, stagger: 0.06, scrollTrigger: { trigger: '.ind-grid', start: 'top 82%' } });
+  gsap.from('.pkg-row', { opacity: 0, y: 12, duration: 0.5, stagger: 0.04, scrollTrigger: { trigger: '.package-table', start: 'top 85%' } });
+  gsap.from('.step', { opacity: 0, y: 16, duration: 0.6, stagger: 0.1, scrollTrigger: { trigger: '.process', start: 'top 85%' } });
+  gsap.from('.faq-item', { opacity: 0, y: 14, duration: 0.5, stagger: 0.06, scrollTrigger: { trigger: '.faq-list', start: 'top 82%' } });
+  gsap.from('.teaser-wrap', { opacity: 0, y: 30, duration: 0.9, scrollTrigger: { trigger: '.s-teaser', start: 'top 82%' } });
+</script>
+</body>
+</html>

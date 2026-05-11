@@ -1,14 +1,17 @@
 import Link from "next/link";
-import { BarChart3, BriefcaseBusiness, Inbox, LayoutDashboard, LogOut, Settings, Users } from "lucide-react";
+import { BarChart3, BriefcaseBusiness, Image, Inbox, LayoutDashboard, Link2, LogOut, PieChart, Settings, Users } from "lucide-react";
 import { requireAdminSession } from "@/lib/admin-auth";
 
 const navItems = [
-  { href: "/admin", label: "대시보드", icon: LayoutDashboard },
-  { href: "/admin/contracts", label: "계약 관리", icon: BriefcaseBusiness },
-  { href: "/admin/customers", label: "고객 DB", icon: Users },
-  { href: "/admin/inbox", label: "문의함", icon: Inbox },
-  { href: "/admin/kanban", label: "업무 보드", icon: BarChart3, disabled: true },
-  { href: "/admin/revenue", label: "매출 리포트", icon: Settings, disabled: true },
+  { href: "/admin",                       label: "대시보드",     icon: LayoutDashboard },
+  { href: "/admin/contracts",             label: "계약 관리",    icon: BriefcaseBusiness },
+  { href: "/admin/customers",             label: "고객 DB",      icon: Users },
+  { href: "/admin/inbox",                 label: "문의함",       icon: Inbox },
+  { href: "/admin/portfolios",            label: "포트폴리오",   icon: Image },
+  { href: "/admin/marketing/links",       label: "UTM 링크",     icon: Link2 },
+  { href: "/admin/analytics",             label: "방문자 분석",  icon: PieChart },
+  { href: "/admin/kanban",                label: "업무 보드",    icon: BarChart3, disabled: true },
+  { href: "/admin/revenue",               label: "매출 리포트",  icon: Settings, disabled: true },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

@@ -8,10 +8,19 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const FAQ_KEYS = ["1", "2", "3", "4", "5", "6"] as const;
+const ALL_FAQ_KEYS = ["1", "2", "3", "4", "5", "6"] as const;
 
-export function FaqSection() {
+interface Props {
+  scope?: "general" | string;
+  limit?: number;
+}
+
+export function FaqSection({ scope = "general", limit = 6 }: Props) {
   const t = useTranslations("faq");
+
+  if (scope !== "general") return null;
+
+  const keys = ALL_FAQ_KEYS.slice(0, limit);
 
   return (
     <section id="faq" className="py-24 lg:py-32">
@@ -33,7 +42,7 @@ export function FaqSection() {
           </div>
 
           <Accordion className="divide-y divide-white/8 border-t border-white/8">
-            {FAQ_KEYS.map((key) => (
+            {keys.map((key) => (
               <AccordionItem key={key} value={`faq-${key}`} className="border-0">
                 <AccordionTrigger className="py-6 text-left text-sm font-medium text-foreground hover:text-primary hover:no-underline [&[data-state=open]]:text-primary">
                   {t(`q${key}`)}

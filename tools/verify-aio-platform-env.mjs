@@ -21,6 +21,8 @@ const recommended = [
   "RESEND_API_KEY",
   "RESEND_FROM_EMAIL",
   "CONTACT_TO_EMAIL",
+  "NEXT_PUBLIC_GA_ID",
+  "ANALYTICS_HMAC_SECRET",
 ];
 
 function parseEnvFile(filePath) {

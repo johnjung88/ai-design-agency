@@ -9,6 +9,7 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { PublicChatbot } from "@/components/chatbot/public-chatbot";
+import { AnalyticsInit } from "@/components/analytics-init";
 
 export const dynamic = "force-dynamic";
 
@@ -48,6 +49,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <AnalyticsInit />
       <Header />
       <main>{children}</main>
       <Footer />

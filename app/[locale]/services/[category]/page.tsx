@@ -3,15 +3,17 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
-import { getServiceById, servicesData } from "@/lib/services-data";
+import { getServiceById, servicesData, relatedCategoriesMap } from "@/lib/services-data";
 import type { ServiceCategory } from "@/lib/services-data";
 import { TypeBadge } from "@/components/ui/type-badge";
 import { GuaranteeBadge } from "@/components/ui/guarantee-badge";
 import { PricingTable } from "@/components/sections/pricing-table";
 import { AddonsTable } from "@/components/sections/addons-table";
-import { getPortfolioProjectBySlug } from "@/lib/portfolio-data";
-import type { PortfolioProject } from "@/lib/portfolio-data";
+import { getPortfolioBySlug } from "@/lib/portfolio";
+import type { PortfolioProject } from "@/lib/portfolio";
 import { PortfolioCard } from "@/components/ui/portfolio-card";
+import { CategoryFaq } from "@/components/sections/category-faq";
+import { RelatedServices } from "@/components/sections/related-services";
 
 const VALID = servicesData.map((service) => service.id);
 const LEGACY_REDIRECTS: Record<string, ServiceCategory> = {
@@ -26,6 +28,8 @@ export async function generateStaticParams() {
   return VALID.map((category) => ({ category }));
 }
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aio-make.com";
+
 export async function generateMetadata({
   params,
 }: {
@@ -34,7 +38,36 @@ export async function generateMetadata({
   const { locale, category } = await params;
   const service = getServiceById(category as ServiceCategory);
   if (!service) return {};
-  return { title: service.title[locale as "ko" | "en"] };
+
+  const l = locale as "ko" | "en";
+  const title = service.title[l];
+  const description = service.description[l];
+  const canonical = `${SITE_URL}/${locale}/services/${category}`;
+  const altLocale = locale === "ko" ? "en" : "ko";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        [locale]: canonical,
+        [altLocale]: `${SITE_URL}/${altLocale}/services/${category}`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "website",
+      locale: locale === "ko" ? "ko_KR" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
 }
 
 export default async function ServiceDetailPage({
@@ -57,8 +90,9 @@ export default async function ServiceDetailPage({
   const l = locale as "ko" | "en";
   const base = `/${locale}`;
 
-  const relatedProjects = service.relatedPortfolio
-    .map((slug) => getPortfolioProjectBySlug(slug))
+  const relatedProjects = (
+    await Promise.all(service.relatedPortfolio.map((slug) => getPortfolioBySlug(slug)))
+  )
     .filter((project): project is PortfolioProject => Boolean(project))
     .slice(0, 3);
 
@@ -167,6 +201,14 @@ export default async function ServiceDetailPage({
             </div>
           </div>
         )}
+
+        <CategoryFaq service={service} locale={locale} />
+
+        <RelatedServices
+          currentCategory={category as ServiceCategory}
+          relatedIds={relatedCategoriesMap[category as ServiceCategory] ?? []}
+          locale={locale}
+        />
       </div>
     </main>
   );

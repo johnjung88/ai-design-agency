@@ -26,6 +26,11 @@ export interface AddonItem {
   price: string;
 }
 
+export interface FaqItem {
+  q: LocalizedString;
+  a: LocalizedString;
+}
+
 export interface ServiceDetail {
   id: ServiceCategory;
   title: LocalizedString;
@@ -37,6 +42,7 @@ export interface ServiceDetail {
   addons?: AddonItem[];
   relatedPortfolio: string[];
   cta: LocalizedString;
+  faqs?: FaqItem[];
 }
 
 const sharedProcess = [
@@ -123,6 +129,28 @@ export const servicesData: ServiceDetail[] = [
     ],
     relatedPortfolio: ["chueok-korea", "aio-design-agency", "v-aio-website"],
     cta: { ko: "웹사이트 견적 문의", en: "Request website quote" },
+    faqs: [
+      {
+        q: { ko: "웹사이트 제작 기간은 얼마나 걸리나요?", en: "How long does website production take?" },
+        a: { ko: "1페이지 랜딩은 1일, 3페이지 사이트는 2-3일, 5페이지는 3-5일이 기준입니다. 자료 제출이 빠를수록 납기가 단축됩니다.", en: "One-page landing: 1 day, 3-page site: 2-3 days, 5-page: 3-5 days. Faster asset delivery means faster delivery." },
+      },
+      {
+        q: { ko: "도메인과 호스팅도 포함인가요?", en: "Are domain and hosting included?" },
+        a: { ko: "도메인·호스팅은 별도이며, 구매 후 연결 설정은 지원 드립니다.", en: "Domain and hosting are separate. We assist with connection setup after purchase." },
+      },
+      {
+        q: { ko: "완성 후 직접 수정할 수 있나요?", en: "Can I edit the site after delivery?" },
+        a: { ko: "운영 가이드를 제공하고 14일 기본 A/S가 포함됩니다. 이후 추가 수정은 별도 견적입니다.", en: "An operations guide is provided with 14-day basic support. Further edits are quoted separately." },
+      },
+      {
+        q: { ko: "결제·예약·회원가입 기능도 추가할 수 있나요?", en: "Can payment, booking, or membership features be added?" },
+        a: { ko: "가능합니다. 기본 패키지 외 기능은 별도 견적으로 진행합니다.", en: "Yes. Features beyond the base package are quoted separately." },
+      },
+      {
+        q: { ko: "어떤 기술로 제작되나요?", en: "What technology is used?" },
+        a: { ko: "주로 Next.js 기반으로 제작하며, 용도와 예산에 따라 가장 적합한 스택을 제안합니다.", en: "Primarily Next.js-based; we recommend the best stack based on your needs and budget." },
+      },
+    ],
   },
   {
     id: "shopping-mall",
@@ -186,6 +214,28 @@ export const servicesData: ServiceDetail[] = [
     ],
     relatedPortfolio: ["cafe24-farm-fresh", "cafe24-live-commerce", "cafe24-premium-tea"],
     cta: { ko: "쇼핑몰 견적 문의", en: "Request store quote" },
+    faqs: [
+      {
+        q: { ko: "카페24가 아닌 다른 플랫폼도 가능한가요?", en: "Do you support platforms other than Cafe24?" },
+        a: { ko: "카페24를 기본으로 지원합니다. 쇼피파이 등 다른 플랫폼은 별도 문의 주세요.", en: "Cafe24 is our primary platform. Contact us for other platforms like Shopify." },
+      },
+      {
+        q: { ko: "상품 등록은 몇 개까지 포함되나요?", en: "How many products are included in setup?" },
+        a: { ko: "패키지에 따라 3-10개이며, 추가 상품 등록은 개당 별도 금액입니다.", en: "3-10 products depending on the package; additional uploads are quoted per item." },
+      },
+      {
+        q: { ko: "기존 쇼핑몰 리뉴얼도 가능한가요?", en: "Can you redesign an existing store?" },
+        a: { ko: "네, 기존 쇼핑몰 리뉴얼도 동일 조건으로 진행 가능합니다.", en: "Yes, existing store redesigns are handled under the same terms." },
+      },
+      {
+        q: { ko: "모바일 화면도 함께 제작되나요?", en: "Is mobile optimization included?" },
+        a: { ko: "모든 패키지에 모바일 최적화가 포함됩니다.", en: "Mobile optimization is included in all packages." },
+      },
+      {
+        q: { ko: "결제·배송·PG 설정도 도와주나요?", en: "Do you help with payment and shipping setup?" },
+        a: { ko: "설정 가이드를 제공하며, 실제 PG 계약 등 플랫폼 계정 설정은 별도 안내 드립니다.", en: "We provide setup guides; actual PG contracts and platform account setup are handled separately." },
+      },
+    ],
   },
   {
     id: "logo-business-card",
@@ -311,6 +361,28 @@ export const servicesData: ServiceDetail[] = [
     ],
     relatedPortfolio: ["detail-page-ampoule-anti-aging", "detail-page-premium-mealkit", "detail-page-linen-onepiece"],
     cta: { ko: "상세페이지 견적 문의", en: "Request detail page quote" },
+    faqs: [
+      {
+        q: { ko: "상세페이지 제작에 얼마나 걸리나요?", en: "How long does detail page production take?" },
+        a: { ko: "기본 패키지 기준 2-5일입니다. 자료 제출이 빠를수록 납기가 단축됩니다.", en: "2-5 days for the base package. Faster asset delivery means faster turnaround." },
+      },
+      {
+        q: { ko: "쿠팡, 스마트스토어, 11번가 등 어떤 플랫폼도 가능한가요?", en: "Do you support Coupang, SmartStore, and other platforms?" },
+        a: { ko: "네, 모든 오픈마켓 및 쇼핑몰 플랫폼에 맞는 규격으로 제작합니다.", en: "Yes, we produce to spec for all major marketplace and storefront platforms." },
+      },
+      {
+        q: { ko: "제품 사진이 없어도 제작이 가능한가요?", en: "Can you create a detail page without product photos?" },
+        a: { ko: "기본 이미지가 있으면 작업이 가능합니다. 고퀄리티 촬영이 필요한 경우 별도 안내 드립니다.", en: "Basic images are sufficient to start. Professional photography can be arranged separately if needed." },
+      },
+      {
+        q: { ko: "수정은 몇 번이나 가능한가요?", en: "How many revisions are included?" },
+        a: { ko: "패키지에 따라 1-3회 기본 포함이며, 추가 수정은 건당 별도 견적입니다.", en: "1-3 revisions depending on the package; additional revisions are quoted per round." },
+      },
+      {
+        q: { ko: "납품 파일 형식은 어떻게 되나요?", en: "What file formats are delivered?" },
+        a: { ko: "PSD 원본과 플랫폼 업로드용 JPG/PNG 파일로 납품합니다.", en: "PSD source files plus platform-ready JPG/PNG files." },
+      },
+    ],
   },
   {
     id: "ppt-design",
@@ -498,3 +570,78 @@ export const serviceCategories: { label: LocalizedString; value: ServiceCategory
   { label: { ko: "자동화 및 앱", en: "Automation & App" }, value: "automation-app", icon: "Bot" },
   { label: { ko: "영상 콘텐츠", en: "Video Content" }, value: "video-content", icon: "Video" },
 ];
+
+// ── 대분류 메타 카테고리 ────────────────────────────────────────────
+
+export type MetaCategoryId = "design" | "development" | "video" | "marketing";
+
+export interface MetaCategory {
+  id: MetaCategoryId;
+  title: LocalizedString;
+  subtitle: LocalizedString;
+  description: LocalizedString;
+  icon: string;
+  subcategories: ServiceCategory[];
+  comingSoon: boolean;
+}
+
+export const metaCategoriesData: MetaCategory[] = [
+  {
+    id: "design",
+    title: { ko: "디자인", en: "Design" },
+    subtitle: { ko: "브랜드디자인 · 상세페이지 · PPT", en: "Brand design · Detail pages · PPT" },
+    description: {
+      ko: "로고, 브랜드 아이덴티티부터 상품 상세페이지, 제안서 디자인까지 시각적 결과물 전반을 담당합니다.",
+      en: "From logo and brand identity to product detail pages and presentation design.",
+    },
+    icon: "Palette",
+    subcategories: ["logo-business-card", "detail-page", "ppt-design"],
+    comingSoon: false,
+  },
+  {
+    id: "development",
+    title: { ko: "개발", en: "Development" },
+    subtitle: { ko: "쇼핑몰 · 웹사이트 · 앱", en: "Storefront · Website · App" },
+    description: {
+      ko: "쇼핑몰, 랜딩페이지, 회사 홈페이지, 자동화 앱까지 코드로 구현하는 모든 것.",
+      en: "Shopping malls, landing pages, company sites, and automation apps — all in code.",
+    },
+    icon: "Code2",
+    subcategories: ["shopping-mall", "website", "automation-app"],
+    comingSoon: false,
+  },
+  {
+    id: "video",
+    title: { ko: "영상", en: "Video" },
+    subtitle: { ko: "준비 중", en: "Coming Soon" },
+    description: {
+      ko: "브랜드 인트로, 홍보 영상, 쇼츠·릴스 제작 서비스를 준비 중입니다.",
+      en: "Brand intro, promo videos, and Shorts/Reels — coming soon.",
+    },
+    icon: "Video",
+    subcategories: ["video-content"],
+    comingSoon: true,
+  },
+  {
+    id: "marketing",
+    title: { ko: "마케팅", en: "Marketing" },
+    subtitle: { ko: "준비 중", en: "Coming Soon" },
+    description: {
+      ko: "SNS 콘텐츠, 광고 소재, 퍼포먼스 마케팅 서비스를 준비 중입니다.",
+      en: "Social content, ad creatives, and performance marketing — coming soon.",
+    },
+    icon: "Megaphone",
+    subcategories: [],
+    comingSoon: true,
+  },
+];
+
+export const relatedCategoriesMap: Record<ServiceCategory, ServiceCategory[]> = {
+  "website":            ["logo-business-card", "automation-app"],
+  "shopping-mall":      ["detail-page", "video-content"],
+  "logo-business-card": ["website", "ppt-design"],
+  "detail-page":        ["shopping-mall", "video-content", "logo-business-card"],
+  "ppt-design":         ["logo-business-card"],
+  "automation-app":     ["website"],
+  "video-content":      ["detail-page", "shopping-mall"],
+};

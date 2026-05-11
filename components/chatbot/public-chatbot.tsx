@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Bot, Loader2, MessageCircle, Send, X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics/client";
 
 type ChatMessage = {
   role: "assistant" | "customer";
@@ -55,6 +56,7 @@ export function PublicChatbot({ locale }: { locale: string }) {
       if (!response.ok || !json.success) {
         throw new Error(json.error ?? "문의 전송에 실패했습니다.");
       }
+      trackEvent("submit_chat", {});
       setMessages((current) => [
         ...current,
         {
@@ -140,7 +142,7 @@ export function PublicChatbot({ locale }: { locale: string }) {
 
       <button
         className="flex h-12 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-lg shadow-black/30 transition hover:brightness-105"
-        onClick={() => setOpen((current) => !current)}
+        onClick={() => { setOpen((current) => { if (!current) trackEvent("open_chatbot", {}); return !current; }); }}
         aria-label="AIO 상담 열기"
       >
         <MessageCircle className="size-5" />

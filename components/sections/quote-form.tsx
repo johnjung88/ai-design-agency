@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { serviceCategories, type ServiceCategory } from "@/lib/services-data";
+import { trackEvent, getOrCreateSessionUid } from "@/lib/analytics/client";
 
 const SUBTYPES: Record<ServiceCategory, { value: string; ko: string; en: string }[]> = {
   website: [
@@ -148,10 +149,11 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, locale }),
+        body: JSON.stringify({ ...form, locale, sessionUid: getOrCreateSessionUid() }),
       });
       setStatus(res.ok ? "success" : "error");
       if (res.ok) {
+        trackEvent("submit_quote", { category: form.category, channel: form.source });
         setForm((current) => ({ ...current, name: "", email: "", phone: "", description: "" }));
       }
     } catch {
