@@ -1,0 +1,181 @@
+const pillars = [
+  {
+    num: "1",
+    label: "No 01 · Speed",
+    title: "빠른",
+    titleEm: "응대",
+    body: "1시간 안에 답하고, 24시간 안에 견적을 보냅니다 의뢰인이 다음 일을 바로 시작할 수 있도록",
+    metric: "평균 응답 23분",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="currentColor">
+        <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
+  },
+  {
+    num: "2",
+    label: "No 02 · Output",
+    title: "빠른",
+    titleEm: "결과물",
+    body: "5일 안에 손에 쥐어드리고, 매일 진행 상황을 공유합니다 받기까지의 기다림을 줄입니다",
+    metric: "평균 납기 4.6일",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="currentColor">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    ),
+  },
+  {
+    num: "3",
+    label: "No 03 · Quality",
+    title: "높은",
+    titleEm: "완성도",
+    body: "운영 중인 사이트가 곧 우리의 결과물입니다 데모가 아닌 실제 결과를 보고 결정하세요",
+    metric: "만족도 4.9 / 5",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="currentColor">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    ),
+  },
+  {
+    num: "4",
+    label: "No 04 · Care",
+    title: "꾸준한",
+    titleEm: "유지보수",
+    body: "1개월 무상 A/S 텔레그램으로 언제든 납품이 끝이 아니라, 운영의 시작입니다",
+    metric: "재의뢰율 98%",
+    icon: (
+      <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" stroke="currentColor">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+  },
+];
+
+export function MagazineEditorsNote() {
+  return (
+    <section
+      id="editors"
+      className="py-28 px-9 max-w-[1200px] mx-auto relative text-center"
+      style={{ padding: "clamp(80px,10vw,120px) clamp(24px,3vw,36px)" }}
+    >
+      {/* Eyebrow */}
+      <div
+        className="mb-6 inline-flex items-center gap-[14px]"
+        style={{ fontFamily: "var(--font-jetbrains)", fontSize: "11.5px", color: "var(--tone-magazine-ink-2)", letterSpacing: "0.3em", textTransform: "uppercase" }}
+      >
+        <span style={{ width: 28, height: 1, background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
+        Editor&apos;s Note · 04 Pillars
+        <span style={{ width: 28, height: 1, background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
+      </div>
+
+      {/* H2 */}
+      <h2
+        className="font-normal mx-auto mb-7 max-w-[1100px]"
+        style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(48px,6vw,96px)", lineHeight: 1.0, letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
+      >
+        의뢰 전 가장
+        <br />
+        궁금한{" "}
+        <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>네 가지</em>
+      </h2>
+
+      {/* Lede */}
+      <p
+        className="mx-auto mb-20"
+        style={{ fontFamily: "var(--font-cormorant)", fontSize: 19, lineHeight: 1.6, color: "var(--tone-magazine-ink-2)", maxWidth: 600 }}
+      >
+        속도 · 결과물 · 완성도 · 유지보수
+        <br />
+        외주 결정의 네 축에서,{" "}
+        <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 500 }}>평균 이상의 답</strong>을 드립니다
+      </p>
+
+      {/* 2x2 Grid */}
+      <div
+        className="grid mx-auto max-w-[880px]"
+        style={{
+          gridTemplateColumns: "1fr 1fr",
+          border: "1px solid var(--tone-magazine-ink)",
+        }}
+      >
+        {pillars.map((p, i) => (
+          <div
+            key={i}
+            className="flex flex-col items-center group cursor-default transition-colors duration-500"
+            style={{
+              padding: "clamp(22px,3vw,40px) clamp(12px,2vw,28px)",
+              borderRight: i % 2 === 0 ? "1px solid var(--tone-magazine-line-2)" : "none",
+              borderBottom: i < 2 ? "1px solid var(--tone-magazine-line-2)" : "none",
+            }}
+          >
+            {/* Illust */}
+            <div className="relative w-16 h-16 mb-[18px] shrink-0">
+              <div
+                className="absolute inset-0 rounded-full transition-transform duration-500 group-hover:rotate-[15deg] group-hover:scale-105"
+                style={{ border: "1px solid var(--tone-magazine-ink)" }}
+              />
+              <div
+                className="absolute text-[var(--tone-magazine-ink)]"
+                style={{ inset: 16 }}
+              >
+                {p.icon}
+              </div>
+              <div
+                className="absolute -top-1 -right-1 w-[22px] h-[22px] rounded-full grid place-items-center"
+                style={{
+                  background: "var(--tone-magazine-ink)",
+                  color: "var(--tone-magazine-paper)",
+                  fontFamily: "var(--font-marcellus)",
+                  fontSize: 11,
+                  lineHeight: 1,
+                }}
+              >
+                {p.num}
+              </div>
+            </div>
+
+            <div
+              className="mb-3"
+              style={{ fontFamily: "var(--font-jetbrains)", fontSize: "10.5px", color: "var(--tone-magazine-ink-2)", letterSpacing: "0.22em", textTransform: "uppercase" }}
+            >
+              {p.label}
+            </div>
+
+            <h3
+              className="font-normal mb-3"
+              style={{ fontFamily: "var(--font-marcellus)", fontSize: 26, lineHeight: 1.05, letterSpacing: "-0.01em", color: "var(--tone-magazine-ink)" }}
+            >
+              {p.title}{" "}
+              <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>
+                {p.titleEm}
+              </em>
+            </h3>
+
+            <p
+              className="mb-[18px] max-w-[280px]"
+              style={{ fontFamily: "var(--font-cormorant)", fontSize: 15, lineHeight: 1.55, color: "var(--tone-magazine-ink-2)" }}
+            >
+              {p.body}
+            </p>
+
+            <span
+              className="inline-flex items-center gap-2 pt-[14px]"
+              style={{
+                fontFamily: "var(--font-jetbrains)",
+                fontSize: "10.5px",
+                color: "var(--tone-magazine-ink-2)",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                borderTop: "1px solid var(--tone-magazine-line)",
+              }}
+            >
+              <span>→</span> {p.metric}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

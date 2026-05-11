@@ -280,6 +280,32 @@
   will-change: transform;
 }
 
+/* Magazine tone keyframes */
+@keyframes ornSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes ornSpinReverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes dotPulseMag { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.3; transform:scale(0.7);} }
+@keyframes pulseRingMag { 0%{transform:scale(0.8); opacity:0.4;} 100%{transform:scale(2.5); opacity:0;} }
+@keyframes curveDrawMag { to { stroke-dashoffset: 0; } }
+@keyframes reelScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes ulDraw { to { transform: scaleX(1); } }
+@keyframes caretBlink { 50% { opacity: 0; } }
+@keyframes ideScrollUp {
+  0%, 6% { transform: translateY(0); }
+  24%, 30% { transform: translateY(-25%); }
+  50%, 56% { transform: translateY(-50%); }
+  75%, 81% { transform: translateY(-75%); }
+  96%, 100% { transform: translateY(0); }
+}
+
+.animate-orn-spin { animation: ornSpin 32s linear infinite; }
+.animate-orn-spin-reverse { animation: ornSpinReverse 28s linear infinite; }
+.animate-dot-pulse-mag { animation: dotPulseMag 2.4s ease-in-out infinite; }
+.animate-pulse-ring-mag { animation: pulseRingMag 2.4s ease-out infinite; }
+.animate-curve-draw-mag { animation: curveDrawMag 3s cubic-bezier(0.16,1,0.3,1) 0.8s both; }
+.animate-reel-scroll { animation: reelScroll 60s linear infinite; }
+.animate-caret-blink { animation: caretBlink 1s step-end infinite; }
+.animate-ide-scroll { animation: ideScrollUp 28s linear infinite; }
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
