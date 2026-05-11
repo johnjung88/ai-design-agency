@@ -18,13 +18,13 @@ export function MagazineEditorial({ locale }: Props) {
     <section
       className="py-36 px-9 max-w-[1500px] mx-auto text-center relative"
       style={{
-        padding: "clamp(96px,10vw,140px) clamp(24px,3vw,36px)",
+        padding: "clamp(72px,10vw,140px) clamp(20px,3vw,36px)",
         borderTop: "1px solid var(--tone-magazine-ink)",
       }}
     >
       {/* Meta */}
       <div
-        className="pb-4 mb-16 border-b inline-flex flex-wrap items-center gap-[18px] justify-center"
+        className="pb-4 mb-10 md:mb-16 border-b inline-flex flex-wrap items-center gap-2.5 md:gap-[18px] justify-center"
         style={{
           fontFamily: "var(--font-jetbrains)",
           fontSize: 11,
@@ -45,7 +45,7 @@ export function MagazineEditorial({ locale }: Props) {
 
       {/* Ornament */}
       <div
-        className="w-14 h-14 mx-auto mb-9 text-[var(--tone-magazine-red)] animate-orn-spin-reverse"
+        className="w-12 h-12 md:w-14 md:h-14 mx-auto mb-7 md:mb-9 text-[var(--tone-magazine-red)] animate-orn-spin-reverse"
       >
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <g fill="currentColor">
@@ -60,7 +60,7 @@ export function MagazineEditorial({ locale }: Props) {
         className="font-normal mx-auto mb-12 max-w-[1200px]"
         style={{
           fontFamily: "var(--font-marcellus)",
-          fontSize: "clamp(48px,8vw,144px)",
+          fontSize: "clamp(38px,8vw,144px)",
           lineHeight: 0.96,
           letterSpacing: "-0.018em",
           color: "var(--tone-magazine-ink)",
@@ -78,7 +78,7 @@ export function MagazineEditorial({ locale }: Props) {
       <div className="max-w-[720px] mx-auto mb-16">
         <p
           className="mb-[18px]"
-          style={{ fontFamily: "var(--font-pretendard)", fontSize: 17, lineHeight: 1.85, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
+          style={{ fontFamily: "var(--font-pretendard)", fontSize: "clamp(14.5px, 1.4vw, 17px)", lineHeight: 1.8, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
         >
           AIO는{" "}
           <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>각 분야 전문가</strong>가 직접 손을 대는 외주 스튜디오입니다
@@ -86,7 +86,7 @@ export function MagazineEditorial({ locale }: Props) {
           의뢰가 들어오면, 그 분야의 전문가가 처음부터 끝까지 책임집니다
         </p>
         <p
-          style={{ fontFamily: "var(--font-pretendard)", fontSize: 17, lineHeight: 1.85, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
+          style={{ fontFamily: "var(--font-pretendard)", fontSize: "clamp(14.5px, 1.4vw, 17px)", lineHeight: 1.8, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
         >
           매주 새 작품이 더해지고, 그게 다음 의뢰인의 결정을 돕습니다
           <br />

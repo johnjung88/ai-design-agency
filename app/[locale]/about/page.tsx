@@ -80,13 +80,12 @@ export default async function AboutPage({
       <section
         className="max-w-[1280px] mx-auto text-center relative"
         style={{
-          padding:
-            "clamp(72px,8vw,120px) clamp(20px,3vw,40px) clamp(80px,10vw,140px)",
+          padding: "clamp(56px,8vw,120px) clamp(16px,3vw,40px) clamp(64px,10vw,140px)",
         }}
       >
         {/* Cover meta */}
         <div
-          className="pb-4 border-b mb-14 inline-flex flex-wrap items-center gap-[18px] justify-center"
+          className="pb-4 border-b mb-8 md:mb-14 inline-flex flex-wrap items-center gap-2.5 md:gap-[18px] justify-center"
           style={{
             fontFamily: "var(--font-jetbrains)",
             fontSize: "clamp(9.5px, 0.9vw, 11px)",
@@ -113,7 +112,7 @@ export default async function AboutPage({
           className="font-normal mx-auto mb-10 max-w-[1200px]"
           style={{
             fontFamily: "var(--font-marcellus)",
-            fontSize: "clamp(48px, 9vw, 132px)",
+            fontSize: "clamp(38px, 9vw, 132px)",
             lineHeight: 0.98,
             letterSpacing: "-0.014em",
             color: "var(--tone-magazine-ink)",
@@ -139,7 +138,7 @@ export default async function AboutPage({
           className="mx-auto mb-12"
           style={{
             fontFamily: "var(--font-pretendard)",
-            fontSize: "clamp(15px, 1.3vw, 18px)",
+            fontSize: "clamp(14px, 1.3vw, 18px)",
             lineHeight: 1.7,
             color: "var(--tone-magazine-ink-2)",
             maxWidth: 720,
@@ -154,7 +153,7 @@ export default async function AboutPage({
           className="mx-auto mb-20"
           style={{
             fontFamily: "var(--font-pretendard)",
-            fontSize: "clamp(15px, 1.2vw, 17px)",
+            fontSize: "clamp(14px, 1.2vw, 17px)",
             lineHeight: 1.9,
             color: "var(--tone-magazine-ink-2)",
             maxWidth: 720,
@@ -172,7 +171,7 @@ export default async function AboutPage({
           className="font-normal mx-auto mb-14 max-w-[900px]"
           style={{
             fontFamily: "var(--font-marcellus)",
-            fontSize: "clamp(36px, 5vw, 64px)",
+            fontSize: "clamp(28px, 5vw, 64px)",
             lineHeight: 1.0,
             letterSpacing: "-0.014em",
             color: "var(--tone-magazine-ink)",
@@ -191,11 +190,11 @@ export default async function AboutPage({
           {TEAM_ROLES.map((p, i) => (
             <div
               key={p.num}
-              className="flex flex-col items-center text-center"
+              className={`flex flex-col items-center text-center ${i % 2 === 0 ? "sm:border-r" : ""} ${i < 2 ? "sm:!border-b" : "sm:!border-b-0"}`}
               style={{
                 padding: "clamp(28px, 3.5vw, 44px) clamp(20px, 2.5vw, 32px)",
-                borderRight: i % 2 === 0 ? "1px solid var(--tone-magazine-line-2)" : "none",
-                borderBottom: i < 2 ? "1px solid var(--tone-magazine-line-2)" : "none",
+                borderBottom: i < TEAM_ROLES.length - 1 ? "1px solid var(--tone-magazine-line-2)" : "none",
+                borderColor: "var(--tone-magazine-line-2)",
               }}
             >
               <div
@@ -344,7 +343,7 @@ export default async function AboutPage({
           ].map((row, i, arr) => (
             <div
               key={row.dt}
-              className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 px-5 md:px-7 py-4"
+              className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 px-4 md:px-7 py-3.5 md:py-4"
               style={{
                 borderBottom:
                   i < arr.length - 1
@@ -355,7 +354,7 @@ export default async function AboutPage({
               <dt
                 className="shrink-0"
                 style={{
-                  width: 130,
+                  width: 110,
                   fontFamily: "var(--font-jetbrains)",
                   fontSize: "10.5px",
                   letterSpacing: "0.22em",

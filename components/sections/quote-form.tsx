@@ -76,7 +76,7 @@ const inputStyle: React.CSSProperties = {
   border: "1px solid var(--tone-magazine-line-2)",
   borderRadius: 2,
   fontFamily: "var(--font-pretendard)",
-  fontSize: 14.5,
+  fontSize: 15,
   color: "var(--tone-magazine-ink)",
   fontWeight: 400,
   letterSpacing: "-0.005em",
@@ -177,7 +177,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       style={{
         background: "var(--tone-magazine-paper)",
         border: "1px solid var(--tone-magazine-ink)",
-        padding: "clamp(24px, 3vw, 40px)",
+        padding: "clamp(18px, 3vw, 40px)",
       }}
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -330,7 +330,7 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex items-center justify-center transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0"
+        className="inline-flex items-center justify-center transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 w-full sm:w-auto"
         style={{
           height: 52,
           padding: "0 32px",

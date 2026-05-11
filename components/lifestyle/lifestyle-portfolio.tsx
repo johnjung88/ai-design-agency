@@ -204,7 +204,7 @@ export function LifestylePortfolio({ locale }: Props) {
       {/* Hero */}
       <section
         style={{
-          padding: "80px clamp(20px,3vw,24px) 32px",
+          padding: "clamp(56px, 8vw, 80px) clamp(16px, 3vw, 24px) 24px",
           maxWidth: 1280,
           margin: "0 auto",
           textAlign: "center",
@@ -245,7 +245,7 @@ export function LifestylePortfolio({ locale }: Props) {
           className="font-medium"
           style={{
             fontFamily: "var(--font-fraunces)",
-            fontSize: "clamp(40px,6.4vw,96px)",
+            fontSize: "clamp(32px, 6.4vw, 96px)",
             letterSpacing: "-0.03em",
             lineHeight: 0.98,
             color: "var(--tone-life-ink)",
@@ -476,7 +476,7 @@ export function LifestylePortfolio({ locale }: Props) {
       {/* CTA */}
       <section
         style={{
-          padding: "70px clamp(20px,3vw,24px) 56px",
+          padding: "clamp(48px, 7vw, 70px) clamp(16px, 3vw, 24px) clamp(40px, 6vw, 56px)",
           maxWidth: 1180,
           margin: "0 auto",
           textAlign: "center",
@@ -487,7 +487,7 @@ export function LifestylePortfolio({ locale }: Props) {
           className="font-medium"
           style={{
             fontFamily: "var(--font-fraunces)",
-            fontSize: "clamp(32px,4.6vw,64px)",
+            fontSize: "clamp(26px, 4.6vw, 64px)",
             letterSpacing: "-0.028em",
             lineHeight: 0.96,
             marginBottom: 14,

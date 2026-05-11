@@ -47,7 +47,7 @@ export function ConsultPricing({ locale }: Props) {
   return (
     <section
       className="mx-auto"
-      style={{ padding: "80px clamp(20px,3vw,24px)", maxWidth: 1100 }}
+      style={{ padding: "clamp(56px, 8vw, 80px) clamp(16px, 3vw, 24px)", maxWidth: 1100 }}
     >
       {/* Head */}
       <div className="mx-auto mb-12 max-w-[640px] text-center">
@@ -62,7 +62,7 @@ export function ConsultPricing({ locale }: Props) {
           className="font-bold mb-4"
           style={{
             fontFamily: "var(--font-inter)",
-            fontSize: "clamp(34px,4.8vw,64px)",
+            fontSize: "clamp(26px, 4.8vw, 64px)",
             letterSpacing: "-0.030em",
             lineHeight: 1.0,
             color: "var(--tone-consult-ink)",
@@ -105,7 +105,7 @@ export function ConsultPricing({ locale }: Props) {
               background: pkg.featured ? "var(--tone-consult-navy)" : "var(--tone-consult-paper)",
               border: "1px solid var(--tone-consult-line)",
               borderLeft: i === 0 ? "1px solid var(--tone-consult-line)" : "none",
-              padding: "32px 28px",
+              padding: "28px 22px",
               position: "relative",
             }}
           >
@@ -147,7 +147,7 @@ export function ConsultPricing({ locale }: Props) {
                 className="font-bold mb-3"
                 style={{
                   fontFamily: "var(--font-inter)",
-                  fontSize: 36,
+                  fontSize: "clamp(30px, 3.2vw, 36px)",
                   letterSpacing: "-0.03em",
                   color: pkg.featured ? "var(--tone-consult-gold)" : "var(--tone-consult-navy)",
                   lineHeight: 1,

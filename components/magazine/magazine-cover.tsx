@@ -11,7 +11,7 @@ export function MagazineCover() {
     >
       {/* Cover meta */}
       <div
-        className="pb-4 border-b mb-16 inline-flex flex-wrap items-center gap-[18px] justify-center"
+        className="pb-4 border-b mb-10 md:mb-16 inline-flex flex-wrap items-center gap-2.5 md:gap-[18px] justify-center"
         style={{
           fontFamily: "var(--font-jetbrains)",
           fontSize: 11,
@@ -55,7 +55,7 @@ export function MagazineCover() {
       {/* Watermark */}
       <div
         aria-hidden
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-[1] select-none"
+        className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-[1] select-none"
         style={{
           fontFamily: "var(--font-cormorant)",
           fontSize: "clamp(280px, 45vw, 720px)",
@@ -88,10 +88,10 @@ export function MagazineCover() {
 
       {/* Eyebrow */}
       <div
-        className="mb-8 inline-flex items-center gap-4"
+        className="mb-6 md:mb-8 inline-flex items-center gap-3 md:gap-4"
         style={{
           fontFamily: "var(--font-jetbrains)",
-          fontSize: "11.5px",
+          fontSize: "10.5px",
           color: "var(--tone-magazine-ink-3)",
           letterSpacing: "0.3em",
           textTransform: "uppercase",
@@ -121,8 +121,8 @@ export function MagazineCover() {
         className="font-normal mx-auto mb-9 max-w-[1300px]"
         style={{
           fontFamily: "var(--font-marcellus)",
-          fontSize: "clamp(56px, 11vw, 168px)",
-          lineHeight: 0.96,
+          fontSize: "clamp(42px, 11vw, 168px)",
+          lineHeight: 1.0,
           letterSpacing: "-0.012em",
           color: "var(--tone-magazine-ink)",
         }}
@@ -149,8 +149,8 @@ export function MagazineCover() {
         className="mx-auto mb-14 font-normal max-w-[760px]"
         style={{
           fontFamily: "var(--font-pretendard)",
-          fontSize: "clamp(16px, 1.4vw, 19px)",
-          lineHeight: 1.75,
+          fontSize: "clamp(15px, 1.4vw, 19px)",
+          lineHeight: 1.7,
           color: "var(--tone-magazine-ink-2)",
           fontWeight: 400,
         }}
@@ -291,7 +291,7 @@ export function MagazineCover() {
 
         {/* Stat 1 — 의뢰 고객 */}
         <div
-          className="flex flex-col justify-between gap-4 items-center py-10 px-7 border-b md:border-b-0 md:border-r"
+          className="flex flex-col justify-between gap-3 md:gap-4 items-center py-7 md:py-10 px-5 md:px-7 border-b md:border-b-0 md:border-r"
           style={{ borderColor: "var(--tone-magazine-line-2)" }}
         >
           <span
@@ -349,7 +349,7 @@ export function MagazineCover() {
         </div>
 
         {/* Stat 2 — 응답·납품 평균 */}
-        <div className="flex flex-col justify-between gap-4 items-center py-10 px-7">
+        <div className="flex flex-col justify-between gap-3 md:gap-4 items-center py-7 md:py-10 px-5 md:px-7">
           <span
             style={{
               fontFamily: "var(--font-jetbrains)",

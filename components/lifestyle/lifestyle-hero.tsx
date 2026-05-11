@@ -128,7 +128,7 @@ function PhoneMockup({ src, alt }: { src: string; alt: string }) {
       className="relative mx-auto"
       style={{
         width: "100%",
-        maxWidth: 240,
+        maxWidth: 280,
         aspectRatio: "9/19.5",
         background: "linear-gradient(160deg, #1a1816 0%, #2a2825 100%)",
         borderRadius: 36,
@@ -193,18 +193,17 @@ function HeroSlideshow() {
       {/* Devices row — PC 좌측 / Phone 우측, 겹치지 않음 */}
       <div
         key={slide.id}
-        className="animate-fade-in grid items-center gap-6 md:gap-10 lg:gap-14"
+        className="animate-fade-in grid items-center gap-6 md:gap-10 lg:gap-14 grid-cols-1 md:[grid-template-columns:minmax(0,1.6fr)_minmax(0,1fr)]"
         style={{
-          gridTemplateColumns: "minmax(0, 1.6fr) minmax(0, 1fr)",
           padding: "clamp(20px, 4vw, 40px) 0",
         }}
       >
-        {/* Left — PC */}
-        <div className="flex justify-end">
+        {/* Left — PC (모바일에서는 숨김) */}
+        <div className="hidden md:flex justify-end">
           <DesktopMockup src={slide.coverSrc} alt={`${slide.brand} desktop`} />
         </div>
-        {/* Right — Phone */}
-        <div className="flex justify-start">
+        {/* Right — Phone (모바일에서는 중앙 정렬) */}
+        <div className="flex justify-center md:justify-start">
           <PhoneMockup src={slide.coverSrc} alt={`${slide.brand} mobile`} />
         </div>
       </div>
@@ -288,7 +287,7 @@ export function LifestyleHero({ locale }: Props) {
   return (
     <section
       className="mx-auto text-center"
-      style={{ padding: "100px clamp(20px,3vw,24px) 70px", maxWidth: 1280 }}
+      style={{ padding: "clamp(64px, 10vw, 100px) clamp(16px, 3vw, 24px) clamp(48px, 7vw, 70px)", maxWidth: 1280 }}
     >
       <div
         className="inline-flex items-center gap-[14px] mb-7 text-[11.5px] tracking-[0.28em] uppercase"
@@ -303,7 +302,7 @@ export function LifestyleHero({ locale }: Props) {
         className="font-medium mx-auto mb-8"
         style={{
           fontFamily: "var(--font-fraunces)",
-          fontSize: "clamp(48px,8vw,132px)",
+          fontSize: "clamp(40px, 8vw, 132px)",
           letterSpacing: "-0.03em",
           lineHeight: 0.96,
           color: "var(--tone-life-ink)",
@@ -319,7 +318,7 @@ export function LifestyleHero({ locale }: Props) {
         className="mx-auto mb-11"
         style={{
           fontFamily: "var(--font-pretendard)",
-          fontSize: "clamp(17px,1.4vw,21px)",
+          fontSize: "clamp(15px, 1.4vw, 21px)",
           lineHeight: 1.55,
           color: "var(--tone-life-ink-2)",
           maxWidth: 640,

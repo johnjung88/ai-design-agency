@@ -36,7 +36,7 @@ export function IdeFooter() {
         fontFamily: "var(--font-jetbrains)",
       }}
     >
-      <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-12 py-14">
+      <div className="mx-auto w-full max-w-[1400px] px-5 md:px-6 lg:px-12 py-10 md:py-14">
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           {/* Brand */}
           <div className="flex flex-col gap-5 max-w-sm">

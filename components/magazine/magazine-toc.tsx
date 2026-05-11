@@ -60,7 +60,7 @@ export function MagazineToc({ locale }: Props) {
         className="font-normal mx-auto mb-7 max-w-[1100px]"
         style={{
           fontFamily: "var(--font-marcellus)",
-          fontSize: "clamp(40px,6vw,96px)",
+          fontSize: "clamp(32px,6vw,96px)",
           lineHeight: 1.0,
           letterSpacing: "-0.014em",
           color: "var(--tone-magazine-ink)",
@@ -122,9 +122,9 @@ export function MagazineToc({ locale }: Props) {
             <div
               className="
                 grid items-center gap-y-3 gap-x-4
-                grid-cols-[40px_1fr_28px]
+                grid-cols-[28px_1fr_22px]
                 md:grid-cols-[56px_minmax(220px,auto)_1fr_minmax(200px,auto)_40px]
-                px-4 md:px-6 py-7 md:py-8
+                px-3 md:px-6 py-5 md:py-8
               "
             >
               {/* Number */}
@@ -148,7 +148,7 @@ export function MagazineToc({ locale }: Props) {
                   className="inline-flex items-baseline gap-3 md:gap-4 flex-wrap justify-center md:justify-start"
                   style={{
                     fontFamily: "var(--font-marcellus)",
-                    fontSize: "clamp(28px, 3.6vw, 46px)",
+                    fontSize: "clamp(22px, 3.6vw, 46px)",
                     lineHeight: 1,
                     letterSpacing: "-0.012em",
                     color: inkActive,
@@ -175,7 +175,7 @@ export function MagazineToc({ locale }: Props) {
                 <p
                   style={{
                     fontFamily: "var(--font-cormorant)",
-                    fontSize: "clamp(14px, 1.3vw, 17px)",
+                    fontSize: "clamp(12.5px, 1.3vw, 17px)",
                     lineHeight: 1.55,
                     color: inkSubActive,
                     fontStyle: "italic",
@@ -193,7 +193,7 @@ export function MagazineToc({ locale }: Props) {
                     <span
                       style={{
                         fontFamily: "var(--font-marcellus)",
-                        fontSize: "clamp(18px, 1.7vw, 22px)",
+                        fontSize: "clamp(16px, 1.7vw, 22px)",
                         color: "var(--tone-magazine-ink)",
                         letterSpacing: "-0.01em",
                         lineHeight: 1,

@@ -619,7 +619,7 @@ export function ConsultHero({ locale }: Props) {
   return (
     <section
       className="mx-auto text-center"
-      style={{ padding: "96px clamp(20px,3vw,24px) 80px", maxWidth: 1280 }}
+      style={{ padding: "clamp(64px, 8vw, 96px) clamp(16px, 3vw, 24px) clamp(56px, 8vw, 80px)", maxWidth: 1280 }}
     >
       {/* Eyebrow */}
       <div
@@ -635,7 +635,7 @@ export function ConsultHero({ locale }: Props) {
         className="font-bold mx-auto mb-8"
         style={{
           fontFamily: "var(--font-inter)",
-          fontSize: "clamp(48px,7.4vw,124px)",
+          fontSize: "clamp(38px, 7.4vw, 124px)",
           letterSpacing: "-0.035em",
           lineHeight: 0.96,
           color: "var(--tone-consult-ink)",
@@ -661,7 +661,7 @@ export function ConsultHero({ locale }: Props) {
         className="mx-auto mb-11"
         style={{
           fontFamily: "var(--font-pretendard)",
-          fontSize: "clamp(16px,1.3vw,19px)",
+          fontSize: "clamp(14.5px, 1.3vw, 19px)",
           lineHeight: 1.6,
           color: "var(--tone-consult-ink-2)",
           maxWidth: 660,

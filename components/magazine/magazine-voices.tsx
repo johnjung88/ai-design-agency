@@ -63,23 +63,23 @@ export function MagazineVoices() {
   return (
     <section
       className="py-28 px-9 max-w-[1200px] mx-auto relative text-center"
-      style={{ padding: "clamp(80px,10vw,120px) clamp(24px,3vw,36px)" }}
+      style={{ padding: "clamp(64px,10vw,120px) clamp(20px,3vw,36px)" }}
     >
       {/* Eyebrow */}
       <MagazineEyebrow className="mb-6">Voices from the Field</MagazineEyebrow>
 
       <h2
         className="font-normal mx-auto mb-14"
-        style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(48px,6vw,96px)", lineHeight: 1.0, letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
+        style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(34px,6vw,96px)", lineHeight: 1.0, letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
       >
         의뢰인의{" "}
         <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>편지</em>
       </h2>
 
       {/* Slide area */}
-      <div className="relative min-h-[360px] max-w-[880px] mx-auto py-[60px] flex flex-col justify-center items-center gap-8">
+      <div className="relative min-h-[300px] sm:min-h-[360px] max-w-[880px] mx-auto py-10 md:py-[60px] flex flex-col justify-center items-center gap-6 md:gap-8">
         <div
-          style={{ fontFamily: "var(--font-cormorant)", fontSize: 132, color: "var(--tone-magazine-ink-faint)", lineHeight: 0.6, fontWeight: 400, userSelect: "none" }}
+          style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(80px, 12vw, 132px)", color: "var(--tone-magazine-ink-faint)", lineHeight: 0.6, fontWeight: 400, userSelect: "none" }}
         >
           &ldquo;
         </div>
@@ -89,7 +89,7 @@ export function MagazineVoices() {
           className="mx-auto max-w-[720px] animate-fade-in"
           style={{
             fontFamily: "var(--font-cormorant)",
-            fontSize: "clamp(22px,2.8vw,38px)",
+            fontSize: "clamp(18px,2.8vw,38px)",
             lineHeight: 1.45,
             letterSpacing: "-0.01em",
             color: "var(--tone-magazine-ink)",

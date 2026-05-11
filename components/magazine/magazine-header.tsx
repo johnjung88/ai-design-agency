@@ -48,7 +48,7 @@ export function MagazineHeader() {
         backdropFilter: isScrolled ? "blur(12px)" : "none",
       }}
     >
-      <div className="mx-auto grid h-16 w-full max-w-[1400px] items-center px-6 lg:px-12 grid-cols-[auto_1fr_auto] gap-4">
+      <div className="mx-auto grid h-14 md:h-16 w-full max-w-[1400px] items-center px-4 md:px-6 lg:px-12 grid-cols-[auto_1fr_auto] gap-3 md:gap-4">
         {/* Logo — square mark */}
         <Link
           href={base}

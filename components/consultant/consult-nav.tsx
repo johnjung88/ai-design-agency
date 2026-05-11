@@ -14,7 +14,7 @@ export function ConsultNav({ locale }: Props) {
         background: "rgba(255,255,255,0.94)",
         backdropFilter: "blur(10px)",
         borderBottom: "2px solid var(--tone-consult-ink)",
-        padding: "16px 32px",
+        padding: "14px clamp(16px, 3vw, 32px)",
         gridTemplateColumns: "1fr auto 1fr",
       }}
     >
@@ -35,7 +35,7 @@ export function ConsultNav({ locale }: Props) {
         className="text-center"
         style={{
           fontFamily: "var(--font-inter)",
-          fontSize: 18,
+          fontSize: "clamp(15px, 1.8vw, 18px)",
           fontWeight: 700,
           color: "var(--tone-consult-ink)",
           textDecoration: "none",

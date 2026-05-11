@@ -27,13 +27,12 @@ export default async function QuotePage({
       <section
         className="max-w-[1100px] mx-auto"
         style={{
-          padding:
-            "clamp(72px,8vw,120px) clamp(20px,3vw,40px) clamp(80px,10vw,140px)",
+          padding: "clamp(56px,8vw,120px) clamp(16px,3vw,40px) clamp(64px,10vw,140px)",
         }}
       >
         {/* Cover meta */}
         <div
-          className="pb-4 border-b mb-12 inline-flex flex-wrap items-center gap-[18px] justify-center w-full"
+          className="pb-4 border-b mb-8 md:mb-12 inline-flex flex-wrap items-center gap-2.5 md:gap-[18px] justify-center w-full"
           style={{
             fontFamily: "var(--font-jetbrains)",
             fontSize: "clamp(9.5px, 0.9vw, 11px)",
@@ -60,7 +59,7 @@ export default async function QuotePage({
             className="font-normal mx-auto mb-8 max-w-[1100px]"
             style={{
               fontFamily: "var(--font-marcellus)",
-              fontSize: "clamp(44px, 7.5vw, 108px)",
+              fontSize: "clamp(34px, 7.5vw, 108px)",
               lineHeight: 1.0,
               letterSpacing: "-0.014em",
               color: "var(--tone-magazine-ink)",
@@ -101,7 +100,7 @@ export default async function QuotePage({
             className="mx-auto"
             style={{
               fontFamily: "var(--font-pretendard)",
-              fontSize: "clamp(14px, 1.2vw, 17px)",
+              fontSize: "clamp(13.5px, 1.2vw, 17px)",
               lineHeight: 1.85,
               color: "var(--tone-magazine-ink-2)",
               maxWidth: 700,

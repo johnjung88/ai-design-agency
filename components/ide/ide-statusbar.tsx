@@ -11,11 +11,11 @@ export function IdeStatusbar({ locale }: Props) {
     <footer
       className="mt-[60px] grid items-center"
       style={{
-        padding: "12px 16px",
+        padding: "12px clamp(12px, 3vw, 16px)",
         background: "var(--tone-ide-bg-2)",
         borderTop: "1px solid var(--tone-ide-line)",
         gridTemplateColumns: "1fr auto 1fr",
-        gap: 16,
+        gap: 8,
         fontFamily: "var(--font-jetbrains)",
         fontSize: 11,
         color: "var(--tone-ide-fg-3)",

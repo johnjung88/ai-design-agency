@@ -63,7 +63,7 @@ export function LifestyleCategories() {
   return (
     <section
       className="mx-auto"
-      style={{ padding: "110px clamp(20px,3vw,24px)", maxWidth: 1480 }}
+      style={{ padding: "clamp(64px, 10vw, 110px) clamp(16px, 3vw, 24px)", maxWidth: 1480 }}
     >
       {/* Head */}
       <div className="mx-auto mb-16 max-w-[720px] text-center">
@@ -79,7 +79,7 @@ export function LifestyleCategories() {
           className="font-medium mb-[18px]"
           style={{
             fontFamily: "var(--font-fraunces)",
-            fontSize: "clamp(36px,5vw,72px)",
+            fontSize: "clamp(28px, 5vw, 72px)",
             letterSpacing: "-0.025em",
             lineHeight: 1.0,
             color: "var(--tone-life-ink)",
@@ -152,7 +152,7 @@ export function LifestyleCategories() {
             </div>
 
             {/* Body */}
-            <div className="flex flex-col gap-3 p-6">
+            <div className="flex flex-col gap-3 p-5 md:p-6">
               <h3
                 className="font-medium"
                 style={{

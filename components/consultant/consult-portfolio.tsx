@@ -364,7 +364,7 @@ export function ConsultPortfolio({ locale }: Props) {
         <h1
           style={{
             fontFamily: "var(--font-inter)",
-            fontSize: "clamp(40px,6.4vw,96px)",
+            fontSize: "clamp(32px, 6.4vw, 96px)",
             fontWeight: 700,
             letterSpacing: "-0.032em",
             lineHeight: 0.98,
@@ -515,7 +515,7 @@ export function ConsultPortfolio({ locale }: Props) {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col flex-1 gap-3 p-6">
+              <div className="flex flex-col flex-1 gap-3 p-5 md:p-6">
                 <div
                   style={{
                     fontFamily: "var(--font-ibm-plex-mono)",
@@ -530,7 +530,7 @@ export function ConsultPortfolio({ locale }: Props) {
                 <h3
                   style={{
                     fontFamily: "var(--font-inter)",
-                    fontSize: "clamp(18px, 1.7vw, 22px)",
+                    fontSize: "clamp(16px, 1.7vw, 22px)",
                     fontWeight: 700,
                     letterSpacing: "-0.02em",
                     lineHeight: 1.25,

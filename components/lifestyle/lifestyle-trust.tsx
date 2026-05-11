@@ -13,7 +13,7 @@ export function LifestyleTrust() {
     <div
       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5"
       style={{
-        padding: "clamp(32px,3.5vw,48px) clamp(20px,3vw,36px)",
+        padding: "clamp(24px, 3.5vw, 48px) clamp(16px, 3vw, 36px)",
         maxWidth: 1480,
         margin: "0 auto",
         borderTop: "1px solid var(--tone-life-line)",

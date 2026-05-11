@@ -49,7 +49,7 @@ export function IdeHero({ locale }: Props) {
         className="font-bold mx-auto mb-8"
         style={{
           fontFamily: "var(--font-jetbrains)",
-          fontSize: "clamp(44px,7.2vw,108px)",
+          fontSize: "clamp(34px, 7.2vw, 108px)",
           letterSpacing: "-0.028em",
           lineHeight: 0.98,
           color: "var(--tone-ide-fg)",
@@ -84,7 +84,7 @@ export function IdeHero({ locale }: Props) {
         className="mx-auto mb-11"
         style={{
           fontFamily: "var(--font-pretendard)",
-          fontSize: "clamp(16px,1.3vw,19px)",
+          fontSize: "clamp(14.5px, 1.3vw, 19px)",
           lineHeight: 1.6,
           color: "var(--tone-ide-fg-2)",
           maxWidth: 720,
@@ -145,7 +145,7 @@ export function IdeHero({ locale }: Props) {
           background: "var(--tone-ide-bg-2)",
           border: "1px solid var(--tone-ide-line)",
           borderRadius: 8,
-          padding: "22px 28px",
+          padding: "clamp(16px, 3vw, 22px) clamp(16px, 3vw, 28px)",
           maxWidth: 720,
           fontFamily: "var(--font-jetbrains)",
           fontSize: 13,
@@ -174,8 +174,8 @@ export function IdeHero({ locale }: Props) {
             key={s.key}
             className="grid py-[7px] items-baseline"
             style={{
-              gridTemplateColumns: "150px 1fr",
-              gap: 16,
+              gridTemplateColumns: "110px 1fr",
+              gap: 12,
             }}
           >
             <span style={{ color: "var(--tone-ide-syntax-blue)" }}>{s.key}</span>

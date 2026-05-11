@@ -54,7 +54,7 @@ export function ConsultFooter() {
         }}
       />
 
-      <div className="relative mx-auto w-full max-w-[1400px] px-6 lg:px-12 py-14">
+      <div className="relative mx-auto w-full max-w-[1400px] px-5 md:px-6 lg:px-12 py-10 md:py-14">
 {/* Columns */}
         <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
           {/* Brand */}

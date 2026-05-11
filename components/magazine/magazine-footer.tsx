@@ -51,10 +51,10 @@ export function MagazineFooter() {
         color: "var(--tone-magazine-ink-2)",
       }}
     >
-      <div className="mx-auto w-full max-w-[1400px] px-6 lg:px-12 py-16">
+      <div className="mx-auto w-full max-w-[1400px] px-5 md:px-6 lg:px-12 py-10 md:py-16">
         {/* Top meta row */}
         <div
-          className="flex flex-wrap items-center justify-center gap-[18px] pb-6 mb-12"
+          className="flex flex-wrap items-center justify-center gap-2.5 md:gap-[18px] pb-6 mb-8 md:mb-12"
           style={{
             fontFamily: "var(--font-jetbrains)",
             fontSize: 11,

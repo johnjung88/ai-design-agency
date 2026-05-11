@@ -42,7 +42,7 @@ export function LifestylePricing({ locale }: Props) {
   return (
     <section
       className="mx-auto"
-      style={{ padding: "80px clamp(20px,3vw,24px)", maxWidth: 1100 }}
+      style={{ padding: "clamp(56px, 8vw, 80px) clamp(16px, 3vw, 24px)", maxWidth: 1100 }}
     >
       {/* Head */}
       <div className="mx-auto mb-12 max-w-[640px] text-center">
@@ -58,7 +58,7 @@ export function LifestylePricing({ locale }: Props) {
           className="font-medium mb-4"
           style={{
             fontFamily: "var(--font-fraunces)",
-            fontSize: "clamp(36px,5vw,64px)",
+            fontSize: "clamp(28px, 5vw, 64px)",
             letterSpacing: "-0.025em",
             lineHeight: 1.0,
             color: "var(--tone-life-ink)",

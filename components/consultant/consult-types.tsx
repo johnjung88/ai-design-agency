@@ -55,7 +55,7 @@ export function ConsultTypes() {
   return (
     <section
       className="mx-auto"
-      style={{ padding: "96px clamp(20px,3vw,24px)", maxWidth: 1280 }}
+      style={{ padding: "clamp(64px, 10vw, 96px) clamp(16px, 3vw, 24px)", maxWidth: 1280 }}
     >
       {/* Head */}
       <div className="mx-auto mb-14 max-w-[760px] text-center">
@@ -70,7 +70,7 @@ export function ConsultTypes() {
           className="font-bold mb-4"
           style={{
             fontFamily: "var(--font-inter)",
-            fontSize: "clamp(34px,4.8vw,68px)",
+            fontSize: "clamp(28px, 4.8vw, 68px)",
             letterSpacing: "-0.028em",
             lineHeight: 1.0,
             color: "var(--tone-consult-ink)",
@@ -115,7 +115,7 @@ export function ConsultTypes() {
             style={{
               background: deck.highlight ? "var(--tone-consult-navy)" : "var(--tone-consult-paper)",
               border: `1px solid ${deck.highlight ? "var(--tone-consult-navy)" : "var(--tone-consult-line)"}`,
-              padding: "24px 26px",
+              padding: "20px 22px",
               position: "relative",
             }}
           >

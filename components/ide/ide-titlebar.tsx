@@ -7,7 +7,7 @@ interface Props {
 export function IdeTitlebar({ locale }: Props) {
   return (
     <div
-      className="sticky top-0 z-50 flex items-center justify-between gap-4 px-4 py-[10px]"
+      className="sticky top-0 z-50 flex items-center justify-between gap-4 px-3 md:px-4 py-[10px]"
       style={{
         background: "var(--tone-ide-bg-2)",
         borderBottom: "1px solid var(--tone-ide-line)",
