@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Cormorant_Garamond,
+  Marcellus,
+  JetBrains_Mono,
+  Fraunces,
+  Plus_Jakarta_Sans,
+  Inter,
+  IBM_Plex_Mono,
+} from "next/font/google";
+import localFont from "next/font/local";
 import { getLocale } from "next-intl/server";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -13,6 +24,64 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const pretendard = localFont({
+  src: "../public/fonts/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  display: "swap",
+  weight: "45 920",
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const marcellus = Marcellus({
+  variable: "--font-marcellus",
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -52,7 +121,20 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={[
+          geistSans.variable,
+          geistMono.variable,
+          pretendard.variable,
+          cormorant.variable,
+          marcellus.variable,
+          jetbrains.variable,
+          fraunces.variable,
+          jakarta.variable,
+          inter.variable,
+          ibmPlexMono.variable,
+        ].join(" ")}
+      >
         {children}
       </body>
       {process.env.NEXT_PUBLIC_GA_ID && (

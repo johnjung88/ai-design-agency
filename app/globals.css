@@ -42,6 +42,23 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
+  /* 시안 4톤 폰트 */
+  --font-pretendard: var(--font-pretendard);
+  --font-cormorant: var(--font-cormorant);
+  --font-marcellus: var(--font-marcellus);
+  --font-jetbrains: var(--font-jetbrains);
+  --font-fraunces: var(--font-fraunces);
+  --font-jakarta: var(--font-jakarta);
+  --font-inter: var(--font-inter);
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono);
+
+  /* 톤별 합성 alias (data-tone 스코프에서 재정의됨) */
+  --font-tone-display: var(--tone-display, var(--font-geist-sans));
+  --font-tone-serif: var(--tone-serif, var(--font-geist-sans));
+  --font-tone-sans: var(--tone-sans, var(--font-geist-sans));
+  --font-tone-body: var(--tone-body, var(--font-geist-sans));
+  --font-tone-mono: var(--tone-mono, var(--font-geist-mono));
+
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
@@ -89,6 +106,169 @@
   /* 보장 배지 */
   --guarantee-bg: #10b981;
   --guarantee-fg: #ffffff;
+
+  /* =============================================
+     시안 4톤 raw 컬러 — Phase 1 신규
+     ============================================= */
+
+  /* 매거진 톤 (00b_main_v2) */
+  --tone-magazine-paper: #F5F0E8;
+  --tone-magazine-paper-2: #EDE5D5;
+  --tone-magazine-ink: #1A1614;
+  --tone-magazine-ink-2: #4A3F38;
+  --tone-magazine-ink-3: #7A6E63;
+  --tone-magazine-ink-faint: #B5A89A;
+  --tone-magazine-line: #D9CFB8;
+  --tone-magazine-line-2: #C4B6A0;
+  --tone-magazine-red: #C8472D;
+  --tone-magazine-red-soft: #E8826A;
+  --tone-magazine-mustard: #D4A53B;
+
+  /* IDE 톤 (01_web_dev_v2) */
+  --tone-ide-bg: #0D1117;
+  --tone-ide-bg-2: #161B22;
+  --tone-ide-bg-3: #1F2733;
+  --tone-ide-bg-4: #21262D;
+  --tone-ide-fg: #F0F6FC;
+  --tone-ide-fg-2: #C9D1D9;
+  --tone-ide-fg-3: #8B949E;
+  --tone-ide-fg-faint: #6E7681;
+  --tone-ide-line: #30363D;
+  --tone-ide-line-2: #21262D;
+  --tone-ide-mint: #4DD4AC;
+  --tone-ide-mint-soft: rgba(77, 212, 172, 0.15);
+  --tone-ide-amber: #FFB347;
+  --tone-ide-amber-soft: rgba(255, 179, 71, 0.15);
+  --tone-ide-syntax-blue: #79C0FF;
+  --tone-ide-syntax-purple: #D2A8FF;
+  --tone-ide-syntax-string: #A5D6FF;
+  --tone-ide-red: #FF7B72;
+  --tone-ide-yellow: #F2CC60;
+  --tone-ide-green: #56D364;
+
+  /* 라이프스타일 톤 (02_detail_page_v2) */
+  --tone-life-cream: #FAF5EE;
+  --tone-life-cream-2: #F2EADC;
+  --tone-life-cream-3: #E8DCC4;
+  --tone-life-ink: #2A2418;
+  --tone-life-ink-2: #5A4F40;
+  --tone-life-ink-3: #8A7D6C;
+  --tone-life-ink-faint: #B8AB97;
+  --tone-life-line: #DDD0B8;
+  --tone-life-line-2: #C9B997;
+  --tone-life-rose: #D9526E;
+  --tone-life-rose-soft: rgba(217, 82, 110, 0.12);
+  --tone-life-olive: #7B8E3F;
+  --tone-life-mustard: #D4A53B;
+  --tone-life-terra: #C8704A;
+
+  /* 컨설턴트 톤 (03_ppt_v2) */
+  --tone-consult-paper: #FFFFFF;
+  --tone-consult-paper-2: #F7F5F0;
+  --tone-consult-paper-3: #EFEBE2;
+  --tone-consult-paper-deep: #1B3B5F;
+  --tone-consult-ink: #0E1A2B;
+  --tone-consult-ink-2: #3A4A5E;
+  --tone-consult-ink-3: #6A7888;
+  --tone-consult-ink-faint: #A8B0BC;
+  --tone-consult-line: #D4D8DE;
+  --tone-consult-line-2: #B8BFC8;
+  --tone-consult-navy: #1B3B5F;
+  --tone-consult-navy-2: #2C4F75;
+  --tone-consult-navy-soft: rgba(27, 59, 95, 0.10);
+  --tone-consult-gold: #C9A961;
+  --tone-consult-gold-soft: rgba(201, 169, 97, 0.18);
+}
+
+/* =============================================
+   톤별 semantic alias — <main data-tone="..."> 한 줄로 활성화
+   ============================================= */
+
+[data-tone="magazine"] {
+  --background: var(--tone-magazine-paper);
+  --foreground: var(--tone-magazine-ink);
+  --card: var(--tone-magazine-paper-2);
+  --card-foreground: var(--tone-magazine-ink);
+  --primary: var(--tone-magazine-red);
+  --primary-foreground: var(--tone-magazine-paper);
+  --secondary: var(--tone-magazine-paper-2);
+  --secondary-foreground: var(--tone-magazine-ink-2);
+  --muted: var(--tone-magazine-paper-2);
+  --muted-foreground: var(--tone-magazine-ink-3);
+  --border: var(--tone-magazine-line);
+  --input: var(--tone-magazine-line);
+  --ring: var(--tone-magazine-red);
+
+  --tone-display: var(--font-marcellus);
+  --tone-serif: var(--font-cormorant);
+  --tone-sans: var(--font-pretendard);
+  --tone-body: var(--font-pretendard);
+  --tone-mono: var(--font-jetbrains);
+}
+
+[data-tone="ide"] {
+  --background: var(--tone-ide-bg);
+  --foreground: var(--tone-ide-fg);
+  --card: var(--tone-ide-bg-2);
+  --card-foreground: var(--tone-ide-fg);
+  --primary: var(--tone-ide-mint);
+  --primary-foreground: var(--tone-ide-bg);
+  --secondary: var(--tone-ide-amber);
+  --secondary-foreground: var(--tone-ide-bg);
+  --muted: var(--tone-ide-bg-3);
+  --muted-foreground: var(--tone-ide-fg-3);
+  --border: var(--tone-ide-line);
+  --input: var(--tone-ide-line);
+  --ring: var(--tone-ide-mint);
+
+  --tone-display: var(--font-jetbrains);
+  --tone-sans: var(--font-pretendard);
+  --tone-body: var(--font-pretendard);
+  --tone-mono: var(--font-jetbrains);
+}
+
+[data-tone="lifestyle"] {
+  --background: var(--tone-life-cream);
+  --foreground: var(--tone-life-ink);
+  --card: var(--tone-life-cream-2);
+  --card-foreground: var(--tone-life-ink);
+  --primary: var(--tone-life-rose);
+  --primary-foreground: var(--tone-life-cream);
+  --secondary: var(--tone-life-olive);
+  --secondary-foreground: var(--tone-life-cream);
+  --muted: var(--tone-life-cream-3);
+  --muted-foreground: var(--tone-life-ink-3);
+  --border: var(--tone-life-line);
+  --input: var(--tone-life-line);
+  --ring: var(--tone-life-rose);
+
+  --tone-display: var(--font-fraunces);
+  --tone-serif: var(--font-fraunces);
+  --tone-sans: var(--font-jakarta);
+  --tone-body: var(--font-pretendard);
+  --tone-mono: var(--font-jetbrains);
+}
+
+[data-tone="consultant"] {
+  --background: var(--tone-consult-paper);
+  --foreground: var(--tone-consult-ink);
+  --card: var(--tone-consult-paper-2);
+  --card-foreground: var(--tone-consult-ink);
+  --primary: var(--tone-consult-navy);
+  --primary-foreground: var(--tone-consult-paper);
+  --secondary: var(--tone-consult-gold);
+  --secondary-foreground: var(--tone-consult-ink);
+  --muted: var(--tone-consult-paper-3);
+  --muted-foreground: var(--tone-consult-ink-3);
+  --border: var(--tone-consult-line);
+  --input: var(--tone-consult-line);
+  --ring: var(--tone-consult-navy);
+
+  --tone-display: var(--font-inter);
+  --tone-serif: var(--font-cormorant);
+  --tone-sans: var(--font-inter);
+  --tone-body: var(--font-pretendard);
+  --tone-mono: var(--font-ibm-plex-mono);
 }
 
 @keyframes marquee {
