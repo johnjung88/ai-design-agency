@@ -134,8 +134,8 @@ function SlideIR() {
           <circle cx="400" cy="8" r="6" fill="var(--tone-consult-gold)" />
           <circle cx="400" cy="8" r="14" fill="var(--tone-consult-gold)" opacity="0.2" />
           {/* X axis labels */}
-          <text x="0" y="232" fill="rgba(255,255,255,0.35)" fontFamily="var(--font-ibm-plex-mono)" fontSize="8" letterSpacing="1.5">JAN '25</text>
-          <text x="180" y="232" fill="rgba(255,255,255,0.35)" fontFamily="var(--font-ibm-plex-mono)" fontSize="8" letterSpacing="1.5">JAN '26</text>
+          <text x="0" y="232" fill="rgba(255,255,255,0.35)" fontFamily="var(--font-ibm-plex-mono)" fontSize="8" letterSpacing="1.5">JAN &apos;25</text>
+          <text x="180" y="232" fill="rgba(255,255,255,0.35)" fontFamily="var(--font-ibm-plex-mono)" fontSize="8" letterSpacing="1.5">JAN &apos;26</text>
           <text x="355" y="232" fill="var(--tone-consult-gold)" fontFamily="var(--font-ibm-plex-mono)" fontSize="8" letterSpacing="1.5">NOW</text>
         </svg>
       </div>
@@ -490,7 +490,7 @@ function SlideWorkshop() {
                   minWidth: 60,
                 }}
               >
-                {a.time}'
+                {a.time}&apos;
               </span>
               <span
                 style={{
