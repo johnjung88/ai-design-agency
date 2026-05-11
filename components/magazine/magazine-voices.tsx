@@ -63,23 +63,23 @@ export function MagazineVoices() {
   return (
     <section
       className="py-28 px-9 max-w-[1200px] mx-auto relative text-center"
-      style={{ padding: "clamp(40px, 8vw, 120px) clamp(20px, 3vw, 36px)" }}
+      style={{ padding: "clamp(28px, 7vw, 120px) clamp(20px, 3vw, 36px)" }}
     >
       {/* Eyebrow */}
-      <MagazineEyebrow className="mb-6">Voices from the Field</MagazineEyebrow>
+      <MagazineEyebrow className="mb-3 md:mb-6">Voices from the Field</MagazineEyebrow>
 
       <h2
-        className="font-normal mx-auto mb-8 md:mb-14"
-        style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(34px,6vw,96px)", lineHeight: 1.0, letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
+        className="font-normal mx-auto mb-4 md:mb-14"
+        style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(32px,6vw,96px)", lineHeight: 1.0, letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
       >
         의뢰인의{" "}
         <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>편지</em>
       </h2>
 
       {/* Slide area */}
-      <div className="relative min-h-[220px] sm:min-h-[360px] max-w-[880px] mx-auto py-4 md:py-[60px] flex flex-col justify-center items-center gap-4 md:gap-8">
+      <div className="relative min-h-[160px] sm:min-h-[360px] max-w-[880px] mx-auto py-1 md:py-[60px] flex flex-col justify-center items-center gap-1 md:gap-8">
         <div
-          style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(60px, 11vw, 132px)", color: "var(--tone-magazine-ink-faint)", lineHeight: 0.6, fontWeight: 400, userSelect: "none" }}
+          style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(44px, 9vw, 132px)", color: "var(--tone-magazine-ink-faint)", lineHeight: 0.5, fontWeight: 400, userSelect: "none" }}
         >
           &ldquo;
         </div>
@@ -100,7 +100,7 @@ export function MagazineVoices() {
           {t.body ? `, ${t.body}` : ""}
         </blockquote>
 
-        <div className="flex items-baseline justify-center gap-4 md:gap-5 flex-wrap mt-2">
+        <div className="flex items-baseline justify-center gap-3 md:gap-5 flex-wrap mt-1 md:mt-2">
           {/* Name + Role */}
           <div className="inline-flex items-baseline gap-3">
             <span
@@ -163,7 +163,7 @@ export function MagazineVoices() {
 
       {/* Navigation dots */}
       <div
-        className="inline-flex gap-[10px] mt-4 md:mt-8 items-center px-[18px] py-3 rounded-full"
+        className="inline-flex gap-[10px] mt-2 md:mt-8 items-center px-[18px] py-2 md:py-3 rounded-full"
         style={{ border: "1px solid var(--tone-magazine-line-2)", background: "var(--tone-magazine-paper-2)" }}
       >
         {testimonials.map((_, i) => (
