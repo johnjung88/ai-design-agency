@@ -6,8 +6,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { routing } from "@/i18n/routing";
-import { Header } from "@/components/sections/header";
-import { Footer } from "@/components/sections/footer";
+import { SiteHeader, SiteFooter } from "@/components/sections/site-shell";
 import { PublicChatbot } from "@/components/chatbot/public-chatbot";
 import { AnalyticsInit } from "@/components/analytics-init";
 
@@ -50,9 +49,9 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <AnalyticsInit />
-      <Header />
+      <SiteHeader />
       <main>{children}</main>
-      <Footer />
+      <SiteFooter />
       <PublicChatbot locale={locale} />
     </NextIntlClientProvider>
   );

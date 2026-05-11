@@ -109,8 +109,13 @@ export function LifestyleResources({ locale }: Props) {
               <span>📄 PDF</span><span>📅 &apos;26.05 업데이트</span><span>📊 매출 케이스 8건</span><span>★ 4.9</span>
             </div>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <Link href={`/${locale}/quote`} style={{ padding: "13px 26px", background: "var(--tone-life-rose)", color: "white", fontFamily: "var(--font-jakarta)", fontSize: 13, fontWeight: 600, borderRadius: 100, textDecoration: "none" }}>PDF 다운로드</Link>
-              <button style={{ padding: "13px 24px", background: "transparent", color: "var(--tone-life-ink)", border: "1px solid var(--tone-life-ink)", fontFamily: "var(--font-jakarta)", fontSize: 13, fontWeight: 600, borderRadius: 100, cursor: "pointer" }}>미리보기 →</button>
+              <span style={{ padding: "13px 26px", background: "var(--tone-life-cream-3)", color: "var(--tone-life-ink-3)", border: "1px solid var(--tone-life-line-2)", fontFamily: "var(--font-jakarta)", fontSize: 13, fontWeight: 600, borderRadius: 100, display: "inline-flex", alignItems: "center", gap: 8, cursor: "not-allowed" }}>
+                준비 중
+                <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--tone-life-rose)", fontWeight: 700 }}>SOON</span>
+              </span>
+              <span style={{ fontFamily: "var(--font-pretendard)", fontSize: 12.5, color: "var(--tone-life-ink-3)", letterSpacing: "-0.005em" }}>
+                자료 준비가 완료되면 공개됩니다
+              </span>
             </div>
           </div>
         </div>
@@ -146,7 +151,7 @@ export function LifestyleResources({ locale }: Props) {
                   <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 13, color: "var(--tone-life-ink-2)", lineHeight: 1.6, flex: 1 }}>{r.desc}</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid var(--tone-life-line)", marginTop: 4 }}>
                     <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 10.5, color: "var(--tone-life-ink-3)", letterSpacing: "0.06em" }}>{r.foot}</span>
-                    <span style={{ fontFamily: "var(--font-pretendard)", fontSize: 12.5, fontWeight: 600, color: "var(--tone-life-rose)", display: "inline-flex", alignItems: "center", gap: 6 }}>다운로드 ↓</span>
+                    <span style={{ fontFamily: "var(--font-pretendard)", fontSize: 12.5, fontWeight: 600, color: "var(--tone-life-ink-faint)", display: "inline-flex", alignItems: "center", gap: 6 }}>준비 중 <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 9, letterSpacing: "0.18em", color: "var(--tone-life-rose)" }}>SOON</span></span>
                   </div>
                 </div>
               </div>
@@ -167,10 +172,26 @@ export function LifestyleResources({ locale }: Props) {
         <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 15, color: "var(--tone-life-ink-2)", lineHeight: 1.65, maxWidth: 580, margin: "0 auto 28px" }}>
           월 1편씩 새 Field Notes가 발행됩니다. 메일링 구독 시 발행 즉시 받아보고, 광고 메일 없이 자료 1편 + 한 달치 작업 인사이트만 보내드립니다.
         </p>
-        <div style={{ display: "inline-flex", gap: 8, maxWidth: 480, width: "100%", padding: 6, background: "var(--tone-life-cream-2)", border: "1px solid var(--tone-life-line)", borderRadius: 100 }}>
-          <input type="email" placeholder="이메일 주소" style={{ flex: 1, minWidth: 0, padding: "12px 18px", background: "transparent", border: "none", color: "var(--tone-life-ink)", fontFamily: "var(--font-pretendard)", fontSize: 14, outline: "none" }} />
-          <button style={{ padding: "12px 22px", background: "var(--tone-life-rose)", color: "white", border: "none", fontFamily: "var(--font-jakarta)", fontSize: 12.5, fontWeight: 700, borderRadius: 100, cursor: "pointer", whiteSpace: "nowrap" }}>구독하기</button>
-        </div>
+        <Link
+            href={`/${locale}/quote`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "13px 26px",
+              background: "var(--tone-life-ink)",
+              color: "var(--tone-life-cream)",
+              border: "1px solid var(--tone-life-ink)",
+              fontFamily: "var(--font-jakarta)",
+              fontSize: 13,
+              fontWeight: 600,
+              textDecoration: "none",
+              letterSpacing: "-0.005em",
+              borderRadius: 999,
+            }}
+          >
+            견적 문의로 받기 →
+          </Link>
         <p style={{ marginTop: 16, fontFamily: "var(--font-pretendard)", fontSize: 12.5, color: "var(--tone-life-ink-3)" }}>언제든 1-click 구독 해지 가능</p>
       </section>
     </>

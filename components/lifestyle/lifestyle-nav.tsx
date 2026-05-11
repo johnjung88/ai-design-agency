@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 interface Props {
@@ -60,8 +62,6 @@ export function LifestyleNav({ locale }: Props) {
             color: "var(--tone-life-ink)",
             textDecoration: "none",
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-life-rose)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-life-ink)"; }}
         >
           포트폴리오
         </Link>
@@ -74,8 +74,6 @@ export function LifestyleNav({ locale }: Props) {
             color: "var(--tone-life-cream)",
             textDecoration: "none",
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-life-rose)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-life-ink)"; }}
         >
           견적 문의
         </Link>

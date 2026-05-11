@@ -123,6 +123,11 @@
   --tone-magazine-red: #C8472D;
   --tone-magazine-red-soft: #E8826A;
   --tone-magazine-mustard: #D4A53B;
+  /* Hero graph card */
+  --tone-magazine-graph-bg-1: #3A2818;
+  --tone-magazine-graph-bg-2: #1F1610;
+  --tone-magazine-graph-bg-3: #100A06;
+  --tone-magazine-graph-line: #E8B89A;
 
   /* IDE 톤 (01_web_dev_v2) */
   --tone-ide-bg: #0D1117;
@@ -280,6 +285,15 @@
   will-change: transform;
 }
 
+/* Voices slide fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 /* Magazine tone keyframes */
 @keyframes ornSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes ornSpinReverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
@@ -305,6 +319,21 @@
 .animate-reel-scroll { animation: reelScroll 60s linear infinite; }
 .animate-caret-blink { animation: caretBlink 1s step-end infinite; }
 .animate-ide-scroll { animation: ideScrollUp 28s linear infinite; }
+
+
+/* Device mockup vertical marquee — 이미지 2장 복제 후 -50% 스크롤로 끊김 없는 무한 루프 */
+@keyframes deviceMarquee {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.animate-device-marquee {
+  animation: deviceMarquee 22s linear infinite;
+  will-change: transform;
+}
+.animate-device-marquee-slow {
+  animation: deviceMarquee 30s linear infinite;
+  will-change: transform;
+}
 
 @layer base {
   * {

@@ -7,5 +7,5 @@ export function createResendClient(): Resend | null {
 }
 
 export function getInquiryRecipient(): string {
-  return process.env.CONTACT_TO_EMAIL ?? "koreabencb@gmail.com";
+  return process.env.CONTACT_TO_EMAIL ?? "aiomake2023@gmail.com";
 }

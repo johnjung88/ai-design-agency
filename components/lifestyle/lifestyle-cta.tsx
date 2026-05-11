@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 interface Props {
@@ -65,8 +67,6 @@ export function LifestyleCta({ locale }: Props) {
             color: "var(--tone-life-cream)",
             textDecoration: "none",
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-life-rose)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-life-ink)"; }}
         >
           견적 시작 →
         </Link>

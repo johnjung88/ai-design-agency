@@ -7,8 +7,8 @@ interface Props {
 const packages = [
   {
     name: "Light",
-    price: "4만~",
-    days: "1 day",
+    price: "4.0만~",
+    days: "1 DAY",
     slides: "10장 이하",
     desc: "핵심 메시지 중심 단일 덱",
     features: ["10장 이하", "기본 레이아웃 적용", "폰트·컬러 정리", "수정 1회"],
@@ -16,17 +16,17 @@ const packages = [
   },
   {
     name: "Standard",
-    price: "9만~",
-    days: "2–3 days",
-    slides: "15–25장",
+    price: "9.0만~",
+    days: "2-3 DAYS",
+    slides: "15-25장",
     desc: "비즈니스 제안·IR 덱",
-    features: ["15–25장", "커스텀 다이어그램", "데이터 시각화", "인포그래픽 3종", "수정 2회"],
+    features: ["15-25장", "커스텀 다이어그램", "데이터 시각화", "인포그래픽 3종", "수정 2회"],
     featured: true,
   },
   {
     name: "Premium",
     price: "19만~",
-    days: "3–5 days",
+    days: "3-5 DAYS",
     slides: "25장+",
     desc: "컨설팅 보고서·브랜드 덱",
     features: ["25장+", "전략 구조 설계 포함", "애니메이션 효과", "인포그래픽 무제한", "수정 3회", "60일 A/S"],
@@ -36,9 +36,9 @@ const packages = [
 
 const addons = [
   { label: "추가 슬라이드 (5장 단위)", price: "+3만" },
-  { label: "영문 버전 추가", price: "+4만~" },
+  { label: "영문 버전 추가", price: "+4.0만~" },
   { label: "긴급 납품 (24h)", price: "+3만" },
-  { label: "화자 노트 작성", price: "+2만~" },
+  { label: "화자 노트 작성", price: "+2.0만~" },
   { label: "Keynote 변환", price: "+2만" },
   { label: "인쇄용 PDF 최적화", price: "+1만" },
 ];
@@ -92,15 +92,15 @@ export function ConsultPricing({ locale }: Props) {
         </p>
       </div>
 
-      {/* Cards */}
+      {/* Cards — items-stretch 보장 + flex flex-col + 버튼 mt-auto */}
       <div
-        className="grid mb-8"
+        className="grid mb-8 items-stretch"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 0 }}
       >
         {packages.map((pkg, i) => (
           <div
             key={pkg.name}
-            className="flex flex-col"
+            className="flex flex-col h-full"
             style={{
               background: pkg.featured ? "var(--tone-consult-navy)" : "var(--tone-consult-paper)",
               border: "1px solid var(--tone-consult-line)",
@@ -136,26 +136,27 @@ export function ConsultPricing({ locale }: Props) {
                 className="font-semibold mb-1"
                 style={{
                   fontFamily: "var(--font-inter)",
-                  fontSize: 16,
-                  letterSpacing: "-0.01em",
-                  color: pkg.featured ? "rgba(255,255,255,0.9)" : "var(--tone-consult-ink-2)",
+                  fontSize: 22,
+                  letterSpacing: "-0.02em",
+                  color: pkg.featured ? "white" : "var(--tone-consult-ink)",
                 }}
               >
                 {pkg.name}
               </div>
               <div
-                className="font-bold mb-2"
+                className="font-bold mb-3"
                 style={{
                   fontFamily: "var(--font-inter)",
-                  fontSize: "clamp(28px,3.5vw,40px)",
+                  fontSize: 36,
                   letterSpacing: "-0.03em",
-                  color: pkg.featured ? "white" : "var(--tone-consult-ink)",
+                  color: pkg.featured ? "var(--tone-consult-gold)" : "var(--tone-consult-navy)",
+                  lineHeight: 1,
                 }}
               >
                 {pkg.price}
               </div>
               <div
-                className="mb-6 text-[13px]"
+                className="mb-5 text-[13px]"
                 style={{
                   fontFamily: "var(--font-pretendard)",
                   color: pkg.featured ? "rgba(255,255,255,0.65)" : "var(--tone-consult-ink-2)",
@@ -182,26 +183,27 @@ export function ConsultPricing({ locale }: Props) {
                   </li>
                 ))}
               </ul>
-
-              <Link
-                href={`/${locale}/quote`}
-                className="block text-center py-[12px] text-[13.5px] font-semibold transition-all hover:-translate-y-0.5"
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  background: pkg.featured ? "var(--tone-consult-gold)" : "var(--tone-consult-ink)",
-                  color: pkg.featured ? "var(--tone-consult-ink)" : "var(--tone-consult-paper)",
-                  textDecoration: "none",
-                  letterSpacing: "-0.005em",
-                }}
-              >
-                선택
-              </Link>
             </div>
+
+            {/* 선택 버튼 — 카드 하단으로 (mt-auto가 외부 flex flex-col 에 작용) */}
+            <Link
+              href={`/${locale}/quote`}
+              className="block text-center py-[14px] text-[13.5px] font-semibold transition-all hover:-translate-y-0.5 mt-auto"
+              style={{
+                fontFamily: "var(--font-inter)",
+                background: pkg.featured ? "var(--tone-consult-gold)" : "var(--tone-consult-ink)",
+                color: pkg.featured ? "var(--tone-consult-ink)" : "var(--tone-consult-paper)",
+                textDecoration: "none",
+                letterSpacing: "-0.005em",
+              }}
+            >
+              선택
+            </Link>
           </div>
         ))}
       </div>
 
-      {/* Add-ons */}
+      {/* Add-ons — 3×2 fixed grid */}
       <div
         className="p-6"
         style={{
@@ -215,14 +217,11 @@ export function ConsultPricing({ locale }: Props) {
         >
           Add-ons
         </div>
-        <div
-          className="grid"
-          style={{ gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 8 }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 items-stretch">
           {addons.map((a) => (
             <div
               key={a.label}
-              className="flex justify-between items-center px-4 py-[10px]"
+              className="flex justify-between items-center px-4 py-3 h-full"
               style={{
                 background: "var(--tone-consult-paper)",
                 border: "1px solid var(--tone-consult-line)",
@@ -230,8 +229,22 @@ export function ConsultPricing({ locale }: Props) {
                 fontSize: 13,
               }}
             >
-              <span style={{ color: "var(--tone-consult-ink-2)" }}>{a.label}</span>
-              <span style={{ color: "var(--tone-consult-navy)", fontWeight: 600 }}>{a.price}</span>
+              <span
+                style={{
+                  color: "var(--tone-consult-ink-2)",
+                }}
+              >
+                {a.label}
+              </span>
+              <span
+                style={{
+                  color: "var(--tone-consult-navy)",
+                  fontWeight: 600,
+                  fontFamily: "var(--font-inter)",
+                }}
+              >
+                {a.price}
+              </span>
             </div>
           ))}
         </div>

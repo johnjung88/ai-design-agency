@@ -4,7 +4,16 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { ChannelBadges } from "@/components/sections/channel-badges";
 import { BrandLogo } from "@/components/ui/brand-logo";
-import { serviceCategories } from "@/lib/services-data";
+
+const disciplines = [
+  { label: "웹 개발", href: "/services/website", available: true },
+  { label: "상세페이지", href: "/services/detail-page", available: true },
+  { label: "PPT 디자인", href: "/services/ppt-design", available: true },
+  { label: "자동화", href: null, available: false },
+  { label: "앱 개발", href: null, available: false },
+  { label: "영상", href: null, available: false },
+  { label: "마케팅", href: null, available: false },
+];
 
 export function Footer() {
   const locale = useLocale();
@@ -32,24 +41,32 @@ export function Footer() {
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 {t("services")}
               </p>
-              {serviceCategories.map((service) => (
-                <Link
-                  key={service.value}
-                  href={`${base}/services/${service.value}`}
-                  className="text-xs text-muted-foreground/70 transition-colors hover:text-foreground"
-                >
-                  {service.label[locale as "ko" | "en"]}
-                </Link>
-              ))}
+              {disciplines.map((d) => {
+                if (d.available && d.href) {
+                  return (
+                    <Link
+                      key={d.label}
+                      href={`${base}${d.href}`}
+                      className="text-xs text-muted-foreground/70 transition-colors hover:text-foreground"
+                    >
+                      {d.label}
+                    </Link>
+                  );
+                }
+                return (
+                  <span key={d.label} className="text-xs text-muted-foreground/40 inline-flex items-center gap-1.5">
+                    {d.label}
+                    <span className="text-[9px] tracking-[0.18em] uppercase opacity-60">soon</span>
+                  </span>
+                );
+              })}
             </div>
             <div className="flex flex-col gap-2">
               <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 {t("company")}
               </p>
               {[
-                { label: t("about"), href: `${base}/about` },
-                { label: t("portfolio"), href: `${base}/portfolio` },
-                { label: t("pricing"), href: `${base}/pricing` },
+                { label: locale === "ko" ? "회사 소개" : "About", href: `${base}/about` },
                 { label: t("contact"), href: `${base}/quote` },
               ].map((item) => (
                 <Link
@@ -66,10 +83,10 @@ export function Footer() {
                 {t("contact")}
               </p>
               <Link
-                href="mailto:koreabencb@gmail.com"
+                href="mailto:aiomake2023@gmail.com"
                 className="text-xs text-muted-foreground/70 transition-colors hover:text-foreground"
               >
-                koreabencb@gmail.com
+                aiomake2023@gmail.com
               </Link>
             </div>
           </div>
@@ -77,10 +94,14 @@ export function Footer() {
 
         {/* 사업자 정보 */}
         <div className="mt-10 border-t border-white/8 pt-6">
-          <p className="text-xs leading-6 text-muted-foreground/50">
-            사업자명: 에이아이오 (AIO) &nbsp;|&nbsp; 사업자번호: 682-01-02748 &nbsp;|&nbsp; 주소: 경기도 김포시 대곶면 흥신로67
-            &nbsp;|&nbsp; © {new Date().getFullYear()} AIO에이전시. All rights reserved.
-          </p>
+          <div className="text-xs leading-6 text-muted-foreground/50">
+            <p>
+              사업자명: 에이아이오 (AIO) &nbsp;|&nbsp; 사업자번호: 682-01-02748 &nbsp;|&nbsp; 통신판매업신고: 제 2026-경기김포-3656 호
+            </p>
+            <p>
+              주소: 경기도 김포시 대곶면 흥신로67 &nbsp;|&nbsp; © {new Date().getFullYear()} AIO에이전시. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

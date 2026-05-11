@@ -54,3 +54,7 @@ supabase/.temp/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local AI/MCP caches
+.claude/
+.playwright-mcp/

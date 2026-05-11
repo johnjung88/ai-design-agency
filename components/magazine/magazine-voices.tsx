@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { MagazineEyebrow } from "./magazine-eyebrow";
 
 const testimonials = [
   {
@@ -65,14 +66,7 @@ export function MagazineVoices() {
       style={{ padding: "clamp(80px,10vw,120px) clamp(24px,3vw,36px)" }}
     >
       {/* Eyebrow */}
-      <div
-        className="mb-6 inline-flex items-center gap-[14px]"
-        style={{ fontFamily: "var(--font-jetbrains)", fontSize: "11.5px", color: "var(--tone-magazine-ink-2)", letterSpacing: "0.3em", textTransform: "uppercase" }}
-      >
-        <span style={{ width: 28, height: 1, background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
-        Voices from the Field
-        <span style={{ width: 28, height: 1, background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
-      </div>
+      <MagazineEyebrow className="mb-6">Voices from the Field</MagazineEyebrow>
 
       <h2
         className="font-normal mx-auto mb-14"
@@ -92,14 +86,13 @@ export function MagazineVoices() {
 
         <blockquote
           key={active}
-          className="mx-auto max-w-[720px]"
+          className="mx-auto max-w-[720px] animate-fade-in"
           style={{
             fontFamily: "var(--font-cormorant)",
             fontSize: "clamp(22px,2.8vw,38px)",
             lineHeight: 1.45,
             letterSpacing: "-0.01em",
             color: "var(--tone-magazine-ink)",
-            animation: "var(--animate-fade-in, none)",
           }}
         >
           {t.quote}{" "}
@@ -107,13 +100,64 @@ export function MagazineVoices() {
           {t.body ? `, ${t.body}` : ""}
         </blockquote>
 
-        <div className="flex items-center justify-center gap-5 flex-wrap">
-          <span style={{ fontFamily: "var(--font-marcellus)", fontSize: 18, color: "var(--tone-magazine-ink)" }}>{t.name}</span>
-          <span style={{ width: 1, height: 18, background: "var(--tone-magazine-line-2)", display: "inline-block" }} />
-          <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 11, color: "var(--tone-magazine-ink-2)", letterSpacing: "0.14em", textTransform: "uppercase" }}>{t.role}</span>
-          <span style={{ width: 1, height: 18, background: "var(--tone-magazine-line-2)", display: "inline-block" }} />
-          <span style={{ fontFamily: "var(--font-cormorant)", fontSize: 22, color: "var(--tone-magazine-ink)", fontStyle: "italic" }}>{t.stat}</span>
-          <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "10.5px", color: "var(--tone-magazine-ink-2)", letterSpacing: "0.14em", textTransform: "uppercase" }}>{t.statCap}</span>
+        <div className="flex items-baseline justify-center gap-4 md:gap-5 flex-wrap mt-2">
+          {/* Name + Role */}
+          <div className="inline-flex items-baseline gap-3">
+            <span
+              style={{
+                fontFamily: "var(--font-marcellus)",
+                fontSize: "clamp(18px, 1.7vw, 22px)",
+                color: "var(--tone-magazine-ink)",
+                letterSpacing: "-0.01em",
+                lineHeight: 1,
+              }}
+            >
+              {t.name}
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-pretendard)",
+                fontSize: "clamp(12px, 1vw, 13.5px)",
+                color: "var(--tone-magazine-ink-3)",
+                fontWeight: 400,
+                letterSpacing: "-0.003em",
+              }}
+            >
+              {t.role}
+            </span>
+          </div>
+
+          {/* divider */}
+          <span
+            className="hidden sm:inline-block"
+            style={{ width: 1, height: 22, background: "var(--tone-magazine-line-2)" }}
+          />
+
+          {/* Stat (큰 숫자) + StatCap */}
+          <div className="inline-flex items-baseline gap-2">
+            <span
+              style={{
+                fontFamily: "var(--font-marcellus)",
+                fontSize: "clamp(26px, 2.6vw, 36px)",
+                color: "var(--tone-magazine-red)",
+                letterSpacing: "-0.018em",
+                lineHeight: 1,
+              }}
+            >
+              {t.stat}
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-pretendard)",
+                fontSize: "clamp(11.5px, 1vw, 13px)",
+                color: "var(--tone-magazine-ink-2)",
+                fontWeight: 500,
+                letterSpacing: "-0.003em",
+              }}
+            >
+              {t.statCap}
+            </span>
+          </div>
         </div>
       </div>
 

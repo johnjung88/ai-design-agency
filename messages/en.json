@@ -14,7 +14,7 @@
     "portfolio": "Portfolio",
     "services": "Services",
     "pricing": "Pricing",
-    "about": "About",
+    "about": "About AIO",
     "contact": "Contact",
     "portfolioAll": "All",
     "portfolioWeb": "🌐 Web",
@@ -158,10 +158,10 @@
     }
   },
   "about": {
-    "title": "About",
+    "title": "About AIO",
     "name": "Jaehong Jung",
     "role": "AIO Agency Operations Team",
-    "bio": "AIO works like an integrated production team across consultation, planning, design, development, and operations. We focus on fast response, clear quotes, result-based portfolio proof, and reliable maintenance after delivery.",
+    "bio": "AIO works like an integrated production team across consultation, planning, design, development, and operations.\nWe focus on fast response, clear quotes, result-based portfolio proof, and reliable maintenance after delivery.",
     "stackTitle": "Tech Stack",
     "businessTitle": "Business Info"
   },
@@ -172,7 +172,7 @@
     "services": "Services",
     "company": "Company",
     "contact": "Contact",
-    "about": "About",
+    "about": "About AIO",
     "portfolio": "Portfolio",
     "pricing": "Pricing",
     "service_web": "🌐 Web Development",

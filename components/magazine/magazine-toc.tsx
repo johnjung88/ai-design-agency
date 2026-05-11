@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MagazineEyebrow } from "./magazine-eyebrow";
 
 interface Props {
   locale: string;
@@ -10,8 +11,8 @@ const disciplines = [
     name: "웹 개발",
     nameEn: "web development",
     tagline: "5일이면 운영 가능한 사이트로",
-    price: "₩9.9만~",
-    days: "1–5 days",
+    price: "9.9만~",
+    days: "1-5 DAYS",
     href: (locale: string) => `/${locale}/services/website`,
     available: true,
   },
@@ -20,8 +21,8 @@ const disciplines = [
     name: "상세페이지",
     nameEn: "detail page",
     tagline: "스크롤 한 번에, 결제 버튼까지",
-    price: "₩4.9만~",
-    days: "1–3 days",
+    price: "4.9만~",
+    days: "1-3 DAYS",
     href: (locale: string) => `/${locale}/services/detail-page`,
     available: true,
   },
@@ -30,8 +31,8 @@ const disciplines = [
     name: "PPT 디자인",
     nameEn: "presentation",
     tagline: "한 장이 결정짓는 발표",
-    price: "₩4만~",
-    days: "1–3 days",
+    price: "4.0만~",
+    days: "1-3 DAYS",
     href: (locale: string) => `/${locale}/services/ppt-design`,
     available: true,
   },
@@ -45,125 +46,211 @@ export function MagazineToc({ locale }: Props) {
   return (
     <section
       id="toc"
-      className="py-28 px-9 max-w-[1200px] mx-auto relative text-center"
-      style={{ padding: "clamp(80px,10vw,120px) clamp(24px,3vw,36px)" }}
+      className="py-20 md:py-28 max-w-[1280px] mx-auto relative text-center scroll-mt-24"
+      style={{
+        padding:
+          "clamp(80px,10vw,120px) clamp(16px,3vw,40px)",
+      }}
     >
       {/* Eyebrow */}
-      <div
-        className="mb-6 inline-flex items-center gap-[14px]"
-        style={{ fontFamily: "var(--font-jetbrains)", fontSize: "11.5px", color: "var(--tone-magazine-ink-2)", letterSpacing: "0.3em", textTransform: "uppercase" }}
-      >
-        <span style={{ width: 28, height: 1, background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
-        Index · 07 Disciplines
-        <span style={{ width: 28, height: 1, background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
-      </div>
+      <MagazineEyebrow className="mb-6">Index · 07 Disciplines</MagazineEyebrow>
 
+      {/* H2 */}
       <h2
         className="font-normal mx-auto mb-7 max-w-[1100px]"
-        style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(48px,6vw,96px)", lineHeight: 1.0, letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
+        style={{
+          fontFamily: "var(--font-marcellus)",
+          fontSize: "clamp(40px,6vw,96px)",
+          lineHeight: 1.0,
+          letterSpacing: "-0.014em",
+          color: "var(--tone-magazine-ink)",
+        }}
       >
         일곱 분야의
         <br />
-        <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>전문가들</em>
+        <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>
+          전문가들
+        </em>
       </h2>
 
+      {/* Lede — Pretendard for Korean body */}
       <p
-        className="mx-auto mb-16"
-        style={{ fontFamily: "var(--font-cormorant)", fontSize: 19, lineHeight: 1.6, color: "var(--tone-magazine-ink-2)", maxWidth: 600 }}
+        className="mx-auto mb-12 md:mb-16"
+        style={{
+          fontFamily: "var(--font-pretendard)",
+          fontSize: "clamp(14px, 1.3vw, 17px)",
+          lineHeight: 1.75,
+          color: "var(--tone-magazine-ink-2)",
+          maxWidth: 600,
+          fontWeight: 400,
+        }}
       >
-        지금 의뢰 가능한 <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 500 }}>3분야</strong>와 곧 합류할{" "}
-        <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 500 }}>4분야</strong>
-        <br />
-        각 분야 페이지에서 그 분야 전문가가 직접 인사드립니다
+        지금 의뢰 가능한{" "}
+        <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>3분야</strong>
+        와 곧 합류할{" "}
+        <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>4분야</strong>
+        <br className="hidden sm:inline" />
+        {" "}각 분야 페이지에서 그 분야 전문가가 직접 인사드립니다
       </p>
 
+      {/* Rows */}
       <div
         style={{
           borderTop: "1px solid var(--tone-magazine-ink)",
           borderBottom: "1px solid var(--tone-magazine-ink)",
         }}
       >
-        {disciplines.map((d) => {
+        {disciplines.map((d, idx) => {
+          const isLast = idx === disciplines.length - 1;
+          const inkActive = d.available
+            ? "var(--tone-magazine-ink)"
+            : "var(--tone-magazine-ink-faint)";
+          const inkSubActive = d.available
+            ? "var(--tone-magazine-ink-2)"
+            : "var(--tone-magazine-ink-faint)";
+
           const rowStyle: React.CSSProperties = {
-            display: "grid",
-            gridTemplateColumns: "60px 1fr 60px",
-            gap: 32,
-            alignItems: "center",
-            padding: "28px 32px",
-            borderBottom: "1px solid var(--tone-magazine-line-2)",
-            color: d.available ? "var(--tone-magazine-ink)" : "var(--tone-magazine-ink-faint)",
+            borderBottom: isLast
+              ? "none"
+              : "1px solid var(--tone-magazine-line-2)",
+            color: inkActive,
             textDecoration: "none",
             transition: "background 0.4s cubic-bezier(0.4,0,0.2,1)",
           };
 
           const inner = (
-            <>
+            <div
+              className="
+                grid items-center gap-y-3 gap-x-4
+                grid-cols-[40px_1fr_28px]
+                md:grid-cols-[56px_minmax(220px,auto)_1fr_minmax(200px,auto)_40px]
+                px-4 md:px-6 py-7 md:py-8
+              "
+            >
+              {/* Number */}
               <span
                 style={{
                   fontFamily: "var(--font-jetbrains)",
-                  fontSize: 13,
-                  color: d.available ? "var(--tone-magazine-ink-2)" : "var(--tone-magazine-ink-faint)",
+                  fontSize: "clamp(11px, 1vw, 13px)",
+                  color: inkSubActive,
                   letterSpacing: "0.06em",
                   textAlign: "left",
+                  alignSelf: "start",
+                  paddingTop: 4,
                 }}
               >
                 {d.num}
               </span>
 
-              <div className="text-center">
+              {/* Name (Korean + English italic) */}
+              <div className="text-center md:text-left">
                 <div
-                  className="inline-flex items-baseline gap-[14px] flex-wrap justify-center"
-                  style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(26px,3.2vw,40px)", lineHeight: 1, letterSpacing: "-0.01em" }}
+                  className="inline-flex items-baseline gap-3 md:gap-4 flex-wrap justify-center md:justify-start"
+                  style={{
+                    fontFamily: "var(--font-marcellus)",
+                    fontSize: "clamp(28px, 3.6vw, 46px)",
+                    lineHeight: 1,
+                    letterSpacing: "-0.012em",
+                    color: inkActive,
+                  }}
                 >
                   {d.name}
                   <em
                     style={{
                       fontFamily: "var(--font-cormorant)",
                       fontStyle: "italic",
-                      color: d.available ? "var(--tone-magazine-ink-2)" : "var(--tone-magazine-ink-faint)",
+                      color: inkSubActive,
                       fontWeight: 500,
-                      fontSize: "0.55em",
+                      fontSize: "0.5em",
                       letterSpacing: 0,
                     }}
                   >
                     {d.nameEn}
                   </em>
                 </div>
-                <div
-                  style={{ fontFamily: "var(--font-cormorant)", fontSize: 15, lineHeight: 1.45, color: d.available ? "var(--tone-magazine-ink-2)" : "var(--tone-magazine-ink-faint)", fontStyle: "italic", marginTop: 8 }}
+              </div>
+
+              {/* Tagline — full width on mobile (col-span-3), center column on PC */}
+              <div className="col-span-3 md:col-span-1 text-center px-2">
+                <p
+                  style={{
+                    fontFamily: "var(--font-cormorant)",
+                    fontSize: "clamp(14px, 1.3vw, 17px)",
+                    lineHeight: 1.55,
+                    color: inkSubActive,
+                    fontStyle: "italic",
+                    margin: 0,
+                  }}
                 >
                   {d.tagline}
-                </div>
-                {d.available && d.price && (
-                  <div
-                    className="inline-flex gap-4 items-center mt-3"
-                    style={{ fontFamily: "var(--font-jetbrains)", fontSize: 11, color: "var(--tone-magazine-ink-2)", letterSpacing: "0.16em", textTransform: "uppercase" }}
+                </p>
+              </div>
+
+              {/* Meta (price + days) — full width row on mobile, right column on PC */}
+              <div className="col-span-3 md:col-span-1 flex items-baseline justify-center md:justify-end gap-3 md:gap-4">
+                {d.available && d.price ? (
+                  <>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-marcellus)",
+                        fontSize: "clamp(18px, 1.7vw, 22px)",
+                        color: "var(--tone-magazine-ink)",
+                        letterSpacing: "-0.01em",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {d.price}
+                    </span>
+                    <span
+                      style={{
+                        color: "var(--tone-magazine-ink-faint)",
+                        fontSize: "clamp(11px, 1vw, 13px)",
+                      }}
+                    >
+                      ·
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-jetbrains)",
+                        fontSize: "clamp(10.5px, 1vw, 12px)",
+                        color: "var(--tone-magazine-ink-2)",
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {d.days}
+                    </span>
+                  </>
+                ) : (
+                  <span
+                    style={{
+                      fontFamily: "var(--font-jetbrains)",
+                      fontSize: "clamp(10.5px, 1vw, 12px)",
+                      color: "var(--tone-magazine-ink-faint)",
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                    }}
                   >
-                    <span style={{ fontFamily: "var(--font-marcellus)", fontSize: 16, color: "var(--tone-magazine-ink)", letterSpacing: 0, textTransform: "none" }}>{d.price}</span>
-                    <span style={{ color: "var(--tone-magazine-ink-faint)" }}>·</span>
-                    <span>{d.days}</span>
-                  </div>
-                )}
-                {!d.available && (
-                  <div style={{ fontFamily: "var(--font-jetbrains)", fontSize: 11, color: "var(--tone-magazine-ink-faint)", letterSpacing: "0.16em", textTransform: "uppercase", marginTop: 12 }}>
                     Coming soon
-                  </div>
+                  </span>
                 )}
               </div>
 
+              {/* Arrow — last col on PC, top-right on mobile */}
               <span
+                className="text-right justify-self-end self-start md:self-center"
                 style={{
                   fontFamily: "var(--font-marcellus)",
-                  fontSize: 26,
-                  color: d.available ? "var(--tone-magazine-ink-2)" : "var(--tone-magazine-ink-faint)",
+                  fontSize: "clamp(22px, 2vw, 30px)",
+                  color: inkSubActive,
                   lineHeight: 1,
-                  textAlign: "right",
                   transition: "transform 0.4s cubic-bezier(0.4,0,0.2,1)",
+                  paddingTop: 4,
                 }}
               >
                 {d.available ? "→" : "·"}
               </span>
-            </>
+            </div>
           );
 
           if (d.available && d.href) {
@@ -172,7 +259,7 @@ export function MagazineToc({ locale }: Props) {
                 key={d.num}
                 href={d.href(locale)}
                 style={rowStyle}
-                className="hover:bg-[var(--tone-magazine-paper-2)] [&:hover_span:last-child]:translate-x-2"
+                className="block hover:bg-[var(--tone-magazine-paper-2)] [&:hover_span:last-child]:translate-x-2"
               >
                 {inner}
               </Link>

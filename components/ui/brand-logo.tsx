@@ -7,43 +7,46 @@ interface BrandLogoProps {
   className?: string;
 }
 
+/**
+ * 정사각형 아이코닉 로고 (/brand/aio-logo.png) 단일 소스.
+ * variant 별 사이즈만 다름.
+ */
 const styles: Record<
   BrandLogoVariant,
-  {
-    width: number;
-    height: number;
-    className: string;
-  }
+  { size: number; className: string }
 > = {
   header: {
-    width: 112,
-    height: 48,
-    className: "h-11 w-[104px] md:h-12 md:w-[112px]",
+    size: 48,
+    className: "h-10 w-10 md:h-12 md:w-12",
   },
   footer: {
-    width: 140,
-    height: 60,
-    className: "h-[58px] w-[136px]",
+    size: 80,
+    className: "h-16 w-16",
   },
   hero: {
-    width: 190,
-    height: 82,
-    className: "h-[76px] w-[180px] md:h-[82px] md:w-[190px]",
+    size: 120,
+    className: "h-24 w-24 md:h-28 md:w-28",
   },
 };
 
-export function BrandLogo({ variant = "header", className = "" }: BrandLogoProps) {
+export function BrandLogo({
+  variant = "header",
+  className = "",
+}: BrandLogoProps) {
   const style = styles[variant];
 
   return (
-    <span className={`inline-flex items-center ${style.className} ${className}`} aria-label="AIO All-In-One Agency">
+    <span
+      className={`inline-flex items-center ${style.className} ${className}`}
+      aria-label="AIO All-In-One Agency"
+    >
       <Image
-        src="/brand/aio-agency-logo-final/aio-agency-site-lockup-dark.svg"
+        src="/brand/aio-logo.png"
         alt="AIO All-In-One Agency"
-        width={style.width}
-        height={style.height}
+        width={style.size}
+        height={style.size}
         priority={variant === "header"}
-        className="h-full w-full object-contain object-left"
+        className="h-full w-full object-contain"
       />
     </span>
   );

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 interface Props {
@@ -40,25 +42,22 @@ export function IdeStatusbar({ locale }: Props) {
       <div className="flex items-center gap-[14px] justify-end">
         <Link
           href={`/${locale}`}
+          className="transition-colors hover:!text-[var(--tone-ide-mint)]"
           style={{ color: "var(--tone-ide-fg-3)", textDecoration: "none" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-ide-mint)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-ide-fg-3)"; }}
         >
           home
         </Link>
         <Link
           href={`/${locale}/quote`}
+          className="transition-colors hover:!text-[var(--tone-ide-mint)]"
           style={{ color: "var(--tone-ide-fg-3)", textDecoration: "none" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-ide-mint)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-ide-fg-3)"; }}
         >
           견적 문의
         </Link>
         <Link
           href={`/${locale}/contact`}
+          className="transition-colors hover:!text-[var(--tone-ide-mint)]"
           style={{ color: "var(--tone-ide-fg-3)", textDecoration: "none" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-ide-mint)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-ide-fg-3)"; }}
         >
           contact
         </Link>

@@ -8,7 +8,7 @@ const packages = [
   {
     name: "Light",
     price: "4.9만~",
-    days: "1 day",
+    days: "1 DAY",
     desc: "단일 상품 상세페이지",
     features: ["1개 상품", "기본 섹션 6–8단", "모바일 최적화", "수정 1회"],
     featured: false,
@@ -16,7 +16,7 @@ const packages = [
   {
     name: "Standard",
     price: "9.9만~",
-    days: "2–3 days",
+    days: "2-3 DAYS",
     desc: "전환율 중심 상세페이지",
     features: ["1개 상품", "풀 섹션 10–14단", "Before/After 구성", "리뷰 섹션", "수정 2회"],
     featured: true,
@@ -24,7 +24,7 @@ const packages = [
   {
     name: "Premium",
     price: "17.9만~",
-    days: "3 days",
+    days: "3 DAYS",
     desc: "브랜드형 상세페이지",
     features: ["1개 상품", "브랜드 스토리", "상세 성분/소재 분석", "동영상 삽입 구성", "수정 3회", "60일 A/S"],
     featured: false,
@@ -80,13 +80,13 @@ export function LifestylePricing({ locale }: Props) {
 
       {/* Package cards */}
       <div
-        className="grid mb-8"
+        className="grid mb-8 items-stretch"
         style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}
       >
         {packages.map((pkg) => (
           <div
             key={pkg.name}
-            className="flex flex-col rounded-xl overflow-hidden"
+            className="flex flex-col rounded-xl overflow-hidden h-full"
             style={{
               background: pkg.featured ? "var(--tone-life-ink)" : "var(--tone-life-cream)",
               border: `1.5px solid ${pkg.featured ? "var(--tone-life-ink)" : "var(--tone-life-line)"}`,
@@ -177,7 +177,7 @@ export function LifestylePricing({ locale }: Props) {
 
               <Link
                 href={`/${locale}/quote`}
-                className="block text-center py-[12px] text-[13.5px] font-semibold rounded-full transition-all hover:-translate-y-0.5"
+                className="block text-center py-[12px] text-[13.5px] font-semibold rounded-full transition-all hover:-translate-y-0.5 mt-auto"
                 style={{
                   fontFamily: "var(--font-jakarta)",
                   background: pkg.featured ? "var(--tone-life-rose)" : "var(--tone-life-ink)",

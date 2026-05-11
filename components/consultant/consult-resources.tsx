@@ -117,9 +117,14 @@ export function ConsultResources({ locale }: Props) {
                 <span key={m} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>{m}</span>
               ))}
             </div>
-            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 6 }}>
-              <button style={{ padding: "13px 26px", background: "var(--tone-consult-ink)", color: "white", border: "1px solid var(--tone-consult-ink)", fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8 }}>다운로드 →</button>
-              <button style={{ padding: "13px 24px", background: "transparent", color: "var(--tone-consult-ink)", border: "1px solid var(--tone-consult-ink)", fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 8 }}>미리보기</button>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 6, alignItems: "center" }}>
+              <span style={{ padding: "13px 26px", background: "var(--tone-consult-paper-3)", color: "var(--tone-consult-ink-3)", border: "1px solid var(--tone-consult-line-2)", fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8, cursor: "not-allowed" }}>
+                준비 중
+                <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--tone-consult-gold)", fontWeight: 700 }}>SOON</span>
+              </span>
+              <span style={{ fontFamily: "var(--font-pretendard)", fontSize: 12.5, color: "var(--tone-consult-ink-3)", letterSpacing: "-0.005em" }}>
+                자료 준비가 완료되면 공개됩니다
+              </span>
             </div>
           </div>
         </div>
@@ -138,7 +143,7 @@ export function ConsultResources({ locale }: Props) {
         {/* Borderless grid — borders via container left/top + card right/bottom */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderLeft: "1px solid var(--tone-consult-line)", borderTop: "1px solid var(--tone-consult-line)" }}>
           {filtered.map((r, i) => (
-            <div key={i} style={{ padding: "24px 24px 22px", background: "var(--tone-consult-paper)", borderRight: "1px solid var(--tone-consult-line)", borderBottom: "1px solid var(--tone-consult-line)", display: "flex", flexDirection: "column", gap: 12, textAlign: "left", position: "relative", cursor: "pointer" }}>
+            <div key={i} style={{ padding: "24px 24px 22px", background: "var(--tone-consult-paper)", borderRight: "1px solid var(--tone-consult-line)", borderBottom: "1px solid var(--tone-consult-line)", display: "flex", flexDirection: "column", gap: 12, textAlign: "left", position: "relative" }}>
               {/* Gold hover indicator (static show at 0) */}
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "var(--tone-consult-gold)", opacity: 0, transition: "opacity 0.2s" }} />
               {/* Head */}
@@ -164,35 +169,37 @@ export function ConsultResources({ locale }: Props) {
                   </span>
                 ))}
               </div>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "9px 14px", background: "var(--tone-consult-ink)", color: "white", fontFamily: "var(--font-inter)", fontSize: 11.5, fontWeight: 600, alignSelf: "flex-start", marginTop: 4 }}>
-                다운로드 →
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "9px 14px", background: "var(--tone-consult-paper-3)", color: "var(--tone-consult-ink-3)", border: "1px solid var(--tone-consult-line-2)", fontFamily: "var(--font-inter)", fontSize: 11.5, fontWeight: 600, alignSelf: "flex-start", marginTop: 4, cursor: "not-allowed" }}>
+                준비 중 <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 9, letterSpacing: "0.16em", color: "var(--tone-consult-gold)", marginLeft: 2 }}>SOON</span>
               </span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Newsletter */}
+      {/* Newsletter — Coming Soon */}
       <section style={{ padding: "70px 24px", maxWidth: 980, margin: "0 auto", textAlign: "center", borderTop: "2px solid var(--tone-consult-ink)", background: "var(--tone-consult-paper-2)" }}>
         <div style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--tone-consult-navy)", marginBottom: 18, display: "inline-flex", alignItems: "center", gap: 14, fontWeight: 500 }}>
           <span style={{ width: 24, height: 1, background: "var(--tone-consult-gold)", display: "inline-block" }} />
-          Subscribe
+          Subscribe · Coming Soon
           <span style={{ width: 24, height: 1, background: "var(--tone-consult-gold)", display: "inline-block" }} />
         </div>
         <h2 style={{ fontFamily: "var(--font-inter)", fontSize: "clamp(28px,4vw,48px)", fontWeight: 700, letterSpacing: "-0.026em", lineHeight: 1.05, marginBottom: 14, color: "var(--tone-consult-ink)" }}>
           새 가이드,{" "}
-          <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", color: "var(--tone-consult-navy)", fontWeight: 500 }}>구독자 우선</em>{" "}
-          발송
+          <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", color: "var(--tone-consult-navy)", fontWeight: 500 }}>곧 시작</em>
+          합니다
         </h2>
-        <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 15, color: "var(--tone-consult-ink-2)", lineHeight: 1.65, maxWidth: 580, margin: "0 auto 28px" }}>
-          월 1편씩 새 Field Guide가 발행됩니다. 구독 시 발행 즉시 받아보고, 광고 메일 없이 자료 1편 + 한 달치 작업 인사이트만 보내드립니다.
+        <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 15, color: "var(--tone-consult-ink-2)", lineHeight: 1.7, maxWidth: 580, margin: "0 auto 22px" }}>
+          월 1편씩 새 Field Guide가 발행될 예정입니다.
+          <br />
+          구독 시스템이 준비되면 공개됩니다 — 그동안 견적 문의를 통해 미리 받아보실 수 있습니다.
         </p>
-        {/* Square newsletter form */}
-        <div style={{ display: "inline-flex", maxWidth: 480, width: "100%", border: "1px solid var(--tone-consult-ink)", background: "var(--tone-consult-paper)" }}>
-          <input type="email" placeholder="이메일 주소" style={{ flex: 1, minWidth: 0, padding: "14px 18px", background: "transparent", border: "none", color: "var(--tone-consult-ink)", fontFamily: "var(--font-pretendard)", fontSize: 14, outline: "none" }} />
-          <button style={{ padding: "14px 22px", background: "var(--tone-consult-ink)", color: "white", border: "none", fontFamily: "var(--font-inter)", fontSize: 12.5, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap" }}>SUBSCRIBE</button>
-        </div>
-        <p style={{ marginTop: 16, fontFamily: "var(--font-ibm-plex-mono)", fontSize: 11, color: "var(--tone-consult-ink-3)", letterSpacing: "0.06em" }}>언제든 1-click 구독 해지 가능</p>
+        <Link
+          href={`/${locale}/quote`}
+          style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 26px", background: "var(--tone-consult-ink)", color: "white", border: "1px solid var(--tone-consult-ink)", fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, textDecoration: "none", letterSpacing: "-0.005em" }}
+        >
+          견적 문의로 받기 →
+        </Link>
       </section>
 
       {/* CTA */}

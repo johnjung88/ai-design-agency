@@ -38,7 +38,7 @@ export function MagazineBanner() {
           style={{
             fontFamily: "var(--font-jetbrains)",
             fontSize: 12,
-            letterSpacing: "0.18em",
+            letterSpacing: "0.22em",
             textTransform: "uppercase",
           }}
         >

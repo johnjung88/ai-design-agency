@@ -5,6 +5,14 @@ interface Props {
   locale: string;
 }
 
+const CTA_BASE_STYLE: React.CSSProperties = {
+  fontFamily: "var(--font-pretendard)",
+  fontSize: 14,
+  fontWeight: 500,
+  letterSpacing: "-0.01em",
+  border: "1px solid var(--tone-magazine-ink)",
+};
+
 export function MagazineEditorial({ locale }: Props) {
   return (
     <section
@@ -58,7 +66,7 @@ export function MagazineEditorial({ locale }: Props) {
           color: "var(--tone-magazine-ink)",
         }}
       >
-        <span style={{ color: "var(--tone-magazine-ink-3)" }}>결과를 보고</span>
+        <span>결과를 보고</span>
         <br />
         <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", color: "var(--tone-magazine-red)", fontWeight: 500 }}>
           맡기는
@@ -70,17 +78,20 @@ export function MagazineEditorial({ locale }: Props) {
       <div className="max-w-[720px] mx-auto mb-16">
         <p
           className="mb-[18px]"
-          style={{ fontFamily: "var(--font-cormorant)", fontSize: 19, lineHeight: 1.7, color: "var(--tone-magazine-ink-2)" }}
+          style={{ fontFamily: "var(--font-pretendard)", fontSize: 17, lineHeight: 1.85, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
         >
           AIO는{" "}
-          <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 500 }}>각 분야 전문가</strong>가 직접 손을 대는 외주
-          스튜디오입니다 의뢰가 들어오면, 그 분야의 전문가가 처음부터 끝까지 책임집니다
+          <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>각 분야 전문가</strong>가 직접 손을 대는 외주 스튜디오입니다
+          <br />
+          의뢰가 들어오면, 그 분야의 전문가가 처음부터 끝까지 책임집니다
         </p>
         <p
-          style={{ fontFamily: "var(--font-cormorant)", fontSize: 19, lineHeight: 1.7, color: "var(--tone-magazine-ink-2)" }}
+          style={{ fontFamily: "var(--font-pretendard)", fontSize: 17, lineHeight: 1.85, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
         >
-          매주 새 작품이 더해지고, 그게 다음 의뢰인의 결정을 돕습니다 결과물을 먼저 보고, 가격을 확인하고,{" "}
-          <em style={{ fontStyle: "italic", color: "var(--tone-magazine-ink)", fontWeight: 500 }}>그 다음에 맡기세요</em>
+          매주 새 작품이 더해지고, 그게 다음 의뢰인의 결정을 돕습니다
+          <br />
+          결과물을 먼저 보고, 가격을 확인하고,{" "}
+          <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>그 다음에 맡기세요</strong>
         </p>
       </div>
 
@@ -88,23 +99,11 @@ export function MagazineEditorial({ locale }: Props) {
       <div className="inline-flex gap-[14px] flex-wrap justify-center">
         <Link
           href={`/${locale}/quote`}
-          className="inline-flex items-center gap-[10px] px-8 py-4 transition-all hover:-translate-y-0.5"
+          className="inline-flex items-center gap-[10px] px-8 py-4 transition-all hover:-translate-y-0.5 hover:bg-[var(--tone-magazine-red)] hover:border-[var(--tone-magazine-red)]"
           style={{
+            ...CTA_BASE_STYLE,
             background: "var(--tone-magazine-ink)",
             color: "var(--tone-magazine-paper)",
-            fontFamily: "var(--font-pretendard)",
-            fontSize: 14,
-            fontWeight: 500,
-            letterSpacing: "-0.01em",
-            border: "1px solid var(--tone-magazine-ink)",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-magazine-red)";
-            (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--tone-magazine-red)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-magazine-ink)";
-            (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--tone-magazine-ink)";
           }}
         >
           견적 문의 →
@@ -113,13 +112,9 @@ export function MagazineEditorial({ locale }: Props) {
           href="#toc"
           className="inline-flex items-center gap-[10px] px-8 py-4 transition-all hover:-translate-y-0.5 hover:bg-[var(--tone-magazine-ink)] hover:text-[var(--tone-magazine-paper)]"
           style={{
+            ...CTA_BASE_STYLE,
             background: "transparent",
             color: "var(--tone-magazine-ink)",
-            fontFamily: "var(--font-pretendard)",
-            fontSize: 14,
-            fontWeight: 500,
-            letterSpacing: "-0.01em",
-            border: "1px solid var(--tone-magazine-ink)",
           }}
         >
           분야별 전문가 보기

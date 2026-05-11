@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 interface Props {
@@ -112,18 +114,12 @@ export function IdeHero({ locale }: Props) {
       <div className="inline-flex gap-3 flex-wrap justify-center mb-16">
         <Link
           href={`/${locale}/quote`}
-          className="inline-flex items-center gap-2 px-6 py-[13px] text-[13px] font-semibold rounded-md transition-all hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 px-6 py-[13px] text-[13px] font-semibold rounded-md transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(77,212,172,0.25)]"
           style={{
             background: "var(--tone-ide-mint)",
             color: "var(--tone-ide-bg)",
             fontFamily: "var(--font-jetbrains)",
             border: "1px solid var(--tone-ide-mint)",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px var(--tone-ide-mint-soft)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
           }}
         >
           $ 견적 시작 →

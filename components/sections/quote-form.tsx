@@ -68,6 +68,32 @@ interface QuoteFormProps {
   initialSource?: string;
 }
 
+// 매거진 톤 입력 공통 스타일
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "12px 14px",
+  background: "var(--tone-magazine-paper-2)",
+  border: "1px solid var(--tone-magazine-line-2)",
+  borderRadius: 2,
+  fontFamily: "var(--font-pretendard)",
+  fontSize: 14.5,
+  color: "var(--tone-magazine-ink)",
+  fontWeight: 400,
+  letterSpacing: "-0.005em",
+  outline: "none",
+  transition: "border-color 0.2s",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  marginBottom: 8,
+  fontFamily: "var(--font-jetbrains)",
+  fontSize: "10.5px",
+  letterSpacing: "0.22em",
+  textTransform: "uppercase",
+  color: "var(--tone-magazine-ink-3)",
+};
+
 export function QuoteForm({ locale, initialCategory, initialSubtype, initialSource }: QuoteFormProps) {
   const safeCategory = serviceCategories.some((service) => service.value === initialCategory)
     ? (initialCategory as ServiceCategory)
@@ -100,16 +126,10 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
 
   const copy = {
     ko: {
-      name: "이름",
-      email: "이메일",
-      phone: "연락처",
-      category: "서비스",
-      subtype: "세부 작업",
-      budget: "예산",
-      timeline: "희망 일정",
-      source: "유입 채널",
-      contact: "연락 방법",
-      description: "요구사항",
+      name: "이름", email: "이메일", phone: "연락처",
+      category: "서비스", subtype: "세부 작업",
+      budget: "예산", timeline: "희망 일정",
+      source: "유입 채널", contact: "연락 방법", description: "요구사항",
       rush: "긴급 1일 작업 상담 희망",
       submit: "견적 문의 보내기",
       sending: "발송 중...",
@@ -118,16 +138,10 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       placeholder: "업종, 원하는 결과물, 참고 링크, 마감일을 적어주세요.",
     },
     en: {
-      name: "Name",
-      email: "Email",
-      phone: "Phone",
-      category: "Service",
-      subtype: "Task type",
-      budget: "Budget",
-      timeline: "Timeline",
-      source: "Source",
-      contact: "Preferred contact",
-      description: "Requirements",
+      name: "Name", email: "Email", phone: "Phone",
+      category: "Service", subtype: "Task type",
+      budget: "Budget", timeline: "Timeline",
+      source: "Source", contact: "Preferred contact", description: "Requirements",
       rush: "Need a 1-day rush consultation",
       submit: "Send structured quote request",
       sending: "Sending...",
@@ -136,11 +150,6 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
       placeholder: "Tell me your business, desired result, references, and deadline.",
     },
   }[locale];
-
-  const inputClass =
-    "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30";
-  const selectClass = `${inputClass} [color-scheme:dark] [&>option]:bg-[#1a1a1a] [&>option]:text-[#fafafa]`;
-  const labelClass = "mb-1.5 block text-xs font-medium text-muted-foreground";
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -162,26 +171,34 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-5 rounded-lg border border-white/8 bg-card p-6 lg:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="grid gap-6"
+      style={{
+        background: "var(--tone-magazine-paper)",
+        border: "1px solid var(--tone-magazine-ink)",
+        padding: "clamp(24px, 3vw, 40px)",
+      }}
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className={labelClass}>{copy.name} *</label>
-          <input className={inputClass} required value={form.name} onChange={(e) => set("name", e.target.value)} />
+          <label style={labelStyle}>{copy.name} *</label>
+          <input style={inputStyle} required value={form.name} onChange={(e) => set("name", e.target.value)} />
         </div>
         <div>
-          <label className={labelClass}>{copy.email} *</label>
-          <input className={inputClass} required type="email" value={form.email} onChange={(e) => set("email", e.target.value)} />
+          <label style={labelStyle}>{copy.email} *</label>
+          <input style={inputStyle} required type="email" value={form.email} onChange={(e) => set("email", e.target.value)} />
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className={labelClass}>{copy.phone}</label>
-          <input className={inputClass} value={form.phone} onChange={(e) => set("phone", e.target.value)} />
+          <label style={labelStyle}>{copy.phone}</label>
+          <input style={inputStyle} value={form.phone} onChange={(e) => set("phone", e.target.value)} />
         </div>
         <div>
-          <label className={labelClass}>{copy.source}</label>
-          <select className={selectClass} value={form.source} onChange={(e) => set("source", e.target.value)}>
+          <label style={labelStyle}>{copy.source}</label>
+          <select style={inputStyle} value={form.source} onChange={(e) => set("source", e.target.value)}>
             <option value="soomgo">{locale === "ko" ? "숨고" : "Soomgo"}</option>
             <option value="kmong">{locale === "ko" ? "크몽" : "Kmong"}</option>
             <option value="email">{locale === "ko" ? "이메일" : "Email"}</option>
@@ -191,8 +208,8 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className={labelClass}>{copy.category} *</label>
-          <select className={selectClass} value={form.category} onChange={(e) => set("category", e.target.value)}>
+          <label style={labelStyle}>{copy.category} *</label>
+          <select style={inputStyle} value={form.category} onChange={(e) => set("category", e.target.value)}>
             {serviceCategories.map((service) => (
               <option key={service.value} value={service.value}>
                 {service.label[locale]}
@@ -201,8 +218,8 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
           </select>
         </div>
         <div>
-          <label className={labelClass}>{copy.subtype}</label>
-          <select className={selectClass} value={form.subtype} onChange={(e) => set("subtype", e.target.value)}>
+          <label style={labelStyle}>{copy.subtype}</label>
+          <select style={inputStyle} value={form.subtype} onChange={(e) => set("subtype", e.target.value)}>
             {SUBTYPES[form.category].map((item) => (
               <option key={item.value} value={item.value}>
                 {item[locale]}
@@ -214,8 +231,8 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
 
       <div className="grid gap-5 sm:grid-cols-3">
         <div>
-          <label className={labelClass}>{copy.budget}</label>
-          <select className={selectClass} value={form.budget_range} onChange={(e) => set("budget_range", e.target.value)}>
+          <label style={labelStyle}>{copy.budget}</label>
+          <select style={inputStyle} value={form.budget_range} onChange={(e) => set("budget_range", e.target.value)}>
             {BUDGET_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option[locale]}
@@ -224,8 +241,8 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
           </select>
         </div>
         <div>
-          <label className={labelClass}>{copy.timeline}</label>
-          <select className={selectClass} value={form.timeline} onChange={(e) => set("timeline", e.target.value)}>
+          <label style={labelStyle}>{copy.timeline}</label>
+          <select style={inputStyle} value={form.timeline} onChange={(e) => set("timeline", e.target.value)}>
             {TIMELINE_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option[locale]}
@@ -234,45 +251,101 @@ export function QuoteForm({ locale, initialCategory, initialSubtype, initialSour
           </select>
         </div>
         <div>
-          <label className={labelClass}>{copy.contact}</label>
-          <select className={selectClass} value={form.contact_method} onChange={(e) => set("contact_method", e.target.value)}>
+          <label style={labelStyle}>{copy.contact}</label>
+          <select style={inputStyle} value={form.contact_method} onChange={(e) => set("contact_method", e.target.value)}>
             <option value="email">{locale === "ko" ? "이메일" : "Email"}</option>
             <option value="phone">{locale === "ko" ? "전화" : "Phone"}</option>
           </select>
         </div>
       </div>
 
-      <label className="flex items-center gap-3 rounded-lg border border-white/8 bg-white/5 px-4 py-3 text-sm text-foreground">
+      <label
+        className="flex items-center gap-3 px-4 py-3"
+        style={{
+          background: "var(--tone-magazine-paper-2)",
+          border: "1px solid var(--tone-magazine-line-2)",
+          borderRadius: 2,
+          fontFamily: "var(--font-pretendard)",
+          fontSize: 14,
+          color: "var(--tone-magazine-ink)",
+          fontWeight: 400,
+          cursor: "pointer",
+        }}
+      >
         <input
           type="checkbox"
           checked={form.rush}
           onChange={(e) => set("rush", e.target.checked)}
-          className="size-4 accent-primary"
+          className="size-4"
+          style={{ accentColor: "var(--tone-magazine-red)" }}
         />
         {copy.rush}
       </label>
 
       <div>
-        <label className={labelClass}>{copy.description} *</label>
+        <label style={labelStyle}>{copy.description} *</label>
         <textarea
           required
           rows={6}
-          className={`${inputClass} resize-none`}
+          style={{ ...inputStyle, resize: "none" }}
           placeholder={copy.placeholder}
           value={form.description}
           onChange={(e) => set("description", e.target.value)}
         />
       </div>
 
-      {status === "success" && <p className="rounded-lg bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">{copy.success}</p>}
-      {status === "error" && <p className="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300">{copy.error}</p>}
+      {status === "success" && (
+        <p
+          className="px-4 py-3"
+          style={{
+            background: "rgba(125, 173, 76, 0.12)",
+            border: "1px solid rgba(125, 173, 76, 0.3)",
+            color: "#3a5e1f",
+            fontFamily: "var(--font-pretendard)",
+            fontSize: 14,
+            fontWeight: 500,
+            borderRadius: 2,
+          }}
+        >
+          {copy.success}
+        </p>
+      )}
+      {status === "error" && (
+        <p
+          className="px-4 py-3"
+          style={{
+            background: "rgba(200, 71, 45, 0.12)",
+            border: "1px solid rgba(200, 71, 45, 0.3)",
+            color: "var(--tone-magazine-red)",
+            fontFamily: "var(--font-pretendard)",
+            fontSize: 14,
+            fontWeight: 500,
+            borderRadius: 2,
+          }}
+        >
+          {copy.error}
+        </p>
+      )}
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-80 disabled:opacity-50"
+        className="inline-flex items-center justify-center transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0"
+        style={{
+          height: 52,
+          padding: "0 32px",
+          background: "var(--tone-magazine-ink)",
+          color: "var(--tone-magazine-paper)",
+          border: "1px solid var(--tone-magazine-ink)",
+          fontFamily: "var(--font-pretendard)",
+          fontSize: 15,
+          fontWeight: 600,
+          letterSpacing: "-0.01em",
+          borderRadius: 2,
+          cursor: "pointer",
+        }}
       >
-        {status === "loading" ? copy.sending : copy.submit}
+        {status === "loading" ? copy.sending : copy.submit + " →"}
       </button>
     </form>
   );

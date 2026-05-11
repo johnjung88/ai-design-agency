@@ -8,30 +8,30 @@ interface Props {
 
 const webPackages = [
   {
-    name: "Light", price: "9.9만~", days: "1 day", featured: false,
+    name: "Light", price: "9.9만~", days: "1 DAY", featured: false,
     rows: { page_count: "1p (랜딩)", composition: "회사소개·문의 1p", responsive: true, seo_setup: false, revisions: "1회", free_warranty: "30일" },
   },
   {
-    name: "Standard", price: "19.9만~", days: "2–3 days", featured: true,
+    name: "Standard", price: "19.9만~", days: "2-3 DAYS", featured: true,
     rows: { page_count: "3p", composition: "메인·소개·문의", responsive: true, seo_setup: true, revisions: "2회", free_warranty: "30일" },
   },
   {
-    name: "Premium", price: "34.9만~", days: "3–5 days", featured: false,
+    name: "Premium", price: "34.9만~", days: "3-5 DAYS", featured: false,
     rows: { page_count: "5p", composition: "메인·소개·서비스·포트폴리오·문의", responsive: true, seo_setup: true, revisions: "3회", free_warranty: "60일" },
   },
 ];
 
 const shopPackages = [
   {
-    name: "Light", price: "14.9만~", days: "2 days", featured: false,
+    name: "Light", price: "14.9만~", days: "2 DAYS", featured: false,
     rows: { main_layout: "기본", products: "3개", category_banner: "기본 정리", product_detail: false, responsive: true, revisions: "1회", free_warranty: "30일" },
   },
   {
-    name: "Standard", price: "24.9만~", days: "3–5 days", featured: true,
+    name: "Standard", price: "24.9만~", days: "3-5 DAYS", featured: true,
     rows: { main_layout: "판매형 개선", products: "5개", category_banner: "정리 + 문구", product_detail: false, responsive: true, revisions: "2회", free_warranty: "30일" },
   },
   {
-    name: "Premium", price: "39.9만~", days: "5 days", featured: false,
+    name: "Premium", price: "39.9만~", days: "5 DAYS", featured: false,
     rows: { main_layout: "브랜드형", products: "10개", category_banner: "풀 정리", product_detail: true, responsive: true, revisions: "3회", free_warranty: "60일" },
   },
 ];

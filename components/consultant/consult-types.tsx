@@ -1,3 +1,5 @@
+"use client";
+
 const deckTypes = [
   {
     code: "IR",
@@ -82,10 +84,7 @@ export function ConsultTypes() {
               color: "var(--tone-consult-navy)",
               fontWeight: 500,
             }}
-          >
-            덱
-          </em>
-          이 있습니다
+          >덱</em>이 있습니다
         </h2>
         <p
           style={{
@@ -108,26 +107,16 @@ export function ConsultTypes() {
         {deckTypes.map((deck) => (
           <div
             key={deck.code}
-            className="group transition-all duration-200 cursor-default"
+            className={`group transition-all duration-200 cursor-default ${
+              !deck.highlight
+                ? "hover:!border-[var(--tone-consult-navy)] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(14,26,43,0.08)]"
+                : ""
+            }`}
             style={{
               background: deck.highlight ? "var(--tone-consult-navy)" : "var(--tone-consult-paper)",
               border: `1px solid ${deck.highlight ? "var(--tone-consult-navy)" : "var(--tone-consult-line)"}`,
               padding: "24px 26px",
               position: "relative",
-            }}
-            onMouseEnter={(e) => {
-              if (!deck.highlight) {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--tone-consult-navy)";
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 40px rgba(14,26,43,0.08)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!deck.highlight) {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--tone-consult-line)";
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-              }
             }}
           >
             {deck.highlight && (
@@ -139,7 +128,7 @@ export function ConsultTypes() {
                   color: "var(--tone-consult-ink)",
                 }}
               >
-                인기
+                Most Popular
               </div>
             )}
 

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 interface Props {
@@ -63,8 +65,7 @@ export function ConsultCta({ locale }: Props) {
             textDecoration: "none",
             letterSpacing: "-0.005em",
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-consult-navy)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-consult-ink)"; }}
+          
         >
           견적 시작 →
         </Link>

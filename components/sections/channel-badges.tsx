@@ -32,7 +32,7 @@ export function ChannelBadges({ className = "", size = "md" }: ChannelBadgesProp
     {
       id: "email",
       label: "이메일",
-      href: "mailto:koreabencb@gmail.com",
+      href: "mailto:aiomake2023@gmail.com",
       icon: <Mail className="size-4" />,
       bg: "bg-white/8 text-foreground/80 hover:bg-white/12 border border-white/10",
     },

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 interface Props {
@@ -63,21 +65,19 @@ export function ConsultNav({ locale }: Props) {
       <div className="flex justify-end items-center gap-[14px]">
         <Link
           href={`/${locale}/services/ppt-design/portfolio`}
-          className="hidden sm:inline-block text-[12.5px] font-medium transition-colors"
+          className="hidden sm:inline-block text-[12.5px] font-medium transition-colors hover:!text-[var(--tone-consult-navy)]"
           style={{
             fontFamily: "var(--font-inter)",
             color: "var(--tone-consult-ink)",
             textDecoration: "none",
             letterSpacing: "-0.005em",
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-consult-navy)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--tone-consult-ink)"; }}
         >
           포트폴리오
         </Link>
         <Link
           href={`/${locale}/quote`}
-          className="px-[18px] py-[9px] text-[12.5px] font-semibold transition-all"
+          className="px-[18px] py-[9px] text-[12.5px] font-semibold transition-all hover:!bg-[var(--tone-consult-navy)]"
           style={{
             fontFamily: "var(--font-inter)",
             background: "var(--tone-consult-ink)",
@@ -86,8 +86,6 @@ export function ConsultNav({ locale }: Props) {
             letterSpacing: "-0.005em",
             borderRadius: 0,
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-consult-navy)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--tone-consult-ink)"; }}
         >
           견적 문의
         </Link>

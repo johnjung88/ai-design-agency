@@ -1,3 +1,5 @@
+"use client";
+
 const industries = [
   {
     name: "병원 · 의료",
@@ -155,14 +157,6 @@ export function IdeIndustries() {
               border: "1px solid var(--tone-ide-line)",
               borderRadius: 6,
               padding: "20px 22px",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.borderColor = "var(--tone-ide-mint)";
-              (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.borderColor = "var(--tone-ide-line)";
-              (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
             }}
           >
             <div className="flex justify-between items-start mb-4">

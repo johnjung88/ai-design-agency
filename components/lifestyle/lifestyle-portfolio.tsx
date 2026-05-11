@@ -1,133 +1,568 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
-interface Props { locale: string }
+interface Props {
+  locale: string;
+}
+
+interface Project {
+  slug: string;
+  cat: "beauty" | "food" | "fashion" | "living" | "pet";
+  catLabel: string;
+  title: string;
+  titleEm: string;
+  product: string;
+  conv: string;
+  channel: string;
+}
+
+/* 실제 작업물 — 3_포트폴리오/자체작업/portfolio_page/{카테고리}/ 의 15개 상세페이지 */
+const projects: Project[] = [
+  // 뷰티 (3) — 1_뷰티
+  {
+    slug: "ampoule-anti-aging",
+    cat: "beauty",
+    catLabel: "뷰티 · 안티에이징",
+    title: "발라서 ",
+    titleEm: "젊어지는",
+    product: "LUMICELL Anti-Aging Ampoule — 안티에이징 세럼",
+    conv: "+42%",
+    channel: "자사몰 · 스마트스토어",
+  },
+  {
+    slug: "vegan-cleanser",
+    cat: "beauty",
+    catLabel: "뷰티 · 클렌저",
+    title: "비건 ",
+    titleEm: "클렌징의 정의",
+    product: "PUREON Vegan Cleanser — 비건 클렌저",
+    conv: "+35%",
+    channel: "자사몰",
+  },
+  {
+    slug: "herbal-cream",
+    cat: "beauty",
+    catLabel: "뷰티 · 한방",
+    title: "한방 ",
+    titleEm: "재생 크림",
+    product: "초원 Herbal Repair Cream — 한방 크림",
+    conv: "+38%",
+    channel: "스마트스토어",
+  },
+
+  // 식품 (3) — 2_식품
+  {
+    slug: "premium-mealkit",
+    cat: "food",
+    catLabel: "식품 · 밀키트",
+    title: "10분, ",
+    titleEm: "셰프의 한 그릇",
+    product: "HOMEDISH Premium Mealkit — 프리미엄 밀키트",
+    conv: "+52%",
+    channel: "자사몰 · 쿠팡",
+  },
+  {
+    slug: "office-vitamin",
+    cat: "food",
+    catLabel: "식품 · 비타민",
+    title: "직장인을 위한 ",
+    titleEm: "데일리 비타민",
+    product: "VITALOG Office Daily — 직장인 비타민",
+    conv: "+40%",
+    channel: "스마트스토어",
+  },
+  {
+    slug: "senior-protein",
+    cat: "food",
+    catLabel: "식품 · 건강식",
+    title: "시니어 ",
+    titleEm: "단백질 한 잔",
+    product: "든든프로 Senior Protein — 시니어 단백질",
+    conv: "+33%",
+    channel: "자사몰",
+  },
+
+  // 패션 (3) — 3_패션
+  {
+    slug: "linen-onepiece",
+    cat: "fashion",
+    catLabel: "패션 · 여성복",
+    title: "한 벌이 ",
+    titleEm: "여름을 정의",
+    product: "LINENA Linen Onepiece — 여성 린넨 원피스",
+    conv: "+33%",
+    channel: "자사몰 · 스마트스토어",
+  },
+  {
+    slug: "business-shirt",
+    cat: "fashion",
+    catLabel: "패션 · 남성복",
+    title: "비즈니스 ",
+    titleEm: "셔츠의 기준",
+    product: "STILBLOCK Business Shirt — 남성 비즈니스 셔츠",
+    conv: "+28%",
+    channel: "자사몰",
+  },
+  {
+    slug: "kids-organic-wear",
+    cat: "fashion",
+    catLabel: "패션 · 키즈",
+    title: "엄마가 안심하는 ",
+    titleEm: "친환경 의류",
+    product: "모이모이 Kids Organic Wear — 키즈 친환경 의류",
+    conv: "+45%",
+    channel: "자사몰 · 쿠팡",
+  },
+
+  // 리빙 (3) — 4_리빙
+  {
+    slug: "hotel-bedding",
+    cat: "living",
+    catLabel: "리빙 · 침구",
+    title: "호텔의 ",
+    titleEm: "그 잠",
+    product: "SLEEPVERSE Hotel Bedding — 호텔식 침구",
+    conv: "+31%",
+    channel: "자사몰 · 스마트스토어",
+  },
+  {
+    slug: "one-room-furniture",
+    cat: "living",
+    catLabel: "리빙 · 1인 가구",
+    title: "1인 가구를 위한 ",
+    titleEm: "한 세트",
+    product: "NOOKIT One-Room Furniture — 1인 가구 가구",
+    conv: "+34%",
+    channel: "자사몰",
+  },
+  {
+    slug: "mood-light",
+    cat: "living",
+    catLabel: "리빙 · 조명",
+    title: "공간의 ",
+    titleEm: "온도를 바꾸는",
+    product: "GLOWAVE Mood Light — 무드 조명",
+    conv: "+29%",
+    channel: "스마트스토어 · 쿠팡",
+  },
+
+  // 펫 (3) — 5_펫
+  {
+    slug: "premium-pet-food",
+    cat: "pet",
+    catLabel: "펫 · 프리미엄 사료",
+    title: "내 아이에게 ",
+    titleEm: "프리미엄 한 끼",
+    product: "멍슐랭 Premium Cooked Food — 프리미엄 화식",
+    conv: "+47%",
+    channel: "자사몰",
+  },
+  {
+    slug: "auto-pet-feeder",
+    cat: "pet",
+    catLabel: "펫 · 자동급식기",
+    title: "스마트 ",
+    titleEm: "자동 급식",
+    product: "PURRSMART Auto Feeder — 자동 급식기",
+    conv: "+44%",
+    channel: "자사몰 · 쿠팡",
+  },
+  {
+    slug: "senior-pet-supplement",
+    cat: "pet",
+    catLabel: "펫 · 시니어 영양제",
+    title: "시니어 펫을 위한 ",
+    titleEm: "영양제",
+    product: "포에버펫 Senior Supplement — 시니어 펫 영양제",
+    conv: "+36%",
+    channel: "스마트스토어",
+  },
+];
 
 const cats = [
-  { id: "all", label: "전체", count: 89 },
-  { id: "beauty", label: "뷰티", count: 21 },
-  { id: "food", label: "식품", count: 18 },
-  { id: "health", label: "건강", count: 14 },
-  { id: "fashion", label: "패션", count: 12 },
-  { id: "living", label: "리빙", count: 9 },
-  { id: "kids", label: "키즈", count: 7 },
-  { id: "tech", label: "가전", count: 5 },
-  { id: "edu", label: "교육", count: 3 },
-];
-
-const gradients: Record<string, { bg: string; nameDark?: boolean }> = {
-  beauty:  { bg: "linear-gradient(135deg,#F5C2C7,#E8889A 50%,#C5475F)", nameDark: true },
-  food:    { bg: "linear-gradient(135deg,#fcecc8,#d4a574 50%,#6a4628)" },
-  fashion: { bg: "linear-gradient(135deg,#D6DCD0,#A8B8A4 50%,#6a8068)", nameDark: true },
-  health:  { bg: "linear-gradient(135deg,#d4e8d0,#7B8E3F)", nameDark: true },
-  living:  { bg: "linear-gradient(135deg,#ece0c4,#a88a6c 50%,#5a3e28)", nameDark: true },
-  kids:    { bg: "linear-gradient(135deg,#FFE0A0,#FFB347 50%,#C56849)", nameDark: true },
-  tech:    { bg: "linear-gradient(135deg,#d0d8e0,#6a7888)", nameDark: true },
-  edu:     { bg: "linear-gradient(135deg,#e0c8d8,#B07B98)", nameDark: true },
-};
-
-const projects = [
-  { cat: "beauty",  badge: "Beauty",  conv: "+412%", name: "바르는 순간, 3초 흡수", nameEm: "3초 흡수",  channel: "스마트스토어", title: "L'AURA 하이드라 세럼 — 4주 임상 ", titleEm: "93% 개선",    stats: ["+412%/전환","5d/납품","15/섹션"] },
-  { cat: "food",    badge: "Food",    conv: "+285%", name: "10분 만에, 셰프의 한 그릇", nameEm: "셰프의 한 그릇", channel: "자사몰", title: "SHELF9 밀키트 — ", titleEm: "12,000명", stats: ["+285%/전환","4d/납품","12/섹션"] },
-  { cat: "fashion", badge: "Fashion", conv: "+218%", name: "가벼운 한 벌, 여름의 정의", nameEm: "여름의 정의", channel: "자사몰", title: "QUIET 6 리넨 셔츠 — ", titleEm: "룩북", stats: ["+218%/전환","3d/납품","10/섹션"] },
-  { cat: "health",  badge: "Health",  conv: "+340%", name: "하루 1정, 30일의 변화", nameEm: "30일의 변화", channel: "스마트스토어", title: "VITA 30 — 임상 데이터 기반 ", titleEm: "영양제", stats: ["+340%/전환","5d/납품","14/섹션"] },
-  { cat: "living",  badge: "Living",  conv: "+195%", name: "조용한 거실, 오크 협탁", nameEm: "오크 협탁",  channel: "자사몰", title: "ROOM 03 사이드 테이블 — ", titleEm: "공간 무드", stats: ["+195%/전환","5d/납품","11/섹션"] },
-  { cat: "kids",    badge: "Kids",    conv: "+267%", name: "놀면서 배우는, 원목 블록", nameEm: "원목 블록", channel: "스마트스토어", title: "THE WOOD 50 블록 세트 — ", titleEm: "발달 단계", stats: ["+267%/전환","4d/납품","12/섹션"] },
-  { cat: "beauty",  badge: "Beauty",  conv: "+356%", name: "3초 발색, 온종일 지속", nameEm: "온종일 지속", channel: "쿠팡", title: "VEILA 립글로우 — 색상별 ", titleEm: "비포·애프터", stats: ["+356%/전환","4d/납품","13/섹션"] },
-  { cat: "tech",    badge: "Tech",    conv: "+178%", name: "손에 쥐는, 홈오피스", nameEm: "홈오피스",   channel: "자사몰", title: "NUE Mini PC — 스펙 시각화·", titleEm: "비교 차트", stats: ["+178%/전환","6d/납품","14/섹션"] },
-  { cat: "food",    badge: "Food",    conv: "+412%", name: "새벽에 출고, 당일 도착", nameEm: "당일 도착", channel: "스마트스토어", title: "SHIN&CO 프리미엄 한우 — ", titleEm: "등급별", stats: ["+412%/전환","5d/납품","15/섹션"] },
-  { cat: "health",  badge: "Health",  conv: "+225%", name: "집에서 시작하는, 10분 운동", nameEm: "10분 운동", channel: "자사몰", title: "FITLAB 미니 풀업바 — 운동법 ", titleEm: "GIF 9컷", stats: ["+225%/전환","5d/납품","12/섹션"] },
-  { cat: "edu",     badge: "Edu",     conv: "+165%", name: "8주 완성, 실전 데이터", nameEm: "실전 데이터", channel: "자사몰", title: "DATA SCHOOL — ", titleEm: "강사 신뢰", stats: ["+165%/전환","7d/납품","17/섹션"] },
-  { cat: "fashion", badge: "Fashion", conv: "+295%", name: "하루 종일, 가벼운 가방", nameEm: "가벼운 가방", channel: "스마트스토어", title: "MUTE 13 토트백 — ", titleEm: "사이즈·색상", stats: ["+295%/전환","3d/납품","9/섹션"] },
-];
+  { id: "all", label: "전체" },
+  { id: "beauty", label: "뷰티" },
+  { id: "food", label: "식품" },
+  { id: "fashion", label: "패션" },
+  { id: "living", label: "리빙" },
+  { id: "pet", label: "펫" },
+] as const;
 
 export function LifestylePortfolio({ locale }: Props) {
-  const [active, setActive] = useState("all");
-  const filtered = active === "all" ? projects : projects.filter((p) => p.cat === active);
+  const [active, setActive] = useState<(typeof cats)[number]["id"]>("all");
+  const filtered =
+    active === "all" ? projects : projects.filter((p) => p.cat === active);
+  const countFor = (id: string) =>
+    id === "all"
+      ? projects.length
+      : projects.filter((p) => p.cat === id).length;
 
   return (
     <>
       {/* Hero */}
-      <section style={{ padding: "80px 24px 32px", maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontFamily: "var(--font-jetbrains)", fontSize: 11.5, color: "var(--tone-life-rose)", letterSpacing: "0.28em", textTransform: "uppercase", marginBottom: 22, display: "inline-flex", alignItems: "center", gap: 14 }}>
-          <span style={{ width: 28, height: 1, background: "var(--tone-life-rose)", display: "inline-block" }} />
-          Portfolio · 89 pages
-          <span style={{ width: 28, height: 1, background: "var(--tone-life-rose)", display: "inline-block" }} />
+      <section
+        style={{
+          padding: "80px clamp(20px,3vw,24px) 32px",
+          maxWidth: 1280,
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "var(--font-jetbrains)",
+            fontSize: 11.5,
+            color: "var(--tone-life-rose)",
+            letterSpacing: "0.28em",
+            textTransform: "uppercase",
+            marginBottom: 24,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 14,
+          }}
+        >
+          <span
+            style={{
+              width: 28,
+              height: 1,
+              background: "var(--tone-life-rose)",
+              display: "inline-block",
+            }}
+          />
+          Portfolio · {projects.length} pages
+          <span
+            style={{
+              width: 28,
+              height: 1,
+              background: "var(--tone-life-rose)",
+              display: "inline-block",
+            }}
+          />
         </div>
-        <h1 style={{ fontFamily: "var(--font-fraunces)", fontSize: "clamp(40px,6vw,88px)", fontWeight: 500, letterSpacing: "-0.025em", lineHeight: 1.0, color: "var(--tone-life-ink)", marginBottom: 22 }}>
-          실제 매출이 일어난<br />
-          <em style={{ fontStyle: "italic", color: "var(--tone-life-rose)" }}>89개</em>의 페이지
+        <h1
+          className="font-medium"
+          style={{
+            fontFamily: "var(--font-fraunces)",
+            fontSize: "clamp(40px,6.4vw,96px)",
+            letterSpacing: "-0.03em",
+            lineHeight: 0.98,
+            color: "var(--tone-life-ink)",
+            marginBottom: 22,
+          }}
+        >
+          실제 발행된
+          <br />
+          <em
+            style={{
+              fontStyle: "italic",
+              color: "var(--tone-life-rose)",
+              fontWeight: 500,
+            }}
+          >
+            {projects.length}개
+          </em>
+          의 상세페이지
         </h1>
-        <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 16.5, lineHeight: 1.6, color: "var(--tone-life-ink-2)", maxWidth: 620, margin: "0 auto 36px" }}>
-          데모가 아닙니다 <strong style={{ color: "var(--tone-life-ink)" }}>매출이 발생한 상세페이지</strong>만 모았습니다.
-          업종별 필터로 비슷한 사례를 찾아보세요.
+        <p
+          style={{
+            fontFamily: "var(--font-pretendard)",
+            fontSize: "clamp(15px, 1.3vw, 17px)",
+            lineHeight: 1.7,
+            color: "var(--tone-life-ink-2)",
+            maxWidth: 640,
+            margin: "0 auto 36px",
+          }}
+        >
+          뷰티 · 식품 · 패션 · 리빙 · 펫 5개 카테고리.
+          <br className="hidden sm:inline" />
+          {" "}전환율을 끌어올린 작업물만 모았습니다.
         </p>
 
-        <div style={{ display: "inline-flex", gap: 6, flexWrap: "wrap", padding: 6, background: "var(--tone-life-cream-2)", border: "1px solid var(--tone-life-line)", borderRadius: 100, justifyContent: "center" }}>
+        {/* Filter bar — pill */}
+        <div
+          style={{
+            display: "inline-flex",
+            flexWrap: "wrap",
+            border: "1.5px solid var(--tone-life-ink)",
+            justifyContent: "center",
+            borderRadius: 999,
+            background: "var(--tone-life-cream)",
+            padding: 4,
+            gap: 2,
+          }}
+        >
           {cats.map((c) => (
-            <button key={c.id} onClick={() => setActive(c.id)} style={{ padding: "9px 16px", borderRadius: 100, border: "1px solid transparent", background: active === c.id ? "var(--tone-life-rose)" : "transparent", color: active === c.id ? "white" : "var(--tone-life-ink-2)", fontFamily: "var(--font-jakarta)", fontSize: 12.5, cursor: "pointer", fontWeight: active === c.id ? 600 : 500, transition: "all 0.2s" }}>
-              {c.label} <span style={{ opacity: 0.55, fontSize: 10, fontFamily: "var(--font-jetbrains)" }}>{c.count}</span>
+            <button
+              key={c.id}
+              onClick={() => setActive(c.id)}
+              style={{
+                padding: "8px 16px",
+                border: 0,
+                background:
+                  active === c.id ? "var(--tone-life-ink)" : "transparent",
+                color:
+                  active === c.id
+                    ? "var(--tone-life-cream)"
+                    : "var(--tone-life-ink-2)",
+                fontFamily: "var(--font-jakarta)",
+                fontSize: 12.5,
+                cursor: "pointer",
+                fontWeight: active === c.id ? 600 : 500,
+                transition: "all 0.2s",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                borderRadius: 999,
+              }}
+            >
+              {c.label}
+              <span
+                style={{
+                  opacity: active === c.id ? 0.7 : 0.5,
+                  fontSize: 10,
+                  fontFamily: "var(--font-jetbrains)",
+                  color:
+                    active === c.id
+                      ? "var(--tone-life-cream)"
+                      : "var(--tone-life-ink-3)",
+                }}
+              >
+                {countFor(c.id)}
+              </span>
             </button>
           ))}
         </div>
       </section>
 
       {/* Grid */}
-      <section style={{ padding: "24px 24px 80px", maxWidth: 1480, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
-          {filtered.map((p, i) => {
-            const g = gradients[p.cat] ?? gradients.beauty;
-            const [s0, s1, s2] = p.stats.map((s) => s.split("/"));
-            return (
-              <article key={i} style={{ background: "var(--tone-life-cream-2)", border: "1px solid var(--tone-life-line)", borderRadius: 14, overflow: "hidden", textAlign: "left" }}>
-                {/* Visual */}
-                <div style={{ aspectRatio: "4/3", background: g.bg, position: "relative", overflow: "hidden" }}>
-                  <span style={{ position: "absolute", top: 14, left: 14, padding: "4px 11px", background: "rgba(0,0,0,0.5)", borderRadius: 100, fontFamily: "var(--font-jetbrains)", fontSize: 10, color: "rgba(255,255,255,0.92)", letterSpacing: "0.16em", textTransform: "uppercase" }}>
-                    {p.badge}
-                  </span>
-                  <span style={{ position: "absolute", top: 14, right: 14, padding: "4px 11px", background: "var(--tone-life-rose)", color: "white", borderRadius: 100, fontFamily: "var(--font-jetbrains)", fontSize: 10.5, fontWeight: 700, letterSpacing: "0.04em" }}>
-                    {p.conv}
-                  </span>
-                  <div style={{ position: "absolute", bottom: 18, left: 18, right: 18, fontFamily: "var(--font-fraunces)", fontSize: 22, fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.018em", fontStyle: "italic", color: g.nameDark ? "#2a1a08" : "rgba(255,255,255,0.92)" }}>
-                    {p.name}
-                  </div>
+      <section
+        style={{
+          padding: "24px clamp(20px,3vw,24px) 80px",
+          maxWidth: 1400,
+          margin: "0 auto",
+        }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+          {filtered.map((p) => (
+            <article
+              key={p.slug}
+              className="flex flex-col group overflow-hidden transition-all hover:-translate-y-1"
+              style={{
+                background: "var(--tone-life-cream)",
+                border: "1px solid var(--tone-life-line)",
+                borderRadius: 12,
+              }}
+            >
+              {/* Cover image */}
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  aspectRatio: "4/5",
+                  background: "var(--tone-life-cream-3)",
+                }}
+              >
+                <Image
+                  src={`/portfolio/detail-page/${p.slug}/cover.png`}
+                  alt={`${p.title}${p.titleEm} 상세페이지 cover`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  style={{ objectPosition: "center top" }}
+                />
+                {/* Conv rate floating badge */}
+                <div
+                  className="absolute top-3 right-3 px-3 py-1.5 rounded-full"
+                  style={{
+                    background: "rgba(255,255,255,0.95)",
+                    backdropFilter: "blur(8px)",
+                    color: "var(--tone-life-rose)",
+                    fontFamily: "var(--font-fraunces)",
+                    fontStyle: "italic",
+                    fontSize: 16,
+                    fontWeight: 600,
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {p.conv}
                 </div>
-                {/* Body */}
-                <div style={{ padding: "18px 22px 22px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-                    <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 10.5, color: "var(--tone-life-rose)", letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}>{p.cat}</span>
-                    <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--tone-life-ink-faint)", display: "block" }} />
-                    <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 10.5, color: "var(--tone-life-ink-2)", letterSpacing: "0.04em" }}>{p.channel}</span>
-                  </div>
-                  <div style={{ fontFamily: "var(--font-fraunces)", fontSize: 17, fontWeight: 600, lineHeight: 1.35, letterSpacing: "-0.012em", marginBottom: 14, color: "var(--tone-life-ink)" }}>
-                    {p.title}<em style={{ fontStyle: "italic", color: "var(--tone-life-rose)", fontWeight: 500 }}>{p.titleEm}</em>
-                  </div>
-                  <div style={{ display: "flex", gap: 18, paddingTop: 14, borderTop: "1px solid var(--tone-life-line)" }}>
-                    {[s0, s1, s2].map(([v, l], j) => (
-                      <div key={j}>
-                        <div style={{ fontFamily: "var(--font-fraunces)", fontSize: 20, fontWeight: 600, color: "var(--tone-life-rose)", letterSpacing: "-0.02em", lineHeight: 1, fontStyle: "italic" }}>{v}</div>
-                        <div style={{ fontFamily: "var(--font-jetbrains)", fontSize: 9.5, color: "var(--tone-life-ink-3)", marginTop: 5, textTransform: "uppercase", letterSpacing: "0.08em" }}>{l}</div>
-                      </div>
-                    ))}
-                  </div>
+                {/* Category label */}
+                <div
+                  className="absolute top-3 left-3 px-3 py-1.5"
+                  style={{
+                    background: "var(--tone-life-ink)",
+                    color: "var(--tone-life-cream)",
+                    fontFamily: "var(--font-jetbrains)",
+                    fontSize: 9.5,
+                    fontWeight: 600,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    borderRadius: 999,
+                  }}
+                >
+                  {p.catLabel}
                 </div>
-              </article>
-            );
-          })}
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col flex-1 gap-2 p-5">
+                <div
+                  style={{
+                    fontFamily: "var(--font-jetbrains)",
+                    fontSize: 10,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "var(--tone-life-ink-3)",
+                  }}
+                >
+                  {p.channel}
+                </div>
+                <h3
+                  className="font-medium"
+                  style={{
+                    fontFamily: "var(--font-fraunces)",
+                    fontSize: "clamp(20px, 1.9vw, 24px)",
+                    lineHeight: 1.2,
+                    letterSpacing: "-0.018em",
+                    color: "var(--tone-life-ink)",
+                  }}
+                >
+                  {p.title}
+                  <em
+                    style={{
+                      fontStyle: "italic",
+                      color: "var(--tone-life-rose)",
+                    }}
+                  >
+                    {p.titleEm}
+                  </em>
+                </h3>
+                <p
+                  className="flex-1"
+                  style={{
+                    fontFamily: "var(--font-pretendard)",
+                    fontSize: 13.5,
+                    color: "var(--tone-life-ink-2)",
+                    lineHeight: 1.6,
+                    letterSpacing: "-0.005em",
+                  }}
+                >
+                  {p.product}
+                </p>
+
+                <div
+                  className="flex items-center justify-between gap-3 pt-3 mt-1"
+                  style={{
+                    borderTop: "1px solid var(--tone-life-line)",
+                    fontFamily: "var(--font-jetbrains)",
+                    fontSize: 10,
+                    color: "var(--tone-life-ink-3)",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <span>§ Live Work · 2026</span>
+                  <span style={{ color: "var(--tone-life-rose)", fontWeight: 600 }}>
+                    {p.conv} Conv ↑
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section style={{ padding: "70px 24px 56px", maxWidth: 1180, margin: "0 auto", textAlign: "center", borderTop: "1px solid var(--tone-life-line)" }}>
-        <h2 style={{ fontFamily: "var(--font-fraunces)", fontSize: "clamp(32px,4.6vw,64px)", fontWeight: 500, letterSpacing: "-0.025em", lineHeight: 0.96, marginBottom: 20, color: "var(--tone-life-ink)" }}>
-          <span style={{ color: "var(--tone-life-ink-3)" }}>launch</span><br />
-          <em style={{ fontStyle: "italic", color: "var(--tone-life-rose)" }}>your_page</em>
+      <section
+        style={{
+          padding: "70px clamp(20px,3vw,24px) 56px",
+          maxWidth: 1180,
+          margin: "0 auto",
+          textAlign: "center",
+          borderTop: "1px solid var(--tone-life-line)",
+        }}
+      >
+        <h2
+          className="font-medium"
+          style={{
+            fontFamily: "var(--font-fraunces)",
+            fontSize: "clamp(32px,4.6vw,64px)",
+            letterSpacing: "-0.028em",
+            lineHeight: 0.96,
+            marginBottom: 14,
+            color: "var(--tone-life-ink)",
+          }}
+        >
+          비슷한 상품을{" "}
+          <em
+            style={{
+              fontStyle: "italic",
+              color: "var(--tone-life-rose)",
+              fontWeight: 500,
+            }}
+          >
+            맡기시나요?
+          </em>
         </h2>
-        <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 15, color: "var(--tone-life-ink-2)", marginBottom: 28 }}>1시간 답변 · 24시간 견적 · 5일 결과물</p>
-        <div style={{ display: "inline-flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-          <Link href={`/${locale}/quote`} style={{ padding: "14px 26px", background: "var(--tone-life-rose)", color: "white", border: "1px solid var(--tone-life-rose)", fontFamily: "var(--font-jakarta)", fontSize: 13, fontWeight: 600, borderRadius: 100, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>견적 시작 →</Link>
-          <Link href={`/${locale}/services/detail-page`} style={{ padding: "14px 26px", background: "transparent", color: "var(--tone-life-ink)", border: "1px solid var(--tone-life-ink)", fontFamily: "var(--font-jakarta)", fontSize: 13, fontWeight: 600, borderRadius: 100, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>← services</Link>
+        <p
+          style={{
+            fontFamily: "var(--font-pretendard)",
+            fontSize: 15,
+            color: "var(--tone-life-ink-2)",
+            marginBottom: 28,
+          }}
+        >
+          1시간 답변 · 24시간 견적 · 1-3일 결과물
+        </p>
+        <div
+          style={{
+            display: "inline-flex",
+            gap: 12,
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          <Link
+            href={`/${locale}/quote`}
+            className="hover:!bg-[var(--tone-life-rose)] transition-all hover:-translate-y-0.5"
+            style={{
+              padding: "14px 26px",
+              background: "var(--tone-life-ink)",
+              color: "var(--tone-life-cream)",
+              border: "1px solid var(--tone-life-ink)",
+              fontFamily: "var(--font-jakarta)",
+              fontSize: 13,
+              fontWeight: 600,
+              textDecoration: "none",
+              borderRadius: 999,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            견적 시작 →
+          </Link>
+          <Link
+            href={`/${locale}/services/detail-page`}
+            className="transition-all hover:-translate-y-0.5"
+            style={{
+              padding: "14px 26px",
+              background: "transparent",
+              color: "var(--tone-life-ink)",
+              border: "1px solid var(--tone-life-ink)",
+              fontFamily: "var(--font-jakarta)",
+              fontSize: 13,
+              fontWeight: 600,
+              textDecoration: "none",
+              borderRadius: 999,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            ← services
+          </Link>
         </div>
       </section>
     </>

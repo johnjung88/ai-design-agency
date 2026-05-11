@@ -92,9 +92,14 @@ export function IdeResources({ locale }: Props) {
             <div style={{ display: "flex", alignItems: "center", gap: 14, paddingTop: 14, borderTop: "1px dashed var(--tone-ide-line-2)", fontFamily: "var(--font-jetbrains)", fontSize: 11, color: "var(--tone-ide-fg-3)", flexWrap: "wrap" }}>
               <span>📄 PDF</span><span>📅 &apos;26.05 업데이트</span><span>📊 의뢰 100건 기반</span><span>★ 4.9</span>
             </div>
-            <div style={{ display: "flex", gap: 10 }}>
-              <Link href={`/${locale}/quote`} style={{ padding: "12px 22px", background: "var(--tone-ide-mint)", color: "var(--tone-ide-bg)", fontFamily: "var(--font-jetbrains)", fontSize: 13, fontWeight: 600, borderRadius: 6, textDecoration: "none" }}>$ download.pdf</Link>
-              <button style={{ padding: "12px 20px", background: "transparent", color: "var(--tone-ide-fg-2)", border: "1px solid var(--tone-ide-line-2)", fontFamily: "var(--font-jetbrains)", fontSize: 13, borderRadius: 6, cursor: "pointer" }}>미리보기 →</button>
+            <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+              <span style={{ padding: "12px 22px", background: "var(--tone-ide-bg-3)", color: "var(--tone-ide-fg-3)", border: "1px solid var(--tone-ide-line)", fontFamily: "var(--font-jetbrains)", fontSize: 13, fontWeight: 600, borderRadius: 6, display: "inline-flex", alignItems: "center", gap: 8, cursor: "not-allowed" }}>
+                $ pending
+                <span style={{ color: "var(--tone-ide-amber)", fontSize: 11, letterSpacing: "0.15em", fontWeight: 700 }}>SOON</span>
+              </span>
+              <span style={{ fontFamily: "var(--font-pretendard)", fontSize: 12.5, color: "var(--tone-ide-fg-3)", letterSpacing: "-0.005em" }}>
+                자료 준비가 완료되면 공개됩니다
+              </span>
             </div>
           </div>
         </div>
@@ -124,7 +129,7 @@ export function IdeResources({ locale }: Props) {
                 <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 13, color: "var(--tone-ide-fg-2)", lineHeight: 1.6, flex: 1 }}>{r.desc}</p>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 10, borderTop: "1px solid var(--tone-ide-line)", fontFamily: "var(--font-jetbrains)", fontSize: 10.5 }}>
                   <span style={{ color: "var(--tone-ide-fg-3)" }}>{r.rating}</span>
-                  <span style={{ color: "var(--tone-ide-mint)" }}>$ download.pdf →</span>
+                  <span style={{ color: "var(--tone-ide-fg-faint)" }}>$ pending <span style={{ color: "var(--tone-ide-amber)", fontSize: 9.5, marginLeft: 4 }}>SOON</span></span>
                 </div>
               </div>
             </div>
@@ -138,17 +143,14 @@ export function IdeResources({ locale }: Props) {
           <span style={{ color: "var(--tone-ide-fg-3)" }}>$</span> aio subscribe <span style={{ color: "var(--tone-ide-amber)" }}>--monthly</span>
         </div>
         <h2 style={{ fontFamily: "var(--font-jetbrains)", fontSize: "clamp(24px,3.4vw,40px)", fontWeight: 700, letterSpacing: "-0.022em", lineHeight: 1.1, marginBottom: 12, color: "var(--tone-ide-fg)" }}>
-          월 1회, <span style={{ color: "var(--tone-ide-mint)" }}>Field Guide</span> 우선 발송
+          월 1회, <span style={{ color: "var(--tone-ide-mint)" }}>Field Guide</span> 곧 발송 시작
         </h2>
         <p style={{ fontFamily: "var(--font-pretendard)", fontSize: 14.5, color: "var(--tone-ide-fg-2)", lineHeight: 1.65, maxWidth: 540, margin: "0 auto 24px" }}>
-          새 가이드가 나오면 메일로 먼저 받습니다. 광고 메일 X — 자료 1편 + 한 달치 작업 인사이트만 보냅니다.
+          구독 시스템이 준비되면 공개됩니다. 그동안은 견적 문의를 통해 미리 받아보실 수 있습니다.
         </p>
-        <div style={{ display: "inline-flex", gap: 8, maxWidth: 480, width: "100%", padding: 6, background: "var(--tone-ide-bg-2)", border: "1px solid var(--tone-ide-line)", borderRadius: 8 }}>
-          <input type="email" placeholder="your.email@company.com" style={{ flex: 1, minWidth: 0, padding: "10px 14px", background: "transparent", border: "none", color: "var(--tone-ide-fg)", fontFamily: "var(--font-jetbrains)", fontSize: 13, outline: "none" }} />
-          <button style={{ padding: "10px 18px", background: "var(--tone-ide-mint)", color: "var(--tone-ide-bg)", border: "none", fontFamily: "var(--font-jetbrains)", fontSize: 12.5, fontWeight: 700, borderRadius: 5, cursor: "pointer", whiteSpace: "nowrap" }}>$ subscribe</button>
-        </div>
+        <Link href={`/${locale}/quote`} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 22px", background: "var(--tone-ide-mint)", color: "var(--tone-ide-bg)", fontFamily: "var(--font-jetbrains)", fontSize: 13, fontWeight: 700, borderRadius: 6, textDecoration: "none", letterSpacing: "0.05em" }}>$ aio quote →</Link>
         <p style={{ marginTop: 14, fontFamily: "var(--font-jetbrains)", fontSize: 11, color: "var(--tone-ide-fg-3)" }}>
-          <span style={{ color: "var(--tone-ide-fg-faint)" }}>{"//"}</span> 언제든 1-click 구독 해지 · 실명 이메일 환영
+          <span style={{ color: "var(--tone-ide-fg-faint)" }}>{"//"}</span> Coming Soon · 광고 메일 없음
         </p>
       </section>
     </>
