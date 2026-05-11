@@ -89,7 +89,7 @@ export function MagazineEditorsNote() {
 
       {/* 2x2 Grid */}
       <div
-        className="grid grid-cols-1 sm:grid-cols-2 mx-auto max-w-[880px]"
+        className="grid grid-cols-2 mx-auto max-w-[880px]"
         style={{
           border: "1px solid var(--tone-magazine-ink)",
         }}
@@ -97,27 +97,26 @@ export function MagazineEditorsNote() {
         {pillars.map((p, i) => (
           <div
             key={i}
-            className={`flex flex-col items-center group cursor-default transition-colors duration-500 ${i % 2 === 0 ? "sm:border-r" : ""} ${i < 2 ? "sm:!border-b" : "sm:!border-b-0"}`}
+            className={`flex flex-col items-center group cursor-default transition-colors duration-500 ${i % 2 === 0 ? "border-r" : ""} ${i < 2 ? "border-b" : "border-b-0"}`}
             style={{
-              padding: "clamp(24px,3vw,40px) clamp(16px,2vw,28px)",
+              padding: "clamp(18px, 3vw, 40px) clamp(12px, 2vw, 28px)",
               borderColor: "var(--tone-magazine-line-2)",
-              borderBottom: "1px solid var(--tone-magazine-line-2)",
             }}
           >
             {/* Illust */}
-            <div className="relative w-16 h-16 mb-[18px] shrink-0">
+            <div className="relative w-12 h-12 md:w-16 md:h-16 mb-3 md:mb-[18px] shrink-0">
               <div
                 className="absolute inset-0 rounded-full transition-transform duration-500 group-hover:rotate-[15deg] group-hover:scale-105"
                 style={{ border: "1px solid var(--tone-magazine-ink)" }}
               />
               <div
                 className="absolute text-[var(--tone-magazine-ink)]"
-                style={{ inset: 16 }}
+                style={{ inset: "clamp(10px, 2.5vw, 16px)" }}
               >
                 {p.icon}
               </div>
               <div
-                className="absolute -top-1 -right-1 w-[22px] h-[22px] rounded-full grid place-items-center"
+                className="absolute -top-1 -right-1 w-[18px] h-[18px] md:w-[22px] md:h-[22px] rounded-full grid place-items-center"
                 style={{
                   background: "var(--tone-magazine-ink)",
                   color: "var(--tone-magazine-paper)",
@@ -131,15 +130,15 @@ export function MagazineEditorsNote() {
             </div>
 
             <div
-              className="mb-3"
-              style={{ fontFamily: "var(--font-jetbrains)", fontSize: "10.5px", color: "var(--tone-magazine-ink-2)", letterSpacing: "0.22em", textTransform: "uppercase" }}
+              className="mb-2 md:mb-3"
+              style={{ fontFamily: "var(--font-jetbrains)", fontSize: "clamp(9px, 1vw, 10.5px)", color: "var(--tone-magazine-ink-2)", letterSpacing: "0.22em", textTransform: "uppercase" }}
             >
               {p.label}
             </div>
 
             <h3
               className="font-normal mb-3"
-              style={{ fontFamily: "var(--font-marcellus)", fontSize: 26, lineHeight: 1.05, letterSpacing: "-0.01em", color: "var(--tone-magazine-ink)" }}
+              style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(20px, 2.5vw, 26px)", lineHeight: 1.1, letterSpacing: "-0.01em", color: "var(--tone-magazine-ink)" }}
             >
               {p.title}{" "}
               <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>
@@ -148,14 +147,14 @@ export function MagazineEditorsNote() {
             </h3>
 
             <p
-              className="mb-[18px] max-w-[280px]"
-              style={{ fontFamily: "var(--font-pretendard)", fontSize: 14, lineHeight: 1.75, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
+              className="mb-3 md:mb-[18px] max-w-[280px]"
+              style={{ fontFamily: "var(--font-pretendard)", fontSize: "clamp(12px, 1.3vw, 14px)", lineHeight: 1.75, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
             >
               {p.body}
             </p>
 
             <div
-              className="inline-flex items-baseline gap-2.5 pt-[14px] flex-wrap justify-center"
+              className="inline-flex items-baseline gap-2.5 pt-[14px] flex-wrap justify-center mt-auto"
               style={{
                 borderTop: "1px solid var(--tone-magazine-line)",
               }}
@@ -163,9 +162,9 @@ export function MagazineEditorsNote() {
               <span
                 style={{
                   fontFamily: "var(--font-jetbrains)",
-                  fontSize: "10.5px",
+                  fontSize: "clamp(9px, 1vw, 10.5px)",
                   color: "var(--tone-magazine-ink-3)",
-                  letterSpacing: "0.18em",
+                  letterSpacing: "0.16em",
                   textTransform: "uppercase",
                 }}
               >
@@ -174,7 +173,7 @@ export function MagazineEditorsNote() {
               <span
                 style={{
                   fontFamily: "var(--font-marcellus)",
-                  fontSize: "clamp(22px, 2vw, 28px)",
+                  fontSize: "clamp(17px, 2vw, 28px)",
                   color: "var(--tone-magazine-ink)",
                   letterSpacing: "-0.012em",
                   lineHeight: 1,

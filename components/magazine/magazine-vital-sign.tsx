@@ -226,14 +226,14 @@ export function MagazineVitalSign() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="flex items-baseline gap-4 md:gap-14"
+          className="flex items-baseline gap-7 md:gap-14"
         >
           {/* 142 */}
           <div className="text-center">
             <div
               style={{
                 fontFamily: "var(--font-marcellus)",
-                fontSize: "clamp(44px, 9vw, 132px)",
+                fontSize: "clamp(38px, 9vw, 132px)",
                 lineHeight: 0.92,
                 color: "var(--tone-magazine-paper)",
                 letterSpacing: "-0.025em",
@@ -244,11 +244,11 @@ export function MagazineVitalSign() {
             <div
               style={{
                 fontFamily: "var(--font-jetbrains)",
-                fontSize: "clamp(8.5px, 0.95vw, 11px)",
+                fontSize: "clamp(9px, 0.95vw, 11px)",
                 color: "rgba(245,240,232,0.55)",
                 letterSpacing: "0.24em",
                 textTransform: "uppercase",
-                marginTop: 10,
+                marginTop: 6,
               }}
             >
               누적 의뢰
@@ -271,7 +271,7 @@ export function MagazineVitalSign() {
             <div
               style={{
                 fontFamily: "var(--font-marcellus)",
-                fontSize: "clamp(44px, 9vw, 132px)",
+                fontSize: "clamp(38px, 9vw, 132px)",
                 lineHeight: 0.92,
                 color: "var(--tone-magazine-graph-line)",
                 letterSpacing: "-0.025em",
@@ -282,11 +282,11 @@ export function MagazineVitalSign() {
             <div
               style={{
                 fontFamily: "var(--font-jetbrains)",
-                fontSize: "clamp(8.5px, 0.95vw, 11px)",
+                fontSize: "clamp(9px, 0.95vw, 11px)",
                 color: "rgba(245,240,232,0.55)",
                 letterSpacing: "0.24em",
                 textTransform: "uppercase",
-                marginTop: 10,
+                marginTop: 6,
               }}
             >
               재의뢰율

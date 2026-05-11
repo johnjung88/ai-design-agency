@@ -96,10 +96,16 @@ export function Footer() {
         <div className="mt-10 border-t border-white/8 pt-6">
           <div className="text-xs leading-6 text-muted-foreground/50">
             <p>
-              사업자명: 에이아이오 (AIO) &nbsp;|&nbsp; 사업자번호: 682-01-02748 &nbsp;|&nbsp; 통신판매업신고: 제 2026-경기김포-3656 호
+              사업자명: 에이아이오 (AIO) &nbsp;|&nbsp; 사업자번호: 682-01-02748
             </p>
             <p>
-              주소: 경기도 김포시 대곶면 흥신로67 &nbsp;|&nbsp; © {new Date().getFullYear()} AIO에이전시. All rights reserved.
+              통신판매업신고: 제 2026-경기김포-3656 호
+            </p>
+            <p>
+              주소: 경기도 김포시 대곶면 흥신로67
+            </p>
+            <p>
+              © {new Date().getFullYear()} AIO에이전시. All rights reserved.
             </p>
           </div>
         </div>

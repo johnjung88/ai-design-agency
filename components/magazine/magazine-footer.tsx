@@ -73,9 +73,9 @@ export function MagazineFooter() {
           <span>est 2024 · Korea</span>
         </div>
 
-        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+        <div className="flex flex-col gap-10 md:gap-12 md:flex-row md:items-start md:justify-between text-center md:text-left">
           {/* Brand */}
-          <div className="flex flex-col gap-5 max-w-sm">
+          <div className="flex flex-col gap-5 max-w-sm items-center md:items-start mx-auto md:mx-0">
             <BrandLogo variant="footer" />
             <p
               style={{
@@ -89,7 +89,7 @@ export function MagazineFooter() {
             >
               {t("tagline")}
             </p>
-            <div className="flex flex-wrap gap-2 mt-1">
+            <div className="flex flex-wrap gap-2 mt-1 justify-center md:justify-start">
               {channels.map((c) => (
                 <Link
                   key={c.id}
@@ -114,9 +114,9 @@ export function MagazineFooter() {
           </div>
 
           {/* Link columns */}
-          <div className="grid grid-cols-2 gap-x-12 gap-y-6 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-x-8 md:gap-x-12 gap-y-8 md:gap-y-6 sm:grid-cols-3 mx-auto md:mx-0 text-center sm:text-left">
             {/* Services */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 items-center sm:items-start">
               <p
                 style={{
                   fontFamily: "var(--font-jetbrains)",
@@ -171,7 +171,7 @@ export function MagazineFooter() {
             </div>
 
             {/* Company */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 items-center sm:items-start">
               <p
                 style={{
                   fontFamily: "var(--font-jetbrains)",
@@ -205,7 +205,7 @@ export function MagazineFooter() {
             </div>
 
             {/* Contact */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 items-center sm:items-start">
               <p
                 style={{
                   fontFamily: "var(--font-jetbrains)",
@@ -247,10 +247,16 @@ export function MagazineFooter() {
             }}
           >
             <p>
-              사업자명: 에이아이오 (AIO) &nbsp;|&nbsp; 사업자번호: 682-01-02748 &nbsp;|&nbsp; 통신판매업신고: 제 2026-경기김포-3656 호
+              사업자명: 에이아이오 (AIO) &nbsp;|&nbsp; 사업자번호: 682-01-02748
             </p>
             <p>
-              주소: 경기도 김포시 대곶면 흥신로67 &nbsp;|&nbsp; © {new Date().getFullYear()} AIO에이전시. All rights reserved.
+              통신판매업신고: 제 2026-경기김포-3656 호
+            </p>
+            <p>
+              주소: 경기도 김포시 대곶면 흥신로67
+            </p>
+            <p>
+              © {new Date().getFullYear()} AIO에이전시. All rights reserved.
             </p>
           </div>
         </div>

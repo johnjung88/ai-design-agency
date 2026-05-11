@@ -189,7 +189,7 @@ export function MagazineCover() {
 
       {/* Vital stats bar — typography fixed */}
       <div
-        className="grid grid-cols-1 md:grid-cols-3"
+        className="grid grid-cols-2 md:grid-cols-3"
         style={{
           borderTop: "1px solid var(--tone-magazine-ink)",
           borderBottom: "1px solid var(--tone-magazine-ink)",
@@ -197,7 +197,7 @@ export function MagazineCover() {
       >
         {/* Mini curve */}
         <div
-          className="flex flex-col gap-5 items-center py-8 px-7 border-b md:border-b-0 md:border-r"
+          className="col-span-2 md:col-span-1 flex flex-col gap-3 md:gap-5 items-center py-5 md:py-8 px-4 md:px-7 border-b md:border-b-0 md:border-r"
           style={{ borderColor: "var(--tone-magazine-line-2)" }}
         >
           <div
@@ -228,7 +228,7 @@ export function MagazineCover() {
           <svg
             viewBox="0 0 600 140"
             preserveAspectRatio="none"
-            style={{ width: "100%", maxWidth: 360, height: 140 }}
+            style={{ width: "100%", maxWidth: 360, height: "clamp(72px, 14vw, 140px)" }}
           >
             <line
               x1="0"
@@ -291,7 +291,7 @@ export function MagazineCover() {
 
         {/* Stat 1 — 의뢰 고객 */}
         <div
-          className="flex flex-col justify-between gap-3 md:gap-4 items-center py-7 md:py-10 px-5 md:px-7 border-b md:border-b-0 md:border-r"
+          className="flex flex-col justify-between gap-2.5 md:gap-4 items-center py-6 md:py-10 px-4 md:px-7 border-r md:border-r"
           style={{ borderColor: "var(--tone-magazine-line-2)" }}
         >
           <span
@@ -308,7 +308,7 @@ export function MagazineCover() {
           <div
             style={{
               fontFamily: "var(--font-marcellus)",
-              fontSize: "clamp(64px, 7vw, 104px)",
+              fontSize: "clamp(48px, 7vw, 104px)",
               lineHeight: 0.9,
               letterSpacing: "-0.025em",
               color: "var(--tone-magazine-ink)",
@@ -319,9 +319,9 @@ export function MagazineCover() {
           <p
             style={{
               fontFamily: "var(--font-pretendard)",
-              fontSize: 14,
+              fontSize: "clamp(12px, 1.2vw, 14px)",
               color: "var(--tone-magazine-ink-2)",
-              lineHeight: 1.7,
+              lineHeight: 1.6,
               maxWidth: 280,
               fontWeight: 400,
             }}
@@ -344,12 +344,14 @@ export function MagazineCover() {
             >
               139명
             </strong>
-            이 다시 돌아왔습니다
+            이
+            <br />
+            다시 돌아왔습니다
           </p>
         </div>
 
         {/* Stat 2 — 응답·납품 평균 */}
-        <div className="flex flex-col justify-between gap-3 md:gap-4 items-center py-7 md:py-10 px-5 md:px-7">
+        <div className="flex flex-col justify-between gap-2.5 md:gap-4 items-center py-6 md:py-10 px-4 md:px-7">
           <span
             style={{
               fontFamily: "var(--font-jetbrains)",
@@ -365,7 +367,7 @@ export function MagazineCover() {
             className="inline-flex items-baseline gap-3"
             style={{
               fontFamily: "var(--font-marcellus)",
-              fontSize: "clamp(64px, 7vw, 104px)",
+              fontSize: "clamp(48px, 7vw, 104px)",
               lineHeight: 0.9,
               letterSpacing: "-0.025em",
               color: "var(--tone-magazine-ink)",
@@ -413,9 +415,9 @@ export function MagazineCover() {
           <p
             style={{
               fontFamily: "var(--font-pretendard)",
-              fontSize: 14,
+              fontSize: "clamp(12px, 1.2vw, 14px)",
               color: "var(--tone-magazine-ink-2)",
-              lineHeight: 1.7,
+              lineHeight: 1.6,
               maxWidth: 280,
               fontWeight: 400,
             }}

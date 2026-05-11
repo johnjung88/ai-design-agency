@@ -89,8 +89,8 @@ export function MagazineToc({ locale }: Props) {
         <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>3분야</strong>
         와 곧 합류할{" "}
         <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>4분야</strong>
-        <br className="hidden sm:inline" />
-        {" "}각 분야 페이지에서 그 분야 전문가가 직접 인사드립니다
+        <br />
+        각 분야 페이지에서 그 분야 전문가가 직접 인사드립니다
       </p>
 
       {/* Rows */}
@@ -121,17 +121,17 @@ export function MagazineToc({ locale }: Props) {
           const inner = (
             <div
               className="
-                grid items-center gap-y-3 gap-x-4
-                grid-cols-[28px_1fr_22px]
+                grid items-center gap-y-2 md:gap-y-3 gap-x-3 md:gap-x-4
+                grid-cols-[24px_1fr]
                 md:grid-cols-[56px_minmax(220px,auto)_1fr_minmax(200px,auto)_40px]
-                px-3 md:px-6 py-5 md:py-8
+                px-3 md:px-6 py-3.5 md:py-8
               "
             >
               {/* Number */}
               <span
                 style={{
                   fontFamily: "var(--font-jetbrains)",
-                  fontSize: "clamp(11px, 1vw, 13px)",
+                  fontSize: "clamp(12px, 1vw, 13px)",
                   color: inkSubActive,
                   letterSpacing: "0.06em",
                   textAlign: "left",
@@ -145,10 +145,10 @@ export function MagazineToc({ locale }: Props) {
               {/* Name (Korean + English italic) */}
               <div className="text-center md:text-left">
                 <div
-                  className="inline-flex items-baseline gap-3 md:gap-4 flex-wrap justify-center md:justify-start"
+                  className="inline-flex items-baseline gap-2 md:gap-4 flex-wrap justify-center md:justify-start"
                   style={{
                     fontFamily: "var(--font-marcellus)",
-                    fontSize: "clamp(22px, 3.6vw, 46px)",
+                    fontSize: "clamp(26px, 4vw, 46px)",
                     lineHeight: 1,
                     letterSpacing: "-0.012em",
                     color: inkActive,
@@ -167,15 +167,28 @@ export function MagazineToc({ locale }: Props) {
                   >
                     {d.nameEn}
                   </em>
+                  {/* 모바일 인라인 화살표 */}
+                  <span
+                    className="md:hidden"
+                    style={{
+                      fontFamily: "var(--font-marcellus)",
+                      fontSize: "0.55em",
+                      color: inkSubActive,
+                      lineHeight: 1,
+                      marginLeft: 4,
+                    }}
+                  >
+                    {d.available ? "→" : "·"}
+                  </span>
                 </div>
               </div>
 
               {/* Tagline — full width on mobile (col-span-3), center column on PC */}
-              <div className="col-span-3 md:col-span-1 text-center px-2">
+              <div className="col-span-2 md:col-span-1 text-center px-1 md:px-2">
                 <p
                   style={{
                     fontFamily: "var(--font-cormorant)",
-                    fontSize: "clamp(12.5px, 1.3vw, 17px)",
+                    fontSize: "clamp(14px, 1.3vw, 17px)",
                     lineHeight: 1.55,
                     color: inkSubActive,
                     fontStyle: "italic",
@@ -187,13 +200,13 @@ export function MagazineToc({ locale }: Props) {
               </div>
 
               {/* Meta (price + days) — full width row on mobile, right column on PC */}
-              <div className="col-span-3 md:col-span-1 flex items-baseline justify-center md:justify-end gap-3 md:gap-4">
+              <div className="col-span-2 md:col-span-1 flex items-baseline justify-center md:justify-end gap-2.5 md:gap-4">
                 {d.available && d.price ? (
                   <>
                     <span
                       style={{
                         fontFamily: "var(--font-marcellus)",
-                        fontSize: "clamp(16px, 1.7vw, 22px)",
+                        fontSize: "clamp(18px, 1.7vw, 22px)",
                         color: "var(--tone-magazine-ink)",
                         letterSpacing: "-0.01em",
                         lineHeight: 1,
@@ -212,7 +225,7 @@ export function MagazineToc({ locale }: Props) {
                     <span
                       style={{
                         fontFamily: "var(--font-jetbrains)",
-                        fontSize: "clamp(10.5px, 1vw, 12px)",
+                        fontSize: "clamp(11.5px, 1vw, 12px)",
                         color: "var(--tone-magazine-ink-2)",
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
@@ -238,7 +251,7 @@ export function MagazineToc({ locale }: Props) {
 
               {/* Arrow — last col on PC, top-right on mobile */}
               <span
-                className="text-right justify-self-end self-start md:self-center"
+                className="hidden md:inline text-right justify-self-end self-start md:self-center"
                 style={{
                   fontFamily: "var(--font-marcellus)",
                   fontSize: "clamp(22px, 2vw, 30px)",
