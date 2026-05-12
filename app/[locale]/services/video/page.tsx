@@ -26,7 +26,7 @@ export default async function VideoPage({ params }: { params: Promise<{ locale: 
   const { locale } = await params;
   return (
     <main style={{ background: "var(--tone-life-cream)", color: "var(--tone-life-ink)", minHeight: "100vh" }}>
-      <section className="max-w-[1100px] mx-auto text-center" style={{ padding: "calc(var(--space-section) + 60px) var(--space-edge) var(--space-section)" }}>
+      <section className="max-w-[1100px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
         <div className="mb-8 md:mb-10 inline-flex items-center gap-3" style={{ fontFamily: "var(--font-jakarta)", fontSize: 11, color: "var(--tone-life-ink-3)", letterSpacing: "0.28em", textTransform: "uppercase" }}>
           <span style={{ width: 24, height: 1, background: "var(--tone-life-rose)", display: "inline-block" }} />
           Video · Coming Soon

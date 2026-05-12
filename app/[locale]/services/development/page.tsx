@@ -73,7 +73,7 @@ export default async function DevelopmentPage({ params }: { params: Promise<{ lo
 
 function HeroSection({ locale }: { locale: string }) {
   return (
-    <section className="max-w-[1400px] mx-auto relative" style={{ padding: "calc(var(--space-section) + 40px) var(--space-edge) var(--space-section)" }}>
+    <section className="max-w-[1400px] mx-auto relative" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <div className="mb-8 md:mb-10 inline-flex items-center gap-2 flex-wrap" style={{ fontFamily: "var(--font-jetbrains)", fontSize: 12, color: "var(--tone-ide-fg-3)", letterSpacing: "0.06em" }}>
         <span style={{ color: "var(--tone-ide-mint)" }}>~/services</span>
         <span style={{ color: "var(--tone-ide-fg-faint)" }}>/</span>
@@ -94,11 +94,11 @@ function HeroSection({ locale }: { locale: string }) {
         <br />
         <strong style={{ color: "var(--tone-ide-fg)", fontWeight: 600 }}>매일 진행 상황을 공유하고, 1개월 무상 유지보수까지</strong>
       </p>
-      <div className="inline-flex flex-wrap gap-3">
-        <Link href={`/${locale}/quote`} className="inline-flex items-center gap-2 px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--tone-ide-mint)", color: "var(--tone-ide-bg)", fontFamily: "var(--font-pretendard)", fontSize: 14, fontWeight: 600, borderRadius: 2 }}>
+      <div className="flex flex-col md:inline-flex md:flex-row md:flex-wrap gap-3 max-w-[280px] md:max-w-none">
+        <Link href={`/${locale}/quote`} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 md:py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--tone-ide-mint)", color: "var(--tone-ide-bg)", fontFamily: "var(--font-pretendard)", fontSize: 14, fontWeight: 600, borderRadius: 2 }}>
           견적 문의 →
         </Link>
-        <Link href="#subs" className="inline-flex items-center gap-2 px-6 py-3 transition-all hover:-translate-y-0.5" style={{ background: "transparent", color: "var(--tone-ide-fg)", border: "1px solid var(--tone-ide-line)", fontFamily: "var(--font-pretendard)", fontSize: 14, fontWeight: 500, borderRadius: 2 }}>
+        <Link href="#subs" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 md:py-3 transition-all hover:-translate-y-0.5" style={{ background: "transparent", color: "var(--tone-ide-fg)", border: "1px solid var(--tone-ide-line)", fontFamily: "var(--font-pretendard)", fontSize: 14, fontWeight: 500, borderRadius: 2 }}>
           sub 분야 보기
         </Link>
       </div>
@@ -176,7 +176,7 @@ function FaqSection() {
       <div className="space-y-2">
         {faqs.map((f, i) => (
           <details key={i} className="group" style={{ padding: "clamp(16px, 2vw, 24px) clamp(20px, 2.5vw, 28px)", background: "var(--tone-ide-bg-2)", border: "1px solid var(--tone-ide-line)", borderRadius: 4 }}>
-            <summary className="cursor-pointer flex items-center justify-between gap-3" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-body)", fontWeight: 500, color: "var(--tone-ide-fg)", listStyle: "none" }}>
+            <summary className="cursor-pointer flex items-center justify-between gap-3 [&::-webkit-details-marker]:hidden" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-body)", fontWeight: 500, color: "var(--tone-ide-fg)", listStyle: "none" }}>
               <span>{f.q}</span>
               <span className="transition-transform group-open:rotate-45" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--tone-ide-mint)", fontSize: 18, lineHeight: 1 }}>+</span>
             </summary>
