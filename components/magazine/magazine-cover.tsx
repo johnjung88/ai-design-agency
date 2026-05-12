@@ -181,111 +181,17 @@ export function MagazineCover() {
       {/* Hero Graph Card — extracted to client component with rich motion */}
       <MagazineVitalSign />
 
-      {/* Vital stats bar — typography fixed */}
+      {/* Vital stats bar — 16개월 mini curve 제거, 2-col 단순화 */}
       <div
-        className="grid grid-cols-2 md:grid-cols-3"
+        className="grid grid-cols-1 md:grid-cols-2"
         style={{
           borderTop: "1px solid var(--tone-magazine-ink)",
           borderBottom: "1px solid var(--tone-magazine-ink)",
         }}
       >
-        {/* Mini curve */}
-        <div
-          className="col-span-2 md:col-span-1 flex flex-col gap-3 md:gap-5 items-center py-5 md:py-8 px-4 md:px-7 border-b md:border-b-0 md:border-r"
-          style={{ borderColor: "var(--tone-magazine-line-2)" }}
-        >
-          <div
-            className="flex items-center gap-[10px]"
-            style={{
-              fontFamily: "var(--font-jetbrains)",
-              fontSize: "10.5px",
-              color: "var(--tone-magazine-ink-2)",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-            }}
-          >
-            — 16개월 운영
-            <span
-              style={{
-                padding: "2px 8px",
-                background: "var(--tone-magazine-red)",
-                color: "var(--tone-magazine-paper)",
-                borderRadius: 2,
-                fontFamily: "var(--font-jetbrains)",
-                fontSize: "8.5px",
-                letterSpacing: "0.16em",
-              }}
-            >
-              live
-            </span>
-          </div>
-          <svg
-            viewBox="0 0 600 140"
-            preserveAspectRatio="none"
-            style={{ width: "100%", maxWidth: 360, height: "clamp(72px, 14vw, 140px)" }}
-          >
-            <line
-              x1="0"
-              y1="30"
-              x2="600"
-              y2="30"
-              stroke="var(--tone-magazine-line)"
-              strokeWidth="1"
-              strokeDasharray="2 3"
-            />
-            <line
-              x1="0"
-              y1="70"
-              x2="600"
-              y2="70"
-              stroke="var(--tone-magazine-line)"
-              strokeWidth="1"
-              strokeDasharray="2 3"
-            />
-            <line
-              x1="0"
-              y1="110"
-              x2="600"
-              y2="110"
-              stroke="var(--tone-magazine-line)"
-              strokeWidth="1"
-              strokeDasharray="2 3"
-            />
-            <path
-              d="M 0 124 C 60 116, 120 108, 200 92 C 280 72, 340 52, 420 30 C 480 14, 540 8, 600 4 L 600 140 L 0 140 Z"
-              fill="var(--tone-magazine-red-soft)"
-              style={{
-                animation: "curveDrawMag 1s ease-out 0.3s both",
-                opacity: 0,
-              }}
-            />
-            <path
-              d="M 0 124 C 60 116, 120 108, 200 92 C 280 72, 340 52, 420 30 C 480 14, 540 8, 600 4"
-              fill="none"
-              stroke="var(--tone-magazine-ink)"
-              strokeWidth="1.5"
-              strokeDasharray="1500"
-              strokeDashoffset="1500"
-              style={{
-                animation: "curveDrawMag 2.5s cubic-bezier(0.16,1,0.3,1) 0.3s forwards",
-              }}
-            />
-            <circle
-              cx="600"
-              cy="4"
-              r="6"
-              fill="var(--tone-magazine-red)"
-              opacity="0.32"
-              className="animate-pulse-ring-mag"
-              style={{ transformOrigin: "600px 4px" }}
-            />
-            <circle cx="600" cy="4" r="4" fill="var(--tone-magazine-red)" />
-          </svg>
-        </div>
-
         {/* Stat 1 — 의뢰 고객 */}
         <div
-          className="flex flex-col justify-between gap-2.5 md:gap-4 items-center py-6 md:py-10 px-4 md:px-7 border-r md:border-r"
+          className="flex flex-col justify-between gap-2.5 md:gap-4 items-center py-6 md:py-10 px-4 md:px-7 border-b md:border-b-0 md:border-r"
           style={{ borderColor: "var(--tone-magazine-line-2)" }}
         >
           <span

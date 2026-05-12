@@ -11,8 +11,8 @@ type Discipline = {
   nameEn: string;
   tagline: string;
   sub: string;
-  priceNum?: string;
-  priceUnit?: string;
+  priceMan?: string;       // 만 자리 (예: "9", "4")
+  priceCheon?: string;     // 천 자리 — 없으면 빈 문자열
   days?: string;
   href?: (locale: string) => string;
   available: boolean;
@@ -25,8 +25,8 @@ const disciplines: Discipline[] = [
     nameEn: "development",
     tagline: "기능을 짓는 분야",
     sub: "웹 · 앱 · 자동화 · 프로그램",
-    priceNum: "9.9",
-    priceUnit: "만~",
+    priceMan: "9",
+    priceCheon: "9",
     days: "1-7 DAYS",
     href: (locale: string) => `/${locale}/services/development`,
     available: true,
@@ -37,8 +37,8 @@ const disciplines: Discipline[] = [
     nameEn: "design",
     tagline: "감각을 입히는 분야",
     sub: "브랜드브리프 · 상세페이지",
-    priceNum: "4.9",
-    priceUnit: "만~",
+    priceMan: "4",
+    priceCheon: "9",
     days: "1-3 DAYS",
     href: (locale: string) => `/${locale}/services/design`,
     available: true,
@@ -49,8 +49,8 @@ const disciplines: Discipline[] = [
     nameEn: "business",
     tagline: "전략을 정리하는 분야",
     sub: "사업계획서 · PPT · 정부지원금",
-    priceNum: "4.0",
-    priceUnit: "만~",
+    priceMan: "4",
+    priceCheon: "",
     days: "1-5 DAYS",
     href: (locale: string) => `/${locale}/services/business`,
     available: true,
@@ -240,30 +240,33 @@ export function MagazineToc({ locale }: Props) {
 
               {/* Meta (price + days) — full width row on mobile, right column on PC */}
               <div className="col-span-2 md:col-span-1 flex items-baseline justify-center md:justify-end gap-2.5 md:gap-4">
-                {d.available && d.priceNum ? (
+                {d.available && d.priceMan ? (
                   <>
                     <span
                       style={{
-                        fontFamily: "var(--font-marcellus)",
-                        fontSize: "clamp(20px, 1.9vw, 26px)",
+                        fontFamily: "var(--font-pretendard)",
+                        fontSize: "clamp(15px, 1.4vw, 17px)",
                         color: "var(--tone-magazine-ink)",
                         letterSpacing: "-0.01em",
                         lineHeight: 1,
+                        fontWeight: 600,
+                        whiteSpace: "nowrap",
                       }}
                     >
-                      {d.priceNum}
-                      <span
-                        style={{
-                          fontFamily: "var(--font-pretendard)",
-                          fontSize: "0.55em",
-                          fontWeight: 500,
-                          color: "var(--tone-magazine-ink-2)",
-                          marginLeft: 3,
-                          letterSpacing: 0,
-                        }}
-                      >
-                        {d.priceUnit}
+                      <span style={{ fontFamily: "var(--font-marcellus)", fontSize: "1.35em", fontWeight: 400 }}>
+                        {d.priceMan}
                       </span>
+                      <span style={{ fontSize: "0.85em", marginLeft: 2 }}>만</span>
+                      {d.priceCheon && (
+                        <>
+                          {" "}
+                          <span style={{ fontFamily: "var(--font-marcellus)", fontSize: "1.35em", fontWeight: 400 }}>
+                            {d.priceCheon}
+                          </span>
+                          <span style={{ fontSize: "0.85em", marginLeft: 2 }}>천</span>
+                        </>
+                      )}
+                      <span style={{ fontSize: "0.85em", marginLeft: 2, color: "var(--tone-magazine-ink-2)" }}>원~</span>
                     </span>
                     <span
                       style={{
