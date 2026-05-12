@@ -2,6 +2,19 @@ import { NextResponse } from "next/server";
 import { createContractRecord, findLatestInvoiceForCustomer, updateContractRecord, updateInvoicePayment } from "@/lib/admin/contracts";
 import { sendTelegramMessage } from "@/lib/admin/telegram";
 import { parseTelegramContractCommand, TELEGRAM_CONTRACT_HELP, validateTelegramCommand } from "@/lib/admin/telegram-contract-parser";
+import { isTelegramTaskCommand, parseTelegramTaskCommand, TELEGRAM_TASK_HELP } from "@/lib/admin/telegram-task-parser";
+import {
+  createTask,
+  updateTaskStatus,
+  deferTask,
+  deleteTask,
+  findTaskByIdPrefix,
+  findActiveTaskByNumber,
+} from "@/lib/admin/tasks";
+import { buildTaskListResponse } from "@/lib/admin/briefing";
+import { buildTaskAddedMessage, buildTaskCompletedMessage } from "@/lib/admin/telegram-templates";
+import { buildOperationsExcel } from "@/lib/admin/excel-export";
+import { sendTelegramDocument } from "@/lib/admin/telegram";
 import { hasSupabaseAdminConfig } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -68,13 +81,23 @@ export async function POST(request: Request) {
 
   const text = message?.text?.trim();
   if (!text) {
-    await reply(chatId, "텍스트 메시지만 처리할 수 있습니다.\n\n" + TELEGRAM_CONTRACT_HELP);
+    await reply(chatId, "텍스트 메시지만 처리할 수 있습니다.\n\n" + TELEGRAM_CONTRACT_HELP + "\n\n" + TELEGRAM_TASK_HELP);
     return NextResponse.json({ ok: true });
+  }
+
+  // ─── /엑셀 — 즉시 운영 데이터 xlsx 첨부 ───
+  if (/^\/?(엑셀|excel)\b/i.test(text)) {
+    return handleExcelCommand(chatId);
+  }
+
+  // ─── task 명령 우선 처리 ───
+  if (isTelegramTaskCommand(text)) {
+    return handleTaskCommand(text, chatId, message?.message_id);
   }
 
   const command = parseTelegramContractCommand(text);
   if (command.kind === "help") {
-    await reply(chatId, TELEGRAM_CONTRACT_HELP);
+    await reply(chatId, TELEGRAM_CONTRACT_HELP + "\n\n" + TELEGRAM_TASK_HELP);
     return NextResponse.json({ ok: true });
   }
 
@@ -151,5 +174,131 @@ export async function POST(request: Request) {
     const messageText = error instanceof Error ? error.message : "계약 자동 업데이트 중 오류가 발생했습니다.";
     await reply(chatId, `처리 실패: ${messageText}`);
     return NextResponse.json({ ok: true, error: messageText });
+  }
+}
+
+// =====================================================
+// 할 일 명령 처리
+// =====================================================
+async function handleTaskCommand(
+  text: string,
+  chatId: number | undefined,
+  messageId: number | undefined,
+): Promise<NextResponse> {
+  const cmd = parseTelegramTaskCommand(text);
+  if (!cmd) {
+    await reply(chatId, TELEGRAM_TASK_HELP);
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    if (cmd.kind === "task_help") {
+      await reply(chatId, TELEGRAM_TASK_HELP);
+      return NextResponse.json({ ok: true });
+    }
+
+    if (cmd.kind === "task_list") {
+      const msg = await buildTaskListResponse(cmd.scope);
+      await sendTelegramMessage(chatId!, msg, { parseMode: "Markdown" });
+      return NextResponse.json({ ok: true });
+    }
+
+    if (cmd.kind === "task_add") {
+      const task = await createTask({
+        title: cmd.title,
+        scope: cmd.scope,
+        priority: cmd.priority,
+        dueDate: cmd.dueDate,
+        source: "telegram",
+        telegramMessageId: messageId,
+      });
+      const msg = buildTaskAddedMessage({
+        title: task.title,
+        scope: task.scope,
+        priority: task.priority,
+        idHint: task.id.slice(0, 6),
+        due: task.due_date ?? undefined,
+      });
+      await sendTelegramMessage(chatId!, msg, { parseMode: "Markdown" });
+      return NextResponse.json({ ok: true, taskId: task.id });
+    }
+
+    if (cmd.kind === "task_complete") {
+      const target = await resolveTask(cmd.idOrNumber);
+      if (!target) {
+        await reply(chatId, `🔍 task를 찾지 못했습니다: \`${cmd.idOrNumber}\`\n\n_/목록 으로 번호 확인_`);
+        return NextResponse.json({ ok: true });
+      }
+      await updateTaskStatus(target.id, "completed");
+      await sendTelegramMessage(
+        chatId!,
+        buildTaskCompletedMessage({ title: target.title, idHint: target.id.slice(0, 6) }),
+        { parseMode: "Markdown" },
+      );
+      return NextResponse.json({ ok: true });
+    }
+
+    if (cmd.kind === "task_defer") {
+      const target = await resolveTask(cmd.idOrNumber);
+      if (!target) {
+        await reply(chatId, `🔍 task를 찾지 못했습니다: \`${cmd.idOrNumber}\``);
+        return NextResponse.json({ ok: true });
+      }
+      const next = await deferTask(target.id, cmd.newScope);
+      const scopeLabel = cmd.newScope === "today" ? "오늘" : cmd.newScope === "week" ? "이 주" : "이 달";
+      await reply(chatId, `🔁 *${target.title}* → *${scopeLabel}* 로 이월 (ID: \`#${next.id.slice(0, 6)}\`)`);
+      return NextResponse.json({ ok: true });
+    }
+
+    if (cmd.kind === "task_delete") {
+      const target = await resolveTask(cmd.idOrNumber);
+      if (!target) {
+        await reply(chatId, `🔍 task를 찾지 못했습니다: \`${cmd.idOrNumber}\``);
+        return NextResponse.json({ ok: true });
+      }
+      await deleteTask(target.id);
+      await reply(chatId, `🗑 삭제됨: ${target.title}`);
+      return NextResponse.json({ ok: true });
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    const messageText = error instanceof Error ? error.message : "task 처리 중 오류";
+    await reply(chatId, `처리 실패: ${messageText}`);
+    return NextResponse.json({ ok: true, error: messageText });
+  }
+}
+
+/** "1" 같은 숫자 또는 "abc123" 같은 ID prefix를 task로 해석 */
+async function resolveTask(idOrNumber: string) {
+  const trimmed = idOrNumber.replace(/^#/, "").trim();
+  // 1-2자리 정수면 번호
+  if (/^\d{1,2}$/.test(trimmed)) {
+    return findActiveTaskByNumber(Number(trimmed));
+  }
+  return findTaskByIdPrefix(trimmed);
+}
+
+// =====================================================
+// /엑셀 명령 — 운영 데이터 xlsx 즉시 첨부 발송
+// =====================================================
+async function handleExcelCommand(chatId: number | undefined): Promise<NextResponse> {
+  if (chatId === undefined) return NextResponse.json({ ok: true });
+  try {
+    await reply(chatId, "📊 _운영 데이터를 정리 중입니다…_");
+    const { buffer, filename, summary } = await buildOperationsExcel();
+    const caption = [
+      "📎 *AIO 운영 데이터*",
+      "",
+      `할 일: 오늘 ${summary.tasks.today} / 이주 ${summary.tasks.week} / 이달 ${summary.tasks.month}`,
+      `외주: 진행 ${summary.activeProjects}건${summary.overdue > 0 ? ` · 🚨 지연 ${summary.overdue}` : ""}`,
+      `매출 ₩${summary.monthRevenue.toLocaleString("ko-KR")} / 지출 ₩${summary.monthExpense.toLocaleString("ko-KR")}`,
+    ].join("\n");
+    await sendTelegramDocument(chatId, buffer, filename, { caption, parseMode: "Markdown" });
+    return NextResponse.json({ ok: true, route: "excel", filename, size: buffer.length });
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "unknown";
+    await reply(chatId, `엑셀 생성 실패: ${detail}`);
+    return NextResponse.json({ ok: true, error: detail });
   }
 }

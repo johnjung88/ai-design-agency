@@ -10,18 +10,19 @@ import { LifestyleFooter } from "@/components/lifestyle/lifestyle-footer";
 import { IdeFooter } from "@/components/ide/ide-footer";
 
 /**
- * 매거진 톤: /[locale], /[locale]/about, /[locale]/quote
- * 컨설턴트 톤: /[locale]/services/ppt-design(...)
- * 라이프스타일 톤: /[locale]/services/detail-page(...)
- * IDE 톤: /[locale]/services/website(...)
+ * 톤 매핑:
+ * - 매거진: /, /about, /quote
+ * - IDE: /services/development (구 /services/website 유지)
+ * - 라이프스타일: /services/design, /services/video, /services/detail-page(구)
+ * - 컨설턴트: /services/business, /services/marketing, /services/ppt-design(구)
  */
 function getTone(
   pathname: string
 ): "magazine" | "consultant" | "lifestyle" | "ide" | "default" {
   if (/^\/[a-z]{2}(\/(about|quote))?\/?$/.test(pathname)) return "magazine";
-  if (/^\/[a-z]{2}\/services\/ppt-design(\/.*)?$/.test(pathname)) return "consultant";
-  if (/^\/[a-z]{2}\/services\/detail-page(\/.*)?$/.test(pathname)) return "lifestyle";
-  if (/^\/[a-z]{2}\/services\/website(\/.*)?$/.test(pathname)) return "ide";
+  if (/^\/[a-z]{2}\/services\/(development|website)(\/.*)?$/.test(pathname)) return "ide";
+  if (/^\/[a-z]{2}\/services\/(design|video|detail-page)(\/.*)?$/.test(pathname)) return "lifestyle";
+  if (/^\/[a-z]{2}\/services\/(business|marketing|ppt-design)(\/.*)?$/.test(pathname)) return "consultant";
   return "default";
 }
 
