@@ -50,3 +50,64 @@ export async function sendTelegramMessage(
     console.error("[telegram] notification error:", error instanceof Error ? error.message : error);
   }
 }
+
+// =====================================================
+// 파일 첨부 발송 (sendDocument)
+// =====================================================
+export type TelegramDocumentOptions = {
+  caption?: string;
+  parseMode?: "Markdown" | "MarkdownV2" | "HTML" | "none";
+  disableNotification?: boolean;
+  contentType?: string;
+};
+
+export async function sendTelegramDocument(
+  chatId: string | number,
+  file: Buffer | Uint8Array,
+  filename: string,
+  options: TelegramDocumentOptions = {},
+): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) return;
+
+  const contentType =
+    options.contentType ?? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+  const form = new FormData();
+  form.append("chat_id", String(chatId));
+
+  // Node 20+ globalThis.Blob 사용. Buffer → Uint8Array 변환으로 BlobPart 호환.
+  const bytes = file instanceof Buffer ? new Uint8Array(file) : file;
+  const blob = new Blob([bytes], { type: contentType });
+  form.append("document", blob, filename);
+
+  if (options.caption) {
+    form.append("caption", options.caption);
+    const parseMode = options.parseMode ?? "Markdown";
+    if (parseMode !== "none") form.append("parse_mode", parseMode);
+  }
+  if (options.disableNotification) form.append("disable_notification", "true");
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendDocument`, {
+      method: "POST",
+      body: form,
+    });
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "");
+      console.error("[telegram] sendDocument non-OK:", res.status, detail.slice(0, 300));
+    }
+  } catch (error) {
+    console.error("[telegram] sendDocument error:", error instanceof Error ? error.message : error);
+  }
+}
+
+export async function notifyTelegramDocument(
+  file: Buffer | Uint8Array,
+  filename: string,
+  options: TelegramDocumentOptions = {},
+): Promise<void> {
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!chatId) return;
+  await sendTelegramDocument(chatId, file, filename, options);
+}
