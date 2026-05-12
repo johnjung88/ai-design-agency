@@ -22,9 +22,9 @@ export function MagazineEditorial({ locale }: Props) {
         borderTop: "1px solid var(--tone-magazine-ink)",
       }}
     >
-      {/* Meta */}
+      {/* Meta — 모바일/PC 별도 마크업 */}
       <div
-        className="pb-4 mb-10 md:mb-16 border-b inline-flex flex-wrap items-center gap-2.5 md:gap-[18px] justify-center"
+        className="pb-4 mb-10 md:mb-16 border-b mx-auto"
         style={{
           fontFamily: "var(--font-jetbrains)",
           fontSize: 11,
@@ -32,15 +32,31 @@ export function MagazineEditorial({ locale }: Props) {
           letterSpacing: "0.28em",
           textTransform: "uppercase",
           borderColor: "var(--tone-magazine-line-2)",
+          maxWidth: 720,
         }}
       >
-        <span>Editorial · Founder&apos;s note</span>
-        <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
-        <span style={{ fontFamily: "var(--font-marcellus)", letterSpacing: "0.4em", color: "var(--tone-magazine-ink)" }}>
-          A&nbsp;·&nbsp;I&nbsp;·&nbsp;O&nbsp;&nbsp; S T U D I O
-        </span>
-        <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--tone-magazine-ink-3)", display: "inline-block" }} />
-        <span>May 2026</span>
+        {/* PC: 한 줄 */}
+        <div className="hidden md:inline-flex items-center justify-center gap-[18px]">
+          <span>Editorial · Founder&apos;s note</span>
+          <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--tone-magazine-ink-3)" }} />
+          <span style={{ fontFamily: "var(--font-marcellus)", letterSpacing: "0.4em", color: "var(--tone-magazine-ink)", fontSize: 12 }}>
+            A&nbsp;·&nbsp;I&nbsp;·&nbsp;O&nbsp;&nbsp; S T U D I O
+          </span>
+          <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--tone-magazine-ink-3)" }} />
+          <span>May 2026</span>
+        </div>
+
+        {/* Mobile: 2줄 */}
+        <div className="md:hidden flex flex-col items-center gap-1.5">
+          <span style={{ fontFamily: "var(--font-marcellus)", letterSpacing: "0.4em", color: "var(--tone-magazine-ink)", fontSize: 12 }}>
+            A&nbsp;·&nbsp;I&nbsp;·&nbsp;O&nbsp;&nbsp; S T U D I O
+          </span>
+          <div className="inline-flex items-center gap-2.5">
+            <span>Editorial · Founder&apos;s note</span>
+            <span style={{ width: 2.5, height: 2.5, borderRadius: "50%", background: "var(--tone-magazine-ink-3)" }} />
+            <span>May 2026</span>
+          </div>
+        </div>
       </div>
 
       {/* Ornament */}

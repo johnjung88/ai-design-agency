@@ -11,7 +11,8 @@ type Discipline = {
   nameEn: string;
   tagline: string;
   sub: string;
-  price?: string;
+  priceNum?: string;
+  priceUnit?: string;
   days?: string;
   href?: (locale: string) => string;
   available: boolean;
@@ -22,9 +23,10 @@ const disciplines: Discipline[] = [
     num: "01",
     name: "개발",
     nameEn: "development",
-    tagline: "만드는 분야",
+    tagline: "기능을 짓는 분야",
     sub: "웹 · 앱 · 자동화 · 프로그램",
-    price: "9.9만~",
+    priceNum: "9.9",
+    priceUnit: "만~",
     days: "1-7 DAYS",
     href: (locale: string) => `/${locale}/services/development`,
     available: true,
@@ -33,9 +35,10 @@ const disciplines: Discipline[] = [
     num: "02",
     name: "디자인",
     nameEn: "design",
-    tagline: "보이는 분야",
+    tagline: "감각을 입히는 분야",
     sub: "브랜드브리프 · 상세페이지",
-    price: "4.9만~",
+    priceNum: "4.9",
+    priceUnit: "만~",
     days: "1-3 DAYS",
     href: (locale: string) => `/${locale}/services/design`,
     available: true,
@@ -44,9 +47,10 @@ const disciplines: Discipline[] = [
     num: "03",
     name: "비즈",
     nameEn: "business",
-    tagline: "쓰는 분야",
+    tagline: "전략을 정리하는 분야",
     sub: "사업계획서 · PPT · 정부지원금",
-    price: "4.0만~",
+    priceNum: "4.0",
+    priceUnit: "만~",
     days: "1-5 DAYS",
     href: (locale: string) => `/${locale}/services/business`,
     available: true,
@@ -55,7 +59,7 @@ const disciplines: Discipline[] = [
     num: "04",
     name: "영상",
     nameEn: "video",
-    tagline: "찍는 분야",
+    tagline: "장면을 담는 분야",
     sub: "촬영 · 편집 · 모션",
     available: false,
   },
@@ -63,7 +67,7 @@ const disciplines: Discipline[] = [
     num: "05",
     name: "마케팅",
     nameEn: "marketing",
-    tagline: "퍼뜨리는 분야",
+    tagline: "고객을 부르는 분야",
     sub: "퍼포먼스 · 콘텐츠 · 자동화",
     available: false,
   },
@@ -236,18 +240,30 @@ export function MagazineToc({ locale }: Props) {
 
               {/* Meta (price + days) — full width row on mobile, right column on PC */}
               <div className="col-span-2 md:col-span-1 flex items-baseline justify-center md:justify-end gap-2.5 md:gap-4">
-                {d.available && d.price ? (
+                {d.available && d.priceNum ? (
                   <>
                     <span
                       style={{
                         fontFamily: "var(--font-marcellus)",
-                        fontSize: "clamp(18px, 1.7vw, 22px)",
+                        fontSize: "clamp(20px, 1.9vw, 26px)",
                         color: "var(--tone-magazine-ink)",
                         letterSpacing: "-0.01em",
                         lineHeight: 1,
                       }}
                     >
-                      {d.price}
+                      {d.priceNum}
+                      <span
+                        style={{
+                          fontFamily: "var(--font-pretendard)",
+                          fontSize: "0.55em",
+                          fontWeight: 500,
+                          color: "var(--tone-magazine-ink-2)",
+                          marginLeft: 3,
+                          letterSpacing: 0,
+                        }}
+                      >
+                        {d.priceUnit}
+                      </span>
                     </span>
                     <span
                       style={{
@@ -297,7 +313,7 @@ export function MagazineToc({ locale }: Props) {
                 }}
               >
                 {d.available ? "→" : "·"}
-              </span>
+                 </span>
             </div>
           );
 

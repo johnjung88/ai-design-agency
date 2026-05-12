@@ -2,16 +2,13 @@
 
 import Link from "next/link";
 import { BrandLogo } from "@/components/ui/brand-logo";
-import { Handshake, Mail, ShoppingBag } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 
 const disciplines = [
-  { label: "웹 개발", href: "/services/website", available: true },
-  { label: "상세페이지", href: "/services/detail-page", available: true },
-  { label: "PPT 디자인", href: "/services/ppt-design", available: true },
-  { label: "자동화", href: null, available: false },
-  { label: "앱 개발", href: null, available: false },
+  { label: "개발", href: "/services/development", available: true },
+  { label: "디자인", href: "/services/design", available: true },
+  { label: "비즈", href: "/services/business", available: true },
   { label: "영상", href: null, available: false },
   { label: "마케팅", href: null, available: false },
 ];
@@ -20,28 +17,6 @@ export function MagazineFooter() {
   const locale = useLocale();
   const t = useTranslations("footer");
   const base = `/${locale}`;
-  const isKo = locale === "ko";
-
-  const channels = [
-    {
-      id: "soomgo",
-      label: "숨고",
-      href: `${base}/quote?source=soomgo`,
-      icon: <Handshake className="size-3.5" />,
-    },
-    {
-      id: "kmong",
-      label: "크몽",
-      href: `${base}/quote?source=kmong`,
-      icon: <ShoppingBag className="size-3.5" />,
-    },
-    {
-      id: "email",
-      label: isKo ? "이메일" : "Email",
-      href: "mailto:aiomake2023@gmail.com",
-      icon: <Mail className="size-3.5" />,
-    },
-  ];
 
   return (
     <footer
@@ -89,28 +64,6 @@ export function MagazineFooter() {
             >
               {t("tagline")}
             </p>
-            <div className="flex flex-wrap gap-2 mt-1 justify-center md:justify-start">
-              {channels.map((c) => (
-                <Link
-                  key={c.id}
-                  href={c.href}
-                  className="inline-flex items-center gap-2 px-4 py-2 transition-all hover:-translate-y-0.5"
-                  style={{
-                    background: "transparent",
-                    color: "var(--tone-magazine-ink)",
-                    border: "1px solid var(--tone-magazine-ink-2)",
-                    fontFamily: "var(--font-jetbrains)",
-                    fontSize: 11,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    borderRadius: 2,
-                  }}
-                >
-                  {c.icon}
-                  {c.label}
-                </Link>
-              ))}
-            </div>
           </div>
 
           {/* Link columns */}
@@ -204,8 +157,8 @@ export function MagazineFooter() {
               ))}
             </div>
 
-            {/* Contact */}
-            <div className="flex flex-col gap-3 items-center sm:items-start">
+            {/* Contact — 모바일 가운데 고정 */}
+            <div className="col-span-2 sm:col-span-1 flex flex-col gap-3 items-center sm:items-start text-center sm:text-left">
               <p
                 style={{
                   fontFamily: "var(--font-jetbrains)",

@@ -58,7 +58,7 @@ export function MagazineHeader() {
           <BrandLogo variant="header" />
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — 한글 가독성 우선 (Pretendard, 좁은 letter-spacing) */}
         <nav className="hidden items-center justify-center gap-10 lg:gap-14 md:flex">
           {navItems.map((item) => (
             <Link
@@ -66,10 +66,9 @@ export function MagazineHeader() {
               href={item.href}
               scroll={true}
               style={{
-                fontFamily: "var(--font-jetbrains)",
-                fontSize: "clamp(13px, 1.1vw, 14.5px)",
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
+                fontFamily: "var(--font-pretendard)",
+                fontSize: "clamp(14.5px, 1.2vw, 16px)",
+                letterSpacing: isKo ? "-0.005em" : "0.05em",
                 color: "var(--tone-magazine-ink-2)",
                 transition: "color 0.2s",
                 fontWeight: 500,
