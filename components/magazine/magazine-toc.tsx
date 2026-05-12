@@ -45,7 +45,7 @@ const disciplines: Discipline[] = [
   },
   {
     num: "03",
-    name: "비즈",
+    name: "비즈니스",
     nameEn: "business",
     tagline: "전략을 정리하는 분야",
     sub: "사업계획서 · PPT · 정부지원금",
@@ -341,5 +341,6 @@ export function MagazineToc({ locale }: Props) {
         })}
       </div>
     </section>
+ 
   );
 }

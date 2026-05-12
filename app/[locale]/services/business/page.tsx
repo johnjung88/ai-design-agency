@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isKo = locale === "ko";
   return {
-    title: isKo ? "비즈 서비스 — AIO" : "Business Services — AIO",
+    title: isKo ? "비즈니스 서비스 — AIO" : "Business Services — AIO",
     description: isKo ? "사업계획서·PPT·정부지원금 — 결정을 돕는 한 장." : "Business plans, presentations, gov-funding documents.",
     alternates: {
       canonical: `${SITE_URL}/${locale}/services/business`,
@@ -95,7 +95,7 @@ function SubServicesSection() {
     <section id="subs" className="max-w-[1400px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="Sub-services · 03" />
       <h2 className="font-normal mb-8 md:mb-12 max-w-[900px]" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", letterSpacing: "-0.012em", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
-        세 갈래의 <span style={{ color: "var(--tone-consult-navy)" }}>비즈 분야</span>
+        세 갈래의 <span style={{ color: "var(--tone-consult-navy)" }}>비즈니스 분야</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
         {subs.map((s) => <SubCard key={s.num} s={s} />)}
