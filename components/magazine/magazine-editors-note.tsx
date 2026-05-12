@@ -59,16 +59,16 @@ export function MagazineEditorsNote() {
   return (
     <section
       id="editors"
-      className="py-28 px-9 max-w-[1200px] mx-auto relative text-center"
-      style={{ padding: "clamp(64px,10vw,120px) clamp(20px,3vw,36px)" }}
+      className="max-w-[1200px] mx-auto relative text-center"
+      style={{ padding: "var(--space-section) var(--space-edge)" }}
     >
       {/* Eyebrow */}
-      <MagazineEyebrow className="mb-6">Editor&apos;s Note · 04 Pillars</MagazineEyebrow>
+      <MagazineEyebrow className="mb-4 md:mb-6">Editor&apos;s Note · 04 Pillars</MagazineEyebrow>
 
-      {/* H2 */}
+      {/* H2 — 토큰 */}
       <h2
-        className="font-normal mx-auto mb-7 max-w-[1100px]"
-        style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(36px,6vw,96px)", lineHeight: 1.0, letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
+        className="font-normal mx-auto mb-5 md:mb-7 max-w-[1100px]"
+        style={{ fontFamily: "var(--font-marcellus)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-display)", letterSpacing: "-0.014em", color: "var(--tone-magazine-ink)" }}
       >
         의뢰 전 가장
         <br />
@@ -78,8 +78,8 @@ export function MagazineEditorsNote() {
 
       {/* Lede */}
       <p
-        className="mx-auto mb-20"
-        style={{ fontFamily: "var(--font-pretendard)", fontSize: "clamp(14.5px, 1.4vw, 17px)", lineHeight: 1.8, color: "var(--tone-magazine-ink-2)", maxWidth: 600, fontWeight: 400 }}
+        className="mx-auto mb-12 md:mb-20"
+        style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: "var(--leading-body)", color: "var(--tone-magazine-ink-2)", maxWidth: "42ch", fontWeight: 400 }}
       >
         속도 · 결과물 · 완성도 · 유지보수
         <br />
@@ -138,7 +138,7 @@ export function MagazineEditorsNote() {
 
             <h3
               className="font-normal mb-3"
-              style={{ fontFamily: "var(--font-marcellus)", fontSize: "clamp(20px, 2.5vw, 26px)", lineHeight: 1.1, letterSpacing: "-0.01em", color: "var(--tone-magazine-ink)" }}
+              style={{ fontFamily: "var(--font-marcellus)", fontSize: "var(--text-h3)", lineHeight: "var(--leading-head)", letterSpacing: "-0.01em", color: "var(--tone-magazine-ink)" }}
             >
               {p.title}{" "}
               <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>

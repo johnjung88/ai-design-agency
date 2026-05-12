@@ -5,8 +5,7 @@ export function MagazineCover() {
     <section
       className="max-w-[1500px] mx-auto relative text-center"
       style={{
-        padding:
-          "clamp(56px,6vw,100px) clamp(24px,3vw,36px) clamp(72px,8vw,100px)",
+        padding: "var(--space-section) var(--space-edge)",
       }}
     >
       {/* Cover meta */}
@@ -116,14 +115,14 @@ export function MagazineCover() {
         />
       </div>
 
-      {/* Cover Title */}
+      {/* Cover Title — Display 토큰 */}
       <h1
-        className="font-normal mx-auto mb-9 max-w-[1300px]"
+        className="font-normal mx-auto mb-7 md:mb-9 max-w-[1300px]"
         style={{
           fontFamily: "var(--font-marcellus)",
-          fontSize: "clamp(42px, 11vw, 168px)",
-          lineHeight: 1.0,
-          letterSpacing: "-0.012em",
+          fontSize: "var(--text-display)",
+          lineHeight: "var(--leading-display)",
+          letterSpacing: "-0.014em",
           color: "var(--tone-magazine-ink)",
         }}
       >
@@ -144,14 +143,15 @@ export function MagazineCover() {
         </span>
       </h1>
 
-      {/* Lede — Pretendard for Korean body */}
+      {/* Lede — 토큰 + 카피 사전 통일 */}
       <p
-        className="mx-auto mb-14 font-normal max-w-[760px]"
+        className="mx-auto mb-10 md:mb-14 font-normal"
         style={{
           fontFamily: "var(--font-pretendard)",
-          fontSize: "clamp(15px, 1.4vw, 19px)",
-          lineHeight: 1.7,
+          fontSize: "var(--text-lead)",
+          lineHeight: 1.8,
           color: "var(--tone-magazine-ink-2)",
+          maxWidth: "48ch",
           fontWeight: 400,
         }}
       >
@@ -180,7 +180,7 @@ export function MagazineCover() {
           <span style={{ color: "var(--tone-magazine-red)", margin: "0 0.5em", fontWeight: 400 }}>·</span>
           5일 납품
           <span style={{ color: "var(--tone-magazine-red)", margin: "0 0.5em", fontWeight: 400 }}>·</span>
-          1개월 무상 A/S
+          1개월 유지보수
         </span>
       </p>
 
@@ -319,9 +319,9 @@ export function MagazineCover() {
           <p
             style={{
               fontFamily: "var(--font-pretendard)",
-              fontSize: "clamp(12px, 1.2vw, 14px)",
+              fontSize: "var(--text-small)",
               color: "var(--tone-magazine-ink-2)",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
               maxWidth: 280,
               fontWeight: 400,
             }}
@@ -415,9 +415,9 @@ export function MagazineCover() {
           <p
             style={{
               fontFamily: "var(--font-pretendard)",
-              fontSize: "clamp(12px, 1.2vw, 14px)",
+              fontSize: "var(--text-small)",
               color: "var(--tone-magazine-ink-2)",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
               maxWidth: 280,
               fontWeight: 400,
             }}

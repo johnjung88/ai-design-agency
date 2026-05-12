@@ -16,9 +16,9 @@ const CTA_BASE_STYLE: React.CSSProperties = {
 export function MagazineEditorial({ locale }: Props) {
   return (
     <section
-      className="py-36 px-9 max-w-[1500px] mx-auto text-center relative"
+      className="max-w-[1500px] mx-auto text-center relative"
       style={{
-        padding: "clamp(72px,10vw,140px) clamp(20px,3vw,36px)",
+        padding: "var(--space-section) var(--space-edge)",
         borderTop: "1px solid var(--tone-magazine-ink)",
       }}
     >
@@ -55,13 +55,13 @@ export function MagazineEditorial({ locale }: Props) {
         </svg>
       </div>
 
-      {/* Headline */}
+      {/* Headline — Display 토큰 */}
       <h2
-        className="font-normal mx-auto mb-12 max-w-[1200px]"
+        className="font-normal mx-auto mb-10 md:mb-12 max-w-[1200px]"
         style={{
           fontFamily: "var(--font-marcellus)",
-          fontSize: "clamp(38px,8vw,144px)",
-          lineHeight: 0.96,
+          fontSize: "var(--text-display)",
+          lineHeight: "var(--leading-display)",
           letterSpacing: "-0.018em",
           color: "var(--tone-magazine-ink)",
         }}
@@ -78,7 +78,7 @@ export function MagazineEditorial({ locale }: Props) {
       <div className="max-w-[720px] mx-auto mb-16">
         <p
           className="mb-[18px]"
-          style={{ fontFamily: "var(--font-pretendard)", fontSize: "clamp(14.5px, 1.4vw, 17px)", lineHeight: 1.8, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
+          style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
         >
           AIO는{" "}
           <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>각 분야 전문가</strong>가 직접 손을 대는 외주 스튜디오입니다
@@ -86,7 +86,7 @@ export function MagazineEditorial({ locale }: Props) {
           의뢰가 들어오면, 그 분야의 전문가가 처음부터 끝까지 책임집니다
         </p>
         <p
-          style={{ fontFamily: "var(--font-pretendard)", fontSize: "clamp(14.5px, 1.4vw, 17px)", lineHeight: 1.8, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
+          style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-magazine-ink-2)", fontWeight: 400 }}
         >
           매주 새 작품이 더해지고, 그게 다음 의뢰인의 결정을 돕습니다
           <br />

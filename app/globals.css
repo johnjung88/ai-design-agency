@@ -183,6 +183,101 @@
   --tone-consult-navy-soft: rgba(27, 59, 95, 0.10);
   --tone-consult-gold: #C9A961;
   --tone-consult-gold-soft: rgba(201, 169, 97, 0.18);
+
+  /* =============================================
+     디자인 시스템 토큰 (Phase 0) — 자세한 가이드는 design-system/MASTER.md
+     기본값 = mobile (375px). 768/1024/1440 미디어 쿼리에서 재정의.
+     ============================================= */
+
+  /* 타이포그래피 스케일 */
+  --text-display: 44px;
+  --text-h1: 32px;
+  --text-h2: 26px;
+  --text-h3: 20px;
+  --text-lead: 16px;
+  --text-body: 15px;
+  --text-small: 13px;
+  --text-eyebrow: 11px;
+
+  /* 라인 높이 */
+  --leading-display: 1.0;
+  --leading-head: 1.1;
+  --leading-body: 1.75;
+  --leading-caption: 1.5;
+
+  /* 간격 스케일 */
+  --space-section: 64px;
+  --space-block: 32px;
+  --space-element: 16px;
+  --space-inline: 8px;
+  --space-edge: 20px;
+
+  /* 컨테이너 폭 */
+  --container-narrow: 720px;
+  --container-default: 1200px;
+  --container-wide: 1440px;
+
+  /* 모션 토큰 */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+}
+
+/* === tablet (≥768px) === */
+@media (min-width: 768px) {
+  :root {
+    --text-display: 72px;
+    --text-h1: 48px;
+    --text-h2: 36px;
+    --text-h3: 24px;
+    --text-lead: 17px;
+    --text-body: 15px;
+    --text-small: 13px;
+    --text-eyebrow: 11px;
+
+    --space-section: 96px;
+    --space-block: 48px;
+    --space-element: 20px;
+    --space-inline: 10px;
+    --space-edge: 28px;
+  }
+}
+
+/* === desktop (≥1024px) === */
+@media (min-width: 1024px) {
+  :root {
+    --text-display: 96px;
+    --text-h1: 64px;
+    --text-h2: 44px;
+    --text-h3: 28px;
+    --text-lead: 18px;
+    --text-body: 16px;
+    --text-small: 14px;
+    --text-eyebrow: 12px;
+
+    --space-section: 120px;
+    --space-block: 56px;
+    --space-element: 24px;
+    --space-inline: 12px;
+    --space-edge: 40px;
+  }
+}
+
+/* === wide (≥1440px) === */
+@media (min-width: 1440px) {
+  :root {
+    --text-display: 128px;
+    --text-h1: 80px;
+    --text-h2: 52px;
+    --text-h3: 32px;
+    --text-lead: 19px;
+    --text-body: 16px;
+
+    --space-section: 140px;
+    --space-block: 64px;
+    --space-edge: 48px;
+  }
 }
 
 /* =============================================
@@ -347,6 +442,21 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "kern" 1, "liga" 1;
+    /* 한글 줄바뀜 — 단어 내부 분리 금지, 영문은 폴백 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* 모션 민감 사용자 — 애니메이션 약화 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   a,

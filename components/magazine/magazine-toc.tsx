@@ -5,92 +5,115 @@ interface Props {
   locale: string;
 }
 
-const disciplines = [
+type Discipline = {
+  num: string;
+  name: string;
+  nameEn: string;
+  tagline: string;
+  sub: string;
+  price?: string;
+  days?: string;
+  href?: (locale: string) => string;
+  available: boolean;
+};
+
+const disciplines: Discipline[] = [
   {
     num: "01",
-    name: "웹 개발",
-    nameEn: "web development",
-    tagline: "5일이면 운영 가능한 사이트로",
+    name: "개발",
+    nameEn: "development",
+    tagline: "만드는 분야",
+    sub: "웹 · 앱 · 자동화 · 프로그램",
     price: "9.9만~",
-    days: "1-5 DAYS",
-    href: (locale: string) => `/${locale}/services/website`,
+    days: "1-7 DAYS",
+    href: (locale: string) => `/${locale}/services/development`,
     available: true,
   },
   {
     num: "02",
-    name: "상세페이지",
-    nameEn: "detail page",
-    tagline: "스크롤 한 번에, 결제 버튼까지",
+    name: "디자인",
+    nameEn: "design",
+    tagline: "보이는 분야",
+    sub: "브랜드브리프 · 상세페이지",
     price: "4.9만~",
     days: "1-3 DAYS",
-    href: (locale: string) => `/${locale}/services/detail-page`,
+    href: (locale: string) => `/${locale}/services/design`,
     available: true,
   },
   {
     num: "03",
-    name: "PPT 디자인",
-    nameEn: "presentation",
-    tagline: "한 장이 결정짓는 발표",
+    name: "비즈",
+    nameEn: "business",
+    tagline: "쓰는 분야",
+    sub: "사업계획서 · PPT · 정부지원금",
     price: "4.0만~",
-    days: "1-3 DAYS",
-    href: (locale: string) => `/${locale}/services/ppt-design`,
+    days: "1-5 DAYS",
+    href: (locale: string) => `/${locale}/services/business`,
     available: true,
   },
-  { num: "04", name: "자동화", nameEn: "automation", tagline: "반복 업무는 코드에게 맡기는 일", available: false },
-  { num: "05", name: "앱 개발", nameEn: "app development", tagline: "손 안에 들어가는 서비스로", available: false },
-  { num: "06", name: "영상", nameEn: "video", tagline: "스크롤을 멈추는 한 컷", available: false },
-  { num: "07", name: "마케팅", nameEn: "marketing", tagline: "고객을 부르는 한 줄", available: false },
+  {
+    num: "04",
+    name: "영상",
+    nameEn: "video",
+    tagline: "찍는 분야",
+    sub: "촬영 · 편집 · 모션",
+    available: false,
+  },
+  {
+    num: "05",
+    name: "마케팅",
+    nameEn: "marketing",
+    tagline: "퍼뜨리는 분야",
+    sub: "퍼포먼스 · 콘텐츠 · 자동화",
+    available: false,
+  },
 ];
 
 export function MagazineToc({ locale }: Props) {
   return (
     <section
       id="toc"
-      className="py-20 md:py-28 max-w-[1280px] mx-auto relative text-center scroll-mt-24"
+      className="max-w-[1280px] mx-auto relative text-center scroll-mt-24"
       style={{
-        padding:
-          "clamp(80px,10vw,120px) clamp(16px,3vw,40px)",
+        padding: "var(--space-section) var(--space-edge)",
       }}
     >
       {/* Eyebrow */}
-      <MagazineEyebrow className="mb-6">Index · 07 Disciplines</MagazineEyebrow>
+      <MagazineEyebrow className="mb-4 md:mb-6">Index · 05 Categories</MagazineEyebrow>
 
-      {/* H2 */}
+      {/* H2 — 토큰 기반 */}
       <h2
-        className="font-normal mx-auto mb-7 max-w-[1100px]"
+        className="font-normal mx-auto mb-5 md:mb-7 max-w-[1100px]"
         style={{
           fontFamily: "var(--font-marcellus)",
-          fontSize: "clamp(32px,6vw,96px)",
-          lineHeight: 1.0,
+          fontSize: "var(--text-h1)",
+          lineHeight: "var(--leading-display)",
           letterSpacing: "-0.014em",
           color: "var(--tone-magazine-ink)",
         }}
       >
-        일곱 분야의
+        다섯 분야의
         <br />
         <em style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic", fontWeight: 500 }}>
           전문가들
         </em>
       </h2>
 
-      {/* Lede — Pretendard for Korean body */}
+      {/* Lede — H2 보완 한 줄 */}
       <p
-        className="mx-auto mb-12 md:mb-16"
+        className="mx-auto mb-10 md:mb-16"
         style={{
           fontFamily: "var(--font-pretendard)",
-          fontSize: "clamp(14px, 1.3vw, 17px)",
-          lineHeight: 1.75,
+          fontSize: "var(--text-lead)",
+          lineHeight: 1.8,
           color: "var(--tone-magazine-ink-2)",
-          maxWidth: 600,
+          maxWidth: "42ch",
           fontWeight: 400,
         }}
       >
-        지금 의뢰 가능한{" "}
-        <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>3분야</strong>
-        와 곧 합류할{" "}
-        <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>4분야</strong>
+        각 <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>분야 페이지</strong>에서
         <br />
-        각 분야 페이지에서 그 분야 전문가가 직접 인사드립니다
+        그 <strong style={{ color: "var(--tone-magazine-ink)", fontWeight: 600 }}>분야 전문가</strong>가 직접 인사드립니다
       </p>
 
       {/* Rows */}
@@ -148,8 +171,8 @@ export function MagazineToc({ locale }: Props) {
                   className="inline-flex items-baseline gap-2 md:gap-4 flex-wrap justify-center md:justify-start"
                   style={{
                     fontFamily: "var(--font-marcellus)",
-                    fontSize: "clamp(26px, 4vw, 46px)",
-                    lineHeight: 1,
+                    fontSize: "var(--text-h2)",
+                    lineHeight: "var(--leading-display)",
                     letterSpacing: "-0.012em",
                     color: inkActive,
                   }}
@@ -183,12 +206,12 @@ export function MagazineToc({ locale }: Props) {
                 </div>
               </div>
 
-              {/* Tagline — full width on mobile (col-span-3), center column on PC */}
+              {/* Tagline + sub-services — full width on mobile (col-span-3), center column on PC */}
               <div className="col-span-2 md:col-span-1 text-center px-1 md:px-2">
                 <p
                   style={{
                     fontFamily: "var(--font-cormorant)",
-                    fontSize: "clamp(14px, 1.3vw, 17px)",
+                    fontSize: "var(--text-lead)",
                     lineHeight: 1.55,
                     color: inkSubActive,
                     fontStyle: "italic",
@@ -196,6 +219,18 @@ export function MagazineToc({ locale }: Props) {
                   }}
                 >
                   {d.tagline}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-pretendard)",
+                    fontSize: "var(--text-small)",
+                    lineHeight: 1.55,
+                    color: d.available ? "var(--tone-magazine-ink-3)" : "var(--tone-magazine-ink-faint)",
+                    margin: "4px 0 0",
+                    fontWeight: 400,
+                  }}
+                >
+                  {d.sub}
                 </p>
               </div>
 
