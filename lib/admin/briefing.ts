@@ -3,11 +3,20 @@ import { createSupabaseAdminClient, hasSupabaseAdminConfig } from "@/lib/supabas
 import {
   buildDailyBrief,
   buildWeeklySummary,
+  escapeMd,
+  formatDueLabel,
+  formatWon,
   type DailyBriefingPayload,
   type DailyTask,
   type WeeklySummaryPayload,
   toKstDate,
 } from "@/lib/admin/telegram-templates";
+import {
+  kstToday,
+  listTodayCompleted,
+  listTodayTasks,
+  listWeekTasks,
+} from "@/lib/admin/tasks";
 
 // =====================================================
 // 시간대 헬퍼 — KST 기준 day boundary 계산
@@ -263,6 +272,99 @@ function isP0Task(p: ProjectRow, now: Date): boolean {
 
 function sum<T>(arr: T[], pick: (t: T) => number): number {
   return arr.reduce((acc, x) => acc + (pick(x) || 0), 0);
+}
+
+// =====================================================
+// 빌더 — 저녁 점검 데이터 조립
+// =====================================================
+export async function buildEveningCheckMessage(now: Date = new Date()): Promise<string> {
+  if (!hasSupabaseAdminConfig()) {
+    return buildFallbackEvening(now, "Supabase 설정 미완료");
+  }
+
+  try {
+    const today = startOfKstDay(now);
+    const tomorrow = addDaysUtc(today, 1);
+    const monthStart = startOfKstMonth(now);
+
+    const [todayTasks, weekTasks, completedToday, activeProjects, invoicesMonth, paidToday, expensesToday, expensesMonth] =
+      await Promise.all([
+        listTodayTasks(now),
+        listWeekTasks(now),
+        listTodayCompleted(now),
+        fetchActiveProjects(),
+        fetchInvoices(monthStart, tomorrow),
+        fetchInvoicesPaidBetween(today, tomorrow),
+        fetchExpenses(today, today),
+        fetchExpenses(monthStart, today),
+      ]);
+
+    const monthRevenue = sum(invoicesMonth, (r) => r.net_amount);
+    const monthPaid = sum(invoicesMonth, (r) => r.paid_amount ?? 0);
+    const monthExpense = sum(expensesMonth, (r) => r.amount);
+    const paidTodayAmount = sum(paidToday, (r) => r.paid_amount ?? r.net_amount);
+    const expenseTodayAmount = sum(expensesToday, (r) => r.amount);
+    const pendingPayment = sum(
+      invoicesMonth.filter((r) => (r.payment_status ?? "unpaid") !== "paid"),
+      (r) => r.outstanding_amount ?? Math.max(r.net_amount - (r.paid_amount ?? 0), 0),
+    );
+
+    const overdueProjects = activeProjects.filter((p) => p.due_date && isP0Task(p, addDaysUtc(now, 2)));
+    const p0Tomorrow = activeProjects.filter((p) => isP0Task(p, addDaysUtc(now, 1))).slice(0, 5);
+    const remainingToday = todayTasks.filter((t) => t.status !== "completed");
+    const weekP0 = weekTasks.filter((t) => t.priority === "P0");
+
+    const lines: string[] = [];
+    lines.push(`🌙 *${escapeMd(kstToday(now))} 저녁 점검*`);
+    lines.push("");
+    lines.push("📋 *오늘 할 일*");
+    lines.push(`- 완료: *${completedToday.length}건*`);
+    lines.push(`- 미완: *${remainingToday.length}건*${remainingToday.some((t) => t.priority === "P0") ? " 🚨 P0 포함" : ""}`);
+    if (remainingToday.length > 0) {
+      for (const task of remainingToday.slice(0, 5)) {
+        lines.push(`  · ${task.priority} ${escapeMd(task.title)}${task.due_date ? ` (${formatDueLabel(task.due_date, now)})` : ""}`);
+      }
+      if (remainingToday.length > 5) lines.push(`  · 외 ${remainingToday.length - 5}건`);
+    }
+    lines.push("");
+    lines.push("🚀 *외주 진행*");
+    lines.push(`- 진행/검수/블로킹: *${activeProjects.length}건*`);
+    lines.push(`- D-day 위험: *${p0Tomorrow.length}건* / 지연 후보: *${overdueProjects.length}건*`);
+    for (const project of p0Tomorrow.slice(0, 3)) {
+      lines.push(`  · ${escapeMd(project.product_name ?? "외주 작업")}${project.due_date ? ` (${formatDueLabel(project.due_date, now)})` : ""}`);
+    }
+    lines.push("");
+    lines.push("💰 *입금/지출*");
+    lines.push(`- 오늘 입금: ${formatWon(paidTodayAmount, { bold: true })} (${paidToday.length}건)`);
+    lines.push(`- 오늘 지출: ${formatWon(expenseTodayAmount, { bold: true })} (${expensesToday.length}건)`);
+    lines.push(`- 이번 달 매출/입금/지출: ${formatWon(monthRevenue)} / ${formatWon(monthPaid)} / ${formatWon(monthExpense)}`);
+    lines.push(`- 미수금: ${formatWon(pendingPayment, { bold: true })}`);
+    lines.push("");
+    lines.push("🧭 *내일/이번 주 우선순위*");
+    if (weekP0.length === 0 && p0Tomorrow.length === 0) {
+      lines.push("- 등록된 P0 없음 — 신규 영업/포트폴리오 생산 루틴 유지");
+    } else {
+      const nextItems = [...p0Tomorrow.map((p) => p.product_name ?? "외주 작업"), ...weekP0.map((t) => t.title)];
+      for (const item of nextItems.slice(0, 5)) lines.push(`- ${escapeMd(item)}`);
+    }
+    lines.push("");
+    lines.push("📎 업무관리 xlsx 스냅샷을 이어서 첨부합니다.");
+
+    return lines.join("\n");
+  } catch (error) {
+    console.error("[briefing] evening error:", error instanceof Error ? error.message : error);
+    return buildFallbackEvening(now, "데이터 조회 실패");
+  }
+}
+
+function buildFallbackEvening(now: Date, reason: string): string {
+  return [
+    `🌙 *${escapeMd(kstToday(now))} 저녁 점검*`,
+    "",
+    `_⚠️ ${escapeMd(reason)} — Supabase 데이터 입력 후 정상화_`,
+    "",
+    "📎 업무관리 xlsx 첨부는 별도 단계에서 시도합니다.",
+  ].join("\n");
 }
 
 // =====================================================
