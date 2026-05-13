@@ -47,7 +47,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ loca
         </Link>
       </section>
 
-      <section className="max-w-[1100px] mx-auto" style={{ padding: "0 var(--space-edge) var(--space-section)" }}>
+      <section className="max-w-[1100px] mx-auto text-center" style={{ padding: "0 var(--space-edge) var(--space-section)" }}>
         <div className="mb-10 md:mb-14 inline-flex items-center gap-3" style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 11, color: "var(--tone-consult-ink-3)", letterSpacing: "0.22em", textTransform: "uppercase" }}>
           <span style={{ width: 24, height: 1, background: "var(--tone-consult-gold)", display: "inline-block" }} />
           Upcoming · 03 Sub-services

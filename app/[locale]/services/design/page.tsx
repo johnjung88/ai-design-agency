@@ -62,23 +62,23 @@ export default async function DesignPage({ params }: { params: Promise<{ locale:
 
 function HeroSection({ locale }: { locale: string }) {
   return (
-    <section className="max-w-[1400px] mx-auto relative" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1400px] mx-auto relative text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <div className="mb-8 md:mb-10 inline-flex items-center gap-3 flex-wrap" style={{ fontFamily: "var(--font-jakarta)", fontSize: 11, color: "var(--tone-life-ink-3)", letterSpacing: "0.28em", textTransform: "uppercase" }}>
         <span style={{ width: 24, height: 1, background: "var(--tone-life-rose)", display: "inline-block" }} />
         Design · 02 Sub-services
       </div>
-      <h1 className="font-normal mb-7 md:mb-9 max-w-[1100px]" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-display)", lineHeight: "var(--leading-display)", letterSpacing: "-0.014em", color: "var(--tone-life-ink)", fontWeight: 400 }}>
+      <h1 className="font-normal mb-7 md:mb-9 max-w-[1100px] mx-auto" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-display)", lineHeight: "var(--leading-display)", letterSpacing: "-0.014em", color: "var(--tone-life-ink)", fontWeight: 400 }}>
         감각을{" "}
         <em style={{ fontStyle: "italic", color: "var(--tone-life-rose)", fontWeight: 500 }}>입히는</em>
         <br />
         분야
       </h1>
-      <p className="mb-10 md:mb-14 max-w-[60ch]" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-life-ink-2)" }}>
+      <p className="mb-10 md:mb-14 max-w-[60ch] mx-auto" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-life-ink-2)" }}>
         로고에서 상세페이지까지, 보이는 것의 첫인상을 만듭니다
         <br />
         <strong style={{ color: "var(--tone-life-ink)", fontWeight: 600 }}>예쁜 것을 넘어, 결정에 영향을 주는 흐름까지</strong>
       </p>
-      <div className="flex flex-col md:inline-flex md:flex-row md:flex-wrap gap-3 max-w-[280px] md:max-w-none">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 max-w-[280px] md:max-w-none items-center mx-auto md:justify-center">
         <Link href={`/${locale}/quote`} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 md:py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--tone-life-rose)", color: "var(--tone-life-cream)", fontFamily: "var(--font-pretendard)", fontSize: 14, fontWeight: 600, borderRadius: 999 }}>
           견적 문의 →
         </Link>
@@ -92,9 +92,9 @@ function HeroSection({ locale }: { locale: string }) {
 
 function SubServicesSection() {
   return (
-    <section id="subs" className="max-w-[1400px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section id="subs" className="max-w-[1400px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="Sub-services · 02" />
-      <h2 className="font-normal mb-8 md:mb-12 max-w-[900px]" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", letterSpacing: "-0.012em", color: "var(--tone-life-ink)", fontWeight: 400 }}>
+      <h2 className="font-normal mb-8 md:mb-12 max-w-[900px] mx-auto" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", letterSpacing: "-0.012em", color: "var(--tone-life-ink)", fontWeight: 400 }}>
         두 갈래의{" "}
         <em style={{ fontStyle: "italic", color: "var(--tone-life-rose)", fontWeight: 500 }}>감각</em>
       </h2>
@@ -107,7 +107,7 @@ function SubServicesSection() {
 
 function SubCard({ s }: { s: SubService }) {
   return (
-    <div className="group transition-all hover:-translate-y-1" style={{ padding: "clamp(28px, 3.2vw, 44px)", background: "var(--tone-life-cream-2)", border: "1px solid var(--tone-life-line)", borderRadius: 16 }}>
+    <div className="group transition-all hover:-translate-y-1 text-center" style={{ padding: "clamp(28px, 3.2vw, 44px)", background: "var(--tone-life-cream-2)", border: "1px solid var(--tone-life-line)", borderRadius: 16 }}>
       <div className="flex items-start justify-between mb-6">
         <span style={{ fontFamily: "var(--font-jakarta)", fontSize: 12, color: "var(--tone-life-ink-3)", letterSpacing: "0.18em", textTransform: "uppercase" }}>{s.num}</span>
         <span style={{ padding: "3px 10px", background: "var(--tone-life-rose-soft)", color: "var(--tone-life-rose)", borderRadius: 999, fontFamily: "var(--font-jakarta)", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase" }}>Available</span>
@@ -133,9 +133,9 @@ function SubCard({ s }: { s: SubService }) {
 
 function ProcessSection() {
   return (
-    <section className="max-w-[1400px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1400px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="Process · 05 steps" />
-      <h2 className="font-normal mb-10 md:mb-14" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-life-ink)", fontWeight: 400 }}>
+      <h2 className="font-normal mb-10 md:mb-14 mx-auto" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-life-ink)", fontWeight: 400 }}>
         의뢰부터 운영까지{" "}
         <em style={{ fontStyle: "italic", color: "var(--tone-life-rose)", fontWeight: 500 }}>5단계</em>
       </h2>
@@ -154,9 +154,9 @@ function ProcessSection() {
 
 function FaqSection() {
   return (
-    <section className="max-w-[1100px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1100px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="FAQ" />
-      <h2 className="font-normal mb-10 md:mb-14" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-life-ink)", fontWeight: 400 }}>
+      <h2 className="font-normal mb-10 md:mb-14 mx-auto" style={{ fontFamily: "var(--font-fraunces)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-life-ink)", fontWeight: 400 }}>
         자주 묻는 질문
       </h2>
       <div className="space-y-2">

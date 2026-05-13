@@ -48,7 +48,7 @@ export default async function VideoPage({ params }: { params: Promise<{ locale: 
         </Link>
       </section>
 
-      <section className="max-w-[1100px] mx-auto" style={{ padding: "0 var(--space-edge) var(--space-section)" }}>
+      <section className="max-w-[1100px] mx-auto text-center" style={{ padding: "0 var(--space-edge) var(--space-section)" }}>
         <div className="mb-10 md:mb-14 inline-flex items-center gap-3" style={{ fontFamily: "var(--font-jakarta)", fontSize: 11, color: "var(--tone-life-ink-3)", letterSpacing: "0.22em", textTransform: "uppercase" }}>
           <span style={{ width: 24, height: 1, background: "var(--tone-life-rose)", display: "inline-block" }} />
           Upcoming · 03 Sub-services

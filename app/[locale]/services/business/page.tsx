@@ -63,22 +63,22 @@ export default async function BusinessPage({ params }: { params: Promise<{ local
 
 function HeroSection({ locale }: { locale: string }) {
   return (
-    <section className="max-w-[1400px] mx-auto relative" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1400px] mx-auto relative text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <div className="mb-8 md:mb-10 inline-flex items-center gap-3 flex-wrap" style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 11, color: "var(--tone-consult-ink-3)", letterSpacing: "0.28em", textTransform: "uppercase" }}>
         <span style={{ width: 24, height: 1, background: "var(--tone-consult-gold)", display: "inline-block" }} />
         Business · 03 Sub-services
       </div>
-      <h1 className="font-normal mb-7 md:mb-9 max-w-[1100px]" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-display)", lineHeight: "var(--leading-display)", letterSpacing: "-0.018em", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
+      <h1 className="font-normal mb-7 md:mb-9 max-w-[1100px] mx-auto" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-display)", lineHeight: "var(--leading-display)", letterSpacing: "-0.018em", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
         결정을 돕는
         <br />
         <span style={{ color: "var(--tone-consult-navy)", fontWeight: 700 }}>한 장</span>
       </h1>
-      <p className="mb-10 md:mb-14 max-w-[60ch]" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-consult-ink-2)" }}>
+      <p className="mb-10 md:mb-14 max-w-[60ch] mx-auto" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-consult-ink-2)" }}>
         사업계획서·PPT·정부지원금 — 글과 숫자, 도식으로 결정을 만듭니다
         <br />
         <strong style={{ color: "var(--tone-consult-ink)", fontWeight: 600 }}>심사위원이 멈추는 한 장, 임원진이 끄덕이는 한 장</strong>
       </p>
-      <div className="flex flex-col md:inline-flex md:flex-row md:flex-wrap gap-3 max-w-[280px] md:max-w-none">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 max-w-[280px] md:max-w-none items-center mx-auto md:justify-center">
         <Link href={`/${locale}/quote`} className="inline-flex items-center justify-center gap-2 px-7 py-3.5 md:py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--tone-consult-navy)", color: "var(--tone-consult-paper)", fontFamily: "var(--font-pretendard)", fontSize: 14, fontWeight: 600, borderRadius: 2 }}>
           견적 문의 →
         </Link>
@@ -92,9 +92,9 @@ function HeroSection({ locale }: { locale: string }) {
 
 function SubServicesSection() {
   return (
-    <section id="subs" className="max-w-[1400px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section id="subs" className="max-w-[1400px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="Sub-services · 03" />
-      <h2 className="font-normal mb-8 md:mb-12 max-w-[900px]" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", letterSpacing: "-0.012em", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
+      <h2 className="font-normal mb-8 md:mb-12 max-w-[900px] mx-auto" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", letterSpacing: "-0.012em", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
         세 갈래의 <span style={{ color: "var(--tone-consult-navy)" }}>비즈니스 분야</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
@@ -106,7 +106,7 @@ function SubServicesSection() {
 
 function SubCard({ s }: { s: SubService }) {
   return (
-    <div className="group transition-all hover:-translate-y-1" style={{ padding: "clamp(24px, 2.8vw, 36px)", background: "var(--tone-consult-paper-2)", border: "1px solid var(--tone-consult-line)", borderRadius: 2 }}>
+    <div className="group transition-all hover:-translate-y-1 text-center" style={{ padding: "clamp(24px, 2.8vw, 36px)", background: "var(--tone-consult-paper-2)", border: "1px solid var(--tone-consult-line)", borderRadius: 2 }}>
       <div className="flex items-start justify-between mb-6">
         <span style={{ fontFamily: "var(--font-ibm-plex-mono)", fontSize: 12, color: "var(--tone-consult-ink-3)", letterSpacing: "0.18em" }}>{s.num}</span>
         <span style={{ padding: "3px 10px", background: "var(--tone-consult-gold-soft)", color: "var(--tone-consult-navy)", borderRadius: 2, fontFamily: "var(--font-ibm-plex-mono)", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase" }}>Available</span>
@@ -132,9 +132,9 @@ function SubCard({ s }: { s: SubService }) {
 
 function ProcessSection() {
   return (
-    <section className="max-w-[1400px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1400px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="Process · 05 steps" />
-      <h2 className="font-normal mb-10 md:mb-14" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
+      <h2 className="font-normal mb-10 md:mb-14 mx-auto" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
         의뢰부터 발표까지 <span style={{ color: "var(--tone-consult-navy)" }}>5단계</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4">
@@ -152,9 +152,9 @@ function ProcessSection() {
 
 function FaqSection() {
   return (
-    <section className="max-w-[1100px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1100px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="FAQ" />
-      <h2 className="font-normal mb-10 md:mb-14" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
+      <h2 className="font-normal mb-10 md:mb-14 mx-auto" style={{ fontFamily: "var(--font-inter)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-consult-ink)", fontWeight: 600 }}>
         자주 묻는 질문
       </h2>
       <div className="space-y-2">

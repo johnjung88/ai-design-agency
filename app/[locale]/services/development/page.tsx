@@ -73,7 +73,7 @@ export default async function DevelopmentPage({ params }: { params: Promise<{ lo
 
 function HeroSection({ locale }: { locale: string }) {
   return (
-    <section className="max-w-[1400px] mx-auto relative" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1400px] mx-auto relative text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <div className="mb-8 md:mb-10 inline-flex items-center gap-2 flex-wrap" style={{ fontFamily: "var(--font-jetbrains)", fontSize: 12, color: "var(--tone-ide-fg-3)", letterSpacing: "0.06em" }}>
         <span style={{ color: "var(--tone-ide-mint)" }}>~/services</span>
         <span style={{ color: "var(--tone-ide-fg-faint)" }}>/</span>
@@ -83,18 +83,18 @@ function HeroSection({ locale }: { locale: string }) {
           LIVE · 04 SUBS
         </span>
       </div>
-      <h1 className="font-normal mb-7 md:mb-9 max-w-[1100px]" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-display)", lineHeight: "var(--leading-display)", letterSpacing: "-0.014em", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
+      <h1 className="font-normal mb-7 md:mb-9 max-w-[1100px] mx-auto" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-display)", lineHeight: "var(--leading-display)", letterSpacing: "-0.014em", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
         <span style={{ color: "var(--tone-ide-fg-3)" }}>const </span>
         <span style={{ color: "var(--tone-ide-syntax-blue)" }}>development</span>
         <span style={{ color: "var(--tone-ide-fg-3)" }}> = </span>
         <span style={{ color: "var(--tone-ide-syntax-string)" }}>&quot;코드로 만든다&quot;</span>
       </h1>
-      <p className="mb-10 md:mb-14 max-w-[60ch]" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-ide-fg-2)" }}>
+      <p className="mb-10 md:mb-14 max-w-[60ch] mx-auto" style={{ fontFamily: "var(--font-pretendard)", fontSize: "var(--text-lead)", lineHeight: 1.8, color: "var(--tone-ide-fg-2)" }}>
         웹·앱·자동화·프로그램 — 네 갈래로 나뉘지만 결국 한 사람의 손에서 끝납니다
         <br />
         <strong style={{ color: "var(--tone-ide-fg)", fontWeight: 600 }}>매일 진행 상황을 공유하고, 1개월 무상 유지보수까지</strong>
       </p>
-      <div className="flex flex-col md:inline-flex md:flex-row md:flex-wrap gap-3 max-w-[280px] md:max-w-none">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 max-w-[280px] md:max-w-none items-center mx-auto md:justify-center">
         <Link href={`/${locale}/quote`} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 md:py-3 transition-all hover:-translate-y-0.5" style={{ background: "var(--tone-ide-mint)", color: "var(--tone-ide-bg)", fontFamily: "var(--font-pretendard)", fontSize: 14, fontWeight: 600, borderRadius: 2 }}>
           견적 문의 →
         </Link>
@@ -108,9 +108,9 @@ function HeroSection({ locale }: { locale: string }) {
 
 function SubServicesSection() {
   return (
-    <section id="subs" className="max-w-[1400px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section id="subs" className="max-w-[1400px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="// 04 sub-services" />
-      <h2 className="font-normal mb-8 md:mb-12 max-w-[900px]" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", letterSpacing: "-0.012em", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
+      <h2 className="font-normal mb-8 md:mb-12 max-w-[900px] mx-auto" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", letterSpacing: "-0.012em", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
         네 갈래의 <span style={{ color: "var(--tone-ide-mint)" }}>전문 분야</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
@@ -122,12 +122,12 @@ function SubServicesSection() {
 
 function SubCard({ s }: { s: SubService }) {
   return (
-    <div className="group transition-all hover:-translate-y-1" style={{ padding: "clamp(24px, 3vw, 40px)", background: "var(--tone-ide-bg-2)", border: "1px solid var(--tone-ide-line)", borderRadius: 4 }}>
+    <div className="group transition-all hover:-translate-y-1 text-center" style={{ padding: "clamp(24px, 3vw, 40px)", background: "var(--tone-ide-bg-2)", border: "1px solid var(--tone-ide-line)", borderRadius: 4 }}>
       <div className="flex items-start justify-between mb-6">
         <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: 12, color: "var(--tone-ide-fg-3)", letterSpacing: "0.06em" }}>{s.num}</span>
         <span style={{ padding: "2px 8px", background: "var(--tone-ide-mint-soft)", color: "var(--tone-ide-mint)", borderRadius: 2, fontFamily: "var(--font-jetbrains)", fontSize: 10, letterSpacing: "0.18em" }}>AVAILABLE</span>
       </div>
-      <div className="mb-3 inline-flex items-baseline gap-3" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h2)", lineHeight: 1, color: "var(--tone-ide-fg)", fontWeight: 500, letterSpacing: "-0.012em" }}>
+      <div className="mb-3 inline-flex items-baseline gap-3 flex-wrap justify-center" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h2)", lineHeight: 1, color: "var(--tone-ide-fg)", fontWeight: 500, letterSpacing: "-0.012em" }}>
         {s.name}
         <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.5em", color: "var(--tone-ide-fg-3)", fontStyle: "italic", fontWeight: 400 }}>{s.nameEn}</span>
       </div>
@@ -148,9 +148,9 @@ function SubCard({ s }: { s: SubService }) {
 
 function ProcessSection() {
   return (
-    <section className="max-w-[1400px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1400px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="// 05 steps" />
-      <h2 className="font-normal mb-10 md:mb-14" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
+      <h2 className="font-normal mb-10 md:mb-14 mx-auto" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
         의뢰부터 운영까지 <span style={{ color: "var(--tone-ide-mint)" }}>5단계</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
@@ -168,9 +168,9 @@ function ProcessSection() {
 
 function FaqSection() {
   return (
-    <section className="max-w-[1100px] mx-auto" style={{ padding: "var(--space-section) var(--space-edge)" }}>
+    <section className="max-w-[1100px] mx-auto text-center" style={{ padding: "var(--space-section) var(--space-edge)" }}>
       <SectionEyebrow label="// FAQ" />
-      <h2 className="font-normal mb-10 md:mb-14" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
+      <h2 className="font-normal mb-10 md:mb-14 mx-auto" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "var(--text-h1)", lineHeight: "var(--leading-head)", color: "var(--tone-ide-fg)", fontWeight: 500 }}>
         자주 묻는 질문
       </h2>
       <div className="space-y-2">
