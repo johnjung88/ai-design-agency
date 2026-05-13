@@ -76,9 +76,11 @@ export async function sendTelegramDocument(
   const form = new FormData();
   form.append("chat_id", String(chatId));
 
-  // Node 20+ globalThis.Blob 사용. Buffer → Uint8Array 변환으로 BlobPart 호환.
-  const bytes = file instanceof Buffer ? new Uint8Array(file) : file;
-  const blob = new Blob([bytes], { type: contentType });
+  // Node 20+ globalThis.Blob 사용. BlobPart 타입은 ArrayBuffer를 요구하므로
+  // Buffer/Uint8Array의 backing buffer가 SharedArrayBuffer로 추론되는 문제를 피한다.
+  const arrayBuffer = new ArrayBuffer(file.byteLength);
+  new Uint8Array(arrayBuffer).set(file instanceof Buffer ? new Uint8Array(file) : file);
+  const blob = new Blob([arrayBuffer], { type: contentType });
   form.append("document", blob, filename);
 
   if (options.caption) {
