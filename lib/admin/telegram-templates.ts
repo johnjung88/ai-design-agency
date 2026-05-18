@@ -98,29 +98,14 @@ export function buildEventNotification(payload: EventNotification): string {
 export type DailyTask = {
   priority: "P0" | "P1";
   text: string;             // "클린앵커 사이트 마감"
-  amount?: number;          // 50000 (있으면 ₩50,000 형태로)
   due?: Date | string;      // 마감일
 };
 
 export type DailyBriefingPayload = {
   today: Date;
   tasks: DailyTask[];
-  yesterday: {
-    revenueIncrease: number;
-    revenueNote?: string;       // "빌더스+세종시 입금"
-    expenseIncrease: number;
-    expenseNote?: string;       // "Claude Max"
-    newInquiries: number;
-  };
-  monthSummary: {
-    revenueConfirmed: number;
-    paidIn: number;
-    expenses: number;
-    profit: number;
-  };
   pipeline: {
     inProgress: number;
-    pendingPaymentAmount: number;
   };
 };
 
@@ -157,43 +142,18 @@ export function buildDailyBrief(p: DailyBriefingPayload): string {
 
   out.push("");
   out.push("━━━━━━━━━━━━━━━━━━━━━");
-  out.push("📥 *지난 24시간*");
-  out.push("");
-  out.push(`매출: *+${formatWonRaw(p.yesterday.revenueIncrease)}*${p.yesterday.revenueNote ? ` _(${escapeMd(p.yesterday.revenueNote)})_` : ""}`);
-  out.push(`지출: *+${formatWonRaw(p.yesterday.expenseIncrease)}*${p.yesterday.expenseNote ? ` _(${escapeMd(p.yesterday.expenseNote)})_` : ""}`);
-  out.push(`신규 견적: ${p.yesterday.newInquiries}건`);
-
-  out.push("");
-  out.push("━━━━━━━━━━━━━━━━━━━━━");
-  out.push("📊 *5월 누계*");
-  out.push("");
-  out.push(`매출 확정: ${formatWon(p.monthSummary.revenueConfirmed, { bold: true })}`);
-  out.push(`입금 완료: ${formatWon(p.monthSummary.paidIn, { bold: true })}`);
-  out.push(`지출: ${formatWon(p.monthSummary.expenses, { bold: true })}`);
-  const sign = p.monthSummary.profit >= 0 ? "+" : "-";
-  out.push(`영업이익: *${sign}${formatWonRaw(Math.abs(p.monthSummary.profit))}*`);
-
-  out.push("");
-  out.push("━━━━━━━━━━━━━━━━━━━━━");
-  out.push(`👉 _진행 중 ${p.pipeline.inProgress}건, 입금 대기 ${formatWonRaw(p.pipeline.pendingPaymentAmount)}_`);
+  out.push(`👉 _진행 중 ${p.pipeline.inProgress}건 — 돈 관련 브리핑은 재무이사 보고로 분리_`);
 
   return out.join("\n");
 }
 
 function formatTaskLine(t: DailyTask): string {
   let line = `• ${escapeMd(t.text)}`;
-  if (t.amount && t.amount > 0) {
-    line += ` *_${formatWonRaw(t.amount)}_*`;
-  }
   if (t.due) {
     const label = formatDueLabel(t.due);
     line += ` _(${label})_`;
   }
   return line;
-}
-
-function formatWonRaw(amount: number): string {
-  return `₩${Math.round(amount).toLocaleString("ko-KR")}`;
 }
 
 // =====================================================
@@ -203,73 +163,26 @@ export type WeeklySummaryPayload = {
   weekNumber: number;
   weekStart: Date;
   weekEnd: Date;
-  revenue: {
-    confirmed: number;
-    target?: number;
-    paidIn: number;
-    paidInCount: number;
-    pendingPayment: number;
-    pendingPaymentCount: number;
-    items: Array<{ label: string; amount: number }>;
-  };
-  expense: {
-    total: number;
-    breakdown: Array<{ label: string; amount: number }>;
-  };
   insights?: string[];
   nextWeek: {
     weekNumber: number;
     weekStart: Date;
     weekEnd: Date;
     goals: string[];
-    revenueTarget?: number;
   };
   footerNote?: string;          // 예: "숨고 마켓 5/30 폐쇄까지 D-22"
 };
 
 export function buildWeeklySummary(p: WeeklySummaryPayload): string {
   const out: string[] = [];
-  out.push(`📊 *Week ${p.weekNumber} (${formatDateRange(p.weekStart, p.weekEnd)}) 주간 요약*`);
+  out.push(`📊 *Week ${p.weekNumber} (${formatDateRange(p.weekStart, p.weekEnd)}) 주간 할 일 요약*`);
   out.push("");
-
-  // 매출
   out.push("━━━━━━━━━━━━━━━━━━━━━");
-  out.push("💰 *매출 실적*");
+  out.push("🧭 *업무 현황*");
   out.push("");
-  if (p.revenue.target) {
-    const pct = Math.round((p.revenue.confirmed / p.revenue.target) * 100);
-    out.push(`확정: ${formatWon(p.revenue.confirmed, { bold: true })} _(목표 ${formatWonRaw(p.revenue.target)} → ${pct}%)_`);
+  if (!p.insights || p.insights.length === 0) {
+    out.push("• 등록된 업무 인사이트 없음");
   } else {
-    out.push(`확정: ${formatWon(p.revenue.confirmed, { bold: true })}`);
-  }
-  out.push(`입금 완료: ${formatWon(p.revenue.paidIn, { bold: true })} _(${p.revenue.paidInCount}건)_`);
-  out.push(`입금 대기: ${formatWon(p.revenue.pendingPayment, { bold: true })} _(${p.revenue.pendingPaymentCount}건)_`);
-
-  if (p.revenue.items.length > 0) {
-    out.push("");
-    for (const item of p.revenue.items) {
-      out.push(`• ${escapeMd(item.label)} *_${formatWonRaw(item.amount)}_*`);
-    }
-  }
-
-  // 지출
-  out.push("");
-  out.push("━━━━━━━━━━━━━━━━━━━━━");
-  out.push("💸 *지출*");
-  out.push("");
-  out.push(`총: ${formatWon(p.expense.total, { bold: true })}`);
-  if (p.expense.breakdown.length > 0) {
-    for (const item of p.expense.breakdown) {
-      out.push(`• ${escapeMd(item.label)}: *${formatWonRaw(item.amount)}*`);
-    }
-  }
-
-  // 인사이트
-  if (p.insights && p.insights.length > 0) {
-    out.push("");
-    out.push("━━━━━━━━━━━━━━━━━━━━━");
-    out.push("💡 *핵심 인사이트*");
-    out.push("");
     for (const line of p.insights) {
       out.push(`• ${escapeMd(line)}`);
     }
@@ -283,9 +196,7 @@ export function buildWeeklySummary(p: WeeklySummaryPayload): string {
   for (const g of p.nextWeek.goals) {
     out.push(`• ${escapeMd(g)}`);
   }
-  if (p.nextWeek.revenueTarget) {
-    out.push(`• 매출 목표: ${formatWon(p.nextWeek.revenueTarget, { bold: true })}`);
-  }
+  if (p.nextWeek.goals.length === 0) out.push("• 등록된 P0/P1 없음");
 
   if (p.footerNote) {
     out.push("");
